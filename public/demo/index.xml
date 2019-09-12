@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demos on Shi.bro的博客</title>
+    <link>http://www.sszblog.xyz/demo/</link>
+    <description>Recent content in Demos on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 11 Sep 2019 20:39:16 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.sszblog.xyz/demo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Demo2</title>
+      <link>http://www.sszblog.xyz/demo/demo/</link>
+      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      
+      <guid>http://www.sszblog.xyz/demo/demo/</guid>
+      <description>#markdown demo
+标题DEMO 一级标题 二级标题 三级标题 四级标题 五级标题 段落DEMO 这是段落的DEMO
+这是段落的DEMO
+区块引用DEMO  区块引用 &amp;gt; 嵌套引用 &amp;gt; &amp;gt;三嵌套引用 &amp;gt; &amp;gt; &amp;gt; 四嵌套引用
+ 代码块DEMO 四个空格或者TAB import com.sinorock.common.argument.AesArgumentResolver; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.web.method.support.HandlerMethodArgumentResolver; import org.springframework.web.servlet.config.annotation.WebMvcConfigurer; import java.util.List; /** * 自定义注解 AesJson配置类 */ @Configuration public class ArgumentResolverConfig implements WebMvcConfigurer { @Override public void addArgumentResolvers(List&amp;lt;HandlerMethodArgumentResolver&amp;gt; argumentResolvers) { argumentResolvers.add(aesArgumentResolver()); } @Bean public AesArgumentResolver aesArgumentResolver(){ return new AesArgumentResolver(); } }   斜体 加粗DEMO 斜体 ，斜体</description>
+    </item>
+    
+    <item>
+      <title>Demo2</title>
+      <link>http://www.sszblog.xyz/demo/demo2/</link>
+      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      
+      <guid>http://www.sszblog.xyz/demo/demo2/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

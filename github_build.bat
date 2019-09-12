@@ -1,0 +1,1 @@
+hugo --theme=maupassant-hugo --baseUrl="http://www.sszblog.xyz" --buildDrafts

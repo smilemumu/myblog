@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Java8相关 | Shi.bro的博客</title>
+    <meta property="og:title" content="Java8相关 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-09-11T20:39:16&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-09-11T20:39:16&#43;08:00">
+        
+    <meta name="Keywords" content="golang,go语言,go语言笔记,飞雪无情,java,android,博客,项目管理,python,软件架构,公众号,小程序">
+    <meta name="description" content="Java8相关">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/java/java8/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">专注于Android、Java、Go语言(golang)、移动互联网、项目管理、软件架构</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/books/" title="新书">新书</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="归档">归档</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Java8相关</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年9月11日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<ul>
+<li><a href="#1-行为参数化">1. 行为参数化</a></li>
+</ul>
+
+<h1 id="java8">JAVA8</h1>
+
+<h2 id="1-行为参数化">1. 行为参数化</h2>
+
+<ul>
+<li><p><strong>定义一个接口，对选择建模</strong><br />
+&gt;<font color="green"><br />
+&gt;
+public interface ApplePredicate{<br />
+    boolean test(Apple apple);<br />
+}
+</font></p></li>
+
+<li><p><strong>定义一个类，实现该接口</strong>
+&gt;
+public class AppleRedAndHeavyPredicate implements ApplePredicate{<br />
+    public boolean test(Apple apple){<br />
+        return &ldquo;red&rdquo;.equals(apple.getColor())<br />
+                &amp;&amp; apple.getWeight() &gt; 150;<br />
+    }<br />
+}</p></li>
+
+<li><p><strong>使用匿名内部类简化代码</strong>
+&gt;<br />
+List<Apple> redApples = filterApples(apples,new ApplePredicate(){
+    public boolean test(Apple a){
+        return &ldquo;red&rdquo;.equals(a.getColor());
+    }
+});</p></li>
+
+<li><p><strong>使用Lamba表达式简化</strong>
+&gt;<br />
+List<Apple> redApples = filterApples(apples,a-&gt;&ldquo;red&rdquo;.equals(a.getColor()));</p></li>
+
+<li><p><strong>使用泛型，抽象化代码</strong>
+&gt;<br />
+public interface Predicate<T>{<br />
+    boolean test(T t);<br />
+}
+&gt;
+public static <T> List<T> filter(List<T> list,Predicate<T> p){
+    List<T> result = new ArrayList&lt;&gt;();
+    for(T e:list){
+        if(p.test(e)){
+            result.add(e);
+        }
+    }
+    return result;
+}</p></li>
+</ul>
+
+<hr />
+
+<h2 id="2-lamba表达式">2. lamba表达式</h2>
+
+<ul>
+<li><strong>函数式接口</strong><br /></li>
+</ul>
+
+<table><thead><tr><th>函数式接口</th><th>函数描述</th><th>原始类型特化</th></tr></thead><tbody><tr><td>Predicate< T></t></td><td>T->boolean</td><td>IntPredicate,<br>LongPredicate,<br>DoublePredicate</td></tr><tr><td>Consumer< T></t></td><td>T->void</td><td>IntConsumer,<br>LongConsumer,<br>DoubleConsumer</td></tr><tr><td>Function< T,R></td><td>T->R</td><td>IntFunction<  R>,<br>IntToDoubleFunction,<br>IntToLongFunction,<br>LongFunction< R>,<br>LongToDoubleFunction,<br>LongToIntFunction,<br>DoubleFunction< R>,<br>ToIntFunction< T>,<br>ToDoubleFunction< T>,<br>ToLongFunction< T></t></t></t></r></r></r></td></tr><tr><td>Supplier<t></t></td><td>()->T</td><td>BooleanSupplier,<br>IntSupplier,<br>LongSupplier,<br>DoubleSupplier</td></tr><tr><td>UnaryOperator<t></t></td><td>T->T</td><td>IntUnaryOperator,<br>LongUnaryOperator,<br>DoubleUnaryOperator</td></tr><tr><td>BinaryOperator<t></t></td><td>(T,T)->T</td><td>IntBinaryOperator,<br>LongBinaryOperator,<br>DoubleBinaryOperator</td></tr><tr><td>BiPredicate< L,R></td><td>(L,R)->boolean</td><td></td></tr><tr><td>BiConsumer< T,U></td><td>(T,U)->void</td><td>ObjIntConsumer< T>,<br>ObjLongConsumer< T>,<br>ObjDoubleConsumer< T></t></t></t></td></tr><tr><td>BiFunction< T,U,R></td><td>(T,U)->R</td><td>ToIntBiFunction< T,U>,<br>ToLongBiFunction< T,U>,<br>ToDoubleBiFunction< T,U></td></tr></tbody></table>
+
+<ul>
+<li><strong>Lambdas 及函数式接口的例子</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr><th>使用案例</th><th>Lambda的例子</th><th>对应的函数式接口</th></tr>
+</thead>
+<tbody>
+<tr><td>布尔表达式</td><td>(List<  string>list)->list.isEmpty()</string><td>Predicate<List<  string>></string></td></tr>
+
+<tr><td>创建对象</td><td>()->new Apple(10)</td><td>Supplier<  apple></apple></td></tr>
+<tr><td>消费一个对象</td><td>(Apple a)->System.out.println(a.getWeight())</td><td>Consumer<  apple></apple></td></tr>
+
+<tr><td>从一个对象中选择/提取</td><td>(String s)->s.length()</td><td>Function< String,Integer>,<br>ToIntFunction<string></string></td></tr>
+
+<tr><td>合并两个值</td><td>(int a,int b)->a*b</td><td>IntBinaryOperator</td></tr>
+
+<tr><td>比较两个对象</td><td>(Apple a1,Apple a2)-><br>a1.getWeight().compareTo(a2.getWeight())</td><td>Comparator< apple>,<br>BiFunction< Apple,Apple,Integer>,<br>ToIntBiFunction< Apple,Apple></apple></td></tr>
+
+</tbody>
+</table>
+
+<ul>
+<li><strong>Lambda及其等效的方法引用</strong>
+<table>
+<thead><tr><th>Lambda</th><th>等效的引用方法</th></thead>
+<tbody>
+<tr><td>(Apple a) -&gt; a.getWeight()</td><td>Apple::getWeight</td></tr>
+<tr><td>()-&gt;Thread.currentThread().dumpStack()</td><td>Thread.currentThread()::dumpStack</td></tr>
+<tr><td>(str,i) -&gt; str.substring(i)</td><td>String::substring</td></tr>
+<tr><td>(String s)-&gt;System.out.println(s)</td><td>System.out::println</td></tr>
+</tbody>
+</table>
+&mdash;</li>
+</ul>
+
+<h2 id="构造函数引用"><strong>构造函数引用</strong></h2>
+
+<ul>
+<li><p><strong>默认方法的构造函数引用</strong>
+&gt;
+Supplier<Apple> appleSupplier = Apple::new;
+Supplier<Apple> appleSupplier = ()-&gt;new Apple();
+Apple a = appleSupplier.get();</p></li>
+
+<li><p><strong>1个参数的构造函数引用</strong><br />
+如果函数签名类似于Apple(Integer weight)<br />
+&gt;
+Function<Integer,Apple> appleFunction = Apple::new;<br />
+Function<Apple> appleFunction = (weight)-&gt;new Apple(weight);<br />
+Apple a = appleFunction.apply(10);</p></li>
+
+<li><p><strong>2个参数的构造函数引用</strong><br />
+如果函数签名类似于Apple(Integer weight,String color)<br />
+&gt;
+BiFunction<Integer,String,Apple> appleBiFunction = Apple::new;<br />
+BiFunction<Integer,String,Apple> appleBiFunction = (weight,color)-&gt;new Apple  (weight,color);<br />
+Apple a = appleFunction.apply(10.&ldquo;red&rdquo;);
+<font color = "red"></p></li>
+
+<li><p><strong>比较器复合</strong></font>
+&gt;
+Comparator<Apple> c = Comparator.comparing(Apple::getWeighjt);</p>
+
+<p>apples.sort((a,b)-&gt;a.getWeight().compareTo(b.getWeight()));
+可有化成（idea会自动帮我们优化）
+apples.sort(Comparator.comparing(Apple::getWeight));
+<font color = "red"></p></li>
+
+<li><p><strong>逆序</strong></font>
+&gt;
+Comparator<Apple> c = Comparator.comparing(Apple::getWeighjt)
+                                .reversed();
+<font color = "red"></p></li>
+
+<li><p><strong>比较链接</strong></font>  先按照重量排序，然后按照颜色排序
+&gt;
+Comparator<Apple> c = Comparator.comparing(Apple::getWeighjt)
+                                .reversed()
+                                .thenComparing(Apple::getColor);
+<font color = "red"></p></li>
+
+<li><p><strong>谓词复合</strong></font></p>
+
+<p>谓词接口包含3个方法：negate,and,or
+&gt;
+Predicate<Apple> redApple = (Apple a)-&gt;&ldquo;red&rdquo;.equals(a.getColor());
+Predicate<Apple> heaveyApple = a-&gt;a.getWeight()&gt;150;
+Predicate<Apple> notRedApple = redApple.negate();
+Predicate<Apple> redAndHeavyApple = redApple.and(heavyApple);</p></li>
+</ul>
+
+<p><font color = "red"></p>
+
+<ul>
+<li><p><strong>函数复合</strong></font></p>
+
+<p>谓词接口包含3个方法：negate,and,or
+&gt;
+Function<Integer,Integer> f = (a)-&gt;a*2;
+Function<Integer,Integer> g = (b)-&gt;b+2;
+f.andThen(g) == g(f(x))
+f.compose(g) == f(g(x))
+用此种方法可以组合成流水线工作，最后得出结果</p></li>
+</ul>
+
+<hr />
+
+<h2 id="3-使用流">3. 使用流</h2>
+
+<ul>
+<li><strong>distinct()</strong><br />
+返回不重复的元素</li>
+<li><strong>limit(3)</strong><br />
+截断流，只选择前3个</li>
+<li><strong>skip(3)</strong><br />
+跳过流，跳过前3个</li>
+<li><strong>map()</strong> 映射</li>
+<li><strong>flatMap()</strong> 流扁平化，将各个生成的流扁平化为单个流<br />
+例如存在<br />
+List<String> a = [&ldquo;1&rdquo;,&ldquo;2&rdquo;,&ldquo;3&rdquo;];<br />
+List<String> b = [&ldquo;a&rdquo;,&ldquo;b&rdquo;];
+如何生成[&ldquo;1a&rdquo;,&ldquo;1b&rdquo;,&ldquo;2a&rdquo;,&ldquo;2b&rdquo;,&ldquo;3a&rdquo;,&ldquo;3b&rdquo;]?
+&gt;<br /></li>
+<li>A.<br />
+Stream<Stream<String>&gt; result = a.stream().map(i-&gt;b.stream(j-&gt;return (i+j)));<br />
+Stream<String> s1 = [&ldquo;1a&rdquo;,&ldquo;1b&rdquo;]转换成的流;<br />
+Stream<String> s2 = [&ldquo;2a&rdquo;,&ldquo;2b&rdquo;]转换成的流;<br />
+Stream<String> s3 = [&ldquo;3a&rdquo;,&ldquo;3b&rdquo;]转换成的流;<br />
+对result进行收集会得到[[&ldquo;1a&rdquo;,&ldquo;1b&rdquo;],[&ldquo;2a&rdquo;,&ldquo;2b&rdquo;],[&ldquo;3a&rdquo;,&ldquo;3b&rdquo;]]不符合预期<br />
+&gt;<br /></li>
+
+<li><p>B.
+Stream<String> result = a.stream().flatMap(i-&gt;b.stream(j-&gt;return (i+j)));<br />
+对result进行收集会得到[&ldquo;1a&rdquo;,&ldquo;1b&rdquo;,&ldquo;2a&rdquo;,&ldquo;2b&rdquo;,&ldquo;3a&rdquo;,&ldquo;3b&rdquo;]符合预期</p></li>
+
+<li><p><strong>anyMatch()</strong><br />
+流中是否存在一个元素能够匹配  返回一个boolean值</p></li>
+
+<li><p><strong>allMatch()</strong><br />
+流中是否所有元素都能够匹配  返回一个boolean值</p></li>
+
+<li><p><strong>nonMatch()</strong><br />
+流中是否所有元素都不能匹配  返回一个boolean值</p></li>
+
+<li><p><strong>findAny()</strong><br />
+流中只要找到一个匹配的元素就短路并返回一个Optional<T>值,如果不关心顺序，请用findAny</p></li>
+
+<li><p><strong>findFirst()</strong><br />
+顺序流中只要找到一个匹配的元素就短路并返回一个Optional<T>值，关心顺序时使用</p></li>
+
+<li><p><strong>isPresent()</strong><br />
+Optional<T>中包含值返回true,否则返回false</p></li>
+
+<li><p><strong>ifPresent(Consumer<T> block)</strong><br />
+会在值存在时执行消费操作代码块</p></li>
+
+<li><p><strong>T orElse(T other)</strong><br />
+会在值存在时返回值，否则返回默认值</p></li>
+
+<li><p><strong>reduce()</strong>
+int sum = list.stream().reduce(0,(a,b)-&gt;(a+b));初始为0的元素求和<br />
+int sum = list.stream().reduce(0,Integer::sum);<br />
+int multi = list.stream().reduce(1,(a,b)-&gt;a*b);初始为1的元素求积<br />
+Optional<Integer> multi = list.stream().reduce((a,b)-&gt;a*b);没有初始值的的元素求积将返回optional</p></li>
+
+<li><p><strong>数值范围 range(),rangeClosed()</strong><br />
+IntStream.range(1,100) = [1,100}<br />
+IntStream.rangeClosed(1,100) = [1,100]</p></li>
+
+<li><p><strong>用Iterate创建无限流</strong>
+例如：Stream.iterate(0,n-&gt;n+2).limit(5)</p></li>
+
+<li><p><strong>用generate创建无限流</strong>
+generate接受一个Supplier<T> 提供新的值<br />
+例如：Stream.generate(Math::random).limit(5);</p>
+
+<h3 id="3-1-流收集数据">3.1 流收集数据</h3></li>
+
+<li><p><strong>总量</strong>
+&gt;
+Stream.of(&ldquo;1&rdquo;.&ldquo;2&rdquo;).count();<br />
+或者
+Stream.of(&ldquo;1&rdquo;.&ldquo;2&rdquo;).collect(Collectors.counting());</p></li>
+
+<li><p><strong>MAX 和MIN</strong>
+最大的苹果：
+&gt;
+Comparator<Apple> appleComparator = Comparator.comparingInt(Apple::getWeight);
+Optional<Apple> maxWeightApple = apples.stream().collect(Collectors.maxBy(appleComparator));
+最小值用<strong>Collectors.minBy()</strong><br />
+Int求和用<strong>Collectors.summarizingInt()</strong><br />
+Double求和用<strong>Collectors.summarizingDouble()</strong><br />
+Long求和用<strong>Collectors.summarizingLong()</strong></p></li>
+
+<li><p><strong>规约reduce()</strong><br />
+&gt;
+apples.stream().collect(Collectors.reducing(0,Apple::getWeight,Integer::sum));<br />
+apples.stream().coll ect(Collectors.reducing(0,Apple::getWeight,(i,j)-&gt;(i+j)));<br />
+这两条代码是等价的
+0 &lt;&ndash;初始值<br />
+Apple::getWeight &lt;&ndash;转换函数<br />
+(i,j)-&gt;(i+j) &lt;&ndash;BinaryOperator</p></li>
+
+<li><p><strong>分组groupingBy()</strong><br />
+<strong>多级分组</strong><br />
+&gt;
+apples.stream().collect(Collectors.groupingBy(Apple::getWeight, Collectors.groupingBy(Apple::getColor)));</p></li>
+
+<li><p><strong>分区partitioningBy()</strong><br />
+分区是分组的特殊情况,会返回Map<Boolean,List<T>&gt;类型，true是以组，false是一组</p></li>
+
+<li><p><strong>Collectors类的静态方法</strong></p></li>
+</ul>
+
+<p><table>
+   <thead>
+    <tr>
+     <th>工厂方法</th>
+     <th>返回类型</th>
+     <th>用于</th>
+     <th>示例</th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>toList</td>
+     <td><code>List&lt;T&gt;</code></td>
+     <td>把流中所有项目收集到一个List</td>
+     <td><code>List&lt;Dish&gt; dishes = menuStream. collect(toList());</code></td>
+    </tr>
+    <tr>
+     <td>toSet</td>
+     <td><code>Set&lt;T&gt;</code></td>
+     <td>把流中所有项目收集到一个Set,删除重复项</td>
+     <td><code>Set&lt;Dish&gt; dishes = menuStream. collect (toSet());</code></td>
+    </tr>
+    <tr>
+     <td>toCollection</td>
+     <td><code>Collection&lt;T&gt;</code></td>
+     <td>把流中所有项目收集到给定的供应源创建的集合</td>
+     <td><code>Collection&lt;Dish&gt; dishes = menuStream.collect (toCollection() ,ArrayList::new);</code></td>
+    </tr>
+    <tr>
+     <td>counting</td>
+     <td><code>Long</code></td>
+     <td>计算流中元素的个数</td>
+     <td><code>long howManyDishes = menuStream.collect (counting());</code></td>
+    </tr>
+    <tr>
+     <td>summingInt</td>
+     <td><code>Integer</code></td>
+     <td>对流中项目的一个整数属性求和</td>
+     <td><code>int totalCalories =menuStream.collect(summingInt (Dish::getCalories) );</code></td>
+    </tr>
+    <tr>
+     <td>averagingInt</td>
+     <td><code>Double</code></td>
+     <td>计算流中项目Integer属性的平均值</td>
+     <td><code>double avgCalories =menuStream.collect(averagingInt(Dish::getCalories));</code></td>
+    </tr>
+    <tr>
+     <td>summarizingInt</td>
+     <td><code>IntSummaryStatistics</code></td>
+     <td>收集美于流中項目Integer 属性的統竍値，例如最大、最小、总和与平均値</td>
+     <td><code>IntSummaryStatistics menuStatistics =menuStream.collect(summarizingInt(Dish::getCalories));</code></td>
+    </tr>
+    <tr>
+     <td>joining</td>
+     <td><code>String</code></td>
+     <td>连接对流中毎个項目调用toString方法所生成的字符串</td>
+     <td><code>String shortMenu =menuStream.map(Dish::getName).collect (joining(&quot;, &quot;));</code></td>
+    </tr>
+    <tr>
+     <td>maxBy</td>
+     <td><code>Optional&lt;T&gt;</code></td>
+     <td>一个包裹了流中按照给定比较器选出的最大元素的Optional,或如果流为空则为optional.empty()</td>
+     <td><code>Optional&lt;Dish&gt; fattest = menuStream.collect(maxBy(comparingInt(Dish::getCalories)));</code></td>
+    </tr>
+    <tr>
+     <td>minBy</td>
+     <td><code>Optional&lt;T&gt;</code></td>
+     <td>一个包裹了流中按照给定比较器选出的最小元素的Optional,或如果流为空则为optional.empty()</td>
+     <td><code>Optional&lt;Dish&gt; lightest = menuStream.collect(minBy(comparingInt(Dish::getCalories)));</code></td>
+    </tr>
+    <tr>
+     <td>reducing</td>
+     <td>归约操作产生的类型</td>
+     <td>从一个作为累加器的初始値幵始,利用BinaryOperator与流中的元素逐个结合，从而将流归约为单个值</td>
+     <td><code>int totalCalories =menuStream.collect(reducing(0,Dish::getCalories, Integer::sum));</code></td>
+    </tr>
+    <tr>
+     <td>collectingAndThen</td>
+     <td>转换函数的类型</td>
+     <td>包裹另一个收集器，对其结果应用转换函数</td>
+     <td><code>int howManyDishes =menuStream.collect(collectingAndThen(toList(), List::size));</code></td>
+    </tr>
+    <tr>
+     <td>groupingBy</td>
+     <td><code>Map&lt;K, List&lt;T&gt;&gt;</code></td>
+     <td>根据项目的一个属性的值对流中的项目作问组，并将属性值作为结果Map的键</td>
+     <td><code>Map&lt;Dish.Type,List&lt;Dish&gt;&gt; dishesByType = menuStream.collect(groupingBy(Dish::getType));</code></td>
+    </tr>
+    <tr>
+     <td>mapping</td>
+     <td></td>
+     <td>是一个收集器，可以传入两个函数， 一个函数对流中的元素做变换，另一个则将变换的结果对象收集起来 ，目的是在累加之前对每个元素应用一个映射函数</td>
+     <td><code>Map&lt;Dish.Type, Set&lt;CaloricLevel&gt;&gt; caloricLevelsByType =menu.stream().collect(groupingBy(Dish::getType, mapping(dish -&gt; { if (dish.getCalories() &lt;=400) return CaloricLevel.DIET;else if (dish.getCalories() &lt;= 700) return CaloricLevel.NORMAL;else return CaloricLevel.FAT; },toSet() )));</code></td>
+    </tr>
+    <tr>
+     <td>partitioningBy</td>
+     <td><code>Map&lt;Boolean, List&lt;T&gt; &gt;</code></td>
+     <td>相据对流由每个项目应田谓词的结里求对项目经行分区</td>
+     <td><code>Map&lt;Boolean, List&lt;Dish&gt;&gt; vegetarianDishes =menuStream. collect (partitioningBy (Dish::isVegetarian) ) ;</code></td>
+    </tr>
+   </tbody>
+  </table></p>
+
+<h1 id="待办事项">待办事项</h1>
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 自定义收集器</label></li>
+</ul>
+
+<h3 id="3-3-并行数据处理与性能">3.3 并行数据处理与性能</h3>
+
+<p>prallelStream()<br />
+parallel()将顺序流变为并行流<br />
+sequential()将并行流变为顺序流<br />
+自动装箱拆箱会大大降低并行流性能，此时应使用IntStream等原始类型流来避免这种操作。</p>
+
+<h2 id="4-设计模式使用">4. 设计模式使用</h2>
+
+<h3 id="使用lambda重构设计模式使用">使用lambda重构设计模式使用</h3>
+
+<h4 id="4-1策略模式">4.1策略模式</h4>
+
+<h4 id="待办事项-1">待办事项</h4>
+
+<ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 各种模式</label></li>
+</ul>
+
+<h2 id="5-默认方法">5. 默认方法</h2>
+
+<h2 id="6-optional">6. Optional</h2>
+
+<h3 id="optional方法">optional方法</h3>
+
+<table>
+<tbody><tr>
+<th style="width:10%;">序号</th>
+<th>方法 &amp; 描述</th>
+</tr>
+<tr>
+<td>1</td>
+<td><b>static &lt;T&gt; Optional&lt;T&gt; empty()</b>
+<p>返回空的 Optional 实例。</p></td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>boolean equals(Object obj)</b>
+<p>判断其他对象是否等于 Optional。</p></td>
+</tr>
+<tr>
+<td>3</td>
+<td><b>Optional&lt;T&gt; filter(Predicate&lt;? super &lt;T&gt; predicate)</b>
+<p>如果值存在，并且这个值匹配给定的 predicate，返回一个Optional用以描述这个值，否则返回一个空的Optional。</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td><b>&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T,Optional&lt;U&gt;&gt; mapper)</b>
+<p>如果值存在，返回基于Optional包含的映射方法的值，否则返回一个空的Optional</p></td>
+</tr>
+<tr>
+<td>5</td>
+<td><b>T get()</b>
+<p>如果在这个Optional中包含这个值，返回值，否则抛出异常：NoSuchElementException</p></td>
+</tr>
+<tr>
+<td>6</td>
+<td><b>int hashCode()</b>
+<p>返回存在值的哈希码，如果值不存在 返回 0。</p></td>
+</tr>
+<tr>
+<td>7</td>
+<td><b>void ifPresent(Consumer&lt;? super T&gt; consumer)</b>
+<p>如果值存在则使用该值调用 consumer , 否则不做任何事情。</p></td>
+</tr>
+<tr>
+<td>8</td>
+<td><b>boolean isPresent()</b>
+<p>如果值存在则方法会返回true，否则返回 false。</p></td>
+</tr>
+<tr>
+<td>9</td>
+<td><b>&lt;U&gt;Optional&lt;U&gt; map(Function&lt;? super T,? extends U&gt; mapper)</b>
+<p>
+如果有值，则对其执行调用映射函数得到返回值。如果返回值不为 null，则创建包含映射返回值的Optional作为map方法返回值，否则返回空Optional。</p></td>
+</tr>
+<tr>
+<td>10</td>
+<td><b>static &lt;T&gt; Optional&lt;T&gt; of(T value)</b>
+<p>返回一个指定非null值的Optional。</p></td>
+</tr>
+<tr>
+<td>11</td>
+<td><b>static &lt;T&gt; Optional&lt;T&gt; ofNullable(T value)</b>
+<p>如果为非空，返回 Optional 描述的指定值，否则返回空的 Optional。</p></td>
+</tr>
+<tr>
+<td>12</td>
+<td><b>T orElse(T other)</b>
+<p>如果存在该值，返回值， 否则返回 other。</p></td>
+</tr>
+<tr>
+<td>13</td>
+<td><b>T orElseGet(Supplier&lt;? extends T&gt; other)</b>
+<p>如果存在该值，返回值， 否则触发 other，并返回  other 调用的结果。</p></td>
+</tr>
+<tr>
+<td>14</td>
+<td><b>&lt;X extends Throwable&gt; T orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</b><p></p>
+<p>如果存在该值，返回包含的值，否则抛出由 Supplier 继承的异常</p></td>
+</tr>
+<tr>
+<td>15</td>
+<td><b>String toString()</b>
+<p>返回一个Optional的非空字符串，用来调试</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="7-completablefuture-组合式异步编程">7. CompletableFuture:组合式异步编程</h2>
+
+<h2 id="8-新的日期和时间api">8. 新的日期和时间API</h2>
+
+<p>LocalDate
+LocalDateTime
+Instant
+Duration
+Period</p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/demo/demo2/">Demo2</a></li>
+        
+        <li><a href="/demo/demo/">Demo2</a></li>
+        
+        <li><a href="/java/xml%E8%A7%A3%E6%9E%90/">xml解析</a></li>
+        
+        <li><a href="/word/word/">单词本</a></li>
+        
+        <li><a href="/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/">按指定长度切割list</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            没有标签
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title" style="color:red">福利派送</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=jdg9oj97" title="领取￥1888阿里云产品通用代金券" target="_blank" style="color:red">
+                
+                    领取￥1888阿里云产品通用代金券
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?userCode=jdg9oj97" title="领取￥1888阿里云产品通用代金券" target="_blank" style="color:red">
+                
+                    <img src="https://img.alicdn.com/tfs/TB17qJhXpzqK1RjSZFvXXcB7VXa-200-126.jpg">
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=jdg9oj97" title="领取￥1888阿里云产品通用代金券" target="_blank" style="color:red">
+                
+                    <img src="https://img.alicdn.com/tfs/TB1aDXhXpzqK1RjSZFvXXcB7VXa-259-194.jpg">
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="http://yuedu.baidu.com/ebook/14a722970740be1e640e9a3e" title="Android Gradle权威指南">Android Gradle权威指南</a>
+        </li>
+        
+        <li>
+            <a target="_blank" href="http://mirrors.flysnow.org/" title="常用开发工具CDN镜像">常用开发工具CDN镜像</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="http://www.sszblog.xyz/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>
