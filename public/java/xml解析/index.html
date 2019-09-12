@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>xml解析 | Shi.bro的博客</title>
-    <meta property="og:title" content="xml解析 - Shi.bro的博客">
+    <title>xml与json互转 | Shi.bro的博客</title>
+    <meta property="og:title" content="xml与json互转 - Shi.bro的博客">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-09-11T20:39:16&#43;08:00">
+    <meta property="article:published_time" content="2019-09-11T00:00:00&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-09-11T20:39:16&#43;08:00">
+    <meta property="article:modified_time" content="2019-09-11T00:00:00&#43;08:00">
         
-    <meta name="Keywords" content="golang,go语言,go语言笔记,飞雪无情,java,android,博客,项目管理,python,软件架构,公众号,小程序">
-    <meta name="description" content="xml解析">
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="xml与json互转">
         
     <meta name="author" content="Shi.bro">
     <meta property="og:url" content="http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/">
@@ -47,15 +47,13 @@
                         Shi.bro的博客
                     </a>
                 
-                <p class="description">专注于Android、Java、Go语言(golang)、移动互联网、项目管理、软件架构</p>
+                <p class="description">我的个人博客</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
                     <a class="" href="http://www.sszblog.xyz">首页</a>
                     
-                    <a  href="http://www.sszblog.xyz/books/" title="新书">新书</a>
-                    
-                    <a  href="http://www.sszblog.xyz/archives/" title="归档">归档</a>
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
                     
                     <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
                     
@@ -76,29 +74,58 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">xml解析</h1>
+                            <h1 class="post-title">xml与json互转</h1>
                         </header>
                         <date class="post-meta meta-date">
                             2019年9月11日
                         </date>
                         
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">Java</a></span>
+                            
+                        </div>
+                        
                         
                         
                         <div class="post-content">
-                            
-
-<h1 id="xml解析"><strong>xml解析</strong></h1>
+                            <p><strong>开发场景中，需要对返回的xml数据转为json再进行处理</strong></p>
 
 <h2 id="1-使用org-json包来解析xml字符串">1.使用org.json包来解析xml字符串</h2>
 
-<pre><code>import org.json.JSONException;
-import org.json.JSONObject;
+<pre><code class="language-java">import org.json.JSONException;
 import org.json.XML;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import org.dom4j.*;
+
+/**
+ * xml to json
+ */
 public class JsonUtils {  
      public static String xml2jsonString(String xml)throws JSONException{  
      JSONObject xmlJSONObj = XML.toJSONObject(xml);  
      return xmlJSONObj.toString();  
      }  
+}
+
+/**
+ * json to xml
+ */
+public static String json2xml(String json){
+    String result  = &quot;&quot;;
+    try {
+        org.json.JSONObject jsonObj = new org.json.JSONObject(json);
+        result = &quot;&lt;xml&gt;&quot; + XML.toString(jsonObj) + &quot;&lt;/xml&gt;&quot;;
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    return result;
 }
 </code></pre>
 
@@ -110,10 +137,92 @@ public class JsonUtils {
 
 <h2 id="3-dom解析">3.dom解析</h2>
 
-<ul class="task-list">
-<li><label><input type="checkbox" disabled class="task-list-item"> 未完成事项</label></li>
-</ul>
+<ul>
+<li><p>[ ] 未完成事项</p>
 
+<h3 id="dom4j方式xml-to-json">dom4j方式xml to json</h3>
+
+<pre><code class="language-java">	/**
+ * xml转json
+ */
+public static void dom4j2Json(Element element,JSONObject json){
+    //如果是属性
+    for(Object o:element.attributes()){
+        Attribute attr=(Attribute)o;
+        if(!isEmpty(attr.getValue())){
+            json.put(&quot;@&quot;+attr.getName(), attr.getValue());
+        }
+    }
+    List&lt;Element&gt; chdEl=element.elements();
+    if(chdEl.isEmpty()&amp;&amp;!isEmpty(element.getText())){//如果没有子元素,只有一个值
+        json.put(element.getName(), element.getText());
+    }
+
+    for(Element e:chdEl){//有子元素
+        if(!e.elements().isEmpty()){//子元素也有子元素
+            JSONObject chdjson=new JSONObject();
+            dom4j2Json(e,chdjson);
+            Object o=json.get(e.getName());
+            if(o!=null){
+                JSONArray jsona=null;
+                if(o instanceof JSONObject){//如果此元素已存在,则转为jsonArray
+                    JSONObject jsono=(JSONObject)o;
+                    json.remove(e.getName());
+                    jsona=new JSONArray();
+                    jsona.add(jsono);
+                    jsona.add(chdjson);
+                }
+                if(o instanceof JSONArray){
+                    jsona=(JSONArray)o;
+                    jsona.add(chdjson);
+                }
+                json.put(e.getName(), jsona);
+            }else{
+                if(!chdjson.isEmpty()){
+                    json.put(e.getName(), chdjson);
+                }
+            }
+
+
+        }else{//子元素没有子元素
+            for(Object o:element.attributes()){
+                Attribute attr=(Attribute)o;
+                if(!isEmpty(attr.getValue())){
+                    json.put(&quot;@&quot;+attr.getName(), attr.getValue());
+                }
+            }
+            if(!e.getText().isEmpty()){
+                json.put(e.getName(), e.getText());
+            }
+        }
+    }
+}
+public static boolean isEmpty(String str) {
+
+    if (str == null || str.trim().isEmpty() || &quot;null&quot;.equals(str)) {
+        return true;
+    }
+    return false;
+}
+
+
+/**
+ * xml to json
+ * @param xml
+ * @return
+ */
+public static String xml2json(String xml) {
+    JSONObject json=new JSONObject();
+    try {
+        Document doc= DocumentHelper.parseText(xml);
+        dom4j2Json(doc.getRootElement(),json);
+    } catch (DocumentException e) {
+        logger.error(&quot;xml2jso失败,参数：{}&quot;,xml);
+    }
+    return json.toString();
+}
+</code></pre></li>
+</ul>
                         </div>
 
                         
@@ -125,15 +234,15 @@ public class JsonUtils {
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/demo/demo2/">Demo2</a></li>
-        
-        <li><a href="/demo/demo/">Demo2</a></li>
+        <li><a href="/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/">按指定长度切割list</a></li>
         
         <li><a href="/java/java8/">Java8相关</a></li>
         
-        <li><a href="/word/word/">单词本</a></li>
+        <li><a href="/archives/archives/">archives</a></li>
         
-        <li><a href="/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/">按指定长度切割list</a></li>
+        <li><a href="/git/git%E6%93%8D%E4%BD%9C/">git创建新仓库</a></li>
+        
+        <li><a href="/markdown/markdown/">markdown模板</a></li>
         
     </ul>
 </div>
@@ -141,7 +250,13 @@ public class JsonUtils {
 
                         <div class="post-meta meta-tags">
                             
-                            没有标签
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/java">Java</a></li>
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/xml">xml</a></li>
+                                
+                            </ul>
                             
                         </div>
                     </article>
@@ -170,41 +285,26 @@ public class JsonUtils {
     </section>
 
     
-<section class="widget">
-    <h3 class="widget-title" style="color:red">福利派送</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a href="https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=jdg9oj97" title="领取￥1888阿里云产品通用代金券" target="_blank" style="color:red">
-                
-                    领取￥1888阿里云产品通用代金券
-                
-            </a>
-        </li>
-        
-        <li>
-            <a href="https://promotion.aliyun.com/ntms/act/vmpt/aliyun-group/home.html?userCode=jdg9oj97" title="领取￥1888阿里云产品通用代金券" target="_blank" style="color:red">
-                
-                    <img src="https://img.alicdn.com/tfs/TB17qJhXpzqK1RjSZFvXXcB7VXa-200-126.jpg">
-                
-            </a>
-        </li>
-        
-        <li>
-            <a href="https://promotion.aliyun.com/ntms/act/enterprise-discount.html?userCode=jdg9oj97" title="领取￥1888阿里云产品通用代金券" target="_blank" style="color:red">
-                
-                    <img src="https://img.alicdn.com/tfs/TB1aDXhXpzqK1RjSZFvXXcB7VXa-259-194.jpg">
-                
-            </a>
-        </li>
-        
-    </ul>
-</section>
-
 
     <section class="widget">
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(3)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E5%85%B6%E4%BB%96/">其他(1)</a>
+    </li>
     
 </ul>
     </section>
@@ -213,32 +313,26 @@ public class JsonUtils {
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%8D%95%E8%AF%8D/">单词</a>
+    
 </div>
     </section>
 
     
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="http://yuedu.baidu.com/ebook/14a722970740be1e640e9a3e" title="Android Gradle权威指南">Android Gradle权威指南</a>
-        </li>
-        
-        <li>
-            <a target="_blank" href="http://mirrors.flysnow.org/" title="常用开发工具CDN镜像">常用开发工具CDN镜像</a>
-        </li>
-        
-    </ul>
-</section>
 
-
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="http://www.sszblog.xyz/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
+    
 </div>
         </div>
     </div>
@@ -246,8 +340,6 @@ public class JsonUtils {
 <footer id="footer">
     <div class="container">
         &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
         
     </div>
 </footer>

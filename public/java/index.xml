@@ -6,7 +6,7 @@
     <description>Recent content in Javas on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Sep 2019 20:39:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.sszblog.xyz/java/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,49 +14,28 @@
     <item>
       <title>Java8相关</title>
       <link>http://www.sszblog.xyz/java/java8/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/java8/</guid>
-      <description>1. 行为参数化  JAVA8 1. 行为参数化  定义一个接口，对选择建模
-&amp;gt;&amp;gt; public interface ApplePredicate{
-boolean test(Apple apple);
-} 
- 定义一个类，实现该接口 &amp;gt; public class AppleRedAndHeavyPredicate implements ApplePredicate{
-public boolean test(Apple apple){
-return &amp;ldquo;red&amp;rdquo;.equals(apple.getColor())
-&amp;amp;&amp;amp; apple.getWeight() &amp;gt; 150;
-}
-}
- 使用匿名内部类简化代码 &amp;gt;
-List redApples = filterApples(apples,new ApplePredicate(){ public boolean test(Apple a){ return &amp;ldquo;red&amp;rdquo;.equals(a.getColor()); } });
- 使用Lamba表达式简化 &amp;gt;
-List redApples = filterApples(apples,a-&amp;gt;&amp;ldquo;red&amp;rdquo;.equals(a.getColor()));
- 使用泛型，抽象化代码 &amp;gt;
-public interface Predicate{
-boolean test(T t);</description>
+      <description>&lt;p&gt;&lt;strong&gt;阅读Java8实战后的一些笔记&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>xml解析</title>
+      <title>xml与json互转</title>
       <link>http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/</guid>
-      <description> xml解析 1.使用org.json包来解析xml字符串 import org.json.JSONException; import org.json.JSONObject; import org.json.XML; public class JsonUtils { public static String xml2jsonString(String xml)throws JSONException{ JSONObject xmlJSONObj = XML.toJSONObject(xml); return xmlJSONObj.toString(); } }  2.sax解析 未完成事项  3.dom解析 未完成事项  </description>
+      <description>&lt;p&gt;&lt;strong&gt;开发场景中，需要对返回的xml数据转为json再进行处理&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>按指定长度切割list</title>
       <link>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</guid>
-      <description>按指定长度切割list 前言 计算总页数共有2种方法
-总记录数：totalRecord
-每页记录数：pageSize
-方法一、totalPage = totalRecord % pageSize== 0 ? totalRecord / pageSize: totalRecord / pageSize+ 1;
-方法二、totalPage = (totalRecord + pageSize-1) / pageSize;(推荐)
-1.使用Guava的Lists.partition方法 import com.google.common.collect.Lists; private List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; splitList(List&amp;lt;String&amp;gt; list , int groupSize){ return Lists.partition(list, groupSize); }  2.手动实现 private List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; splitList(List&amp;lt;String&amp;gt; list , int groupSize){ int length = list.size(); // 计算可以分成多少组 int num = ( length + groupSize - 1 )/groupSize ; // TODO List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; newList = new ArrayList&amp;lt;&amp;gt;(num); for (int i = 0; i &amp;lt; num; i++) { // 开始位置 int fromIndex = i * groupSize; // 结束位置 int toIndex = (i+1) * groupSize &amp;lt; length ?</description>
+      <description>&lt;p&gt;&lt;strong&gt;某一次需求开发中，遇到这样的场景，需要对名单进行分组然后再对这批名单处理。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

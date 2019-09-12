@@ -6,89 +6,90 @@
     <description>Recent content on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Sep 2019 20:39:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.sszblog.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Demo2</title>
-      <link>http://www.sszblog.xyz/demo/demo/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <title>archives</title>
+      <link>http://www.sszblog.xyz/archives/archives/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/demo/demo/</guid>
-      <description>#markdown demo
-标题DEMO 一级标题 二级标题 三级标题 四级标题 五级标题 段落DEMO 这是段落的DEMO
-这是段落的DEMO
-区块引用DEMO  区块引用 &amp;gt; 嵌套引用 &amp;gt; &amp;gt;三嵌套引用 &amp;gt; &amp;gt; &amp;gt; 四嵌套引用
- 代码块DEMO 四个空格或者TAB import com.sinorock.common.argument.AesArgumentResolver; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import org.springframework.web.method.support.HandlerMethodArgumentResolver; import org.springframework.web.servlet.config.annotation.WebMvcConfigurer; import java.util.List; /** * 自定义注解 AesJson配置类 */ @Configuration public class ArgumentResolverConfig implements WebMvcConfigurer { @Override public void addArgumentResolvers(List&amp;lt;HandlerMethodArgumentResolver&amp;gt; argumentResolvers) { argumentResolvers.add(aesArgumentResolver()); } @Bean public AesArgumentResolver aesArgumentResolver(){ return new AesArgumentResolver(); } }   斜体 加粗DEMO 斜体 ，斜体</description>
+      <guid>http://www.sszblog.xyz/archives/archives/</guid>
+      <description>这个是archives</description>
     </item>
     
     <item>
-      <title>Demo2</title>
-      <link>http://www.sszblog.xyz/demo/demo2/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <title>关于</title>
+      <link>http://www.sszblog.xyz/about/about/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/demo/demo2/</guid>
-      <description></description>
+      <guid>http://www.sszblog.xyz/about/about/</guid>
+      <description>这个是我的github个人博客</description>
+    </item>
+    
+    <item>
+      <title>readme</title>
+      <link>http://www.sszblog.xyz/readme/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/readme/</guid>
+      <description>  Java  Java8实战阅读笔记  GIT  Java8  Java8实战阅读笔记  GIT  git初始化操作  </description>
+    </item>
+    
+    <item>
+      <title>git创建新仓库</title>
+      <link>http://www.sszblog.xyz/git/git%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/git/git%E6%93%8D%E4%BD%9C/</guid>
+      <description>&lt;p&gt;通过命令行方式对本地文件创建git，再远程创建git并提交。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Java8相关</title>
       <link>http://www.sszblog.xyz/java/java8/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/java8/</guid>
-      <description>1. 行为参数化  JAVA8 1. 行为参数化  定义一个接口，对选择建模
-&amp;gt;&amp;gt; public interface ApplePredicate{
-boolean test(Apple apple);
-} 
- 定义一个类，实现该接口 &amp;gt; public class AppleRedAndHeavyPredicate implements ApplePredicate{
-public boolean test(Apple apple){
-return &amp;ldquo;red&amp;rdquo;.equals(apple.getColor())
-&amp;amp;&amp;amp; apple.getWeight() &amp;gt; 150;
-}
-}
- 使用匿名内部类简化代码 &amp;gt;
-List redApples = filterApples(apples,new ApplePredicate(){ public boolean test(Apple a){ return &amp;ldquo;red&amp;rdquo;.equals(a.getColor()); } });
- 使用Lamba表达式简化 &amp;gt;
-List redApples = filterApples(apples,a-&amp;gt;&amp;ldquo;red&amp;rdquo;.equals(a.getColor()));
- 使用泛型，抽象化代码 &amp;gt;
-public interface Predicate{
-boolean test(T t);</description>
+      <description>&lt;p&gt;&lt;strong&gt;阅读Java8实战后的一些笔记&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>xml解析</title>
+      <title>markdown模板</title>
+      <link>http://www.sszblog.xyz/markdown/markdown/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/markdown/markdown/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;markdown模板&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>xml与json互转</title>
       <link>http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/</guid>
-      <description> xml解析 1.使用org.json包来解析xml字符串 import org.json.JSONException; import org.json.JSONObject; import org.json.XML; public class JsonUtils { public static String xml2jsonString(String xml)throws JSONException{ JSONObject xmlJSONObj = XML.toJSONObject(xml); return xmlJSONObj.toString(); } }  2.sax解析 未完成事项  3.dom解析 未完成事项  </description>
+      <description>&lt;p&gt;&lt;strong&gt;开发场景中，需要对返回的xml数据转为json再进行处理&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>单词本</title>
+      <title>我的单词本</title>
       <link>http://www.sszblog.xyz/word/word/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/word/word/</guid>
-      <description>#单词本
-Intermediate 中间 Terminal adj.最终 n.终端 merchant 商人 queue apacity 队列 容量 partitioning 分区 partition (topic物理上的分组，一个topic可以分多个partiton,每个partition都是一个有序队列) Supplier 提供者 Predicate 断言 消息中间件服务器（一般简单的称之为Broker） Decorator 装饰器模式 Concrete specific 具体的 Volatile 不稳定的、易变的 Topic主题 (卡夫卡处理资源的消息源) Broker 代理（代理。卡夫卡中一台或者多台服务器统称broker，AMQ的一个实例） Immutable 不可变的 Seral 串行 顺序的、依次的 Idiom 成语 方言 习惯用法 Antipattern 反例模式 Retain 保留 Capacity 容量 Concurrency并发 Parallelism并行 [ˈpærəlelɪzəm] ThroughPut生产量，生产能力，吞吐量; 流率 Snapshot 快照 Procedure 程序过程 Oriented 导向的; 定向的; 以…为方向的; 定方向; Architecture体系结构; 建筑学; 建筑风格; （总体、层次） 结构 SOA (Service Oriented Architecture) 分布式架构（面向服务的架构） Cyclic 循环的 Barrier 屏障 Generalize 泛化 Realize 实现 Aggregation 聚集;集结;集成;聚集体 Aggregate 聚合的 ;使聚集,使积聚;总计达 Composite 综合，组合 Composition 组合关系（强依赖的特殊聚合关系） Adapter 适配器 Adaptee 适配者(被适配的对象) Enhancer 增强这;加强者;提高者; Strategy 策略 Inversion 倒;逆 Suggestion 建议;暗示 Valid 生效的 Invalid 失效的 Facility 机制;设施 Imperative 命令式的 Negate 否定v Negative 否定的 Map（映射） Reduce（归约） Chrono 计时 AOP (Aspect Oriented Programming) 面向切面编程 Advice 通知 Join point 连接点 Pointcut 切点 Aspect 切面 Introduction 引入 Weaving 织入 Proceed 继续、继续进行、前往 Privilege 特权、基本人权 receipt 收据, 回执, 收条, 单据, 字据, 契据 n.</description>
+      <description>&lt;p&gt;&lt;strong&gt;日常开发中遇到的一些术语生词&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>按指定长度切割list</title>
       <link>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</link>
-      <pubDate>Wed, 11 Sep 2019 20:39:16 +0800</pubDate>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</guid>
-      <description>按指定长度切割list 前言 计算总页数共有2种方法
-总记录数：totalRecord
-每页记录数：pageSize
-方法一、totalPage = totalRecord % pageSize== 0 ? totalRecord / pageSize: totalRecord / pageSize+ 1;
-方法二、totalPage = (totalRecord + pageSize-1) / pageSize;(推荐)
-1.使用Guava的Lists.partition方法 import com.google.common.collect.Lists; private List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; splitList(List&amp;lt;String&amp;gt; list , int groupSize){ return Lists.partition(list, groupSize); }  2.手动实现 private List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; splitList(List&amp;lt;String&amp;gt; list , int groupSize){ int length = list.size(); // 计算可以分成多少组 int num = ( length + groupSize - 1 )/groupSize ; // TODO List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; newList = new ArrayList&amp;lt;&amp;gt;(num); for (int i = 0; i &amp;lt; num; i++) { // 开始位置 int fromIndex = i * groupSize; // 结束位置 int toIndex = (i+1) * groupSize &amp;lt; length ?</description>
+      <description>&lt;p&gt;&lt;strong&gt;某一次需求开发中，遇到这样的场景，需要对名单进行分组然后再对这批名单处理。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

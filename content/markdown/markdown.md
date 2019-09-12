@@ -1,9 +1,13 @@
 ---
-title: "Demo2"
-date: 2019-09-11T20:39:16+08:00
+title: "markdown模板"
+date: 2019-09-11
+tags: [markdown]
+categories: [markdown]
 draft: true
 ---
 
+**markdown模板**
+<!--more-->
 #markdown demo
 # 标题DEMO
 # 一级标题
@@ -26,6 +30,17 @@ draft: true
 
 ---
 # 代码块DEMO
+```java
+    public static void main(){
+	    system.out.println(123);
+    }
+```
+
+```javascript
+$(document).ready(function () {
+    alert('RUNOOB');
+});
+```
 
 ## 四个空格或者TAB
 <font color="red">
@@ -108,11 +123,11 @@ draft: true
 **:-:** 设置内容和标题栏居中对齐。
 
  
-name |价格|数量  
--|-|-  
-香蕉 | $1 | 5 |  
-苹果 | $1 | 6 |  
-草莓 | $1 | 7 |  
+|name |价格|数量|
+|-|-|-|
+|香蕉 | $1 | 5 |
+|苹果 | $1 | 6 |
+|草莓 | $1 | 7 |
 
 ---
 

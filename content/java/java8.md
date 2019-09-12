@@ -1,12 +1,23 @@
 ---
 title: "Java8相关"
-date: 2019-09-11T20:39:16+08:00
+date: 2019-09-11
+tags: [Java8]
+categories: [Java]
 draft: true
 ---
+**阅读Java8实战后的一些笔记**
+<!--more-->
+- [1. 行为参数化22](#1-行为参数化)
+- [2. lamba表达式](#2-lamba表达式)
+- [3. 构造函数引用](#3-构造函数引用)
+- [4. 使用流](#4-使用流)
+- [5. 设计模式使用](#5-设计模式使用)
+- [6. 默认方法](#6-默认方法)
+- [7. Optional](#7-Optional)
+- [8. CompletableFuture:组合式异步编程](#8-CompletableFuture:组合式异步编程)
+- [9. 新的日期和时间API](#9-新的日期和时间API)
 
-- [1. 行为参数化](#1-行为参数化)
 
-# JAVA8
 ## 1. 行为参数化
 + **定义一个接口，对选择建模**  
 ><font color="green">  
@@ -92,7 +103,7 @@ draft: true
 </table>
 ---
 
-## **构造函数引用**
+## 3.构造函数引用
 
 + **默认方法的构造函数引用**
 >
@@ -162,7 +173,7 @@ draft: true
 
 ---
 
-## 3. 使用流
+## 4. 使用流
 
 + **distinct()**  
 返回不重复的元素
@@ -252,8 +263,6 @@ Long求和用**Collectors.summarizingLong()**
 分区是分组的特殊情况,会返回Map<Boolean,List<T>>类型，true是以组，false是一组  
 
 + **Collectors类的静态方法**  
-
-  
   <table> 
    <thead> 
     <tr> 
@@ -361,113 +370,57 @@ Long求和用**Collectors.summarizingLong()**
 - [x] 自定义收集器
 
 
-### 3.3 并行数据处理与性能
+### 4.3 并行数据处理与性能
 prallelStream()   
 parallel()将顺序流变为并行流  
 sequential()将并行流变为顺序流  
 自动装箱拆箱会大大降低并行流性能，此时应使用IntStream等原始类型流来避免这种操作。
 
-## 4. 设计模式使用
+## 5. 设计模式使用
 ### 使用lambda重构设计模式使用
 #### 4.1策略模式
 #### 待办事项
 - [x] 各种模式
 
-## 5. 默认方法
+---
+
+## 6. 默认方法
+
+---
 
 ## 6. Optional
+---
 ### optional方法
-<table>
-<tbody><tr>
-<th style="width:10%;">序号</th>
-<th>方法 &amp; 描述</th>
-</tr>
-<tr>
-<td>1</td>
-<td><b>static &lt;T&gt; Optional&lt;T&gt; empty()</b>
-<p>返回空的 Optional 实例。</p></td>
-</tr>
-<tr>
-<td>2</td>
-<td><b>boolean equals(Object obj)</b>
-<p>判断其他对象是否等于 Optional。</p></td>
-</tr>
-<tr>
-<td>3</td>
-<td><b>Optional&lt;T&gt; filter(Predicate&lt;? super &lt;T&gt; predicate)</b>
-<p>如果值存在，并且这个值匹配给定的 predicate，返回一个Optional用以描述这个值，否则返回一个空的Optional。</p></td>
-</tr>
-<tr>
-<td>4</td>
-<td><b>&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T,Optional&lt;U&gt;&gt; mapper)</b>
-<p>如果值存在，返回基于Optional包含的映射方法的值，否则返回一个空的Optional</p></td>
-</tr>
-<tr>
-<td>5</td>
-<td><b>T get()</b>
-<p>如果在这个Optional中包含这个值，返回值，否则抛出异常：NoSuchElementException</p></td>
-</tr>
-<tr>
-<td>6</td>
-<td><b>int hashCode()</b>
-<p>返回存在值的哈希码，如果值不存在 返回 0。</p></td>
-</tr>
-<tr>
-<td>7</td>
-<td><b>void ifPresent(Consumer&lt;? super T&gt; consumer)</b>
-<p>如果值存在则使用该值调用 consumer , 否则不做任何事情。</p></td>
-</tr>
-<tr>
-<td>8</td>
-<td><b>boolean isPresent()</b>
-<p>如果值存在则方法会返回true，否则返回 false。</p></td>
-</tr>
-<tr>
-<td>9</td>
-<td><b>&lt;U&gt;Optional&lt;U&gt; map(Function&lt;? super T,? extends U&gt; mapper)</b>
-<p>
-如果有值，则对其执行调用映射函数得到返回值。如果返回值不为 null，则创建包含映射返回值的Optional作为map方法返回值，否则返回空Optional。</p></td>
-</tr>
-<tr>
-<td>10</td>
-<td><b>static &lt;T&gt; Optional&lt;T&gt; of(T value)</b>
-<p>返回一个指定非null值的Optional。</p></td>
-</tr>
-<tr>
-<td>11</td>
-<td><b>static &lt;T&gt; Optional&lt;T&gt; ofNullable(T value)</b>
-<p>如果为非空，返回 Optional 描述的指定值，否则返回空的 Optional。</p></td>
-</tr>
-<tr>
-<td>12</td>
-<td><b>T orElse(T other)</b>
-<p>如果存在该值，返回值， 否则返回 other。</p></td>
-</tr>
-<tr>
-<td>13</td>
-<td><b>T orElseGet(Supplier&lt;? extends T&gt; other)</b>
-<p>如果存在该值，返回值， 否则触发 other，并返回  other 调用的结果。</p></td>
-</tr>
-<tr>
-<td>14</td>
-<td><b>&lt;X extends Throwable&gt; T orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</b><p></p>
-<p>如果存在该值，返回包含的值，否则抛出由 Supplier 继承的异常</p></td>
-</tr>
-<tr>
-<td>15</td>
-<td><b>String toString()</b>
-<p>返回一个Optional的非空字符串，用来调试</p></td>
-</tr>
-</tbody>
-</table>
 
 
-## 7. CompletableFuture:组合式异步编程
+| 序号 | 方法 & 描述                                            |
+|----|----------------------------------------------------|
+| 1  | **static <T> Optional<T> empty();**    返回空的 Optional 实例。 |
+| 2  | **boolean equals(Object obj)**      判断其他对象是否等于 Optional。|
+| 3  | **Optional<T> filter(Predicate<? super <T> predicate)**  如果值存在，并且这个值匹配给定的 predicate，返回一个Optional用以描述这个值，否则返回一个空的Optional。|
+| 4  |**<U> Optional<U> flatMap(Function<? super T,Optional<U>> mapper)**如果值存在，返回基于Optional包含的映射方法的值，否则返回一个空的Optional|
+| 5  | **T get()**  如果在这个Optional中包含这个值，返回值，否则抛出异常：NoSuchElementException|
+| 6  | **int hashCode()**  返回存在值的哈希码，如果值不存在 返回 0。|
+| 7  | **void ifPresent(Consumer<? super T> consumer)**  如果值存在则使用该值调用 consumer , 否则不做任何事情。|
+| 8  | **boolean isPresent()**  如果值存在则方法会返回true，否则返回 false。|
+| 9  | **<U>Optional<U> map(Function<? super T,? extends U> mapper)**  如果有值，则对其执行调用映射函数得到返回值。如果返回值不为 null，则创建包含映射返回值的Optional作为map方法返回值，否则返回空Optional。|
+| 19  | **static <T> Optional<T> of(T value)**  返回一个指定非null值的Optional。|
+| 11 | **static <T> Optional<T> ofNullable(T value)**  如果为非空，返回 Optional 描述的指定值，否则返回空的 Optional。|
+| 12 | **T orElse(T other)**  如果存在该值，返回值， 否则返回 other。|
+| 13 | **T orElseGet(Supplier<? extends T> other)**  如果存在该值，返回值， 否则触发 other，并返回 other 调用的结果。|
+| 14 | **<X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)**  如果存在该值，返回包含的值，否则抛出由 Supplier 继承的异常|
+| 15 | **String toString()**  返回一个Optional的非空字符串，用来调试|
 
+---
 
-## 8. 新的日期和时间API  
-LocalDate
-LocalDateTime
-Instant
-Duration
-Period
+## 8. CompletableFuture:组合式异步编程
+
+---
+
+## 9. 新的日期和时间API
+### 9.1 LocalDate
+### 9.2 LocalDateTime
+### 9.3 Instant
+### 9.4 Duration
+### 9.5 Period
+---
