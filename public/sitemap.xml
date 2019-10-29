@@ -93,12 +93,12 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/other/</loc>
+    <loc>http://www.sszblog.xyz/tags/other/</loc>
     <lastmod>2019-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/tags/other/</loc>
+    <loc>http://www.sszblog.xyz/categories/other/</loc>
     <lastmod>2019-10-09T00:00:00+00:00</lastmod>
   </url>
   
@@ -183,12 +183,12 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/tags/git/</loc>
+    <loc>http://www.sszblog.xyz/categories/git/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/git/</loc>
+    <loc>http://www.sszblog.xyz/tags/git/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   

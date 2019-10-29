@@ -18,3 +18,24 @@ git commit -m "first commit"
 git remote add origin https://github.com/smilemumu/myblog.git
 git push -u origin master
 ```
+
+```git
+推送远程仓库：$ git push [remoteName] [localBranchName]
+```
+
+将文件缓存到本地
+```git
+git add .
+```
+
+将缓存的文件提交到本地
+```git
+git commit -m "本次提交的原因及改动"
+```
+
+将本地Master提交到远程Master
+```git
+git push -u origin master 
+//等价于
+git push origin master master
+```
