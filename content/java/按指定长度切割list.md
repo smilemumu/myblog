@@ -15,11 +15,11 @@ featured: true
 总记录数：  totalRecord  
 每页记录数：pageSize  
 **方法1**
-```
+```java
 totalPage = totalRecord % pageSize== 0 ? totalRecord / pageSize: totalRecord / pageSize+ 1; 
 ``` 
 **方法2**(推荐)
-```
+```java
 totalPage = (totalRecord + pageSize-1) / pageSize;
 ```
 

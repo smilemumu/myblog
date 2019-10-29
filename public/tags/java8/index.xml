@@ -6,10 +6,28 @@
     <description>Recent content in Java8 on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 11 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.sszblog.xyz/tags/java8/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java8-简化代码</title>
+      <link>http://www.sszblog.xyz/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Sat, 12 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java8计算时间差</title>
+      <link>http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</link>
+      <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;计算某个并行任务的总耗时。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Java8相关</title>

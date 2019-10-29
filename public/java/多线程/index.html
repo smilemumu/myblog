@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Thread、Runnable、Callable、线程池 | Shi.bro的博客</title>
+    <meta property="og:title" content="Thread、Runnable、Callable、线程池 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-09-26T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-09-26T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Thread、Runnable、Callable、线程池">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Thread、Runnable、Callable、线程池</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年9月26日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="1-创建线程的三种方式">1.创建线程的三种方式</h2>
+
+<ul>
+<li>(1)继承thread,重写run方法</li>
+<li>(2)实现Runnable接口，实现run方法</li>
+<li>(3)实现Callable接口，实现call方法</li>
+<li>(4)线程池</li>
+</ul>
+
+<h2 id="2-runnable和callable的区别">2.Runnable和Callable的区别：</h2>
+
+<ul>
+<li>(1)Callable实现的方法是call(),Runnable实现的方法是run().</li>
+<li>(2)Callable的任务执行后可返回值，可以拿到一个Future对象，而Runnable的任务没有返回值</li>
+<li>(3)call方法需要抛出异常InterruptedException和ExecutionExecption，run方法只能在内部消化InterruptedException</li>
+</ul>
+
+<h2 id="3-thread的缺点">3.Thread的缺点：</h2>
+
+<ul>
+<li>Java是单继承多实现，不利于扩展.</li>
+</ul>
+
+<h2 id="4-线程池">4. 线程池</h2>
+
+<h3 id="4-1-为什么要使用线程池">4.1 为什么要使用线程池</h3>
+
+<ul>
+<li><strong>降低资源消耗。</strong> 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li><strong>提高响应速度。</strong> 当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
+<li><strong>提高线程的可管理性。</strong> 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
+</ul>
+
+<h3 id="4-2-execute-和submit-的区别">4.2 execute()和submit()的区别</h3>
+
+<ul>
+<li><p>(1)可接受任务类型：</p>
+
+<ul>
+<li><p>submit:</p>
+
+<pre><code class="language-java">submit(Callable&lt;T&gt; task):Future&lt;T&gt; -ExecutorService
+submit(Runnable task):Future&lt;?&gt; -ExecutorService
+submit(Runnable task,T result):Future&lt;T&gt; -ExecutorService
+</code></pre></li>
+
+<li><p>execute:</p>
+
+<pre><code class="language-java">execute(Runnable command):void -Executor
+</code></pre></li>
+
+<li><p>从源码种可以看出</p>
+
+<ul>
+<li>execute只能接受Runnable类型的任务</li>
+<li>submit不管是Runnable还是Callable类型的任务都可以接受</li>
+</ul></li>
+</ul></li>
+
+<li><p>(2)返回值</p>
+
+<ul>
+<li>由Callable和Runnable的区别可以看出：
+
+<ul>
+<li>execute没有返回值</li>
+<li>submit有返回值，所以需要返回值的时候必须使用submit</li>
+</ul></li>
+</ul></li>
+
+<li><p>(3)异常处理</p>
+
+<ul>
+<li><p>submit在执行过程中与execute不一样，不会抛出异常而是把异常保存在成员变量中，在FutureTask.get阻塞获取的时候再把异常抛出来。</p></li>
+
+<li><p>execute中抛出异常
+execute中的是Runnable接口的实现，所以只能使用try、catch来捕获CheckedException，通过实现UncaughtExceptionHande接口处理UncheckedException
+即和普通线程的处理方式完全一致</p></li>
+
+<li><p>submit中抛出异常
+不管提交的是Runnable还是Callable类型的任务，如果不对返回值Future调用get()方法，异常都不会被抛出</p></li>
+</ul></li>
+</ul>
+
+<p>callable接口</p>
+
+<pre><code class="language-java">    public interface Callable&lt;V&gt; {
+        V call() throws Exception;
+    }
+</code></pre>
+
+<p>示例代码：</p>
+
+<pre><code class="language-java">    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            System.out.println(1);
+        }
+    };
+    
+    Callable&lt;Integer&gt; c= new Callable&lt;Integer&gt;() {
+        @Override
+        public Integer call() throws Exception {
+            return 1;
+       }
+    };
+    //lambda写法
+    Runnable r2 = () -&gt; System.out.println(1);
+    Callable&lt;Integer&gt; c= () -&gt; 1;
+
+    ExecutorService executorService = Executors.newFixedThreadPool(1);
+    executorService.execute(r);
+    executorService.submit(r);
+
+    Future&lt;?&gt; runnableResult = executorService.submit(r);
+    try {
+        runnableResult.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+    }
+
+    Future&lt;Integer&gt; callResult  = executorService.submit(c);
+    try {
+        callResult.get();
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    } catch (ExecutionException e) {
+        e.printStackTrace();
+    }
+</code></pre>
+
+<p>所以在future.get()方法中要显式捕获InterruptedException和ExecutionExecption</p>
+
+<p>TIPS:</p>
+
+<ul>
+<li><strong>线程资源必须通过线程池提供，不允许在应用中自行显式创建线程</strong><br />
+使用线程池的好处是减少在创建和销毁线程上所消耗的时间以及系统资源的开销，解决
+资源不足的问题。如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或 者“过度切换”的问题。</li>
+<li><strong>线程池不允许使用 Executors 去创建，而是通过 ThreadPoolExecutor 的方式，这样 的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。</strong><br />
+说明：Executors 返回的线程池对象的弊端如下：
+
+<ul>
+<li>1）FixedThreadPool 和 SingleThreadPool:<br />
+
+<ul>
+<li>允许的请求队列长度为 Integer.MAX_VALUE，可能会堆积大量的请求，从而导致 OOM。</li>
+</ul></li>
+<li>2）CachedThreadPool 和 ScheduledThreadPool:<br />
+
+<ul>
+<li>允许的创建线程数量为 Integer.MAX_VALUE，可能会创建大量的线程，从而导致 OOM。</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><strong>Executor：</strong>
+是一个接口，定义了一个接受Runnable参数的execute方法</p>
+
+<pre><code>public interface Executor {
+    void execute(Runnable command);
+}
+</code></pre>
+
+<p><strong>Executors：</strong>
+Executors类，提供了一系列工厂方法用于创建线程池，返回的线程池都实现了ExecutorService接口。</p>
+
+<ol>
+<li>public static ExecutorService newFiexedThreadPool(int Threads) 创建固定数目线程的线程池。</li>
+<li>public static ExecutorService newCachedThreadPool()：创建一个可缓存的线程池，调用execute 将重用以前构造的线程（如果线程可用）。如果没有可用的线程，则创建一个新线程并添加到池中。终止并从缓存中移除那些已有 60 秒钟未被使用的线程。</li>
+<li>public static ExecutorService newSingleThreadExecutor()：创建一个单线程化的Executor。</li>
+<li>public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize)</li>
+</ol>
+
+<p><strong>ExecutorService：</strong>
+除了允许客户端提交一个任务，ExecutorService 还提供用来控制线程池的方法。
+　　   　　比如：调用 shutDown() 方法终止线程池。
+<strong>ExecutorService是一个比Executor使用更广泛的子类接口</strong>，其提供了生命周期管理的方法，<strong>返回 Future 对象</strong>，以及可跟踪一个或多个异步任务执行状况返回Future的方法；可以调用ExecutorService的shutdown（）方法来平滑地关闭 ExecutorService，调用该方法后，将导致ExecutorService<strong>停止接受任何新的任务且等待已经提交的任务执行完成</strong>(已经提交的任务会分两类：一类是已经在执行的，另一类是还没有开始执行的)，当所有已经提交的任务执行完毕后将会关闭ExecutorService。因此我们一般用该接口来实现和管理多线程。</p>
+
+<pre><code class="language-java">
+public interface ExecutorService extends Executor {
+	void shutdown();
+	&lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task);
+	&lt;T&gt; Future&lt;T&gt; submit(Runnable task, T result);
+	&lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks, long timeout, TimeUnit unit) throws InterruptedException;
+}
+
+</code></pre>
+
+<p><strong>自定义与预定义线程池</strong></p>
+
+<ol>
+<li>ThreadPoolExecutor最核心的构造方法<br /></li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>名称</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>corePoolSize</td>
+<td>int</td>
+<td>核心线程池大小</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>maximumPoolSize</td>
+<td>int</td>
+<td>最大线程池大小</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>keepAliveTime</td>
+<td>long</td>
+<td>线程最大空闲时间，线程池中超过corePoolSize数目的空闲线程最大存活时间；可以allowCoreThreadTimeOut(true)使得核心线程有效时间</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>TimeUnit</td>
+<td>TimeUnit</td>
+<td>keepAliveTime时间单位</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>workQueue</td>
+<td>BlockingQueue<Runnable></td>
+<td>线程等待队列</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>threadFactory</td>
+<td>ThreadFactory</td>
+<td>线程创建工厂</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>RejectedExecutionHandler</td>
+<td>RejectedExecutionHandler</td>
+<td>拒绝策略，提交任务数超过maxmumPoolSize+workQueue之和时，任务会交给RejectedExecutionHandler来处理</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>3种阻塞队列
+
+<ul>
+<li>BlockingQueue是接口，用来存储runnable对象 <br /></li>
+</ul></li>
+</ul>
+
+<p>阻塞队列的成员</p>
+
+<table>
+<thead>
+<tr>
+<th>队列</th>
+<th>有界性</th>
+<th>锁</th>
+<th>数据结构</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>ArrayBlockingQueue</td>
+<td>bounded(有界)</td>
+<td>加锁</td>
+<td>arrayList</td>
+</tr>
+
+<tr>
+<td>LinkedBlockingQueue</td>
+<td>optionally-bounded</td>
+<td>加锁</td>
+<td>linkedList</td>
+</tr>
+
+<tr>
+<td>PriorityBlockingQueue</td>
+<td>unbounded</td>
+<td>加锁</td>
+<td>heap</td>
+</tr>
+
+<tr>
+<td>DelayQueue</td>
+<td>unbounded</td>
+<td>加锁</td>
+<td>heap</td>
+</tr>
+
+<tr>
+<td>SynchronousQueue</td>
+<td>bounded</td>
+<td>加锁</td>
+<td>无</td>
+</tr>
+
+<tr>
+<td>LinkedTransferQueue</td>
+<td>unbounded</td>
+<td>加锁</td>
+<td>heap</td>
+</tr>
+
+<tr>
+<td>LinkedBlockingDeque</td>
+<td>unbounded</td>
+<td>无锁</td>
+<td>heap</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><p>队列详解</p>
+
+<ul>
+<li><font color = 'red'><strong>ArrayBlockingQueue</strong></font>：【基于数组的先进先出队列,有界】是一个用数组实现的有界阻塞队列，此队列按照先进先出（FIFO）的原则对元素进行排序。支持公平锁和非公平锁。【注：每一个线程在获取锁的时候可能都会排队等待，如果在等待时间上，先获取锁的线程的请求一定先被满足，那么这个锁就是公平的。反之，这个锁就是不公平的。公平的获取锁，也就是当前等待时间最长的线程先获取锁】</li>
+<li><font color = 'red'><strong>LinkedBlockingQueue</strong></font>：【基于链表的先进先出队列,无界】一个由链表结构组成的有界队列，此队列的长度为Integer.MAX_VALUE。此队列按照先进先出（FIFO）的顺序进行排序。</li>
+<li>PriorityBlockingQueue： 一个支持线程优先级排序的无界队列，默认自然序进行排序，也可以自定义实现compareTo()方法来指定元素排序规则，不能保证同优先级元素的顺序。</li>
+<li><font color = 'red'><strong>DelayQueue</strong></font>： 一个实现PriorityBlockingQueue实现延迟获取的无界队列，在创建元素时，可以指定多久才能从队列中获取当前元素。只有延时期满后才能从队列中获取元素。（DelayQueue可以运用在以下应用场景：1.缓存系统的设计：可以用DelayQueue保存缓存元素的有效期，使用一个线程循环查询DelayQueue，一旦能从DelayQueue中获取元素时，表示缓存有效期到了。2.定时任务调度。使用DelayQueue保存当天将会执行的任务和执行时间，一旦从DelayQueue中获取到任务就开始执行，从比如TimerQueue就是使用DelayQueue实现的。）</li>
+<li>SynchronousQueue：【无缓冲的等待队列，无界】 一个不存储元素的阻塞队列，每一个put操作必须等待take操作，否则不能添加元素。支持公平锁和非公平锁。SynchronousQueue的一个使用场景是在线程池里。Executors.newCachedThreadPool()就使用了SynchronousQueue，这个线程池根据需要（新任务到来时）创建新的线程，如果有空闲线程则会重复使用，线程空闲了60秒后会被回收。</li>
+<li>LinkedTransferQueue： 一个由链表结构组成的无界阻塞队列，相当于其它队列，LinkedTransferQueue队列多了transfer和tryTransfer方法。</li>
+<li>LinkedBlockingDeque： 一个由链表结构组成的双向阻塞队列。队列头部和尾部都可以添加和移除元素，多线程并发时，可以将锁的竞争最多降到一半。</li>
+</ul></li>
+
+<li><p>4种拒绝策略
+拒绝任务有两种情况：1. 线程池已经被关闭；2. 任务队列已满且maximumPoolSizes已满；</p>
+
+<ul>
+<li><font color = 'red'>AbortPolicy：默认测策略，抛出RejectedExecutionException运行时异常</font>；</li>
+<li>CallerRunsPolicy：只要线程池未关闭，该策略直接在调用者线程中运行当前被丢弃的任务。显然这样不会真的丢弃任务，但是，调用者线程性能可能急剧下降。</li>
+<li>DiscardPolicy：默默的丢弃无法处理的任务，不予任何处理。</li>
+<li>DiscardOldestPolicy：丢弃最老的一个请求任务，也就是丢弃一个即将被执行的任务，并尝试再次提交当前任务。</li>
+<li>我们还可以扩展RejectedExecutioHandler接口，自定义拒绝策略，以适应特殊的容量和队列策略场景中。</li>
+</ul></li>
+</ul>
+
+<ol>
+<li><strong>通过ThreadPoolExecutor实现预定义线程池。</strong></li>
+</ol>
+
+<ul>
+<li><p>FixedThreadPool</p>
+
+<pre><code class="language-java">public static ExecutorService new(int nThreads) {
+    return new ThreadPoolExecutor(nThreads, nThreads,
+                                  0L, TimeUnit.MILLISECONDS,
+                                  new LinkedBlockingQueue&lt;Runnable&gt;());
+}
+</code></pre>
+
+<ul>
+<li>corePoolSize与maximumPoolSize相等，即其线程全为核心线程，是一个固定大小的线程池，是其优势；</li>
+<li>keepAliveTime = 0 该参数默认对核心线程无效，而FixedThreadPool全部为核心线程；</li>
+<li>workQueue 为LinkedBlockingQueue（无界阻塞队列），队列最大值为Integer.MAX_VALUE。如果任务提交速度持续大余任务处理速度，会造成队列大量阻塞。因为队列很大，很有可能在拒绝策略前，内存溢出。是其劣势；</li>
+<li><font color='red'>FixedThreadPool的任务执行是无序的;</font></li>
+<li>适用场景：可用于Web服务瞬时削峰，但需注意长时间持续高峰情况造成的队列阻塞。</li>
+</ul></li>
+
+<li><p>SingleThreadExecutor</p>
+
+<pre><code class="language-java">public static ExecutorService newSingleThreadExecutor() {
+    return new FinalizableDelegatedExecutorService
+        (new ThreadPoolExecutor(1, 1,
+                                0L, TimeUnit.MILLISECONDS,
+                                new LinkedBlockingQueue&lt;Runnable&gt;()));
+}
+</code></pre>
+
+<p>-就是多了一层FinalizableDelegatedExecutorService包装newFixedThreadPool(1),被创建后，无法修改，做到了真正的Single。
+ Finalizable(会主动执行finalize方法的  委托，代理Delegated的   ExecutorService)</p></li>
+
+<li><p>CachedThreadPool</p>
+
+<pre><code class="language-java">public static ExecutorService newCachedThreadPool() {
+    return new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+                                  60L, TimeUnit.SECONDS,
+                                  new SynchronousQueue&lt;Runnable&gt;());
+}
+</code></pre>
+
+<ul>
+<li>corePoolSize = 0，maximumPoolSize = Integer.MAX_VALUE，即线程数量几乎无限制；</li>
+<li>keepAliveTime = 60s，线程空闲60s后自动结束。</li>
+<li>workQueue 为 SynchronousQueue 同步队列，这个队列类似于一个接力棒，入队出队必须同时传递，因为CachedThreadPool线程创建无限制，不会有队列等待，所以使用SynchronousQueue；</li>
+<li>适用场景：快速处理大量耗时较短的任务，如Netty的NIO接受请求时，可使用CachedThreadPool。</li>
+</ul></li>
+
+<li><p>ScheduledThreadPool</p>
+
+<pre><code class="language-java">public static ScheduledExecutorService newSingleThreadScheduledExecutor() {
+    return new DelegatedScheduledExecutorService
+        (new ScheduledThreadPoolExecutor(1));
+}
+
+	public ScheduledThreadPoolExecutor(int corePoolSize) {
+    super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS,
+          new DelayedWorkQueue());
+}
+
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue&lt;Runnable&gt; workQueue) {
+    this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+         Executors.defaultThreadFactory(), defaultHandler);
+}
+</code></pre></li>
+</ul>
+
+<ol>
+<li><p>通过ThreadPoolExecutor实现自定义线程池。<br />
+以下是自定义线程池，使用了有界队列，自定义ThreadFactory和拒绝策略的demo：</p>
+
+<pre><code class="language-java">public class ThreadTest {
+
+public static void main(String[] args) throws InterruptedException, IOException {
+    int corePoolSize = 2;
+    int maximumPoolSize = 4;
+    long keepAliveTime = 10;
+    TimeUnit unit = TimeUnit.SECONDS;
+    BlockingQueue&lt;Runnable&gt; workQueue = new ArrayBlockingQueue&lt;&gt;(2);
+    ThreadFactory threadFactory = new NameTreadFactory();
+    RejectedExecutionHandler handler = new MyIgnorePolicy();
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit,
+            workQueue, threadFactory, handler);
+    executor.prestartAllCoreThreads(); // 预启动所有核心线程
+        
+    for (int i = 1; i &lt;= 10; i++) {
+        MyTask task = new MyTask(String.valueOf(i));
+        executor.execute(task);
+    }
+
+    System.in.read(); //阻塞主线程
+}
+
+static class NameTreadFactory implements ThreadFactory {
+
+    private final AtomicInteger mThreadNum = new AtomicInteger(1);
+
+    @Override
+    public Thread newThread(Runnable r) {
+        Thread t = new Thread(r, &quot;my-thread-&quot; + mThreadNum.getAndIncrement());
+        System.out.println(t.getName() + &quot; has been created&quot;);
+        return t;
+    }
+}
+
+public static class MyIgnorePolicy implements RejectedExecutionHandler {
+
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        doLog(r, e);
+    }
+
+    private void doLog(Runnable r, ThreadPoolExecutor e) {
+        // 可做日志记录等
+        System.err.println( r.toString() + &quot; rejected&quot;);
+//          System.out.println(&quot;completedTaskCount: &quot; + e.getCompletedTaskCount());
+    }
+}
+
+static class MyTask implements Runnable {
+    private String name;
+
+    public MyTask(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println(this.toString() + &quot; is running!&quot;);
+            Thread.sleep(3000); //让任务执行慢点
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;MyTask [name=&quot; + name + &quot;]&quot;;
+    }
+}
+}
+</code></pre></li>
+</ol>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/java/%E5%BC%82%E5%B8%B8/">异常</a></li>
+        
+        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">责任链模式使用</a></li>
+        
+        <li><a href="/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">Java8计算时间差</a></li>
+        
+        <li><a href="/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/">我的书单</a></li>
+        
+        <li><a href="/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">软技能分享</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(14)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

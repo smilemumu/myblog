@@ -1,8 +1,8 @@
 ---
 title: "我的单词本"
 date: 2019-09-11
-tags: [单词]
-categories: [其他]
+tags: [other]
+categories: [other]
 draft: true
 ---
 
@@ -150,3 +150,12 @@ feature  特征
 
 future 未来，将来，前途，前程
 
+discard v.丢弃
+
+abandon v.弃，抛弃，丢弃
+
+policy n.政策，方针，策略
+
+phrase 短语【fraz】
+
+Immutable adj,一成不变的

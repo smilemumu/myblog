@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Volatile | Shi.bro的博客</title>
+    <meta property="og:title" content="Volatile - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-10-15T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-10-15T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Volatile">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/java/volatile/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Volatile</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年10月15日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>首先我们需要知道原子性、可见性、有序性</p>
+
+<h2 id="原子性">原子性</h2>
+
+<p>即一个操作或者多个操作 要么全部执行并且执行的过程不会被任何因素打断，要么就都不执行。</p>
+
+<h2 id="可见性">可见性</h2>
+
+<p>可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。</p>
+
+<h2 id="有序性">有序性</h2>
+
+<p>即程序执行的顺序按照代码的先后顺序执行。</p>
+
+<pre><code class="language-java">int a = 10;
+int b = 5;
+</code></pre>
+
+<p>在Java内存模型中，允许编译器和处理器对指令进行重排序，但是重排序过程不会影响到单线程程序的执行，却会影响到多线程并发执行的正确性。</p>
+
+<p>ps:要想并发程序正确地执行，必须要保证原子性、可见性以及有序性。只要有一个没有被保证，就有可能会导致程序运行不正确。</p>
+
+<h2 id="volatile">volatile</h2>
+
+<p>保证 可见性 &amp; 有序性，但不保证原子性</p>
+
+<p><strong>volatile:</strong><font color = 'red'>当一个共享变量被volatile修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。</font></p>
+
+<p><strong>为什么不保证原子性：</strong><font color = 'red'>volatile修饰的属性若再修改前被另一个线程读取了值，那么修改后，无法改变已经复制到工作内存中的值。</font></p>
+
+<pre><code class="language-java">volatile static int a=0;
+a++;
+
+// 包含了2步操作：1、读取a。2、执行a+1 &amp; 将a+1结果赋值给a
+
+// 设：线程A、B同时执行以下语句，线程A执行完第1步后被挂起、线程B执行了a++，那么主存中a的值为1
+
+// 但线程A的工作内存中还是0，由于线程A之前已读取了a的值 = 0，执行a++后再次将a的值刷新到主存 = 1
+
+// 即 a++执行了2次，但2次都是从0变为1，故a的值最终为1
+</code></pre>
+
+<p><strong>为什么保证可见性：</strong>
+- volatile修饰的属性能够保证每次读取都是最新的值
+- 但在多线程下不会 也 无法更新已经读取了的值</p>
+
+<p><strong>为什么保证有序性</strong>重排序时，以volatile修饰的属性的读/写操作代码为分界线，读/写操作前的代码不允许排到后面，后面不允许排到前面，由此保证有序性。</p>
+
+<p><strong>使用条件：</strong>
+您只能在有限的一些情形下使用 volatile 变量替代锁。要使 volatile 变量提供理想的线程安全，必须同时满足下面两个条件：
+- 对变量的写操作不依赖于当前值。
+- 该变量没有包含在具有其他变量的不变式中。</p>
+
+<p><strong>使用场景：</strong></p>
+
+<ul>
+<li><p>模式 #1：状态标志</p>
+
+<pre><code class="language-java">volatile boolean shutdownRequested;
+ 
+...
+ 
+public void shutdown() { 
+shutdownRequested = true; 
+}
+ 
+public void doWork() { 
+while (!shutdownRequested) { 
+    // do stuff
+}
+}
+
+</code></pre></li>
+
+<li><p>模式 #2：双重检查锁单例模式</p>
+
+<pre><code class="language-java">public class Singleton {  
+private volatile static Singleton singleton;  
+private Singleton (){}  
+public static Singleton getSingleton() {  
+if (singleton == null) {  
+    synchronized (Singleton.class) {  
+    if (singleton == null) {  
+        singleton = new Singleton();  
+    }  
+    }  
+}  
+return singleton;  
+}  
+}
+
+</code></pre></li>
+
+<li><p>模式 #3：开销较低的“读－写锁”策略</p>
+
+<pre><code class="language-java"> 
+public class CheesyCounter {  
+// Employs the cheap read-write lock trick  
+// All mutative operations MUST be done with the 'this' lock held  
+private volatile int value;  
+  
+//读操作，没有synchronized，提高性能  
+public int getValue() {   
+    return value;   
+}   
+  
+//写操作，必须synchronized。因为x++不是原子操作  
+public synchronized int increment() {  
+    return value++;  
+} 
+}
+</code></pre></li>
+</ul>
+
+<p>refer to: <a href="http://www.sohu.com/a/281007804_100212268">http://www.sohu.com/a/281007804_100212268</a>
+refer to: <a href="https://blog.csdn.net/vking_wang/article/details/9982709">https://blog.csdn.net/vking_wang/article/details/9982709</a>
+refer to: <a href="https://www.runoob.com/design-pattern/singleton-pattern.html">https://www.runoob.com/design-pattern/singleton-pattern.html</a></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/java/countdownlatch%E5%92%8Ccyclicbarrier/">CountDownLatch和CyclicBarrier以及join()</a></li>
+        
+        <li><a href="/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/">Java8-简化代码</a></li>
+        
+        <li><a href="/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/">Synchronized关键字</a></li>
+        
+        <li><a href="/java/futurefuturetaskcompletablefuture/">Future、FutureTask、CompletableFuture</a></li>
+        
+        <li><a href="/other/english/phrase/">短语</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91">并发</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(14)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

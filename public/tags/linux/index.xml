@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Shi.bro的博客</title>
+    <link>http://www.sszblog.xyz/tags/linux/</link>
+    <description>Recent content in linux on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 08 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.sszblog.xyz/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>linux命令</title>
+      <link>http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Tue, 08 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/</guid>
+      <description>一行shell命令杀死指定进程名称的进程方法
+ps -efww|grep -w &#39;程序名称&#39;|grep -v grep|cut -c 9-15|xargs kill -9  ps:杀死程序名称为ssz-h5的程序
+[root@sagdb ssz-h5]# ps -ef|grep java root 28414 1 2 Sep27 ? 05:39:12 java -jar ssz-llyy.jar root 29837 1 99 14:37 pts/0 00:00:03 java -jar ssz-h5.jar root 29856 29557 0 14:37 pts/0 00:00:00 grep java [root@sagdb ssz-h5]# ps -efww|grep -w &#39;ssz-h5&#39;|grep -v grep|cut -c 9-15|xargs kill -9  </description>
+    </item>
+    
+  </channel>
+</rss>

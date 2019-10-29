@@ -7,6 +7,16 @@ draft: true
 ---
 
 **markdown模板**
+
+![版本图标](https://img.shields.io/github/release/wildfirechat/server)
+类似于这样添加版本
+![Progress](http://progressed.io/bar/10)
+
+[ ![Build Status](https://travis-ci.org/f/wolves.svg?branch=master)](https://travis-ci.org/f/wolves)
+[ ![NPM version](https://badge.fury.io/js/wolves.svg)](http://badge.fury.io/js/wolves)
+[ ![Dependencies](https://david-dm.org/f/wolves/status.svg)](https://david-dm.org/f/wolves#info=dependencies&view=table)
+[ ![Dev Dependencies](https://david-dm.org/f/wolves/dev-status.svg)](https://david-dm.org/f/wolves#info=devDependencies&view=table)
+类似于这样添加进度
 <!--more-->
 #markdown demo
 # 标题DEMO
@@ -122,22 +132,25 @@ $(document).ready(function () {
 **:-**  设置内容和标题栏居左对齐。  
 **:-:** 设置内容和标题栏居中对齐。
 
- 
-|name |价格|数量|
-|-|-|-|
+
+---
+
+| name  | 价格 | 数量 |
+|---|---|---|
 |香蕉 | $1 | 5 |
-|苹果 | $1 | 6 |
-|草莓 | $1 | 7 |
+| 苹果 | $1 | 6 |
+| 草莓 | $1 | 7 |
 
 ---
 
 | 标题1 | 标题2   | 长长的标题3 | title 4 |
 | ----- | --------- | ----------- | ------- |
-| 内容1 | content 2 | 1           |         |
-| 行3  | line3     | column 3    |         |
+| 内容1 | content 2 | 1           |  1       |
+| 行3  | line3     | column 3    |     2    |
 
 ---
 # 待办事项
-- [ ] 未完成事项
+-	[ ] 未完成事项
 
-- [x] 已完成事项
+
+-	[x] 已完成事项

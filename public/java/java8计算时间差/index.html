@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Java8计算时间差 | Shi.bro的博客</title>
+    <meta property="og:title" content="Java8计算时间差 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-09-23T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-09-23T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Java8计算时间差">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Java8计算时间差</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年9月23日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">Java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            <p><strong>计算某个并行任务的总耗时。</strong></p>
+
+<h2 id="计算时间差的方式">计算时间差的方式</h2>
+
+<h3 id="1-period类">1.Period类</h3>
+
+<p>主要是Period类方法getYears（），getMonths（）和getDays（）来计算.能够计算出相差的年月日周。</p>
+
+<pre><code class="language-java">import java.time.*;
+
+public class Test {
+    public static void main(String[] args) {
+        LocalDate today = LocalDate.now();
+        System.out.println(&quot;今天 : &quot; + today);
+        LocalDate birthDate = LocalDate.of(1994, Month.MAY, 19);
+        System.out.println(&quot;生日 : &quot; + birthDate);
+        Period p = Period.between(birthDate, today);
+        System.out.printf(&quot;年龄 : %d 年 %d 月 %d 日&quot;, p.getYears(), p.getMonths(), p.getDays());
+    }
+}
+</code></pre>
+
+<p>输出:<br />
+今天 : 2019-09-23<br />
+生日 : 1994-05-19<br />
+年龄 : 25 年 4 月 4 日</p>
+
+<h3 id="2-duration类">2.Duration类</h3>
+
+<p>提供了使用基于时间的值（如秒，毫秒秒）测量时间量的方法。</p>
+
+<pre><code class="language-java">import java.time.*;
+
+public class Test {
+
+    public static void main(String[] args) {
+        logger.info(&quot;开始时间:{}&quot;, LocalDateTime.now().format(LocalDateTimeUtils.YYYY_MM_DD_HH_MM_SS));
+        Instant start = Instant.now();
+        //具体的耗时处理逻辑，此处用Thread.sleep(1000)来代替
+        Thread.sleep(1000);
+        Instant end = Instant.now();
+        logger.info(&quot;结束时间-{}&quot;, LocalDateTime.now().format(LocalDateTimeUtils.YYYY_MM_DD_HH_MM_SS));
+        logger.info(&quot;耗时:{}毫秒&quot;, Duration.between(start,end).toMillis());
+    }
+}
+</code></pre>
+
+<p>输出:</p>
+
+<p>开始时间:2019-09-23 18:00:00<br />
+结束时间:2019-09-23 18:00:01<br />
+耗时:1000毫秒</p>
+
+<h3 id="总结">总结：</h3>
+
+<p>Period适合计算日期差，Instant适合计算时间差，尤其是计算耗时模块的耗时时间。如果有需要的话，可以按情况自行选择。</p>
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/java/java8/">Java8相关</a></li>
+        
+        <li><a href="/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/">我的书单</a></li>
+        
+        <li><a href="/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">软技能分享</a></li>
+        
+        <li><a href="/archives/archives/">archives</a></li>
+        
+        <li><a href="/git/git%E6%93%8D%E4%BD%9C/">git创建新仓库</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/java8">Java8</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(14)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

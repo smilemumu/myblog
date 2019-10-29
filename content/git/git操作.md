@@ -10,7 +10,7 @@ draft: true
 <!--more-->
 or create a new repository on the command line
 
-```
+```git
 echo "# myblog" >> README.md
 git init
 git add README.md

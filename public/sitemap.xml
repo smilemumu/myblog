@@ -18,6 +18,161 @@
   </url>
   
   <url>
+    <loc>http://www.sszblog.xyz/java/automic/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/categories/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/categories/java/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/threadlocal/</loc>
+    <lastmod>2019-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2019-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/volatile/</loc>
+    <lastmod>2019-10-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/countdownlatch%E5%92%8Ccyclicbarrier/</loc>
+    <lastmod>2019-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/java8/</loc>
+    <lastmod>2019-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</loc>
+    <lastmod>2019-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
+    <lastmod>2019-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/</loc>
+    <lastmod>2019-10-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/categories/other/</loc>
+    <lastmod>2019-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/other/</loc>
+    <lastmod>2019-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/other/</loc>
+    <lastmod>2019-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/other/english/phrase/</loc>
+    <lastmod>2019-10-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/linux/</loc>
+    <lastmod>2019-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/categories/linux/</loc>
+    <lastmod>2019-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/linux/</loc>
+    <lastmod>2019-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2019-10-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2019-09-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</loc>
+    <lastmod>2019-09-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</loc>
+    <lastmod>2019-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2019-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.sszblog.xyz/about/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
@@ -28,17 +183,12 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/</loc>
+    <loc>http://www.sszblog.xyz/tags/git/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.sszblog.xyz/categories/git/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/tags/git/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -63,22 +213,7 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/java/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/tags/java8/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.sszblog.xyz/java/java8/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/java/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -103,21 +238,6 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/tags/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/word/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.sszblog.xyz/tags/xml/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
@@ -128,17 +248,7 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/tags/%E5%8D%95%E8%AF%8D/</loc>
-    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/word/word/</loc>
+    <loc>http://www.sszblog.xyz/other/english/word/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   

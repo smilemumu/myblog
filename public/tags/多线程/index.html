@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>多线程 | Shi.bro的博客</title>
+    <meta property="og:title" content="多线程 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="多线程">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">多线程</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/threadlocal/">ThreadLocal</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月16日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://www.sszblog.xyz/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                ThreadLocal ThreadLocal是什么？ ThreadLocal是一个本地线程变量副本工具类。 保存线程上下文信息，在任意需要的地方可以获取！！！
+ThreadLocal的作用？ ThreadLocal的作用是提供线程内的局部变量，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或者组件之间一些公共变量的传递的复杂度。
+ThreadLocal实践？ 写一个验证token的切面
+@Aspect @Component public class DemoAspect { @Pointcut(&quot;execution(* *.*..*Controller.*(..))&quot;) public void pointService(){ } @Around(&quot;pointService()&quot;) public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable { threadLocal.set(Object); //before Object obj = null; try { obj = joinPoint.proceed(); } catch (Throwable throwable) { ... } finally{ threadLocal.remove(); } //after return obj; } } 在请求方法中可以在任意地点获取存放的本地线程副本变量  ThreadLocal注意事项 如果使用ThreadLocal的set方法之后，没有显示的调用remove方法，就有可能发生内存泄露，所以养成良好的编程习惯十分重要，使用完ThreadLocal之后，记得调用remove方法。
+ThreadLocal与Synchronized ThreadLocal和Synchronized都是为了解决多线程中相同变量的访问冲突问题，不同的点是 - Synchronized是通过线程等待，牺牲时间来解决访问冲突 - ThreadLocal是通过每个线程单独一份存储空间，牺牲空间来解决冲突，并且相比于Synchronized，ThreadLocal具有线程隔离的效果，只有在线程内才能获取到对应的值，线程外则不能访问到想要的值。……
+                                <p class="readmore"><a href="http://www.sszblog.xyz/java/threadlocal/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/countdownlatch%E5%92%8Ccyclicbarrier/">CountDownLatch和CyclicBarrier以及join()</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://www.sszblog.xyz/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                CountDownLatch、CyclicBarrier、join() 一、CountDownLatch(倒计时器)：
+ 功能：同步辅助类，也可以理解为倒计时锁，用于同步线程状态，允许一个或多个线程，等待其他一组线程完成操作，再继续往下执行。（会阻塞主线程） 特点：不可复用！ 重要方法：  countDown()方法：计数器-1，每次线程执行完后调用； await（）方法：等待方法，在需要阻塞的地方调用，当所有线程都执行完后，自动往下执行  用法：构造的时候指定一个计数器的值，每个线程执行完后就减1，直到为0再往下走。  二、CyclicBarrier（循环栅栏）：
+ 功能：同步辅助类，功能和CountDownLatch类似，用于同步线程状态，允许一组线程相互之间等待，达到一个共同点，再继续执行。(不会阻塞主线程) 特点：可复用！当组内所有线程都到达某个执行点后，count参数会被重置，于是就可重用了。 重要方法：  await（）方法：当某个线程到达某个点（比如执行完某个任务）后调用该方法，就会等待其他线程，直到所有线程都到达这个点，再自动往下执行。 还有个重载方法await（long timeOut,TimeUnit unit），用- 于当某个线程执行超过指定时间后还未到达某个点时，就会抛出异常，不再等待这个线程，并往下执行。  用法：构造的时候指定一个线程数量的值和到达某个点后执行的动作。  三、join()方法
+ join方法也是管理线程状态同步的一个方法，和CountDownLatch和CyclicBarrier均由自身调用不同的是，join的调用者为当前线程，后面的线程必须等调用join的线程执行完后才能执行。  refer to:https://www.cnblogs.com/be-thinking/p/9292290.html……
+                                <p class="readmore"><a href="http://www.sszblog.xyz/java/countdownlatch%E5%92%8Ccyclicbarrier/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/">Synchronized关键字</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://www.sszblog.xyz/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Synchronized关键字 1.作用 保证同一时刻最多只有1个线程执行 被Synchronized修饰的方法 / 代码
+其他线程 必须等待当前线程执行完该方法 / 代码块后才能执行该方法 / 代码块
+2.修饰 2.1修饰方法 //对象锁 //写法1 public synchronized void method() { // todo } //写法2，写法2其实是同步代码块的写法，但在这里也是相当于修饰了方法 public void method() { synchronized(this) { // todo } }  2.2修饰静态方法 //类锁 public synchronized static void method() { // todo }  2.3修饰类 //类锁 class ClassName { public void method() { synchronized(ClassName.class) { // todo } } }  2.4修饰代码块 //对象锁 //写法一 synchronized(this) { //todo } //写法二 Object obj =new Object(); synchronized(obj) { //todo }  3.……
+                                <p class="readmore"><a href="http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/">Future、FutureTask、CompletableFuture</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月11日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://www.sszblog.xyz/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Future
+public interface Future&lt;V&gt; { /** * 取消任务的执行 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败 * 如果任务在调用时还未启动，那么返回成功 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行 * @param mayInterruptIfRunning * @return */ boolean cancel(boolean mayInterruptIfRunning); /** * 判断任务是否已经取消，任务正常完成前将其取消，则返回true * @return */ boolean isCancelled(); /** * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true * @return */ boolean isDone(); /** * 等待任务执行结束，并返回结果 * @return * @throws InterruptedException 线程被中断异常 * @throws ExecutionException 任务执行异常 */ V get() throws InterruptedException, ExecutionException; /** * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间， * @param timeout * @param unit * @return * @throws InterruptedException * @throws ExecutionException * @throws TimeoutException */ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException; }  FutureTask介绍……
+                                <p class="readmore"><a href="http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Thread、Runnable、Callable、线程池</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://www.sszblog.xyz/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                1.创建线程的三种方式  (1)继承thread,重写run方法 (2)实现Runnable接口，实现run方法 (3)实现Callable接口，实现call方法 (4)线程池  2.Runnable和Callable的区别：  (1)Callable实现的方法是call(),Runnable实现的方法是run(). (2)Callable的任务执行后可返回值，可以拿到一个Future对象，而Runnable的任务没有返回值 (3)call方法需要抛出异常InterruptedException和ExecutionExecption，run方法只能在内部消化InterruptedException  3.Thread的缺点：  Java是单继承多实现，不利于扩展.  4. 线程池 4.1 为什么要使用线程池  降低资源消耗。 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。 当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。  4.2 execute()和submit()的区别  (1)可接受任务类型：
+ submit:
+submit(Callable&lt;T&gt; task):Future&lt;T&gt; -ExecutorService submit(Runnable task):Future&lt;?&gt; -ExecutorService submit(Runnable task,T result):Future&lt;T&gt; -ExecutorService  execute:
+execute(Runnable command):void -Executor  从源码种可以看出
+ execute只能接受Runnable类型的任务 submit不管是Runnable还是Callable类型的任务都可以接受   (2)返回值
+ 由Callable和Runnable的区别可以看出：  execute没有返回值 submit有返回值，所以需要返回值的时候必须使用submit   (3)异常处理
+ submit在执行过程中与execute不一样，不会抛出异常而是把异常保存在成员变量中，在FutureTask.get阻塞获取的时候再把异常抛出来。
+ execute中抛出异常 execute中的是Runnable接口的实现，所以只能使用try、catch来捕获CheckedException，通过实现UncaughtExceptionHande接口处理UncheckedException 即和普通线程的处理方式完全一致……
+                                <p class="readmore"><a href="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(14)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

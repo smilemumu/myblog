@@ -92,6 +92,16 @@
                         <div class="post-content">
                             <p><strong>markdown模板</strong></p>
 
+<p><img src="https://img.shields.io/github/release/wildfirechat/server" alt="版本图标" />
+类似于这样添加版本
+<img src="http://progressed.io/bar/10" alt="Progress" /></p>
+
+<p><a href="https://travis-ci.org/f/wolves"> <img src="https://travis-ci.org/f/wolves.svg?branch=master" alt="Build Status" /></a>
+<a href="http://badge.fury.io/js/wolves"> <img src="https://badge.fury.io/js/wolves.svg" alt="NPM version" /></a>
+<a href="https://david-dm.org/f/wolves#info=dependencies&amp;view=table"> <img src="https://david-dm.org/f/wolves/status.svg" alt="Dependencies" /></a>
+<a href="https://david-dm.org/f/wolves#info=devDependencies&amp;view=table"> <img src="https://david-dm.org/f/wolves/dev-status.svg" alt="Dev Dependencies" /></a>
+类似于这样添加进度</p>
+
 <p>#markdown demo</p>
 
 <h1 id="标题demo">标题DEMO</h1>
@@ -244,11 +254,37 @@ public class ArgumentResolverConfig implements WebMvcConfigurer {
 <strong>:-</strong>  设置内容和标题栏居左对齐。<br />
 <strong>:-:</strong> 设置内容和标题栏居中对齐。</p>
 
-<p>|name |价格|数量|
-|-|-|-|
-|香蕉 | $1 | 5 |
-|苹果 | $1 | 6 |
-|草莓 | $1 | 7 |</p>
+<hr />
+
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>价格</th>
+<th>数量</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>香蕉</td>
+<td>$1</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>苹果</td>
+<td>$1</td>
+<td>6</td>
+</tr>
+
+<tr>
+<td>草莓</td>
+<td>$1</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 
@@ -267,14 +303,14 @@ public class ArgumentResolverConfig implements WebMvcConfigurer {
 <td>内容1</td>
 <td>content 2</td>
 <td>1</td>
-<td></td>
+<td>1</td>
 </tr>
 
 <tr>
 <td>行3</td>
 <td>line3</td>
 <td>column 3</td>
-<td></td>
+<td>2</td>
 </tr>
 </tbody>
 </table>
@@ -358,7 +394,11 @@ public class ArgumentResolverConfig implements WebMvcConfigurer {
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/java/">java(3)</a>
+        <a href="http://www.sszblog.xyz/categories/java/">java(14)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
     </li>
     
     <li>
@@ -366,7 +406,7 @@ public class ArgumentResolverConfig implements WebMvcConfigurer {
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/%E5%85%B6%E4%BB%96/">其他(1)</a>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
     </li>
     
 </ul>
@@ -384,11 +424,21 @@ public class ArgumentResolverConfig implements WebMvcConfigurer {
     
     <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
     
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
     <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
     
     <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%8D%95%E8%AF%8D/">单词</a>
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
     
 </div>
     </section>
