@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JAVA IO流 | Shi.bro的博客</title>
+    <meta property="og:title" content="JAVA IO流 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-07T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-07T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="JAVA IO流">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/java/io%E6%B5%81/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">JAVA IO流</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月7日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="java-io流">Java IO流</h1>
+
+<h2 id="java-中-io-流分为几种">Java 中 IO 流分为几种?</h2>
+
+<ul>
+<li>按照流的流向分，可以分为输入流和输出流；
+
+<ul>
+<li>输出流：从内存读出到文件。只能进行写操作。</li>
+<li>输入流：从文件读入到内存。只能进行读操作。</li>
+<li>输入和输出，都是相对于系统内存而言</li>
+</ul></li>
+<li>按照操作单元划分，可以划分为字节流和字符流；
+
+<ul>
+<li>字节流：以字节为单位，每次次读入或读出是8位数据。可以读任何类型数据。(1byte（B） = 8bit(位))</li>
+<li>字符流：以字符为单位，每次次读入或读出是16位数据。其只能读取字符类型数据。(1字符=2字节 )</li>
+</ul></li>
+<li>按照流的角色划分为节点流和处理流。
+
+<ul>
+<li>节点流：直接与数据源相连，读入或读出。</li>
+<li>处理流（Filter Stream）：与节点流一块使用，在节点流的基础上，再套接一层，套接在节点流上的就是处理流。（DataInputStream、BufferedInputStream、BufferedReader等）</li>
+</ul></li>
+</ul>
+
+<p>Java Io流的40多个类都是从如下4个抽象类基类中派生出来的。
+-   InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。
+-   OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。</p>
+
+<h2 id="不同平台的换行符号">不同平台的换行符号：</h2>
+
+<p>|符号|linux|windows|Java建议写法|
+|-|-|-|-|
+|换行符|\n|\r\n|System.getProperty(&ldquo;line.separator&rdquo;)|
+|路径分隔符|/|\|File.separator|
+|多个路径分隔符|:|;|File.pathSeparator|</p>
+
+<h2 id="字节流和字符流的区别">字节流和字符流的区别:</h2>
+
+<p>字符流使用了缓存区（内存），执行了write()，文件中不会立刻有内容（除非缓冲区满了或者主动刷新缓冲区），需要等输出流对象关闭了，文件中才会有内容；字节流不使用缓冲区，执行了wirite()，文件中立刻就有内容了。
+-   ### 1.字符流</p>
+
+<pre><code class="language-java">//步骤为:程序-&gt;字符流-&gt;缓存(数据先存放到缓存，再从缓存写入文件【主动刷新or流关闭】)-&gt;文件
+import java.util.*;
+import java.io.*;
+public class WriterTest {
+    public static void main(String[] args) {
+        File file = new File(&quot;1.txt&quot;);
+        Scanner in = null;
+        Writer out = null;
+        try{
+            in = new Scanner(System.in);
+            out = new FileWriter(file);
+            String data = null;
+            while(in.hasNext()){
+                data = in.nextLine();
+                if(data == null){
+                    data = &quot;&quot;;
+                }
+                out.write(data);
+                //out.flush();刷新缓冲区，会立刻将缓冲区的内容输出
+            }
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+            try{
+				//最后要将流关闭
+                in.close();
+                out.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre>
+
+<ul>
+<li><h3 id="2-字节流">2.字节流</h3>
+
+<pre><code class="language-java">import java.util.*;
+import java.io.*;
+public class OutputStreamTest {
+public static void main(String[] args) {
+    File file = new File(&quot;2.txt&quot;);
+    Scanner scannerIn = null;
+    FileOutputStream out = null;
+    try{
+        scannerIn = new Scanner(System.in);
+        //覆盖式，追加式多一个true参数
+        out = new FileOutputStream(file);
+        String data = null;
+        byte[] bytes = null;
+        while(in.hasNext()){
+            data = scannerIn.nextLine();
+            if(data != null){
+                bytes = data.getBytes();
+            }else{
+                bytes = &quot;&quot;.getBytes();
+            }
+            out.write(bytes);
+        }
+    }catch(Exception e) {
+        e.printStackTrace();
+    }finally{
+        try{
+            in.close();
+            out.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+}
+}
+</code></pre>
+
+<p>字节数组与字符串之间的转换
+public String(byte[] bytes, String charsetName)
+byte[] getBytes(String charsetName)</p></li>
+</ul>
+
+<h2 id="详细分类">详细分类</h2>
+
+<h3 id="按操作方式分类">按操作方式分类</h3>
+
+<p>1.输入字节流InputStream
+-   ByteArrayInputStream、StringBufferInputStream、FileInputStream 是三种基本的介质流，它们分别从Byte 数组、StringBuffer、和本地文件中读取数据。
+-   PipedInputStream 是从与其它线程共用的管道中读取数据。PipedInputStream的一个实例要和PipedOutputStream的一个实例共同使用，共同完成管道的读取写入操作。主要用于线程操作。
+-   DataInputStream： 读取基础数据类型
+-   ObjectInputStream 和所有 FilterInputStream 的子类都是装饰流（装饰器模式的主角）。</p>
+
+<p>2.输出字节流OutputStream：
+-   ByteArrayOutputStream、FileOutputStream： 是两种基本的介质流，它们分别向- Byte 数组、和本地文件中写入数据。
+-   PipedOutputStream 是向与其它线程共用的管道中写入数据。
+-   DataOutputStream 将基础数据类型写入到文件中
+-   ObjectOutputStream 和所有 FilterOutputStream 的子类都是装饰流。</p>
+
+<p>3.字符输入流Reader：
+-   FileReader、CharReader、StringReader 是三种基本的介质流，它们分在本地文件、Char 数组、String中读取数据。
+-   PipedReader：是从与其它线程共用的管道中读取数据
+-   BufferedReader ：加缓冲功能，避免频繁读写硬盘
+-   InputStreamReader： 是一个连接字节流和字符流的桥梁，它将字节流转变为字符流。</p>
+
+<p>4.字符输出流Writer：
+-   StringWriter:向String 中写入数据。
+-   CharArrayWriter：实现一个可用作字符输入流的字符缓冲区
+-   PipedWriter:是向与其它线程共用的管道中写入数据
+-   BufferedWriter ： 增加缓冲功能，避免频繁读写硬盘。
+-   PrintWriter 和PrintStream 将对象的格式表示打印到文本输出流。 极其类似，功能和使用也非常相似
+-   OutputStreamWriter： 是OutputStream 到Writer 转换的桥梁，它的子类FileWriter 其实就是一个实现此功能的具体类（具体可以研究一SourceCode）。功能和使用和OutputStream 极其类似。</p>
+
+<h3 id="按操作对象分类">按操作对象分类</h3>
+
+<p>1.对文件进行操作（节点流）
+-   FileInputStream（字节输入流）
+-   FileOutputStream（字节输出流）
+-   FileReader（字符输入流）
+-   FileWriter（字符输出流）</p>
+
+<p>2.对管道进行操作（节点流）
+-   PipedInputStream（字节输入流）
+-   PipedOutStream（字节输出流）
+-   PipedReader（字符输入流）
+-   PipedWriter（字符输出流）
+-   PipedInputStream的一个实例要和PipedOutputStream的一个实例共同使用，共同完成管道的读取写入操作。主要用于线程操作。</p>
+
+<p>3.字节/字符数组流（节点流）：
+-   ByteArrayInputStream
+-   ByteArrayOutputStream
+-   CharArrayReader
+-   CharArrayWriter</p>
+
+<p><strong>上述三种为节点流，其余都为处理流</strong></p>
+
+<p>4.Buffered缓冲流（处理流）：带缓冲区的处理流，缓冲区的作用的主要目的是：避免每次和硬盘打交道，提高数据访问的效率。
+-   BufferedInputStream
+-   BufferedOutputStream
+-   BufferedReader
+-   BufferedWriter</p>
+
+<p>5.转化流（处理流）：
+-   InputStreamReader：把字节转化成字符
+-   OutputStreamWriter：把字节转化成字符</p>
+
+<p>6.基本类型数据流（处理流）：用于操作基本数据类型值。
+因为平时若是我们输出一个8个字节的long类型或4个字节的float类型，那怎么办呢？可以一个字节一个字节输出，也可以把转换成字符串输出，但是这样转换费时间，若是直接输出该多好啊，因此这个数据流就解决了我们输出数据类型的困难。数据流可以直接输出float类型或long类型，提高了数据读写的效率。
+-   DataInputStream
+-   DataOutputStream</p>
+
+<p>7.其他
+DataInputStream 有些特殊的方法如readInt(), readDouble()和readLine() 等可以读取一个 int, double和一个string一次性的
+BufferedInputStream 增加性能
+RandomAccessFile既可以读文件，也可以写文件
+管道流共有四种， PipedInputStream, PipedOutputStream, PipedReader 和 PipedWriter.在多个线程或进程中传递数据的时候管道流非常有用。
+File类不属于 IO流，也不是用于文件操作的，它主要用于知道一个文件的属性，读写权限，大小等信息。注意：Java7中文件IO发生了很大的变化，专门引入了很多新的类来取代原来的基于java.io.File的文件IO操作方式。</p>
+
+<p>refer to: <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247484945&amp;idx=1&amp;sn=229be49807e3c2a9621f42c0a6c0aeb6&amp;source=41#wechat_redirect">https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247484945&amp;idx=1&amp;sn=229be49807e3c2a9621f42c0a6c0aeb6&amp;source=41#wechat_redirect</a>
+refer to: <a href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247484946&amp;idx=1&amp;sn=043b054de3aef29bf3ff80eea15c16fd&amp;source=41#wechat_redirect">https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;mid=2247484946&amp;idx=1&amp;sn=043b054de3aef29bf3ff80eea15c16fd&amp;source=41#wechat_redirect</a></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/java/java%E5%9F%BA%E7%A1%80/">JAVA基础</a></li>
+        
+        <li><a href="/java/automic/">Automic</a></li>
+        
+        <li><a href="/java/threadlocal/">ThreadLocal</a></li>
+        
+        <li><a href="/java/volatile/">Volatile</a></li>
+        
+        <li><a href="/java/countdownlatch%E5%92%8Ccyclicbarrier/">CountDownLatch和CyclicBarrier以及join()</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80">基础</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>基于自定义注解的参数解析器 | Shi.bro的博客</title>
+    <meta property="og:title" content="基于自定义注解的参数解析器 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-14T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-14T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="基于自定义注解的参数解析器">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">基于自定义注解的参数解析器</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月14日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/spring">Spring</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="基于自定义注解的参数解析器">基于自定义注解的参数解析器</h1>
+
+<h2 id="背景">背景</h2>
+
+<p>在工作中，常会对接一些第三方应用，通常第三方会采用Rsa+Aes加密来通信，但是每个第三方的加密方式可能不一致。此时得好好规划一下实现方案了。因此我们采用注解+Spring自带了参数解析类，实现自己的参数解析器。</p>
+
+<h2 id="原理">原理</h2>
+
+<p>通过HandlerMethodArgumentResolver实现自定义参数解析</p>
+
+<h2 id="实现">实现</h2>
+
+<h3 id="步骤1-创建注解-例如创建一个解析aes加密的注解aesjson">步骤1：创建注解，例如创建一个解析Aes加密的注解AesJson</h3>
+
+<pre><code class="language-java">import java.lang.annotation.*;
+
+@Target({ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface AesJson {
+}
+</code></pre>
+
+<h3 id="步骤2-创建加密参数实体类对象">步骤2：创建加密参数实体类对象</h3>
+
+<p>传入的JSON数据格式为{&ldquo;data&rdquo;:&ldquo;xxxxxxxxxx&rdquo;}</p>
+
+<pre><code class="language-java">
+import lombok.Data;
+
+@Data
+public class AesBaseParams {
+    private String data;
+}
+</code></pre>
+
+<h3 id="步骤3-新建aesargumentresolver类实现handlermethodargumentresolver">步骤3：新建AesArgumentResolver类实现HandlerMethodArgumentResolver</h3>
+
+<pre><code class="language-java">
+import com.alibaba.fastjson.JSON;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.MethodParameter;
+import org.springframework.web.bind.support.WebDataBinderFactory;
+import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+/**
+ * aes加密算法加密的入参，通过@AesJson注解自动解析
+ */
+public class AesArgumentResolver implements HandlerMethodArgumentResolver {
+
+    private static final Logger logger = LoggerFactory.getLogger(AesArgumentResolver.class);
+
+    /**
+     * 支持该注解的方法
+     * @param methodParameter
+     * @return
+     */
+    @Override
+    public boolean supportsParameter(MethodParameter methodParameter) {
+        return methodParameter.hasParameterAnnotation(AesJson.class);
+    }
+
+    /**
+     * 解析aes加密入参
+     * @param methodParameter
+     * @param modelAndViewContainer
+     * @param nativeWebRequest
+     * @param webDataBinderFactory
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
+        HttpServletRequest httpServletRequest = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
+        String para = getAllParamJson(httpServletRequest);
+        AesBaseParams aesBaseParams = JSON.parseObject(para, AesBaseParams.class);
+        Object obj = null;
+        if(Objects.nonNull(aesBaseParams)){
+            //如果是aes加密的请求参数不为空
+            String data  = aesBaseParams.getData();
+            if(StringUtils.isNotEmpty(data)){
+                //如果不为空 ，进行解密,data为加密数据，key为aes密钥，此工具类自行获取
+                String aesDecodeStr = EncryptUtils.decryptByAES(data,key);
+				//.....
+				//验签、RSA解密操作、AES解密操作
+                //将解密后的json字符串，解析成实体对象
+                obj = JSON.parseObject(aesDecodeStr,methodParameter.getParameterType());
+            }
+        }
+		if(Objects.isNull(obj)){
+			//抛出异常，解密出错
+			throw new BaseException(ErrorCodesEnum.DECRYPT_ERROR);
+		}
+        return obj;
+    }
+
+    /**
+     *
+     * 获取application/json格式提交的请求参数的 json字符串
+     * @param httpServletRequest
+     * @return
+     * @throws IOException
+     */
+    private String getAllParamJson(HttpServletRequest httpServletRequest) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader = null;
+        try {
+            InputStream inputStream = httpServletRequest.getInputStream();
+            if (inputStream != null) {
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                char[] charBuffer = new char[128];
+                int bytesRead = -1;
+                while ((bytesRead = bufferedReader.read(charBuffer)) &gt; 0) {
+                    stringBuilder.append(charBuffer, 0, bytesRead);
+                }
+            }
+        } catch (IOException ex) {
+            throw ex;
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException ex) {
+                    throw ex;
+                }
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+}
+
+</code></pre>
+
+<h3 id="步骤4-注入aesargumentresolver-实现webmvcconfigurer并重写addargumentresolvers方法">步骤4：注入AesArgumentResolver，实现WebMvcConfigurer并重写addArgumentResolvers方法</h3>
+
+<pre><code class="language-java">import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
+
+/**
+ * 创建ArgumentResolverConfig
+ */
+@Configuration
+public class ArgumentResolverConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addArgumentResolvers(List&lt;HandlerMethodArgumentResolver&gt; argumentResolvers){
+        argumentResolvers.add(aesArgumentResolver());
+    }
+    @Bean
+    public AesArgumentResolver aesArgumentResolver(){
+        return new AesArgumentResolver();
+    }
+}
+</code></pre>
+
+<h3 id="步骤5-如何使用">步骤5：如何使用</h3>
+
+<p>在请求参数对象前添加AesJson注解就可以自动解析参数啦</p>
+
+<pre><code class="language-java">/**
+ * 推单接口
+ * @param reqVo
+ * @return
+ */
+@PostMapping(&quot;/pushOrder&quot;)
+public PushOrderRspVo pushOrder(@AesJson PushOrderReqVo reqVo){
+	String orderNo = reqVo.getOrderNo();
+	//执行推单逻辑
+}
+
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a></li>
+        
+        <li><a href="/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a></li>
+        
+        <li><a href="/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">项目开发</a></li>
+        
+        <li><a href="/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a></li>
+        
+        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/spring">Spring</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

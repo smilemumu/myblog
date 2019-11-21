@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>项目开发 | Shi.bro的博客</title>
+    <meta property="og:title" content="项目开发 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-20T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-20T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="项目开发">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">项目开发</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月20日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/spring">Spring</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="jsr-303参数校验">JSR-303参数校验</h2>
+
+<h3 id="步骤">步骤</h3>
+
+<p>1.创建校验参数类</p>
+
+<pre><code class="language-java">import lombok.Data;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.*;
+import java.util.Date;
+
+/**
+ * 参数验证请求参数
+ * @Author shizhongcai
+ * @Date 2019/11/20 15:35
+ */
+@Data
+public class ValidatorReqVo{
+
+    @NotNull(message = &quot;id不能为空&quot;)
+    private Integer id;
+
+    @NotNull
+    @Future(message = &quot;格式为yyyy-MM-dd,且为将来时间&quot;)
+    @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;)
+    private Date future;
+
+    @NotNull
+    @DecimalMin(value = &quot;0.1&quot;)
+    @DecimalMax(value = &quot;1000&quot;)
+    private Double doubleValue;
+
+    @NotNull
+    @Min(value = 1)
+    @Max(value = 10)
+    private Integer intValue;
+
+    @NotNull
+    @Range(min = 1,max = 10,message = &quot;最小为1，最大为10&quot;)
+    private Integer range;
+
+    @NotBlank
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(min = 10,max = 20,message = &quot;字符串长度在10-20之间&quot;)
+    private String strSize;
+
+}
+</code></pre>
+
+<p>2.全局异常捕获类中添加MethodArgumentNotValidException异常捕获</p>
+
+<pre><code class="language-java">   /**
+     * 参数校验异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public BaseRspVo handleException(MethodArgumentNotValidException e) {
+        logger.error(&quot;请求参数不合法{}&quot;,e.getBindingResult());
+        //获取所有校验失败项
+        List&lt;FieldError&gt; errors = e.getBindingResult().getFieldErrors();
+        //处理异常校验项
+        Map&lt;String,String&gt; errorMap = new HashMap&lt;&gt;();
+        if(!CollectionUtils.isEmpty(errors)) {
+            for (FieldError error : errors) {
+                errorMap.put(error.getField(),error.getDefaultMessage());
+            }
+        }
+        BaseRspVo baseRspVo =  BaseRspVo.fail(ErrorCodesEnum.PARAM_ERROR);
+        baseRspVo.setData(errorMap);
+        return baseRspVo;
+    }
+</code></pre>
+
+<p>3.测试Controller编写</p>
+
+<pre><code class="language-java"> /**
+     * 测试参数校验
+     * @param reqVo
+     * @return
+     */
+    @PostMapping(value = &quot;/testValidate&quot;)
+    public BaseRspVo testValidate(@Validated @RequestBody ValidatorReqVo reqVo){
+        return new BaseRspVo&lt;&gt;(Arrays.asList(&quot;1&quot;,&quot;2&quot;));
+    }
+</code></pre>
+
+<p>4.模拟请求入参</p>
+
+<pre><code class="language-json">{
+	&quot;id&quot;: 1,
+	&quot;intValue&quot;: 10,
+	&quot;doubleValue&quot;: 2.2,
+	&quot;future&quot;: &quot;2019-11-21&quot;,
+	&quot;range&quot;: 1,
+	&quot;strSize&quot;: &quot;2321213123&quot;,
+	&quot;email&quot;: &quot;a121@wdw.com&quot;
+}
+</code></pre>
+
+<h3 id="参数校验注解参考表">参数校验注解参考表</h3>
+
+<p>| 注解 | 描述 |
+| - | - |
+|@NotNull           |限制必须不为null|
+|@NotEmpty          |验证注解的元素值不为 null 且不为空（字符串长度不为0、集合大小不为0）|
+|@NotBlank          |验证注解的元素值不为空（不为null、去除首位空格后长度为0），不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的空格|
+|@Pattern(value)    |限制必须符合指定的正则表达式|
+|@Size(max,min)     |限制字符长度必须在 min 到 max 之间（也可以用在集合上）|
+|@Email             |验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式|
+|@Max(value)        |限制必须为一个不大于指定值的数字|
+|@Min(value)        |限制必须为一个不小于指定值的数字|
+|@DecimalMax(value) |限制必须为一个不大于指定值的数字|
+|@DecimalMin(value) |限制必须为一个不小于指定值的数字|
+|@Null              |限制只能为null（很少用）|
+|@AssertFalse       |限制必须为false （很少用）|
+|@AssertTrue        |限制必须为true （很少用）|
+|@Past              |限制必须是一个过去的日期|
+|@Future            |限制必须是一个将来的日期|
+|@Digits(integer,fraction)| 限制必须为一个小数，且整数部分的位数不能超过 integer，小数部分的位数不能超过 fraction （很少用）|</p>
+
+<p>refer to : <a href="https://blog.csdn.net/qq_32867467/article/details/90292737">https://blog.csdn.net/qq_32867467/article/details/90292737</a></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/project/filter%E5%92%8Cinterceptor/">项目开发</a></li>
+        
+        <li><a href="/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">基于自定义注解的参数解析器</a></li>
+        
+        <li><a href="/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a></li>
+        
+        <li><a href="/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a></li>
+        
+        <li><a href="/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/spring">Spring</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

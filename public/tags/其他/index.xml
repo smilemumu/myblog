@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>其他 on Shi.bro的博客</title>
+    <link>http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/</link>
+    <description>Recent content in 其他 on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 20 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>项目开发</title>
+      <link>http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/</guid>
+      <description>其他一些日常工作中遇到的问题：
+1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&amp;ldquo;singleton&amp;rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&amp;ldquo;prototype&amp;rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</description>
+    </item>
+    
+  </channel>
+</rss>

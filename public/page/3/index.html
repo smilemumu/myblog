@@ -68,67 +68,60 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/markdown/markdown/" title="markdown模板" >markdown模板</a>
+                                    <a href="http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/" title="Synchronized关键字" >Synchronized关键字</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月11日
+                                2019年10月12日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/markdown">markdown</a></span>
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                <p><strong>markdown模板</strong></p>
-
-<p><img src="https://img.shields.io/github/release/wildfirechat/server" alt="版本图标" />
-类似于这样添加版本
-<img src="http://progressed.io/bar/10" alt="Progress" /></p>
-
-<p><a href="https://travis-ci.org/f/wolves"> <img src="https://travis-ci.org/f/wolves.svg?branch=master" alt="Build Status" /></a>
-<a href="http://badge.fury.io/js/wolves"> <img src="https://badge.fury.io/js/wolves.svg" alt="NPM version" /></a>
-<a href="https://david-dm.org/f/wolves#info=dependencies&amp;view=table"> <img src="https://david-dm.org/f/wolves/status.svg" alt="Dependencies" /></a>
-<a href="https://david-dm.org/f/wolves#info=devDependencies&amp;view=table"> <img src="https://david-dm.org/f/wolves/dev-status.svg" alt="Dev Dependencies" /></a>
-类似于这样添加进度</p>……
+                                Synchronized关键字 1.作用 保证同一时刻最多只有1个线程执行 被Synchronized修饰的方法 / 代码
+其他线程 必须等待当前线程执行完该方法 / 代码块后才能执行该方法 / 代码块
+2.修饰 2.1修饰方法 //对象锁 //写法1 public synchronized void method() { // todo } //写法2，写法2其实是同步代码块的写法，但在这里也是相当于修饰了方法 public void method() { synchronized(this) { // todo } }  2.2修饰静态方法 //类锁 public synchronized static void method() { // todo }  2.3修饰类 //类锁 class ClassName { public void method() { synchronized(ClassName.class) { // todo } } }  2.4修饰代码块 //对象锁 //写法一 synchronized(this) { //todo } //写法二 Object obj =new Object(); synchronized(obj) { //todo }  3.……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/markdown/markdown/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/" title="xml与json互转" >xml与json互转</a>
+                                    <a href="http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/" title="Future、FutureTask、CompletableFuture" >Future、FutureTask、CompletableFuture</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月11日
+                                2019年10月11日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">Java</a></span>
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                <p><strong>开发场景中，需要对返回的xml数据转为json再进行处理</strong></p>……
+                                Future
+public interface Future&lt;V&gt; { /** * 取消任务的执行 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败 * 如果任务在调用时还未启动，那么返回成功 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行 * @param mayInterruptIfRunning * @return */ boolean cancel(boolean mayInterruptIfRunning); /** * 判断任务是否已经取消，任务正常完成前将其取消，则返回true * @return */ boolean isCancelled(); /** * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true * @return */ boolean isDone(); /** * 等待任务执行结束，并返回结果 * @return * @throws InterruptedException 线程被中断异常 * @throws ExecutionException 任务执行异常 */ V get() throws InterruptedException, ExecutionException; /** * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间， * @param timeout * @param unit * @return * @throws InterruptedException * @throws ExecutionException * @throws TimeoutException */ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException; }  FutureTask介绍……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/other/english/word/" title="我的单词本" >我的单词本</a>
+                                    <a href="http://www.sszblog.xyz/other/english/phrase/" title="短语" >短语</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月11日
+                                2019年10月9日
                             </date>
                             
                             <div class="post-meta">
@@ -139,19 +132,124 @@
                             </div>
                             
                             <div class="post-content">
-                                <p><strong>日常开发中遇到的一些术语生词</strong></p>……
+                                Managerial tasks could be delegated to others 管理任务可以委托给其他人……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/other/english/word/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/other/english/phrase/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/" title="按指定长度切割list" >按指定长度切割list</a>
+                                    <a href="http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/" title="linux命令" >linux命令</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月11日
+                                2019年10月8日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/linux">linux</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                一行shell命令杀死指定进程名称的进程方法
+ps -efww|grep -w '程序名称'|grep -v grep|cut -c 9-15|xargs kill -9  ps:杀死程序名称为ssz-h5的程序
+[root@sagdb ssz-h5]# ps -ef|grep java root 28414 1 2 Sep27 ? 05:39:12 java -jar ssz-llyy.jar root 29837 1 99 14:37 pts/0 00:00:03 java -jar ssz-h5.jar root 29856 29557 0 14:37 pts/0 00:00:00 grep java [root@sagdb ssz-h5]# ps -efww|grep -w 'ssz-h5'|grep -v grep|cut -c 9-15|xargs kill -9  ……
+                            </div>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="Thread、Runnable、Callable、线程池" >Thread、Runnable、Callable、线程池</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                1.创建线程的三种方式  (1)继承thread,重写run方法 (2)实现Runnable接口，实现run方法 (3)实现Callable接口，实现call方法 (4)线程池  2.Runnable和Callable的区别：  (1)Callable实现的方法是call(),Runnable实现的方法是run(). (2)Callable的任务执行后可返回值，可以拿到一个Future对象，而Runnable的任务没有返回值 (3)call方法需要抛出异常InterruptedException和ExecutionExecption，run方法只能在内部消化InterruptedException  3.Thread的缺点：  Java是单继承多实现，不利于扩展.  4. 线程池 4.1 为什么要使用线程池  降低资源消耗。 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。 当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。  4.2 execute()和submit()的区别  (1)可接受任务类型：
+ submit:
+submit(Callable&lt;T&gt; task):Future&lt;T&gt; -ExecutorService submit(Runnable task):Future&lt;?&gt; -ExecutorService submit(Runnable task,T result):Future&lt;T&gt; -ExecutorService  execute:
+execute(Runnable command):void -Executor  从源码种可以看出
+ execute只能接受Runnable类型的任务 submit不管是Runnable还是Callable类型的任务都可以接受   (2)返回值
+ 由Callable和Runnable的区别可以看出：  execute没有返回值 submit有返回值，所以需要返回值的时候必须使用submit   (3)异常处理
+ submit在执行过程中与execute不一样，不会抛出异常而是把异常保存在成员变量中，在FutureTask.get阻塞获取的时候再把异常抛出来。
+ execute中抛出异常 execute中的是Runnable接口的实现，所以只能使用try、catch来捕获CheckedException，通过实现UncaughtExceptionHande接口处理UncheckedException 即和普通线程的处理方式完全一致……
+                            </div>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/" title="异常" >异常</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                异常和错误的区别：异常能被程序本身处理，错误是无法处理。……
+                            </div>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" title="责任链模式使用" >责任链模式使用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                责任链模式的重点在“链上”，由一条链去处理相似的请求，在链中决定谁来处理这个请求，并返回相应的结果。
+角色：
+抽象处理者（Handler）角色：该角色对请求进行抽象，并定义一个方法来设定和返回对下一个处理者的引用。
+具体处理者（Concrete Handler）：该角色接到请求后，可以选择将请求处理掉，或者将请求传给下一个处理者。由于具体处理者持有对下一个处理者的引用，因此，如果需要，处理者可以访问下一个处理者。
+优点 责任链模式将请求和处理分开，请求者不知道是谁处理的，处理者可以不用知道请求的全貌。 提高系统的灵活性。 缺点 降低程序的性能。每个请求都是从链头遍历到链尾，当链比较长的时候，性能会大幅下降。 不易于调试。由于该模式采用了类似递归的方式，调试的时候逻辑比较复杂。……
+                            </div>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/" title="Java8计算时间差" >Java8计算时间差</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月23日
                             </date>
                             
                             <div class="post-meta">
@@ -162,9 +260,75 @@
                             </div>
                             
                             <div class="post-content">
-                                <p><strong>某一次需求开发中，遇到这样的场景，需要对名单进行分组然后再对这批名单处理。</strong></p>……
+                                <p><strong>计算某个并行任务的总耗时。</strong></p>……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/">阅读全文</a></p>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/" title="我的书单" >我的书单</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月18日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/other">other</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 [ ]《睡眠革命》
+ [x]《软技能》
+ [ ]《指数基金投资指南》
+ [ ]《解读基金》
+ [ ]《傻瓜式投资》
+ [ ]《习惯的力量》
+ [ ]《人性的弱点》
+ [ ]《金字塔原理》 [ ]《董莉华之书》  ……
+                            </div>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/" title="软技能分享" >软技能分享</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月18日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/other">other</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                #《软技能》 前言 对于优秀的软件开发者来说，埋头写代码绝并不应该是工作的全部。这本书给出了很多非常好的建议，不仅仅“码农”们可以从中获益，还可以推而广之到很多其他的行业。
+职业 主要讲的是如何进行自己的职业规划
+你所能犯的最大错误就是相信自己是在为别人工作。这样一来你对工作的安全感已然尽失。职业发展的驱动力一定是个体本身。记住：工作是属于公司的，而职业生涯确实属于你自己的。 - 厄尔.南丁格尔
+那么我们该如何解决这样的问题呢？
+思考未来，你的目标是什么（√） 工作属于公司的，而职业属于自己的。没有目标的就更不可能去实现自己的目标，浑浑噩噩混过一生，这个是大多数人的自然状态，我们通常保护会充分思考自己该关注什么，这样我们的行动也就漫无目的，无的放矢。（想象一下，海中的船只）。 为什么需要目标？ 如何设定目标。 首先，必须定义一个大目标，不需要那么具体，但是一定要清晰，能够让你自己知道你自己是再向它前进还是离它越来越远。
+如果你可以驱动小目标逐渐前行并靠近你的大目标， 那么最终你一定会到达目的地。 设定大小不同的目标， 确保你向着自己的大目标前进， 这一点非常重要。 例如， 你设定了 一个年度目标， 阅读很多技术书籍， 或是学习新的编程语言。 这个年度目标可能是引领你 走向“成为一名高级开发人员”这个大目标的小目标。 同样， 每年的目标可能被分解成更小 的目标， 比如每月阅读一本书， 或者每天读多少页。
+　较小的目标可以让你航行在自己的轨道上， 激励你保持航向朝着更大的目标前进。 如 果你准备达成一个大目标， 却没有分解为小目标， 那么当你偏离航向时也不会有时间去校 正。 达成较小的目标也能经常奖励自己， 帮助并激励自己。 每一天、 每一个星期的小胜利 会让我们觉得自己正在取得进展、 达成目标， 这让我们感觉良好， 帮助我们继续前进。 较 小的目标似乎也不像大目标那样令人望而生畏
+追踪你的目标。
+采取行动
+ 坐下来，为职业生涯设置至少一个大目标。 将大目标分解成若干个小目标，例如  月度目标 周目标 每日目标  把大目标写在每天的必经之地，达到吾日三省吾身的效果  学会与人打交道（√） ‘别管我，我只想一个人安静地写代码！’
+是不是每天想安安静静地写代码时，微信窗口或者Email总会不合时宜地弹出各种提示，一会要开会啦一会要讨论需求了，再一会测试又来和你理论Bug了。世界这么喧嚣，还让不让人安静地写代码了？“别管我，我只想一个人安静地写代码”，这句话道出了多少程序员的心声啊，我们都想“静静”！不过今天我要告诉你，这种想法是多么的错误，并且严重影响了你职业生涯的发展。
+如果你觉得自己的工作就是写写代码，那你最好三思。在开发的领域，我们大多数是与人而不是与计算机打交道。我们所写的代码首先是供人使用的，其次才是让计算机可以理解的，如果你只想和机器打交道，那写二进制的代码机器才能理解你。仔细想想自己一天的工作中有多少时间用在了与人互动上，收发邮件、会议、讨论（扯皮）等等，作为一个开发人员，你的工作就是与人打交道（其实几乎所有的职业都是这样）。
+所以，虽然你是一个码代码的码农，看似你工作的重心是在码代码上，但其实你自己统计一下也会发现：你真正写代码的时间占你工作时间的比例并不高甚至有些人非常低。即使没有人打扰你，你仍然需要花很多的时间去设计（思考）怎么写你的代码，或者花很长的时间去看懂别人的代码然后找到Bug产生的原理，这个过程中看似你面对的是代码是机器，但其实你面对的是人（写代码的人和读你代码的人）。这还没有谈论怎么把业务的需求变成代码，你仍然需要了解一定的业务知识，当然最好的方式是先和业务、需求设计人员进行沟通，而不是闷头写代码。
+那么问题来了，如何与人打交道呢？ 许多优秀的书籍都阐述了“如何与人打交道“这个主题，再这本书中作者强烈推荐《人性的弱点》这本书，此外作者还在这一篇中引用了这本书中的一些观点。 1. 每个人都希望感到自己很重要 我们常常容易犯的一项错误就是，轻率地否决同事的想法，以便于可以提出自己的想法。然而随着你做出这样的错误判断，你往往会发现他们对你的想法充耳不闻，仅仅因为你让他们感觉自己是无足轻重的。如果你希望人们接受你的想法，并认可其中的价值，首先你最好先主动给他人相同的礼遇。如果你不能保全他人的自尊，那你永远也不可能赢得他的心。 2.……
+                            </div>
+                            <p class="readmore"><a href="http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">阅读全文</a></p>
                         </article>
                     
                     
@@ -191,7 +355,15 @@
         <a href="http://www.sszblog.xyz/page/3/">3</a>
     </li>
     
+    <li >
+        <a href="http://www.sszblog.xyz/page/4/">4</a>
+    </li>
+    
 
+    
+    <li class="next">
+        <a href="http://www.sszblog.xyz/page/4/">下一页</a>
+    </li>
     
 </ol>
 
@@ -228,7 +400,7 @@
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/java/">java(14)</a>
+        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
     </li>
     
     <li>
@@ -241,6 +413,14 @@
     
     <li>
         <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
     </li>
     
 </ul>
@@ -264,7 +444,13 @@
     
     <a href="http://www.sszblog.xyz/tags/other/">other</a>
     
+    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
     <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
     
     <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
     

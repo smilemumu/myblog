@@ -17,7 +17,7 @@
       <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/</guid>
-      <description></description>
+      <description>异常和错误的区别：异常能被程序本身处理，错误是无法处理。</description>
     </item>
     
   </channel>

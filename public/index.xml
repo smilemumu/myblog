@@ -6,7 +6,7 @@
     <description>Recent content on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 18 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.sszblog.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -37,6 +37,129 @@
       
       <guid>http://www.sszblog.xyz/readme/</guid>
       <description>  Java  Java8实战阅读笔记  GIT  Java8  Java8实战阅读笔记  GIT  git初始化操作  </description>
+    </item>
+    
+    <item>
+      <title>全局异常处理</title>
+      <link>http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
+      <description>通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
+步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.</description>
+    </item>
+    
+    <item>
+      <title>项目开发</title>
+      <link>http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>项目开发</title>
+      <link>http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
+      <description>JSR-303参数校验 步骤 1.创建校验参数类
+import lombok.Data; import org.hibernate.validator.constraints.Range; import org.springframework.format.annotation.DateTimeFormat; import javax.validation.constraints.*; import java.util.Date; /** * 参数验证请求参数 * @Author shizhongcai * @Date 2019/11/20 15:35 */ @Data public class ValidatorReqVo{ @NotNull(message = &amp;quot;id不能为空&amp;quot;) private Integer id; @NotNull @Future(message = &amp;quot;格式为yyyy-MM-dd,且为将来时间&amp;quot;) @DateTimeFormat(pattern = &amp;quot;yyyy-MM-dd&amp;quot;) private Date future; @NotNull @DecimalMin(value = &amp;quot;0.1&amp;quot;) @DecimalMax(value = &amp;quot;1000&amp;quot;) private Double doubleValue; @NotNull @Min(value = 1) @Max(value = 10) private Integer intValue; @NotNull @Range(min = 1,max = 10,message = &amp;quot;最小为1，最大为10&amp;quot;) private Integer range; @NotBlank @Email private String email; @NotBlank @Size(min = 10,max = 20,message = &amp;quot;字符串长度在10-20之间&amp;quot;) private String strSize; }  2.</description>
+    </item>
+    
+    <item>
+      <title>项目开发</title>
+      <link>http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/</guid>
+      <description>其他一些日常工作中遇到的问题：
+1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&amp;ldquo;singleton&amp;rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&amp;ldquo;prototype&amp;rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</description>
+    </item>
+    
+    <item>
+      <title>基于自定义注解的参数解析器</title>
+      <link>http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
+      <description>基于自定义注解的参数解析器 背景 在工作中，常会对接一些第三方应用，通常第三方会采用Rsa+Aes加密来通信，但是每个第三方的加密方式可能不一致。此时得好好规划一下实现方案了。因此我们采用注解+Spring自带了参数解析类，实现自己的参数解析器。
+原理 通过HandlerMethodArgumentResolver实现自定义参数解析
+实现 步骤1：创建注解，例如创建一个解析Aes加密的注解AesJson import java.lang.annotation.*; @Target({ElementType.PARAMETER}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface AesJson { }  步骤2：创建加密参数实体类对象 传入的JSON数据格式为{&amp;ldquo;data&amp;rdquo;:&amp;ldquo;xxxxxxxxxx&amp;rdquo;}
+import lombok.Data; @Data public class AesBaseParams { private String data; }  步骤3：新建AesArgumentResolver类实现HandlerMethodArgumentResolver import com.alibaba.fastjson.JSON; import org.apache.commons.lang.StringUtils; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.core.MethodParameter; import org.springframework.web.bind.support.WebDataBinderFactory; import org.springframework.web.context.request.NativeWebRequest; import org.springframework.web.method.support.HandlerMethodArgumentResolver; import org.springframework.web.method.support.ModelAndViewContainer; import javax.servlet.http.HttpServletRequest; import java.io.BufferedReader; import java.io.IOException; import java.io.InputStream; import java.io.InputStreamReader; import java.net.URLDecoder; import java.util.HashMap; import java.util.Map; import java.util.Objects; /** * aes加密算法加密的入参，通过@AesJson注解自动解析 */ public class AesArgumentResolver implements HandlerMethodArgumentResolver { private static final Logger logger = LoggerFactory.</description>
+    </item>
+    
+    <item>
+      <title>日志优化MDC</title>
+      <link>http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
+      <description>MDC(Mapped Diagnostic Context) 实现 步骤1：创建MDCFilter实现Filter filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。 在过滤之前在reqId钟放入uuid并在结束之后remove
+import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; import org.springframework.stereotype.Component; import javax.servlet.*; import javax.servlet.http.HttpServletRequest; import java.io.IOException; import java.util.UUID; /** * @Author shizhongcai * @Date 2019/11/15 11:15 */ @Component public class MDCFilter implements Filter { private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class); public static final String MDC_ID = &amp;quot;reqId&amp;quot;; @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { boolean mdcFlag = false; try { MDC.</description>
+    </item>
+    
+    <item>
+      <title>统一返回对象</title>
+      <link>http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
+      <description>1.创建实体类BaseRspVo
+@Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo(ErrorCodesEnum errorCode) { if(errorCode == ErrorCodesEnum.SUCCESS) { this.success = true; } else { this.success = false; } this.msg = errorCode.getMsg(); this.errorCode = errorCode.getCode(); } } 错误Code枚举类 public enum ErrorCodesEnum { SUCCESS(10000,&amp;quot;成功&amp;quot;), SYS_ERROR(1000,&amp;quot;系统异常，请稍后再试&amp;quot;), DUPLICATE_KEY(10001,&amp;quot;数据库中已存在该记录&amp;quot;), NO_HANDLER_FOUND(10002,&amp;quot;路径不存在，请检查路径是否正确&amp;quot;), DEFAULT_FAIL(10003,&amp;quot;未知异常，请稍后再试&amp;quot;), DECRYPT_ERROR(10004,&amp;quot;解密出错&amp;quot;), ; /** * 错误码 */ private int code; /** * 错误描述 */ private String msg; ErrorCodesEnum(int code, String msg) { this.</description>
+    </item>
+    
+    <item>
+      <title>项目开发</title>
+      <link>http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
+      <description>guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&amp;lt;String, RateLimiter&amp;gt; map = new ConcurrentHashMap&amp;lt;&amp;gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&amp;quot;@annotation(com.</description>
+    </item>
+    
+    <item>
+      <title>项目开发</title>
+      <link>http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
+      <description>Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  </description>
+    </item>
+    
+    <item>
+      <title>单例模式</title>
+      <link>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description> 单例模式 1. 2. 3. 4.静态内部类实现：
+public class SingleTon{ private SingleTon(){} private static class SingleTonHoler{ private static SingleTon INSTANCE = new SingleTon(); } public static SingleTon getInstance(){ return SingleTonHoler.INSTANCE; } }  </description>
+    </item>
+    
+    <item>
+      <title>JAVA IO流</title>
+      <link>http://www.sszblog.xyz/java/io%E6%B5%81/</link>
+      <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/java/io%E6%B5%81/</guid>
+      <description>Java IO流 Java 中 IO 流分为几种?  按照流的流向分，可以分为输入流和输出流；  输出流：从内存读出到文件。只能进行写操作。 输入流：从文件读入到内存。只能进行读操作。 输入和输出，都是相对于系统内存而言  按照操作单元划分，可以划分为字节流和字符流；  字节流：以字节为单位，每次次读入或读出是8位数据。可以读任何类型数据。(1byte（B） = 8bit(位)) 字符流：以字符为单位，每次次读入或读出是16位数据。其只能读取字符类型数据。(1字符=2字节 )  按照流的角色划分为节点流和处理流。  节点流：直接与数据源相连，读入或读出。 处理流（Filter Stream）：与节点流一块使用，在节点流的基础上，再套接一层，套接在节点流上的就是处理流。（DataInputStream、BufferedInputStream、BufferedReader等）   Java Io流的40多个类都是从如下4个抽象类基类中派生出来的。 - InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。 - OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
+不同平台的换行符号： |符号|linux|windows|Java建议写法| |-|-|-|-| |换行符|\n|\r\n|System.getProperty(&amp;ldquo;line.separator&amp;rdquo;)| |路径分隔符|/|\|File.separator| |多个路径分隔符|:|;|File.pathSeparator|
+字节流和字符流的区别: 字符流使用了缓存区（内存），执行了write()，文件中不会立刻有内容（除非缓冲区满了或者主动刷新缓冲区），需要等输出流对象关闭了，文件中才会有内容；字节流不使用缓冲区，执行了wirite()，文件中立刻就有内容了。 - ### 1.字符流
+//步骤为:程序-&amp;gt;字符流-&amp;gt;缓存(数据先存放到缓存，再从缓存写入文件【主动刷新or流关闭】)-&amp;gt;文件 import java.util.*; import java.io.*; public class WriterTest { public static void main(String[] args) { File file = new File(&amp;quot;1.txt&amp;quot;); Scanner in = null; Writer out = null; try{ in = new Scanner(System.</description>
+    </item>
+    
+    <item>
+      <title>JAVA基础</title>
+      <link>http://www.sszblog.xyz/java/java%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/java/java%E5%9F%BA%E7%A1%80/</guid>
+      <description>Java基础知识 1. String 、StringBuilder 、StringBuffer String 类中使用 final 关键字修饰字符数组来保存字符串，private　final　char　value[]，所以 String 对象是不可变的。 每次对 String 类型进行改变的时候，都会生成一个新的 String 对象，然后将指针指向新的 String 对象。StringBuffer 每次都会对 StringBuffer 对象本身进行操作，而不是生成新的对象并改变对象引用。相同情况下使用 StringBuilder 相比使用 StringBuffer 仅能获得 10%~15% 左右的性能提升，但却要冒多线程不安全的风险。 对于三者使用的总结：
+操作少量的数据: 适用String 单线程操作字符串缓冲区下操作大量数据: 适用StringBuilder 多线程操作字符串缓冲区下操作大量数据: 适用StringBuffer  2.== 和 equals == : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象(基本数据类型==比较的是值，引用数据类型==比较的是内存地址)。
+equals() : 它的作用也是判断两个对象是否相等。但它一般有两种使用情况：
+ 情况1：类没有覆盖 equals() 方法。则通过 equals() 比较该类的两个对象时，等价于通过“==”比较这两个对象。 情况2：类覆盖了 equals() 方法。一般，我们都覆盖 equals() 方法来比较两个对象的内容是否相等；若它们的内容相等，则返回 true (即，认为这两个对象相等)。  说明： - String 中的 equals 方法是被重写过的，因为 object 的 equals 方法是比较的对象的内存地址，而 String 的 equals 方法比较的是对象的值。 - 当创建 String 类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个 String 对象。</description>
     </item>
     
     <item>
@@ -94,7 +217,7 @@ volatile static int a=0; a++; // 包含了2步操作：1、读取a。2、执行a
       <description>CountDownLatch、CyclicBarrier、join() 一、CountDownLatch(倒计时器)：
  功能：同步辅助类，也可以理解为倒计时锁，用于同步线程状态，允许一个或多个线程，等待其他一组线程完成操作，再继续往下执行。（会阻塞主线程） 特点：不可复用！ 重要方法：  countDown()方法：计数器-1，每次线程执行完后调用； await（）方法：等待方法，在需要阻塞的地方调用，当所有线程都执行完后，自动往下执行  用法：构造的时候指定一个计数器的值，每个线程执行完后就减1，直到为0再往下走。  二、CyclicBarrier（循环栅栏）：
  功能：同步辅助类，功能和CountDownLatch类似，用于同步线程状态，允许一组线程相互之间等待，达到一个共同点，再继续执行。(不会阻塞主线程) 特点：可复用！当组内所有线程都到达某个执行点后，count参数会被重置，于是就可重用了。 重要方法：  await（）方法：当某个线程到达某个点（比如执行完某个任务）后调用该方法，就会等待其他线程，直到所有线程都到达这个点，再自动往下执行。 还有个重载方法await（long timeOut,TimeUnit unit），用- 于当某个线程执行超过指定时间后还未到达某个点时，就会抛出异常，不再等待这个线程，并往下执行。  用法：构造的时候指定一个线程数量的值和到达某个点后执行的动作。  三、join()方法
- join方法也是管理线程状态同步的一个方法，和CountDownLatch和CyclicBarrier均由自身调用不同的是，join的调用者为当前线程，后面的线程必须等调用join的线程执行完后才能执行。  refer to:https://www.cnblogs.com/be-thinking/p/9292290.html</description>
+ join方法也是管理线程状态同步的一个方法，和CountDownLatch和CyclicBarrier均由自身调用不同的是，join的调用者为当前线程，后面的线程必须等调用join的线程执行完后才能执行。  refer to:https://www.cnblogs.com/be-thinking/p/9292290.html refer to:https://blog.csdn.net/qq_39241239/article/details/87030142</description>
     </item>
     
     <item>
@@ -169,7 +292,7 @@ execute(Runnable command):void -Executor  从源码种可以看出
       <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/</guid>
-      <description></description>
+      <description>异常和错误的区别：异常能被程序本身处理，错误是无法处理。</description>
     </item>
     
     <item>
@@ -294,6 +417,15 @@ execute(Runnable command):void -Executor  从源码种可以看出
       
       <guid>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</guid>
       <description>&lt;p&gt;&lt;strong&gt;某一次需求开发中，遇到这样的场景，需要对名单进行分组然后再对这批名单处理。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://www.sszblog.xyz/java/%E5%85%B6%E4%BB%96/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/java/%E5%85%B6%E4%BB%96/</guid>
+      <description>Maps.newHashMapWithExpectedSize(1)；创建固定长度的map;</description>
     </item>
     
   </channel>
