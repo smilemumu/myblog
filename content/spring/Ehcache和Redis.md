@@ -1,0 +1,13 @@
+---
+title: "Ehcache和Redis"
+date: 2019-11-20
+tags: [redis]
+categories: [Spring]
+draft: true
+---
+
+
+##  ehcache 和 redis 比较
+-	ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。
+-	redis是通过socket访问到缓存服务，效率比ecache低，比数据库要快很多，
+处理集群和分布式缓存方便，有成熟的方案。如果是单个应用或者对缓存访问要求很高的应用，用ehcache。如果是大型系统，存在缓存共享、分布式部署、缓存内容很大的，建议用redis。
