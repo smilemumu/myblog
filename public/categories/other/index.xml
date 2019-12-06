@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>SQL</title>
+      <link>http://www.sszblog.xyz/other/oracle/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/other/oracle/</guid>
+      <description>ORALE一条SQL插入多条记录 INSERT ALL INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES (&amp;lsquo;1700601010&amp;rsquo;,&amp;lsquo;范磊&amp;rsquo;) INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES (&amp;lsquo;1700601011&amp;rsquo;,&amp;lsquo;吴凯&amp;rsquo;) SELECT 1 FROM DUAL;</description>
+    </item>
+    
+    <item>
       <title>我的书单</title>
       <link>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>

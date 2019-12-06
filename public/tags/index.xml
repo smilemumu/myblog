@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 21 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.sszblog.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>H5</title>
+      <link>http://www.sszblog.xyz/tags/h5/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/tags/h5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wechat</title>
+      <link>http://www.sszblog.xyz/tags/wechat/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/tags/wechat/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Spring</title>
@@ -17,6 +35,15 @@
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/tags/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redis</title>
+      <link>http://www.sszblog.xyz/tags/redis/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/tags/redis/</guid>
       <description></description>
     </item>
     
@@ -98,6 +125,15 @@
       <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>http://www.sszblog.xyz/tags/sql/</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/tags/sql/</guid>
       <description></description>
     </item>
     

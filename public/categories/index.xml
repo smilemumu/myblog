@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 21 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://www.sszblog.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>WEB</title>
+      <link>http://www.sszblog.xyz/categories/web/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/categories/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微信开发</title>
+      <link>http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Spring</title>

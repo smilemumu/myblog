@@ -13,39 +13,39 @@
     
     <item>
       <title>全局异常处理</title>
-      <link>http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
+      <link>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
+      <guid>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
       <description>通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
 步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.</description>
     </item>
     
     <item>
-      <title>项目开发</title>
-      <link>http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/</link>
+      <title>Filter和Interceptor</title>
+      <link>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/</guid>
-      <description></description>
+      <guid>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</guid>
+      <description>Filter调用链 // Interceptor的源码 public interface HandlerInterceptor { // 在调用真正的处理请求类之前调用 boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception; // 在调用真正的处理请求类之后调用 void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception; // 在完成渲染或者出错之后调用 void afterCompletion( HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception; }  refer to: https://www.jianshu.com/p/5f5e5211bbdb refer to: https://www.cnblogs.com/junzi2099/p/8022058.html</description>
     </item>
     
     <item>
-      <title>项目开发</title>
-      <link>http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
+      <title>JSR-303参数校验</title>
+      <link>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
+      <guid>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
       <description>JSR-303参数校验 步骤 1.创建校验参数类
 import lombok.Data; import org.hibernate.validator.constraints.Range; import org.springframework.format.annotation.DateTimeFormat; import javax.validation.constraints.*; import java.util.Date; /** * 参数验证请求参数 * @Author shizhongcai * @Date 2019/11/20 15:35 */ @Data public class ValidatorReqVo{ @NotNull(message = &amp;quot;id不能为空&amp;quot;) private Integer id; @NotNull @Future(message = &amp;quot;格式为yyyy-MM-dd,且为将来时间&amp;quot;) @DateTimeFormat(pattern = &amp;quot;yyyy-MM-dd&amp;quot;) private Date future; @NotNull @DecimalMin(value = &amp;quot;0.1&amp;quot;) @DecimalMax(value = &amp;quot;1000&amp;quot;) private Double doubleValue; @NotNull @Min(value = 1) @Max(value = 10) private Integer intValue; @NotNull @Range(min = 1,max = 10,message = &amp;quot;最小为1，最大为10&amp;quot;) private Integer range; @NotBlank @Email private String email; @NotBlank @Size(min = 10,max = 20,message = &amp;quot;字符串长度在10-20之间&amp;quot;) private String strSize; }  2.</description>
     </item>
     
     <item>
       <title>基于自定义注解的参数解析器</title>
-      <link>http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
+      <link>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
+      <guid>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
       <description>基于自定义注解的参数解析器 背景 在工作中，常会对接一些第三方应用，通常第三方会采用Rsa+Aes加密来通信，但是每个第三方的加密方式可能不一致。此时得好好规划一下实现方案了。因此我们采用注解+Spring自带了参数解析类，实现自己的参数解析器。
 原理 通过HandlerMethodArgumentResolver实现自定义参数解析
 实现 步骤1：创建注解，例如创建一个解析Aes加密的注解AesJson import java.lang.annotation.*; @Target({ElementType.PARAMETER}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface AesJson { }  步骤2：创建加密参数实体类对象 传入的JSON数据格式为{&amp;ldquo;data&amp;rdquo;:&amp;ldquo;xxxxxxxxxx&amp;rdquo;}
@@ -53,40 +53,40 @@ import lombok.Data; @Data public class AesBaseParams { private String data; }  �
     </item>
     
     <item>
-      <title>日志优化MDC</title>
-      <link>http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
+      <title>接口限流-令牌桶限流</title>
+      <link>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
+      <guid>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
+      <description>guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&amp;lt;String, RateLimiter&amp;gt; map = new ConcurrentHashMap&amp;lt;&amp;gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&amp;quot;@annotation(com.</description>
+    </item>
+    
+    <item>
+      <title>日志优化MDC</title>
+      <link>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
       <description>MDC(Mapped Diagnostic Context) 实现 步骤1：创建MDCFilter实现Filter filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。 在过滤之前在reqId钟放入uuid并在结束之后remove
 import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; import org.springframework.stereotype.Component; import javax.servlet.*; import javax.servlet.http.HttpServletRequest; import java.io.IOException; import java.util.UUID; /** * @Author shizhongcai * @Date 2019/11/15 11:15 */ @Component public class MDCFilter implements Filter { private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class); public static final String MDC_ID = &amp;quot;reqId&amp;quot;; @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { boolean mdcFlag = false; try { MDC.</description>
     </item>
     
     <item>
       <title>统一返回对象</title>
-      <link>http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
+      <link>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
       <description>1.创建实体类BaseRspVo
 @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo(ErrorCodesEnum errorCode) { if(errorCode == ErrorCodesEnum.SUCCESS) { this.success = true; } else { this.success = false; } this.msg = errorCode.getMsg(); this.errorCode = errorCode.getCode(); } } 错误Code枚举类 public enum ErrorCodesEnum { SUCCESS(10000,&amp;quot;成功&amp;quot;), SYS_ERROR(1000,&amp;quot;系统异常，请稍后再试&amp;quot;), DUPLICATE_KEY(10001,&amp;quot;数据库中已存在该记录&amp;quot;), NO_HANDLER_FOUND(10002,&amp;quot;路径不存在，请检查路径是否正确&amp;quot;), DEFAULT_FAIL(10003,&amp;quot;未知异常，请稍后再试&amp;quot;), DECRYPT_ERROR(10004,&amp;quot;解密出错&amp;quot;), ; /** * 错误码 */ private int code; /** * 错误描述 */ private String msg; ErrorCodesEnum(int code, String msg) { this.</description>
     </item>
     
     <item>
       <title>项目开发</title>
-      <link>http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
+      <link>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
-      <description>guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&amp;lt;String, RateLimiter&amp;gt; map = new ConcurrentHashMap&amp;lt;&amp;gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&amp;quot;@annotation(com.</description>
-    </item>
-    
-    <item>
-      <title>项目开发</title>
-      <link>http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
+      <guid>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
       <description>Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  </description>
     </item>
     

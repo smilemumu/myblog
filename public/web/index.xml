@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Webs on Shi.bro的博客</title>
+    <link>http://www.sszblog.xyz/web/</link>
+    <description>Recent content in Webs on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 05 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.sszblog.xyz/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HTML&amp;CSS</title>
+      <link>http://www.sszblog.xyz/web/htmlcss/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.sszblog.xyz/web/htmlcss/</guid>
+      <description> 常见HTML术语：  元素(elements)：
+&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;a&amp;gt;，&amp;lt;div&amp;gt;，&amp;lt;span&amp;gt;，&amp;lt;strong&amp;gt;，和&amp;lt;em&amp;gt;元素，等等。  自封闭元素 &amp;lt;br&amp;gt;&amp;lt;embed&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;img&amp;gt;&amp;lt;input&amp;gt;&amp;lt;link&amp;gt;&amp;lt;meta&amp;gt;&amp;lt;param&amp;gt;&amp;lt;source&amp;gt;&amp;lt;wbr&amp;gt;  标签(tags)：
+&amp;lt;a&amp;gt;...&amp;lt;/a&amp;gt;  属性(attribute)：
+&amp;lt;a href=&amp;quot;http://shayhowe.com/&amp;quot;&amp;gt;Shay Howe&amp;lt;/a&amp;gt;    典型的HTML文档结构 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Hello World&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;Hello World&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;This is a web page.&amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  CSS术语  选择器
+在CSS中，选择器后跟花括号，{}其中包含要应用于所选元素的样式。这里的选择器以所有&amp;lt;p&amp;gt;元素为目标  性质
+p { color: ...; font-size: ...; }   </description>
+    </item>
+    
+  </channel>
+</rss>

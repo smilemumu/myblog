@@ -19,17 +19,57 @@
   
   <url>
     <loc>http://www.sszblog.xyz/categories/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
+    <loc>http://www.sszblog.xyz/tags/h5/</loc>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/web/htmlcss/</loc>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://www.sszblog.xyz/</loc>
-    <lastmod>2019-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/</loc>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/categories/web/</loc>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/web/</loc>
+    <lastmod>2019-12-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/wechat/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/wechat/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2019-11-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -43,13 +83,33 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/tags/</loc>
+    <loc>http://www.sszblog.xyz/spring/</loc>
     <lastmod>2019-11-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
     <lastmod>2019-11-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/</loc>
+    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</loc>
+    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</loc>
+    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/tags/redis/</loc>
+    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -58,42 +118,32 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E5%85%B6%E4%BB%96/</loc>
     <lastmod>2019-11-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</loc>
-    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2019-11-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</loc>
     <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</loc>
     <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</loc>
     <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</loc>
     <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</loc>
+    <loc>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2019-11-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -208,12 +258,12 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/linux/</loc>
+    <loc>http://www.sszblog.xyz/tags/linux/</loc>
     <lastmod>2019-10-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/tags/linux/</loc>
+    <loc>http://www.sszblog.xyz/categories/linux/</loc>
     <lastmod>2019-10-08T00:00:00+00:00</lastmod>
   </url>
   
@@ -253,6 +303,16 @@
   </url>
   
   <url>
+    <loc>http://www.sszblog.xyz/tags/sql/</loc>
+    <lastmod>2019-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.sszblog.xyz/other/oracle/</loc>
+    <lastmod>2019-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</loc>
     <lastmod>2019-09-18T00:00:00+00:00</lastmod>
   </url>
@@ -273,12 +333,12 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/tags/git/</loc>
+    <loc>http://www.sszblog.xyz/categories/git/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/git/</loc>
+    <loc>http://www.sszblog.xyz/tags/git/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -308,12 +368,12 @@
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/tags/markdown/</loc>
+    <loc>http://www.sszblog.xyz/categories/markdown/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.sszblog.xyz/categories/markdown/</loc>
+    <loc>http://www.sszblog.xyz/tags/markdown/</loc>
     <lastmod>2019-09-11T00:00:00+00:00</lastmod>
   </url>
   

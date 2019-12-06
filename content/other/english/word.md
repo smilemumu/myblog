@@ -161,3 +161,5 @@ phrase 短语【fraz】
 Immutable adj,一成不变的
 
 Diagnostic adj.诊断；n.病的特征(\/)
+
+optimization 优化
