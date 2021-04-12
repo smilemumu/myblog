@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySql on Shi.bro的博客</title>
+    <link>/categories/mysql/</link>
+    <description>Recent content in MySql on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySql Explain</title>
+      <link>/sql/mysql-explain/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql-explain/</guid>
+      <description>Explain Explain 列  1.select_type 表示查询类型，分为简单查询(SIMPLE)和复杂查询(PRIMARY)，复杂查询又分为三类：简单子查询、派生表（from语句中的子查询）、union 查询。
+ 2.type列(非常重要)
+ 表示MySQL在表中找到所需行的方式，又称“访问类型”
+ 依次从最优到最差分别为：system &amp;gt; const &amp;gt; eq_ref &amp;gt; ref&amp;gt; fulltext &amp;gt; ref_or_null &amp;gt; index_merge &amp;gt; unique_subquery &amp;gt; index_subquery&amp;gt; range &amp;gt; index &amp;gt; ALL
+ ★注意：一般来说，得保证查询至少达到range级别，最好能达到ref。
+   3.possible_keys列 指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+ 6.key列(非常重要) key列显示MySQL实际决定使用的键（索引)
+  如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX</description>
+    </item>
+    
+    <item>
+      <title>SQL优化</title>
+      <link>/sql/sql-%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/sql-%E4%BC%98%E5%8C%96/</guid>
+      <description>SQL优化 1.SQL语句中过滤条件where和having的区别  where 是一个约束声明，使用 where 约束来自数据库的数据，where 是在结果返回之前起作用，where 中不能使用聚合函数。 Having 是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在 Having 中可以使用聚合函数。 在查询过程中，where 子句执行优先级高于聚合语句。聚合语句(sum，min，max，avg，count)优先级高于 having 子句。  2.优化查询  MySQL只有对以下操作符才使用索引：&amp;lt;，&amp;lt;=，=，&amp;gt;，&amp;gt;=，BETWEEN，IN，以及右模糊查询LIKE（&amp;rsquo;a%&amp;lsquo;）。 对于不等于(!= 和 &amp;lt;&amp;gt;)会放弃使用索引而进行全表扫描。 对于左模糊like ‘%&amp;hellip;’无法直接使用索引，但可以利用reverse，变化成 右模糊like ‘…%’。 对于联合索引来说，如果存在范围查询，比如between、&amp;gt;、&amp;lt;等条件时，会造成后面的索引字段失效。 对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。 在 where 子句中对字段进行 null 值判断，会导致引擎放弃使用索引而进行全表扫描，所以字段要有默认值 在 where 子句中对字段进行函数、算术运算或其他表达式运算，会导致引擎放弃使用索引而进行全表扫描。 如果字段类型是字符串，where 时一定用引号括起来，否则索引失效 将大的 delete，update 或者 insert 查询变成多个小查询 如果插入数据过多，考虑批量插入 select语句务必指明字段名称，尽量避免使用&amp;rdquo;select * &amp;ldquo;。因为它会进行全表扫描。 Inner join 、left join、right join，优先使用 Inner join。如果是 left join，左边表结果尽量小。Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集。left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。都满足 SQL 需求的前提下，推荐优先使用 Inner join(内连接)，如果要使用 left join，左边表数据结果尽量小，如果有条件的尽量放到左边处理。 区分 in 和 exists、not in 和not exists</description>
+    </item>
+    
+  </channel>
+</rss>

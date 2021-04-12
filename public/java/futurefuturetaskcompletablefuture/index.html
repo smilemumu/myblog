@@ -90,12 +90,17 @@
                         
                         
                         <div class="post-content">
-                            <ol>
-<li><p>Future</p>
+                            
+
+<h1 id="future-futuretask-completablefuture">Future、FutureTask、CompletableFuture</h1>
+
+<h2 id="future">Future</h2>
+
+<h3 id="feature接口">Feature接口</h3>
 
 <pre><code class="language-java">public interface Future&lt;V&gt; {
 
-/**
+    /**
 	 * 取消任务的执行
 	 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败
 	 * 如果任务在调用时还未启动，那么返回成功
@@ -103,45 +108,48 @@
 	 * @param mayInterruptIfRunning
 	 * @return
 	 */
-boolean cancel(boolean mayInterruptIfRunning);
+    boolean cancel(boolean mayInterruptIfRunning);
 
 	/**
- * 判断任务是否已经取消，任务正常完成前将其取消，则返回true
- * @return
- */
-boolean isCancelled();
+     * 判断任务是否已经取消，任务正常完成前将其取消，则返回true
+     * @return
+     */
+    boolean isCancelled();
 
- /**
- * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true
- * @return
- */
-boolean isDone();
-	/**
- * 等待任务执行结束，并返回结果
- * @return
- * @throws InterruptedException  线程被中断异常
- * @throws ExecutionException 任务执行异常
- */
-V get() throws InterruptedException, ExecutionException;
+     /**
+     * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true
+     * @return
+     */
+    boolean isDone();
+ 	/**
+     * 等待任务执行结束，并返回结果
+     * @return
+     * @throws InterruptedException  线程被中断异常
+     * @throws ExecutionException 任务执行异常
+     */
+    V get() throws InterruptedException, ExecutionException;
 
-/**
- * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间，
- * @param timeout
- * @param unit
- * @return
- * @throws InterruptedException
- * @throws ExecutionException
- * @throws TimeoutException
- */
-V get(long timeout, TimeUnit unit)
-    throws InterruptedException, ExecutionException, TimeoutException;
+   /**
+     * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间，
+     * @param timeout
+     * @param unit
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @throws TimeoutException
+     */
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
 }
-</code></pre></li>
+</code></pre>
 
-<li><p>FutureTask介绍<br />
-Future只是一个接口，无法直接创建对象，因此有了FutureTask。RunnableFuture继承了Runnable和Future接口，而FutureTask实现了RunnableFuture接口。
-Future是一个接口， FutureTask类是Future 的一个实现类，并实现了Runnable，因此FutureTask可以传递到线程对象Thread中新建一个线程执行。
-FutureTask实现了RunnableFuture接口，而RunnableFuture继承了Runnable和Future，也就是说FutureTask既是Runnable，也是Future。</p>
+<h2 id="futuretask介绍">FutureTask介绍</h2>
+
+<ul>
+<li>Future只是一个接口，无法直接创建对象，因此有了FutureTask。RunnableFuture继承了Runnable和Future接口，而FutureTask实现了RunnableFuture接口。</li>
+<li>Future是一个接口， FutureTask类是Future 的一个实现类，并实现了Runnable，因此FutureTask可以传递到线程对象Thread中新建一个线程执行。</li>
+
+<li><p>FutureTask实现了RunnableFuture接口，而RunnableFuture继承了Runnable和Future，也就是说FutureTask既是Runnable，也是Future。</p>
 
 <pre><code class="language-java">public class FutureTask&lt;V&gt; implements RunnableFuture&lt;V&gt; {
 	......
@@ -152,93 +160,168 @@ FutureTask实现了RunnableFuture接口，而RunnableFuture继承了Runnable和F
 void run();
 }
 </code></pre></li>
+</ul>
 
-<li><p>CompletableFuture（组合式异步编程）
-future存在局限性：Future很难直接表述多个Future 结果之间的依赖性，开发中，我们经常需要达成以下目的：
-3.1 将两个异步计算合并为一个（这两个异步计算之间相互独立，同时第二个又依赖于第一个的结果）
-3.2 等待 Future 集合中的所有任务都完成。
-3.3 仅等待 Future 集合中最快结束的任务完成，并返回它的结果。
-future的缺点也很明显:</p>
+<h2 id="completablefuture-组合式异步编程">CompletableFuture（组合式异步编程）</h2>
 
 <ul>
-<li>（1）实现了异步获取执行结果的需求，但是没有提供通知，无法知道任务什么时候完成；</li>
-<li>（2）get方法获取结果的时候，会进入等待阻塞状态，这时候又变成同步操作，如果使用isDone循环判断任务是否完成，会耗费cpu资源。</li>
-</ul></li>
-</ol>
+<li>future存在局限性：Future很难直接表述多个Future 结果之间的依赖性，开发中，我们经常需要达成以下目的：</li>
+<li>将两个异步计算合并为一个（这两个异步计算之间相互独立，同时第二个又依赖于第一个的结果）</li>
+<li>等待 Future 集合中的所有任务都完成。</li>
+<li>仅等待 Future 集合中最快结束的任务完成，并返回它的结果。</li>
+<li>future的缺点也很明显:</li>
+<li>实现了异步获取执行结果的需求，但是没有提供通知，无法知道任务什么时候完成；</li>
 
-<p>complatableFuture弥补了Future模式的缺点，在异步的任务完成后，需要用其结果继续操作时，无需等待。可以直接将异步处理的结果交给另外一个异步事件处理线程来处理。</p>
+<li><p>get方法获取结果的时候，会进入等待阻塞状态，这时候又变成同步操作，如果使用isDone循环判断任务是否完成，会耗费cpu资源。</p></li>
 
-<p>CompletableFuture是一个静态辅助方法，以下四个静态方法用来为一段异步执行的代码创建CompletableFuture对象：</p>
+<li><p>complatableFuture弥补了Future模式的缺点，在异步的任务完成后，需要用其结果继续操作时，无需等待。可以直接将异步处理的结果交给另外一个异步事件处理线程来处理。</p></li>
+
+<li><p>CompletableFuture是一个静态辅助方法，以下四个静态方法用来为一段异步执行的代码创建CompletableFuture对象：</p>
 
 <pre><code class="language-java">	//使用ForkJoinPool.commonPool()作为它的线程池执行异步代码，异步操作有返回值
-    public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier) {
-        return asyncSupplyStage(asyncPool, supplier);
-    }
+public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier) {
+    return asyncSupplyStage(asyncPool, supplier);
+}
  
-    //使用指定的thread pool执行异步代码，异步操作有返回值
-    public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier,Executor executor) {
-        return asyncSupplyStage(screenExecutor(executor), supplier);
-    }
+//使用指定的thread pool执行异步代码，异步操作有返回值
+public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier,Executor executor) {
+    return asyncSupplyStage(screenExecutor(executor), supplier);
+}
  
-    //使用ForkJoinPool.commonPool()作为他的线程池执行异步代码
-    public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable) {
-        return asyncRunStage(asyncPool, runnable);
-    }
+//使用ForkJoinPool.commonPool()作为他的线程池执行异步代码
+public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable) {
+    return asyncRunStage(asyncPool, runnable);
+}
  
-    //使用指定的thread pool执行异步代码
-    public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable,Executor executor) {
-        return asyncRunStage(screenExecutor(executor), runnable);
-    }
+//使用指定的thread pool执行异步代码
+public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable,Executor executor) {
+    return asyncRunStage(screenExecutor(executor), runnable);
+}
 
 	//demo
 	//使用ForkJoinPool.commonPool()来执行
- 	CompletableFuture&lt;FileTransferResponseDto&gt; responseDtoFuture = CompletableFuture.supplyAsync(()-&gt; uploadFile(file,urn));
+	CompletableFuture&lt;FileTransferResponseDto&gt; responseDtoFuture = CompletableFuture.supplyAsync(()-&gt; uploadFile(file,urn));
 	//使用自定义线程池来执行
 	CompletableFuture&lt;FileTransferResponseDto&gt; responseDtoFuture = CompletableFuture.supplyAsync(()-&gt; uploadFile(file,urn),threadPoolExecutor);
-</code></pre>
+</code></pre></li>
+</ul>
 
-<p>CompletableFuture.complete方法：在执行future.get()方法时，如果执行的结果还没有出来，会一直处于阻塞的状态，这时候可以调用complete方法会立即执行，但是complete方法只会执行一次，对于重复调用只会获取到第一次的结果，同时如果future已经能够返回结果，那么调用complete方法也会无效</p>
+<p><em>run方法不支持返回值。</em>
+<em>supply可以支持返回值。</em></p>
+
+<ul>
+<li><p>CompletableFuture.complete方法：
+在执行future.get()方法时，如果执行的结果还没有出来，会一直处于阻塞的状态，这时候可以调用complete方法会立即执行，但是complete方法只会执行一次，对于重复调用只会获取到第一次的结果，同时如果future已经能够返回结果，那么调用complete方法也会无效</p>
 
 <pre><code class="language-java">public boolean complete(T value) {
-        boolean triggered = completeValue(value);
-        postComplete();
-        return triggered;
+    boolean triggered = completeValue(value);
+    postComplete();
+    return triggered;
 }
-</code></pre>
+</code></pre></li>
+</ul>
 
-<p>CompletableFuture.thenApply:接受一个参数用来转换CompletableFuture，可以使用多个thenApply，但是这多个之间是串行执行的，下一个的执行依赖于上一个的结果</p>
+<h3 id="completablefuture处理方法">CompletableFuture处理方法</h3>
 
-<table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>描述</th>
-</tr>
-</thead>
+<ul>
+<li><p>串行
+<strong>then</strong> 直译【然后】，也就是表示下一步，所以通常是一种串行关系体现, then 后面的单词（比如 run /apply/accept）的方法的参数为对应的函数式接口，它的作用和那几个函数式接口的作用一样</p>
 
-<tbody>
-<tr>
-<td>&lt;U&gt;CompletableFuture&lt;U&gt; thenApply(Function fn)</td>
-<td>接受一个Function参数用来转换成CompletableFuture</td>
-</tr>
+<pre><code class="language-java">CompletableFuture&lt;Void&gt; thenRun(Runnable action)
+CompletableFuture&lt;Void&gt; thenRunAsync(Runnable action)
+CompletableFuture&lt;Void&gt; thenRunAsync(Runnable action, Executor executor)
+      
+&lt;U&gt; CompletableFuture&lt;U&gt; thenApply(Function&lt;? super T,? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; thenApplyAsync(Function&lt;? super T,? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; thenApplyAsync(Function&lt;? super T,? extends U&gt; fn, Executor executor)
+      
+CompletableFuture&lt;Void&gt; thenAccept(Consumer&lt;? super T&gt; action) 
+CompletableFuture&lt;Void&gt; thenAcceptAsync(Consumer&lt;? super T&gt; action)
+CompletableFuture&lt;Void&gt; thenAcceptAsync(Consumer&lt;? super T&gt; action, Executor executor)
+      
+&lt;U&gt; CompletableFuture&lt;U&gt; thenCompose(Function&lt;? super T, ? extends CompletionStage&lt;U&gt;&gt; fn)  
+&lt;U&gt; CompletableFuture&lt;U&gt; thenComposeAsync(Function&lt;? super T, ? extends CompletionStage&lt;U&gt;&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; thenComposeAsync(Function&lt;? super T, ? extends CompletionStage&lt;U&gt;&gt; fn, Executor executor)
+</code></pre></li>
 
-<tr>
-<td>&lt;U&gt;CompletableFuture&lt;U&gt; thenApplyAsync(Function fn)</td>
-<td>接受一个Function参数用来转换成CompletableFuture，使用的是ForkJoinPool</td>
-</tr>
+<li><p>并行
+并行可理解成组合的聚合处理。</p></li>
 
-<tr>
-<td>&lt;U&gt;CompletableFuture&lt;U&gt; thenApplyAsync(Function fn, Executor executor)</td>
-<td>接受一个Function参数用来转换成CompletableFuture，使用指定的线程池</td>
-</tr>
-</tbody>
-</table>
+<li><p>组合-and聚合
+combine&hellip; with&hellip; 和 both&hellip;and&hellip; 都是要求两者都满足，也就是and关系</p>
 
-<p>CompletableFuture.thenCompose:
-CompletableFuture.thenComposeAsync:</p>
+<pre><code class="language-java">&lt;U,V&gt; CompletableFuture&lt;V&gt; thenCombine(CompletionStage&lt;? extends U&gt; other, BiFunction&lt;? super T,? super U,? extends V&gt; fn)
+&lt;U,V&gt; CompletableFuture&lt;V&gt; thenCombineAsync(CompletionStage&lt;? extends U&gt; other, BiFunction&lt;? super T,? super U,? extends V&gt; fn)
+&lt;U,V&gt; CompletableFuture&lt;V&gt; thenCombineAsync(CompletionStage&lt;? extends U&gt; other, BiFunction&lt;? super T,? super U,? extends V&gt; fn, Executor executor)
+     
+&lt;U&gt; CompletableFuture&lt;Void&gt; thenAcceptBoth(CompletionStage&lt;? extends U&gt; other, BiConsumer&lt;? super T, ? super U&gt; action)
+&lt;U&gt; CompletableFuture&lt;Void&gt; thenAcceptBothAsync(CompletionStage&lt;? extends U&gt; other, BiConsumer&lt;? super T, ? super U&gt; action)
+&lt;U&gt; CompletableFuture&lt;Void&gt; thenAcceptBothAsync( CompletionStage&lt;? extends U&gt; other, BiConsumer&lt;? super T, ? super U&gt; action, Executor executor)
+      
+CompletableFuture&lt;Void&gt; runAfterBoth(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterBothAsync(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterBothAsync(CompletionStage&lt;?&gt; other, Runnable action, Executor executor)
+</code></pre></li>
 
-<p>CompletableFuture.thenCombine:
-CompletableFuture.thenCombineAsync:</p>
+<li><p>组合-or聚合
+Either&hellip;or&hellip; 表示两者中的一个，也就是 Or 的体现</p>
+
+<pre><code class="language-java">&lt;U&gt; CompletableFuture&lt;U&gt; applyToEither(CompletionStage&lt;? extends T&gt; other, Function&lt;? super T, U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; applyToEitherAsync(CompletionStage&lt;? extends T&gt; other, Function&lt;? super T, U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; applyToEitherAsync(CompletionStage&lt;? extends T&gt; other, Function&lt;? super T, U&gt; fn, Executor executor)
+     
+CompletableFuture&lt;Void&gt; acceptEither(CompletionStage&lt;? extends T&gt; other, Consumer&lt;? super T&gt; action)
+CompletableFuture&lt;Void&gt; acceptEitherAsync(CompletionStage&lt;? extends T&gt; other, Consumer&lt;? super T&gt; action)
+CompletableFuture&lt;Void&gt; acceptEitherAsync(CompletionStage&lt;? extends T&gt; other, Consumer&lt;? super T&gt; action, Executor executor)
+     
+CompletableFuture&lt;Void&gt; runAfterEither(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterEitherAsync(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterEitherAsync(CompletionStage&lt;?&gt; other, Runnable action, Executor executor)
+</code></pre></li>
+
+<li><p>异常处理</p></li>
+
+<li><p>whenComplete 和 handle 的区别在于接受的参数函数式接口不同，前者使用Comsumer, 自然也就不会2有返回值；后者使用 Function，自然也就会有返回值</p></li>
+
+<li><p>另外exceptionally-&gt;try/catch , whenComplete/handle-&gt;try/finally</p>
+
+<pre><code class="language-java">CompletableFuture&lt;T&gt; exceptionally(Function&lt;Throwable, ? extends T&gt; fn)
+CompletableFuture&lt;T&gt; exceptionallyAsync(Function&lt;Throwable, ? extends T&gt; fn)
+CompletableFuture&lt;T&gt; exceptionallyAsync(Function&lt;Throwable, ? extends T&gt; fn, Executor executor)
+
+CompletableFuture&lt;T&gt; whenComplete(BiConsumer&lt;? super T, ? super Throwable&gt; action)
+CompletableFuture&lt;T&gt; whenCompleteAsync(BiConsumer&lt;? super T, ? super Throwable&gt; action)
+CompletableFuture&lt;T&gt; whenCompleteAsync(BiConsumer&lt;? super T, ? super Throwable&gt; action, Executor executor)
+
+&lt;U&gt; CompletableFuture&lt;U&gt; handle(BiFunction&lt;? super T, Throwable, ? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; handleAsync(BiFunction&lt;? super T, Throwable, ? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; handleAsync(BiFunction&lt;? super T, Throwable, ? extends U&gt; fn, Executor executor)
+</code></pre></li>
+
+<li><p>DEMO</p></li>
+
+<li><p>runAsync,入参为runnable,无结果</p></li>
+
+<li><p>supplyAsync，异步处理，返回结果</p></li>
+
+<li><p>thenAccept,串行后续处理上一异步结果，不返回结果</p></li>
+
+<li><p>thenRun,串行不处理上一异步结果，不返回结果</p></li>
+
+<li><p>thenApplyAsync为thenRun的异步变体</p></li>
+
+<li><p>thenCompose，类似于lambda的flatMap，将结果“拍平”，将原本返回CompletableFuture<CompletableFuture<Double>&gt;的结果返回为CompletableFuture<Double></p></li>
+
+<li><p>thenCombine,and组合俩个独立的结果,有返回CompletableFuture对象</p></li>
+
+<li><p>allOf和anyOf</p></li>
+
+<li><p>exceptionally,就相当于 catch，出现异常，将会跳过 thenApply 的后续操作，直接捕获异常，进行一场处理</p></li>
+
+<li><p>handle,用多线程，良好的习惯是使用 try/finally 范式，handle 就可以起到 finally 的作用</p></li>
+</ul>
+
+<p>参考:<a href="https://blog.csdn.net/Mr_Flouxetin/article/details/107485191">https://blog.csdn.net/Mr_Flouxetin/article/details/107485191</a></p>
 
                         </div>
 
@@ -306,11 +389,15 @@ CompletableFuture.thenCombineAsync:</p>
 <ul class="widget-list">
     
     <li>
+        <a href="http://www.sszblog.xyz/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
         <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+        <a href="http://www.sszblog.xyz/categories/java/">java(19)</a>
     </li>
     
     <li>
@@ -326,7 +413,23 @@ CompletableFuture.thenCombineAsync:</p>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/sql/">sql(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/web/">web(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
     </li>
     
     <li>
@@ -340,13 +443,19 @@ CompletableFuture.thenCombineAsync:</p>
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
+    <a href="http://www.sszblog.xyz/tags/algorithm/">algorithm</a>
+    
     <a href="http://www.sszblog.xyz/tags/git/">git</a>
     
     <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
     
+    <a href="http://www.sszblog.xyz/tags/h5/">h5</a>
+    
     <a href="http://www.sszblog.xyz/tags/java/">java</a>
     
     <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
     
     <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
     
@@ -354,7 +463,17 @@ CompletableFuture.thenCombineAsync:</p>
     
     <a href="http://www.sszblog.xyz/tags/other/">other</a>
     
+    <a href="http://www.sszblog.xyz/tags/redis/">redis</a>
+    
     <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
+    <a href="http://www.sszblog.xyz/tags/sql/">sql</a>
+    
+    <a href="http://www.sszblog.xyz/tags/todo/">todo</a>
+    
+    <a href="http://www.sszblog.xyz/tags/web/">web</a>
+    
+    <a href="http://www.sszblog.xyz/tags/wechat/">wechat</a>
     
     <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
     
@@ -382,7 +501,7 @@ CompletableFuture.thenCombineAsync:</p>
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2020 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

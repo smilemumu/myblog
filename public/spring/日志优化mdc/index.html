@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>日志优化MDC | Shi.bro的博客</title>
+    <meta property="og:title" content="日志优化MDC - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-14T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-14T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="日志优化MDC">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">日志优化MDC</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月14日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="mdc-mapped-diagnostic-context">MDC(Mapped Diagnostic Context)</h1>
+
+<h2 id="实现">实现</h2>
+
+<h3 id="步骤1-创建mdcfilter实现filter">步骤1：创建MDCFilter实现Filter</h3>
+
+<p>filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。
+在过滤之前在reqId钟放入uuid并在结束之后remove</p>
+
+<pre><code class="language-java">import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.util.UUID;
+
+/**
+ * @Author shizhongcai
+ * @Date 2019/11/15 11:15
+ */
+@Component
+public class MDCFilter implements Filter {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class);
+
+    public static final String MDC_ID = &quot;reqId&quot;;
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        boolean mdcFlag = false;
+        try {
+            MDC.put(MDC_ID, UUID.randomUUID().toString());
+            mdcFlag = true;
+        } catch (Throwable e) {
+            LOG.error(&quot;MDC put error&quot;, e);
+        }
+        try {
+            String path = ((HttpServletRequest)servletRequest).getRequestURL().toString();
+            LOG.info(&quot;request path:&quot; + path);
+            filterChain.doFilter(servletRequest, servletResponse);
+        } finally {
+            if (mdcFlag) {
+                try {
+                    MDC.remove(MDC_ID);
+                } catch (Throwable e) {
+                    LOG.error(&quot;MDC remove error&quot;, e);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void destroy() {
+    }
+}
+</code></pre>
+
+<h3 id="步骤2-配置logback-xml-具体配置如下">步骤2：配置logback.xml,具体配置如下</h3>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;configuration&gt;
+    &lt;!--&lt;include resource=&quot;org/springframework/boot/logging/logback/base.xml&quot;/&gt;--&gt;
+    &lt;!-- 文件输出格式,reqId就是之前在MDCFilter中放入的reqId --&gt;
+    &lt;property name=&quot;PATTERN&quot; value=&quot;%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] reqId[%X{reqId}]-| %msg%n&quot; /&gt;
+
+    &lt;!-- sit文件路径 --&gt;
+    &lt;property name=&quot;FILE_PATH&quot; value=&quot;D:/xxx/xxx/&quot; /&gt;
+    &lt;!-- 开发环境 --&gt;
+    &lt;!-- 文件 --&gt;
+    &lt;appender name=&quot;FILE&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;
+        &lt;file&gt;${FILE_PATH}/dream.log&lt;/file&gt;
+        &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.TimeBasedRollingPolicy&quot;&gt;
+            &lt;fileNamePattern&gt;${FILE_PATH}/dream.%d{yyyy-MM-dd}.log&lt;/fileNamePattern&gt;
+            &lt;MaxHistory&gt;30&lt;/MaxHistory&gt;
+        &lt;/rollingPolicy&gt;
+        &lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&gt;
+            &lt;pattern&gt;${PATTERN}&lt;/pattern&gt;
+        &lt;/layout&gt;
+    &lt;/appender&gt;
+
+    &lt;!--CONSOLE--&gt;
+    &lt;appender name=&quot;CONSOLE&quot; class=&quot;ch.qos.logback.core.ConsoleAppender&quot;&gt;
+        &lt;layout class=&quot;ch.qos.logback.classic.PatternLayout&quot;&gt;
+            &lt;pattern&gt;${PATTERN}&lt;/pattern&gt;
+        &lt;/layout&gt;
+    &lt;/appender&gt;
+
+    &lt;root level=&quot;info&quot;&gt;
+        &lt;appender-ref ref=&quot;CONSOLE&quot; /&gt;
+    &lt;/root&gt;
+
+&lt;/configuration&gt;
+</code></pre>
+
+<h3 id="步骤3-添加日志切面weblogaspect-如下">步骤3：添加日志切面WebLogAspect,如下：</h3>
+
+<pre><code class="language-java">import com.alibaba.fastjson.JSON;
+import com.shizhongcai.business.common.config.filter.MDCFilter;
+import com.shizhongcai.business.common.domain.data.AesBaseParams;
+import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum;
+import com.shizhongcai.business.common.domain.vo.BaseReqVo;
+import com.shizhongcai.business.common.domain.vo.BaseRspVo;
+import com.shizhongcai.business.common.exception.BaseException;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.http.HttpServletRequest;
+import java.time.Duration;
+import java.time.Instant;
+
+/**
+ * @Author shizhongcai
+ * @Date 2019/11/15 11:13
+ */
+@Component
+@Aspect
+public class WebLogAspect {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class);
+
+    // MDC过滤器注册
+    @Bean
+    public FilterRegistrationBean mdcFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setDispatcherTypes(DispatcherType.REQUEST);
+        registration.setFilter(new MDCFilter());
+        registration.addUrlPatterns(&quot;/*&quot;);
+        registration.setName(&quot;MDCFilter&quot;);
+        //设置优先级,在web.xml中执行顺序是谁在前面谁先执行，而在spring boot中的FilterRegistrationBean注册过滤器的类中设置order属性（默认值Integer.MAX_VALUE），会按照order值的大小，从小到大的顺序来依次执行过滤器。
+        registration.setOrder(Integer.MAX_VALUE);
+        return registration;
+    }
+
+    //========================↓↓↓ controller AOP切面日志打印 ↓↓↓========================
+    @Pointcut(&quot;execution(* com.shizhongcai..*Controller.*(..))&quot;)
+    public void pointService(){
+    }
+
+    @Around(&quot;pointService()&quot;)
+    public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+        Instant start = Instant.now();
+        Instant end;
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+               int index = -1;
+        for (int i = 0; i &lt; joinPoint.getArgs().length; i++) {
+            Object object = joinPoint.getArgs()[i];
+            if (object instanceof AesBaseParams) {
+                index = i;
+                break;
+            }else if(object instanceof BaseReqVo){
+                index = i;
+                break;
+            }else{
+                index = i;
+                break;
+            }
+        }
+        String method = joinPoint.getSignature().getName();
+        //此处index = -1的时候表示无参数，此时调用joinPoint.getArgs[index]会报错空指针异常
+        LOG.info(&quot;请求类型{}，请求方法{},入参 {}&quot;,request.getMethod(),method,index&gt;0?JSON.toJSONString(joinPoint.getArgs()[index]):&quot;为空&quot;);
+        //执行方法本身
+        //此处还可以加锁，防止接口重复调用
+        Object obj;
+        try {
+            obj = joinPoint.proceed();
+        } catch (Throwable throwable) {
+            LOG.error(&quot;执行出错：&quot;, throwable);
+            BaseRspVo rspVo;
+            if (BaseException.class.isAssignableFrom(throwable.getClass())) {
+                if (throwable instanceof BaseException) {
+                    rspVo = BaseRspVo.fail(((BaseException)throwable).getCode(), throwable.getMessage());
+                } else {
+                    rspVo = new BaseRspVo(ErrorCodesEnum.SYS_ERROR);
+                }
+            } else {
+                rspVo = new BaseRspVo(ErrorCodesEnum.SYS_ERROR);
+            }
+            return rspVo;
+        }
+        end = Instant.now();
+        long costTime = Duration.between(start,end).toMillis();
+        LOG.info(&quot;{}出参:{},耗时{}(mills)&quot;,method, JSON.toJSONString(obj),costTime);
+        return obj;
+    }
+}
+
+</code></pre>
+
+<p>这样就能在控制台看到打印的日志：<br />
+2019-11-19 16: 57:25.154 |-INFO  [http-nio-8084-exec-2] &hellip;filter.MDCFilter [41] <font color = 'red'>reqId[34a4c7c2-4cc7-41b3-b9f9-6b9a67a592f5]</font>-| request path: <a href="http://127.0.0.1:8084/dream/demo/testPool">http://127.0.0.1:8084/dream/demo/testPool</a><br />
+2019-11-19 16: 57:25.174 |-INFO  [http-nio-8084-exec-2] &hellip;filter.MDCFilter [79] reqId[34a4c7c2-4cc7-41b3-b9f9-6b9a67a592f5]-| 请求类型POST，请求方法testPool,入参 为空<br />
+2019-11-19 16: 57:25.178 |-INFO  [http-nio-8084-exec-2] &hellip;DemoService [23] reqId[34a4c7c2-4cc7-41b3-b9f9-6b9a67a592f5]-| org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor@e69cd6c<br />
+2019-11-19 16: 57:28.275 |-INFO  [myThreadPoolTaskExecutor-1] &hellip;DemoService [25] reqId[]-| 1
+2019-11-19 16: 57:28.332 |-INFO  [http-nio-8084-exec-2] &hellip;filter.MDCFilter [101] reqId[34a4c7c2-4cc7-41b3-b9f9-6b9a67a592f5]-| testPool出参:null,耗时7(mills)</p>
+
+<p>这样我们就能将一整条请求串联起来，只要搜索关键字，就能很方便的找到该请求的所有日志</p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">基于自定义注解的参数解析器</a></li>
+        
+        <li><a href="/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">接口限流-令牌桶限流</a></li>
+        
+        <li><a href="/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a></li>
+        
+        <li><a href="/spring/todo/">项目开发</a></li>
+        
+        <li><a href="/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="/tags/spring">Spring</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

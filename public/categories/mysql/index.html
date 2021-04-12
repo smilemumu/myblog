@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MySql | Shi.bro的博客</title>
+    <meta property="og:title" content="MySql - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="MySql">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/categories/mysql/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="/categories/mysql/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        分类
+                        <span class="keyword">MySql</span>
+                        中的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/mysql-explain/">MySql Explain</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月24日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/mysql">MySql</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Explain Explain 列  1.select_type 表示查询类型，分为简单查询(SIMPLE)和复杂查询(PRIMARY)，复杂查询又分为三类：简单子查询、派生表（from语句中的子查询）、union 查询。
+ 2.type列(非常重要)
+ 表示MySQL在表中找到所需行的方式，又称“访问类型”
+ 依次从最优到最差分别为：system &gt; const &gt; eq_ref &gt; ref&gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery&gt; range &gt; index &gt; ALL
+ ★注意：一般来说，得保证查询至少达到range级别，最好能达到ref。
+   3.possible_keys列 指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+ 6.key列(非常重要) key列显示MySQL实际决定使用的键（索引)
+  如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX……
+                                <p class="readmore"><a href="/sql/mysql-explain/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/sql-%E4%BC%98%E5%8C%96/">SQL优化</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月24日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/mysql">MySql</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                SQL优化 1.SQL语句中过滤条件where和having的区别  where 是一个约束声明，使用 where 约束来自数据库的数据，where 是在结果返回之前起作用，where 中不能使用聚合函数。 Having 是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在 Having 中可以使用聚合函数。 在查询过程中，where 子句执行优先级高于聚合语句。聚合语句(sum，min，max，avg，count)优先级高于 having 子句。  2.优化查询  MySQL只有对以下操作符才使用索引：&lt;，&lt;=，=，&gt;，&gt;=，BETWEEN，IN，以及右模糊查询LIKE（&rsquo;a%&lsquo;）。 对于不等于(!= 和 &lt;&gt;)会放弃使用索引而进行全表扫描。 对于左模糊like ‘%&hellip;’无法直接使用索引，但可以利用reverse，变化成 右模糊like ‘…%’。 对于联合索引来说，如果存在范围查询，比如between、&gt;、&lt;等条件时，会造成后面的索引字段失效。 对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。 在 where 子句中对字段进行 null 值判断，会导致引擎放弃使用索引而进行全表扫描，所以字段要有默认值 在 where 子句中对字段进行函数、算术运算或其他表达式运算，会导致引擎放弃使用索引而进行全表扫描。 如果字段类型是字符串，where 时一定用引号括起来，否则索引失效 将大的 delete，update 或者 insert 查询变成多个小查询 如果插入数据过多，考虑批量插入 select语句务必指明字段名称，尽量避免使用&rdquo;select * &ldquo;。因为它会进行全表扫描。 Inner join 、left join、right join，优先使用 Inner join。如果是 left join，左边表结果尽量小。Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集。left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。都满足 SQL 需求的前提下，推荐优先使用 Inner join(内连接)，如果要使用 left join，左边表数据结果尽量小，如果有条件的尽量放到左边处理。 区分 in 和 exists、not in 和not exists……
+                                <p class="readmore"><a href="/sql/sql-%E4%BC%98%E5%8C%96/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

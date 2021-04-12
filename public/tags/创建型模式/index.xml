@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>创建型模式 on Shi.bro的博客</title>
+    <link>/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 创建型模式 on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 26 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>创建型模式</title>
+      <link>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>创建型模式 1.简单工厂模式（静态工厂方法模式） 2.工厂方法模式 3.抽象工厂模式 4.建造者模式 5.单例模式 6.原型模式 1.简单工厂模式（静态工厂方法模式）  作用：当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节。 应用场景：Java加解密
+ （解密）获取不同加密算法的密钥生成器:
+KeyGenerator keyGen=KeyGenerator.getInstance(&amp;quot;AES&amp;quot;);  （加密）创建密码器:
+Cipher cp=Cipher.getInstance(&amp;quot;AES&amp;quot;,&amp;quot;BC&amp;quot;);    2.工厂方法模式  作用：当需要加入新产品时，对原有产品无需改动，只需要新增一个抽象工厂和具体产品就可以了。 主要角色：  抽象工厂(Abstract Factory) 具体工厂（ConcreteFactory） 抽象产品（Product） 具体产品（ConcreteProduct）  应用场景：JDBC中的工厂方法
+ 比如加载不同厂商的数据库驱动
+Connection conn=DriverManager.getConnection(&amp;quot;jdbc:microsoft:sqlserver://localhost:1433; DatabaseName=DB;user=;password=&amp;quot;); Statement statement=conn.createStatement(); ResultSet rs=statement.executeQuery(&amp;quot;select * from UserInfo&amp;quot;);    3.抽象工厂模式 4.建造者模式  作用：将一个复杂的对象分解为多个简单的对象，然后一步一步构建而成。它将变与不变相分离，即产品的组成部分是不变，但每一部分是可以灵活选择。 优点  封装性好，构建和表示分离。 扩展性好，各个具体的建造者相互独立，有利于系统的解耦。 客户端不必知道产品内部组成的细节，建造者可以对创建过程逐步细化，而不对其它模块产生任何影响，便于控制细节风险。  主要角色  Builder：抽象建造者 Concrete Builder：具体建造者 Director：指挥者 Product：产品角色  应用场景StringBuilder.append源码
+public StringBuilder append(boolean b) { super.</description>
+    </item>
+    
+  </channel>
+</rss>

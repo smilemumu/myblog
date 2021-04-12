@@ -2,24 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>markdown on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/tags/markdown/</link>
+    <link>/tags/markdown/</link>
     <description>Recent content in markdown on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 11 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>markdown模板</title>
-      <link>http://www.sszblog.xyz/markdown/markdown/</link>
+      <link>/markdown/markdown/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/markdown/markdown/</guid>
+      <guid>/markdown/markdown/</guid>
       <description>&lt;p&gt;&lt;strong&gt;markdown模板&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/release/wildfirechat/server&#34; alt=&#34;版本图标&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Executor类图.png&#34; alt=&#34;Demo&#34; /&gt;
+&lt;img src=&#34;https://img.shields.io/github/release/wildfirechat/server&#34; alt=&#34;版本图标&#34; /&gt;
 类似于这样添加版本
 &lt;img src=&#34;http://progressed.io/bar/10&#34; alt=&#34;Progress&#34; /&gt;&lt;/p&gt;
 

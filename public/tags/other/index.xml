@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>other on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/tags/other/</link>
+    <link>/tags/other/</link>
     <description>Recent content in other on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/tags/other/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/other/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>短语</title>
-      <link>http://www.sszblog.xyz/other/english/phrase/</link>
+      <link>/other/english/phrase/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/english/phrase/</guid>
+      <guid>/other/english/phrase/</guid>
       <description>Managerial tasks could be delegated to others 管理任务可以委托给其他人</description>
     </item>
     
     <item>
       <title>我的书单</title>
-      <link>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
+      <link>/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</guid>
+      <guid>/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</guid>
       <description> [ ]《睡眠革命》
  [x]《软技能》
  [ ]《指数基金投资指南》
@@ -38,10 +38,10 @@
     
     <item>
       <title>软技能分享</title>
-      <link>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</link>
+      <link>/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</guid>
+      <guid>/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</guid>
       <description>#《软技能》 前言 对于优秀的软件开发者来说，埋头写代码绝并不应该是工作的全部。这本书给出了很多非常好的建议，不仅仅“码农”们可以从中获益，还可以推而广之到很多其他的行业。
 职业 主要讲的是如何进行自己的职业规划
 你所能犯的最大错误就是相信自己是在为别人工作。这样一来你对工作的安全感已然尽失。职业发展的驱动力一定是个体本身。记住：工作是属于公司的，而职业生涯确实属于你自己的。 - 厄尔.南丁格尔
@@ -60,10 +60,10 @@
     
     <item>
       <title>我的单词本</title>
-      <link>http://www.sszblog.xyz/other/english/word/</link>
+      <link>/other/english/word/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/english/word/</guid>
+      <guid>/other/english/word/</guid>
       <description>&lt;p&gt;&lt;strong&gt;日常开发中遇到的一些术语生词&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     

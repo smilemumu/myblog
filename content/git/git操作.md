@@ -19,13 +19,14 @@ git push -u origin master
 ```
 
 远程仓库相关命令
-```git
+```git;
 检 出 仓 库： $ git clone git://github.com/jquery/jquery.git
 查看远程仓库：$ git remote -v
 添加远程仓库：$ git remote add [name] [url]
 删除远程仓库：$ git remote rm [name]
 拉取远程仓库：$ git pull [remoteName] [localBranchName]
 推送远程仓库：$ git push [remoteName] [localBranchName]
+git本地分支跟踪远程分支 $ git branch -u origin/[remoteBranchName]
 ```
 分支(branch)操作相关命令
 ```git
@@ -118,7 +119,18 @@ git commit -m "提交的说明"
 ```git
 git push -u origin master 
 ```
+刷新远程分支
+git remote update origin --prune
+git remote update origin -p
 
+
+
+
+
+如果 git merge了错误分支，如何优雅的回退到merge前的状态？
+没push的话
+git reset --hard merge前的那个版本号
+然后重新 git merge
 
 refer to: https://www.cnblogs.com/springbarley/archive/2012/11/03/2752984.html  
 refer to: https://blog.csdn.net/lxw198902165221/article/details/89228458

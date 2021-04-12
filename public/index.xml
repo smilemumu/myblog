@@ -2,120 +2,536 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/</link>
+    <link>/</link>
     <description>Recent content on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 05 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>archives</title>
-      <link>http://www.sszblog.xyz/archives/archives/</link>
+      <link>/archives/archives/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/archives/archives/</guid>
+      <guid>/archives/archives/</guid>
       <description>这个是archives</description>
     </item>
     
     <item>
       <title>关于</title>
-      <link>http://www.sszblog.xyz/about/about/</link>
+      <link>/about/about/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/about/about/</guid>
+      <guid>/about/about/</guid>
       <description>Hi,欢迎访问我的博客,博主的工作是Java 金融服务开发,平时对其他各种技术也有兴趣,本博客会更新一些我平常工作和业余接触到的技术知识,以Java开发为主,博主也是半个技术小白,目前正在自我进化中,如果各位看到文章中有错误或者想要提问,欢迎与我联系,我会尽快改正或尽力解答.
 感谢Hugo提供了优秀的博客静态生成部署框架,也感谢GitHub Page提供免费的网页部署空间,也感谢Hugo提供了这个充***主题.</description>
     </item>
     
     <item>
       <title>readme</title>
-      <link>http://www.sszblog.xyz/readme/</link>
+      <link>/readme/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/readme/</guid>
+      <guid>/readme/</guid>
       <description>  Java  Java8实战阅读笔记  GIT  Java8  Java8实战阅读笔记  GIT  git初始化操作  </description>
     </item>
     
     <item>
-      <title>HTML&amp;CSS</title>
-      <link>http://www.sszblog.xyz/web/htmlcss/</link>
-      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      <title>Oauth2.0</title>
+      <link>/java/oauth2.0/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/web/htmlcss/</guid>
-      <description> 常见HTML术语：  元素(elements)：
-&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;a&amp;gt;，&amp;lt;div&amp;gt;，&amp;lt;span&amp;gt;，&amp;lt;strong&amp;gt;，和&amp;lt;em&amp;gt;元素，等等。  自封闭元素 &amp;lt;br&amp;gt;&amp;lt;embed&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;img&amp;gt;&amp;lt;input&amp;gt;&amp;lt;link&amp;gt;&amp;lt;meta&amp;gt;&amp;lt;param&amp;gt;&amp;lt;source&amp;gt;&amp;lt;wbr&amp;gt;  标签(tags)：
-&amp;lt;a&amp;gt;...&amp;lt;/a&amp;gt;  属性(attribute)：
-&amp;lt;a href=&amp;quot;http://shayhowe.com/&amp;quot;&amp;gt;Shay Howe&amp;lt;/a&amp;gt;    典型的HTML文档结构 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Hello World&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;Hello World&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;This is a web page.&amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  CSS术语  选择器
-在CSS中，选择器后跟花括号，{}其中包含要应用于所选元素的样式。这里的选择器以所有&amp;lt;p&amp;gt;元素为目标  性质
-p { color: ...; font-size: ...; }   </description>
+      <guid>/java/oauth2.0/</guid>
+      <description> 异常和错误的区别：异常能被程序本身处理，错误是无法处理。
+异常层次结构图 </description>
     </item>
     
     <item>
-      <title>微信开发</title>
-      <link>http://www.sszblog.xyz/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      <title>Oauth2.0</title>
+      <link>/web/oauth2.0/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
-      <description>微信商户平台-现金红包 微信商户平台-企业付款到零钱 微信公众号开发-授权  </description>
+      <guid>/web/oauth2.0/</guid>
+      <description>Oauth2.0 什么是Oauth2.0? OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。 简单说：OAuth 就是一种授权机制。数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。
+令牌与密码 令牌（token）与密码（password）的作用是一样的，都可以进入系统，但是有三点差异。 - （1）令牌是短期的，到期会自动失效，用户自己无法修改。密码一般长期有效，用户不修改，就不会发生变化。
+ （2）令牌可以被数据所有者撤销，会立即失效。以上例而言，屋主可以随时取消快递员的令牌。密码一般不允许被他人撤销。
+ （3）令牌有权限范围（scope），比如只能进小区的二号门。对于网络服务来说，只读令牌就比读写令牌更安全。密码一般是完整权限。
+  上面这些设计，保证了令牌既可以让第三方应用获得权限，同时又随时可控，不会危及系统安全。这就是 OAuth 2.0 的优点。
+OAuth 2.0 对于如何颁发令牌？四种授权类型（authorization grant） 授权码（authorization code）方式 授权码方式指的是：第三方应用先申请一个授权码，然后再用该码获取令牌。 这种方式是最常用的流程，安全性也最高，它适用于那些有后端的 Web 应用。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。
+ 第一步:A网站生成授权链接，用户点击后跳转到B网站，授权用户数据给A网站使用。
+https://b.com/oauth/authorize? response_type=code&amp;amp; client_id=CLIENT_ID&amp;amp; redirect_uri=CALLBACK_URL&amp;amp; scope=read  主要参数：
+ response_type参数表示要求返回授权码（code） client_id参数让 B 知道是谁在请求 redirect_uri参数是 B 接受或拒绝请求后的跳转网址 scope参数表示要求的授权范围（这里是只读）  第二步：跳转到B网站后，需要用户确认授权，用户确认后跳转到第一步的redirect_url，并返回一个授权码。
+https://a.com/callback?code=AUTHORIZATION_CODE  第三步：A网站拿到授权码后，后台请求B网站，获取令牌。
+https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SECRET&amp;amp; grant_type=authorization_code&amp;amp; code=AUTHORIZATION_CODE&amp;amp; redirect_uri=CALLBACK_URL  主要参数
+ client_id参数和client_secret参数用来让 B 确认 A 的身份（client_secret参数是保密的，因此只能在后端发请求）。 grant_type参数的值是AUTHORIZATION_CODE，表示采用的授权方式是授权码。 code参数是上一步拿到的授权码。 redirect_uri参数是令牌颁发后的回调网址。  第四步：B 网站收到请求以后，就会颁发令牌。具体为向第三 步的redirect_url发送一段令牌json。</description>
     </item>
     
     <item>
-      <title>全局异常处理</title>
-      <link>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
-      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      <title>Condition</title>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/condition/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/condition/</guid>
+      <description>Condition Condition概述  在线程的同步时可以使一个线程阻塞而等待一个信号，同时放弃锁使其他线程可以能竞争到锁。
+ 在synchronized中我们可以使用Object的wait()和notify方法实现这种等待和唤醒。
+ 在Lock可以实现相同的功能就是通过Condition。Condition中的await()和signal()/signalAll()就相当于Object的wait()和notify()/notifyAll()。
+ 除此之外，Condition还是对多线程条件进行更精确的控制。notify()是唤醒一个线程，但它无法确认是唤醒哪一个线程。 但是，通过Condition，就能明确的指定唤醒读线程。
+  参考：https://www.cnblogs.com/qdhxhz/p/9206076.html</description>
+    </item>
+    
+    <item>
+      <title>线程的生命周期和通讯机制</title>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Sat, 19 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6/</guid>
+      <description>线程的生命周期和通讯机制 生命周期 ###1、yield()方法 - yield()让当前正在运行的线程回到就绪，以允许具有相同优先级的其他线程获得运行的机会。但是，实际中无法保证yield()达到让步的目的，因为，让步的线程可能被线程调度程序再次选中。
+ 同时yield()不会放弃锁资源，所以有可能会出现死锁。  ###2、wait和sleep方法的区别 - 1）第一个很重要的区别就是，wait方法必须正在同步环境下使用，比如synchronized方法或者同步代码块。如果你不在同步条件下使用，会抛出IllegalMonitorStateException异常。另外，sleep方法不需要再同步条件下调用，你可以任意正常的使用。
+ 2）第二个区别是，wait方法用于和定义于Object类的，而sleep方法操作于当前线程，定义在java.lang.Thread类里面。
+ 3）第三个区别是，调用wait()的时候方法会释放当前持有的锁，而sleep方法不会释放任何锁。
+  ###3、wait和sleep方法使用场景 -（1）wait方法定义在Object类里面，所有对象都能用到，一般wait()和notify()方法或notifyAll使用于线程间的通信。
+-（2）sleep()方法用于暂停当前线程的执行。
+###4、join方法（） - thread.Join把指定的线程加入到当前线程，可以将两个交替执行的线程合并为顺序执行的线程。 - 比如在线程B中调用了线程A的Join()方法，直到线程A执行完毕后，才会继续执行线程B。 ###5、stop方法 线程启动完毕后,在运行可能需要终止,Java提供的终止方法只有一个stop,但是不建议使用此方法,因为它有以下三个问题:
+ 1)stop方法是过时的。   从Java编码规则来说,已经过时的方式不建议采用.
+  2)stop方法会导致代码逻辑不完整   stop方法是一种&amp;rdquo;恶意&amp;rdquo; 的中断,一旦执行stop方法,即终止当前正在运行的线程,不管线程逻辑是否完整,这是非常危险的.
+  3)stop方法会破坏原子逻辑   多线程为了解决共享资源抢占的问题,使用了锁的概念,避免资源不同步,但是正是因为此原因,stop方法却会带来更大的麻烦,它会丢弃所有的锁,导致原子逻辑受损
+ 线程通讯 1.依次运行用join 2.交叉运行用wait()和notify()或者notifyAll() 3.四个线程 A B C D，其中 D 要等到 A B C 全执行完毕后才执行，而且 A B C 是同步运行的。 用CountdownLatch,主要方法latch.await(),latch.countDown();
+4.三个运动员各自准备，等到三个人都准备好后，再一起跑 用CyclicBarrier
+5.子线程完成某件任务后，把得到的结果回传给主线程 用FutureTask和Callable</description>
+    </item>
+    
+    <item>
+      <title>GC算法和种类</title>
+      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/2.gc%E7%AE%97%E6%B3%95%E5%92%8C%E7%A7%8D%E7%B1%BB/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/2.gc%E7%AE%97%E6%B3%95%E5%92%8C%E7%A7%8D%E7%B1%BB/</guid>
+      <description>GC算法和种类 GC的工作区域 1.不是GC的工作区域 程序计数器、虚拟机栈和本地方法栈三个区域是线程私有的，随线程生而生，随线程灭而灭； 在这几个区域不需要过多考虑回收的问题方法结束或线程结束时，内存自然就跟随着回收了。 2.GC的工作区域（哪些内存需要GC回收？） 垃圾回收重点关注的是堆和方法区部分的内存。 程序处于运行期间才能知道会创建哪些对象，这部分内存的分配和回收都是动态的，所以垃圾回收器所关注的主要是这部分的内存。 垃圾对象的判定 Java堆中存放着几乎所有的对象实例，垃圾收集器对堆中的对象进行回收前，要先确定这些对象是否还有用，哪些还活着。对象死去的时候才需要回收。 1. 引用计数法 在堆中存储对象时，在对象头处维护一个counter计数器，如果一个对象增加了一个引用与之相连，则将counter++。 如果一个引用关系失效则counter–。如果一个对象的counter变为0，则说明该对象已经被废弃，不处于存活状态。 2. 可达性分析算法 通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。
+可作为GC Roots的对象包括下面几种： (1)虚拟机栈（栈帧中的本地变量表）中引用的对象。 (2)方法区中的常量、类静态属性引用的对象。 (3)本地方法栈中JNI（Native方法）的引用对象。
+垃圾回收算法  标记清除算法 (1). 标记阶段：找到所有可访问的对象，做个标记 (2). 清除阶段：遍历堆，把未被标记的对象回收 缺点： （1）因为涉及大量的内存遍历工作，所以执行性能较低 （2）对象被清除之后，被清除的对象留下内存的空缺位置会造成内存不连续，空间浪费。
+ 标记整理算法 适合用于存活对象较多的场合，如老年代。 (1)、标记阶段：它的第一个阶段与标记/清除算法是一模一样的。 (2)、整理阶段：移动所有存活的对象，且按照内存地址次序依次排列，然后将末端内存地址以后的内存全部回收。 优点：内存连续，消除复制算法内存减半的代价问题 缺点:不仅要标记所有存活对象，还要整理所有存活对象的引用地址。性能低于复制算法。
+ 复制算法 复制算法简单来说就是把内存一分为二，但只使用其中一份，在垃圾回收时，将正在使用的那份内存中存活的对象复制到另一份空白的内存中，最后将正在使用的内存空间的对象清除，完成垃圾回收。 优点：复制算法使得每次都只对整个半区进行内存回收，内存分配时也就不用考虑内存碎片等复杂情况，只要移动堆顶指针，按顺序分配内存即可，实现简单，运行高效。 缺点：复制算法的代价是将内存缩小为原来的一半，这个太要命了。
+  **现在的虚拟机使用复制算法来进行新生代的内存回收。因为在新生代中绝大多数的对象都是“朝生夕亡”，所以不需要将整个内存分为两个部分，而是分为三个部分，一块为Eden（伊甸区）和两块较小的Survivor（幸存区）空间(默认比例-&amp;gt;8:1:1)。每次使用Eden和其中的一块Survivor，垃圾回收时候将上述两块中存活的对象复制到另外一块Survivor上，同时清理上述Eden和Survivor。所以每次新生代就可以使用90%的内存。只有10%的内存是浪费的。(不能保证每次新生代都少于10%的对象存活，当在垃圾回收复制时候如果一块Survivor不够时候，需要老年代来分担，大对象直接进入老年代) **
+总的来讲：复制算法不适用于存活对象较多的场合，如老年代（复制算法适合做新生代的GC）
+三种算法比较 相同点： 进行GC时需要暂停应用程序。 区别： 效率：复制算法&amp;gt;标记-整理算法&amp;gt;标记-清除算法； 内存整齐度：复制算法=标记-整理算法&amp;gt;标记-清除算法 内存利用率：标记-整理算法=标记-清除算法&amp;gt;复制算法
+分代收集思想 新生代：由于存活的对象相对比较少，因此可以采用复制算法该算法效率比较快。 &amp;gt; 新生代包含Eden（伊甸区）和两块Survivor(幸存区)
+老年代：由于存活的对象比较多哈，可以采用标记-清除算法或是标记-整理算法。
+ java8以后，已经没有(PermGen Space)永久区了，之前永久区存放的东西基本上放到了元空间（Meta Space）中。
+ 参考：https://www.cnblogs.com/qdhxhz/p/9211095.html1</description>
+    </item>
+    
+    <item>
+      <title>垃圾回收器</title>
+      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/</guid>
+      <description>垃圾回收器 GC的工作区域 基础概念 1、并发和并行 - a：并行（Parallel）：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。 - b：并发（Concurrent）：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替执行），用户程序在继续运行，而垃圾收集程序运行在另一个CPU上。
+2、新生代 GC 和老年代GC - a:新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。 - b:老年代GC（Major GC / Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC（但非绝对的）。Major GC的速度一般会比Minor GC慢10倍以上。
+3、吞吐量 - 吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值，即吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）。
+ 虚拟机总共运行了100分钟，其中垃圾收集花掉1分钟，那吞吐量就是99%。
+ 垃圾收集器  Serial收集器  新生代、老年代使用串行回收；新生代复制算法、老年代标记-压缩;收集过程中服务会暂停。 参数控制：-XX:+UseSerialGC 串行收集器  ParNew收集器
+ 新生代并行，老年代串行；新生代复制算法、老年代标记-压缩；ParNew收集器其实就是Serial收集器的多线程版本。 参数控制：  -XX:+UseParNewGC ParNew收集器 -XX:ParallelGCThreads 限制线程数量   Parallel Scavenge收集器
+ 新生代复制算法。老年代标记压缩，串行 参数控制：-XX:+UseParallelGC   Serial Old收集器
+ 它是Serial收集器的老年代版，它同样是一个单线程收集器，使用“标记&amp;ndash;整理”算法。
+  Parallel Old 收集器</description>
+    </item>
+    
+    <item>
+      <title>性能调优</title>
+      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/4.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</link>
+      <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/4.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</guid>
+      <description>性能调优 调优策略 调优的目的 调优的最终目的当然增大吞吐量，减少暂停时间，映射到GC层面主要关心下面这两点： (1)将转移到老年代的对象数量降低到最小。 (2)减少full GC的执行时间。（尽量减少GC的次数）
+那什么情况对象会转移到老年代 主要有这四种：
+(1)新生代对象每经历依次minor gc，年龄会加一，当达到年龄阀值会直接进入老年代。阀值大小一般为15。 (2)Survivor空间中年龄所有对象大小的总和大于survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，而无需等到年龄阀值。 (3)大对象直接进入老年代。 (4)新生代复制算法需要一个survivor区进行轮换备份，如果出现大量对象在minor gc后仍然存活的情况时，就需要老年代进行分配担保，让survivor无法容纳的对象直接进入老年代。
+再来分析为什么说要减少full GC时间次数，那得先看GC的两大分类
+ Partial GC：并不收集整个GC堆的模式  Young GC：只收集young gen的GC Old GC：只收集old gen的GC。只有CMS的concurrent collection是这个模式 Mixed GC：收集整个young gen以及部分old gen的GC。只有G1有这个模式  Full GC：针对整个新生代、老生代、元空间（metaspace，java8以上版本取代perm gen）的全局范围的GC。
+ 一般Full GC所花费的时间是Young GC的十倍,这里就明白为什么要减少Full GC的次数了。
+  哪些方面可以考虑调优？ （1）减少使用全局变量和大对象。 （2）新生代和老年代的大小是否合适。 （3）新生代和老年代所占的比例是否合适。 （4）幸存者区和新生区所占的比例到是否合适。 （5）选择合适的GC收集器。
+什么情况说明GC已经不错了呢？ 此外，如果GC执行时间满足下列所有条件，就没有必要进行GC优化了： Minor GC执行非常迅速（50ms以内） Minor GC没有频繁执行（大约10s执行一次） Full GC执行非常迅速（1s以内） Full GC没有频繁执行（大约10min执行一次） 括号中的数字并不是绝对的，它们也随着服务的状态而变化。
+二、调优经验(规则) 这些规则，一般是大家比较建议的，可以作为初始配置的时候进行配置建议，当然具体的还得通过JVM工具监测来具体分析。 (1) -Xmx 和-Xms 一般设置为一样大小。这样能稍微提高GC的运行效率，因为他/她不再需要估算堆是否需要调整大小了。
+(2)官方推荐新生代占堆的3/8。 (3)幸存代占新生代的1/10。 (4)垃圾收集器如果内存比较大建议G1收集器，当然也可以用CMS收集器。 (5)-XX:+DisableExplicitGC禁止System.</description>
+    </item>
+    
+    <item>
+      <title>系统高并发</title>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%B3%BB%E7%BB%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</link>
+      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%B3%BB%E7%BB%9F%E9%AB%98%E5%B9%B6%E5%8F%91/</guid>
+      <description>系统高并发 1.集群化部署 采用nginx负载均衡将请求分发到多台机器上。
+2.数据库分库(比较麻烦)分表分区、读写分离 3.缓存集群 写数据库的时候同时写一份数据到缓存集群里，然后用缓存集群来承载大部分的读请求。这样的话，通过缓存集群，就可以用更少的机器资源承载更高的并发。
+4.消息中间件 可以引入消息中间件集群，把允许异步化的请求请求写入MQ，然后基于MQ做一个削峰填谷。</description>
+    </item>
+    
+    <item>
+      <title>MySql Explain</title>
+      <link>/sql/mysql-explain/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql-explain/</guid>
+      <description>Explain Explain 列  1.select_type 表示查询类型，分为简单查询(SIMPLE)和复杂查询(PRIMARY)，复杂查询又分为三类：简单子查询、派生表（from语句中的子查询）、union 查询。
+ 2.type列(非常重要)
+ 表示MySQL在表中找到所需行的方式，又称“访问类型”
+ 依次从最优到最差分别为：system &amp;gt; const &amp;gt; eq_ref &amp;gt; ref&amp;gt; fulltext &amp;gt; ref_or_null &amp;gt; index_merge &amp;gt; unique_subquery &amp;gt; index_subquery&amp;gt; range &amp;gt; index &amp;gt; ALL
+ ★注意：一般来说，得保证查询至少达到range级别，最好能达到ref。
+   3.possible_keys列 指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+ 6.key列(非常重要) key列显示MySQL实际决定使用的键（索引)
+  如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX</description>
+    </item>
+    
+    <item>
+      <title>SQL优化</title>
+      <link>/sql/sql-%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/sql-%E4%BC%98%E5%8C%96/</guid>
+      <description>SQL优化 1.SQL语句中过滤条件where和having的区别  where 是一个约束声明，使用 where 约束来自数据库的数据，where 是在结果返回之前起作用，where 中不能使用聚合函数。 Having 是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在 Having 中可以使用聚合函数。 在查询过程中，where 子句执行优先级高于聚合语句。聚合语句(sum，min，max，avg，count)优先级高于 having 子句。  2.优化查询  MySQL只有对以下操作符才使用索引：&amp;lt;，&amp;lt;=，=，&amp;gt;，&amp;gt;=，BETWEEN，IN，以及右模糊查询LIKE（&amp;rsquo;a%&amp;lsquo;）。 对于不等于(!= 和 &amp;lt;&amp;gt;)会放弃使用索引而进行全表扫描。 对于左模糊like ‘%&amp;hellip;’无法直接使用索引，但可以利用reverse，变化成 右模糊like ‘…%’。 对于联合索引来说，如果存在范围查询，比如between、&amp;gt;、&amp;lt;等条件时，会造成后面的索引字段失效。 对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。 在 where 子句中对字段进行 null 值判断，会导致引擎放弃使用索引而进行全表扫描，所以字段要有默认值 在 where 子句中对字段进行函数、算术运算或其他表达式运算，会导致引擎放弃使用索引而进行全表扫描。 如果字段类型是字符串，where 时一定用引号括起来，否则索引失效 将大的 delete，update 或者 insert 查询变成多个小查询 如果插入数据过多，考虑批量插入 select语句务必指明字段名称，尽量避免使用&amp;rdquo;select * &amp;ldquo;。因为它会进行全表扫描。 Inner join 、left join、right join，优先使用 Inner join。如果是 left join，左边表结果尽量小。Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集。left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。都满足 SQL 需求的前提下，推荐优先使用 Inner join(内连接)，如果要使用 left join，左边表数据结果尽量小，如果有条件的尽量放到左边处理。 区分 in 和 exists、not in 和not exists</description>
+    </item>
+    
+    <item>
+      <title>MySql索引</title>
+      <link>/sql/mysql%E7%B4%A2%E5%BC%95/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E7%B4%A2%E5%BC%95/</guid>
+      <description>MySql索引 1.基础 - 首先Mysql的基本存储结构是页(记录都存在页里边)：  各个数据页可以组成一个双向链表 而每个数据页中的记录又可以组成一个单向链表 每个数据页都会为存储在它里边儿的记录生成一个页目录，在通过主键查找某条记录的时候可以在页目录中使用二分法快速定位到对应的槽，然后再遍历该槽对应分组中的记录即可快速找到指定的记录 总结就是：使用二分查找算法从页目录中快速定位记录。 以其他列(非主键)作为搜索条件：只能从最小记录开始依次遍历单链表中的每条记录。
+ 所以说，如果我们写select * from user where username = &amp;lsquo;Java3y&amp;rsquo;这样没有进行任何优化的sql语句，默认会这样做：
+ 定位到记录所在的页
+ 1.需要遍历双向链表，找到所在的页
+ 2.从所在的页内中查找相应的记录
+ 3.由于不是根据主键查询，只能遍历所在页的单链表了 总结就是：遍历双向链表定位页，遍历所在页的单链表定位数据。
+ 很明显，在数据量很大的情况下这样查找会很慢！
+  2.索引提高检索速度 - 一般经常需要搜索、排序、WHERE的列上加上索引，可以加快对应操作的速度。 - 索引将无序的数据变成有序(相对)： - 很明显的是：没有用索引我们是需要遍历双向链表来定位对应的页，有索引可以通过“目录”就可以很快地定位到对应的页上了！ - 其实底层结构就是B+树，B+树作为树的一种实现，能够让我们很快地查找出对应的记录。
+3.索引降低增删改的速度 - B+树是平衡树的一种。 &amp;gt;平衡树：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。
+ 如果一棵普通的树在极端的情况下，是能退化成链表的(树的优点就不复存在了) 检索的时间复杂度就是O(logn) B+树是一颗平衡树，如果我们对这颗树增删改的话，那肯定会破坏它的原有结构。 要维持平衡树，就必须做额外的工作。正因为这些额外的工作开销，导致索引会降低增删改的速度  4.聚簇和非聚簇索引 简单概括： - 聚簇索引就是以主键创建的索引，检索效率比非聚簇索引高，但对数据更新影响较大。 - 非聚簇索引就是以非主键创建的索引，非聚簇索引检索效率比聚集索引低，但对数据更新影响较小。 &amp;gt;非聚集索引表示数据存储在一个地方，索引存储在另一个地方，索引带有指针指向数据的存储位置。
+区别：
+ 聚簇索引在叶子节点存储的是表中的数据 非聚簇索引在叶子节点存储的是主键值 使用非聚簇索引查询出数据时，拿到叶子上的主键再去查到想要查找的数据。(拿到主键再查找这个过程叫做回表) 非聚集索引也叫做二级索引  5.索引最左匹配原则 - 索引可以简单如一个列(a)，也可以复杂如多个列(a, b, c, d)，即联合索引。 - 如果是联合索引，那么key也由多个列组成，同时，索引只能用于查找key是否存在（相等），遇到范围查询(&amp;gt;、&amp;lt;、between、like左匹配(%As))等就不能进一步匹配了，后续退化为线性查找。 - 因此，列的排列顺序决定了可命中索引的列数。 &amp;gt;如有索引(a, b, c, d)，查询条件a = 1 and b = 2 and c &amp;gt; 3 and d = 4，则会在每个节点依次命中a、b、c，无法命中d。(很简单：索引命中只能是相等的情况，不能是范围匹配) - 通过a,c条件查询能不能使用或命中这个索引？&amp;mdash;&amp;ndash;能 - 通过b,c条件查询能不能使用或命中这个索引？&amp;mdash;&amp;ndash;不能</description>
+    </item>
+    
+    <item>
+      <title>MySQL乐观锁电商库存并发问题应用</title>
+      <link>/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/</guid>
+      <description>MySQL乐观锁电商库存并发问题应用 下单涉及的一些操作  1.下单 2.下单同时预占库存 3.支付 4.支付成功真正减扣库存 5.取消订单 6.回退预占库存
+ 方案选择：  商品加入购物车后，选择下单，这个时候去预占库存。用户选择去支付说明了，用户购买欲望强烈的。订单也有一个时效，例如半个小时。超过半个小时后，系统自动取消订单，回退预占库存。  可进行操作：  1.UI拦截，点击后按钮置灰，不能继续点击，防止用户，连续点击造成的重复下单。 2.下单前获取一个下单的唯一token，下单的时候需要这个token。后台系统校验这个 token是否有效，才继续进行下单操作。 3.进来的时候 先 get 库存数量是否充足，再执行 increment。以 increment &amp;gt; 0 为准。 4.因为检查库存 与 减少库存 不是原子性的，而redis.increment 是个原子操作，可以此为准。 redisService.increment(key, -req.getNum().longValue()) &amp;gt;= 0 说明库存充足，可以下单。 redisService.increment(key, -req.getNum().longValue()) &amp;lt; 0 的时候 不能下单，次数库存不足。并且需要 回加刚刚减去的库存数量，否则会导致刚才减扣的数量 一直买不出去。数据库与缓存的库存不一致。 5.都满足进行真正的扣减库存 5.1生成订单 5.2订单超过时效，订单取消等，订单取消，库存回滚。  MySQL乐观锁电商库存并发问题应用 1.使用数据版本(Version)记录机制实现，这是乐观锁最常用的一种实现方式。 mysql&amp;gt; select * from t_goods; +----+--------+------+---------+ | id | status | name | version | +----+--------+------+---------+ | 1 | 1 | 道具 | 1 | | 2 | 2 | 装备 | 2 | +----+--------+------+---------+ 2 rows in set  何谓数据版本？即为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 “version” 字段来实现。当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。</description>
+    </item>
+    
+    <item>
+      <title>MySql锁</title>
+      <link>/sql/mysql%E9%94%81/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E9%94%81/</guid>
+      <description>MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分  乐观锁 悲观锁  1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&amp;gt;SELECT * FROM table_name WHERE &amp;hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &amp;gt;SELECT * FROM table_name WHERE &amp;hellip; FOR UPDATE  1.3 从锁粒度划分  表级锁(table lock)  开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低  行级锁(row lock)  开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高   表锁 LOCK TABLE mchopin READ;用读锁锁表，会阻塞其他事务修改表数据，但不会阻塞其他事务读该表。 LOCK TABLE mchopin WRITE;用写锁锁表，会阻塞其他事务读和写。 批量解锁：unlock tables; 行锁 select * from mchopin where id = 3 lock in share mode;读行锁，仅对一行数据加了读锁。 select * from mchopin where id = 3 for update;写行锁，仅对一行数据加了写锁。**</description>
+    </item>
+    
+    <item>
+      <title>Spring事务的隔离级别和传播行为</title>
+      <link>/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</guid>
+      <description>简述 在高并发的情况下，MySQL 事务的并发处理会带来几个问题脏读、不可重复读、幻读。由于高并发事务带来这几个问题，所以就产生了事务的隔离级别。
+事务是什么  事务是数据库操作的最小工作单元，用户定义的一系列数据库操作作为一个整体一起向系统提交，要么都执行、要么都不执行。是不可分割的工作单元。 &amp;gt; 如果没做好并发控制，可能会造成脏读、不可重复读和幻读等问题。  可交叉程度  脏读Dirty Read（看到的数据则是不正确的） 当一个事务能看见另外一个事务未提交的数据时，就称为脏读。如果这个事务被回滚了而不是提交了，那么其它事务看到的数据则是不正确的，是“脏”的。  Non-repeatable Read(不可重复读) 两次读取到的数据不同 假设事务A读取了一行数据，接下来事务B改变了这行数据，之后事务A再一次读取这行数据，结果就是事务A两次读取到的数据不同。  Phantom Read(幻读) 发现多出来一条数据
+假设事务A通过一个 where 条件读取到了一个结果集，事务B这时插入了一条符合事务A的 where 条件的数据，之后事务A通过同样的 where 条件再次查询时，发现多出来一条数据。   1.事务隔离级别(Isolation) JDBC 规范增加了隔离级别，来满足了 SQL:2003 定义的 4 种事务隔离级别。 在安装MySQL时，安装默认的隔离级别就是：可重复读。 可以通过 select @@global.tx_isolation; 来查看当前隔离级别。 隔离级别从最宽松到最严格，排序如下所示：
+TRANSACTION_NONE(无事务) 这意味着当前的 JDBC 驱动不支持事务，也意味着这个驱动不符合 JDBC 规范。
+ 1.READ_UNCOMMITTED(读未提交) 允许事务看到其它事务修改了但未提交的数据，这意味着有可能是脏读、不可重复读或者、幻读。
+ 2.READ_COMMITTED(读提交) 一个事务在未提交之前，所做的修改不会被其它事务所看见。这能避免脏读，但避免不了不可重复读和幻读。
+ 3.**REPEATABLE_READ(可重复读取) MySQL默认的事务隔离级别 避免了脏读和不可重复读，但幻读**依然是有可能发生的。
+ 4.SERIALIZABLE(序列化) 避免了脏读、不可重复读以及幻读。   2.Propagation事务传播行为 Propagation属性用来枚举事务的传播行为。所谓事务传播行为就是多个事务方法相互调用时，事务如何在这些方法间传播。Spring支持7种事务传播行为，默认为REQUIRED。
+ 1.</description>
+    </item>
+    
+    <item>
+      <title>乐观锁和悲观锁</title>
+      <link>/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</guid>
+      <description>乐观锁和悲观锁 1.乐观锁  总是认为不会产生并发问题，每次去取数据的时候总认为不会有其他线程对数据进行修改，因此不会上锁，但是在更新时会判断其他线程在这之前有没有对数据进行修改，一般会使用版本号机制或CAS操作实现  version方式： 一般是在数据表中加上一个数据版本号version字段，表示数据被修改的次数，当数据被修改时，version值会加一。当线程A要更新数据值时，在读取数据的同时也会读取version值，在提交更新时，若刚才读取到的version值为当前数据库中的version值相等时才更新，否则重试更新操作，直到更新成功。
+update table set x=x+1, version=version+1 where id=#{id} and version=#{version};  CAS操作方式： 即compare and swap 或者 compare and set，涉及到三个操作数，数据所在的内存值，预期值，新值。当需要更新时，判断当前内存值与之前取到的值是否相等，若相等，则用新值更新，若失败则重试，一般情况下是一个自旋操作，即不断的重试。
+2.悲观锁  总是假设最坏的情况，每次取数据时都认为其他线程会修改，所以都会加锁（读锁、写锁、行锁等），当其他线程想要访问数据时，都需要阻塞挂起。可以依靠数据库实现，如行锁、读锁和写锁等，都是在操作之前加锁，在Java中，synchronized的思想也是悲观锁。 比如共享锁和排他锁（行锁，表锁的读写锁）都是悲观锁。  3.适用场景  悲观锁：比较适合写入操作比较频繁的场景，如果出现 大量的读取操作，每次读取的时候都会进行加锁，这样会增加大量的锁的开销，降低了系统的吞吐量。 乐观锁：比较适合读取操作比较频繁的场景，如果出现大量的写入操作，数据发生冲突的可能性就会增大，为了保证数据的一致性，应用层需要不断的重新获取数据，这样会增加大量的查询操作，降低了系统的吞吐量。 总结：两种所各有优缺点，读取频繁使用乐观锁，写入频繁使用悲观锁。  参考：https://blog.csdn.net/weixin_41835916/article/details/81487767</description>
+    </item>
+    
+    <item>
+      <title>OOM</title>
+      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/</link>
+      <pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/</guid>
+      <description>Java OOM 1.什么是OOM OOM，全称“Out Of Memory”，翻译成中文就是“内存用完了”,当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也已经没有空间可回收时，就会抛出这个erro
+2.为什么会OOM、出现的原因是什么?  分配的少了：比如虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。 应用用的太多，并且用完没释放，浪费了。此时就会造成内存泄露或者内存溢出。  3.解决办法  java.lang.OutOfMemoryError: Java heap space ——&amp;gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。 java.lang.OutOfMemoryError: PermGen space ——&amp;gt;java永久代溢出，即方法区溢出了，一般出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。此种情况可以通过更改方法区的大小来解决，使用类似-XX:PermSize=64m -XX:MaxPermSize=256m的形式修改。另外，过多的常量尤其是字符串也会导致方法区溢出。 java.lang.StackOverflowError ——&amp;gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在死循环或者深度递归调用造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数-Xss来设置栈的大小  ps:JVM调优参数  -Xms:为jvm启动时分配的内存，比如-Xms200m，表示分配200M -Xmx:为jvm运行过程中分配的最大内存，比如-Xms500m，表示jvm进程最多只能够占用500M内存 -Xss:为jvm启动的每个线程分配的内存大小，默认JDK1.4中是256K，JDK1.5+中是1M  参考：https://blog.csdn.net/weixin_41835916/article/details/81558310</description>
+    </item>
+    
+    <item>
+      <title>Java内存模型</title>
+      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
+      <description>Java内存模型 1.java程序执行过程: &amp;gt;Java源代码文件(.java后缀)会被Java编译器编译为字节码文件(.class后缀)，然后由JVM中的类加载器加载各个类的字节码文件，加载完毕之后，交由JVM执行引擎执行。在整个程序执行过程中，JVM会用一段空间来存储程序执行期间需要用到的数据和相关信息，这段空间一般被称作为Runtime Data Area（运行时数据区），也就是我们常说的JVM内存。因此，在Java中我们常常说到的内存管理就是针对这段空间进行管理（如何分配和回收内存空间）。
+2.运行时数据区包括哪几部分： 2.1 方法区（Method Area）  方法区是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。当方法区无法满足内存分配需求时，将抛出OutOfMemoryError 异常。 方法区里存放着类的版本，字段，方法，接口和常量池。常量池里存储着字面量和符号引用。符号引用包括：  1.类的全限定名 2.字段名和属性 3.方法名和属性。   2.2 JVM堆（Java Heap）  Java 堆也是属于线程共享的内存区域，它在虚拟机启动时创建，是Java 虚拟机所管理的内存中最大的一块，主要用于存放对象实例，几乎所有的对象实例都在这里分配内存，注意Java 堆是垃圾收集器管理的主要区域，因此很多时候也被称做GC堆，如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError 异常。  2.3 程序计数器(Program Counter Register)：  字节码解释器工作时，通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。 多线程中，为了让线程切换后能恢复到正确的执行 位置，每条线程都需要有一个独立的程序计数器，各条线程之间互不影响、独立存储，因此这块内存是线程私有的。  2.4 虚拟机栈(Java Virtual Machine Stacks)：  Java虚拟机栈也是线程私有的，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链表、方法出口信息等。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。  2.5 本地方法栈(Native Method Stacks)：  本地方法栈属于线程私有的数据区域，这部分主要与虚拟机用到的 Native 方法相关，一般情况下，我们无需关心此区域。  参考：http://blog.csdn.net/javazejian/article/details/72772461</description>
+    </item>
+    
+    <item>
+      <title>布隆Bloom过滤器</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
+      <description>1.什么是布隆过滤器？  一个名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。 &amp;gt;位数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1。这样申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000&amp;frasl;1024 kb ≈ 122kb 的空间。 &amp;gt; bit数组 0 0 0 0 0 0 0 0 0 0 0 0 0 0  2.布隆过滤器的原理  当一个元素加入布隆过滤器中的时候，会进行如下操作：
+ 使用布隆过滤器中的哈希函数对元素值进行计算，得到哈希值（有几个哈希函数得到几个哈希值）。 根据得到的哈希值，在位数组中把对应下标的值置为 1。   当我们需要判断一个元素是否存在于布隆过滤器的时候，会进行如下操作：
+ 对给定元素再次进行相同的哈希计算； 得到值之后判断位数组中的每个元素是否都为 1，如果值都为 1，那么说明这个值在布隆过滤器中，如果存在一个值不为 1，说明该元素不在布隆过滤器中。    布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。
+ 3.使用Google开源的 Guava中自带的布隆过滤器  创建了一个最多存放 最多 1500个整数的布隆过滤器，并且我们可以容忍误判的概率为百分之（0.</description>
+    </item>
+    
+    <item>
+      <title>Java缓存</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/java%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/java%E7%BC%93%E5%AD%98/</guid>
+      <description> 缓存 1.基本思想  避免用户在请求数据的时候获取速度过于缓慢，所以我们在数据库之上增加了缓存这一层来弥补。  2.本地缓存解决方案  常见的有Ehcache、guavaCache、Caffeine Cache等，性能最优的为Caffeine cache。 常见的单体架构使用 Nginx 来做负载均衡，部署两个相同的服务到服务器，两个服务使用同一个数据库，并且使用的是本地缓存。
+3.为什么要用分布式缓存？而不用本地缓存？ 本地缓存存在局限性：
+ 本地缓存对分布式架构支持不友好，比如同一个相同的服务部署在多台机器上的时候，各个服务之间的缓存是无法共享的，因为本地缓存只在当前机器上有。 本地缓存容量受服务部署所在的机器限制明显。 如果当前系统服务所耗费的内存多，那么本地缓存可用的容量就很少。   4.缓存读写模式/更新策略/处理流程  Cache Aside Pattern（旁路缓存模式）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：更新 DB，然后直接删除 cache 。  Read/Write Through Pattern（读写穿透）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：先查 cache，cache 中不存在，直接更新 DB。 cache 中存在，则先更新 cache，然后 cache 服务自己更新 DB（同步更新 cache 和 DB）。  Write Behind Pattern（异步缓存写入）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：无论是否存在，都直接跟新缓存，最好异步批量的方式来更新 DB。   </description>
+    </item>
+    
+    <item>
+      <title>git创建新仓库</title>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/</guid>
+      <description>小灰的算法之旅 1.算法和数据结构  算法是什么？ 算法是一系列程序指令，用来处理特定运算和逻辑问题。 什么是数据结构？ 数据结构是数据的组织、管理和存储格式，其使用的目的是为了高效的访问和修改。 数据结构包含数组，链表。以及树，图这种复杂的数据结构。 3.什么是时间复杂度？ T(n) = O(f(n)) 4.什么是空间复杂度？ S(n) = O(f(n))  2.数据结构基础  数组VS链表     VS 查找 更新 插入 删除     数组 O(1) O(1) O(n) O(n)   链表 O(n) O(1) O(1) O(1)     栈和队列
+ 栈是先入后出FILO(First In Last Out) 入栈：PUSH 出栈：POP 可以用来实现递归逻辑，以及面包屑导航（浏览器浏览历史回退）
+ 队列是先入先出FIFO(First In First Out) 队头:Front 队尾：Rear 入队：enquere 出队：dequeue
+  散列表（哈希表 hash table） 散列表也叫哈希表，是存储Key-Value的集合，对于一个key，散列表可以在接近 O(1)的时间内完成读写操作。散列表通过哈希函数实现key和数组下标的转换，通过开放寻址法和链表法来解决冲突。 哈希函数：通过哈希函数，可以将字符串和其他类型的Key，转换成数组下标index 例如Key=abcd,index= HashCode(&amp;ldquo;abcd&amp;rdquo;)%Array.</description>
+    </item>
+    
+    <item>
+      <title>设计模式分类</title>
+      <link>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/</guid>
+      <description> 看懂UML类图和时序图  从一个示例开始 类之间的关系 时序图 附录  创建型模式  简单工厂模式（静态工厂方法模式）（不在创建型里面） 工厂方法模式 抽象工厂模式 单例模式 建造者模式 原型模式  结构型模式  适配器模式 桥接模式 装饰模式 外观模式 享元模式 代理模式  行为型模式  命令模式 中介者模式 观察者模式 状态模式 策略模式   </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/</link>
+      <pubDate>Fri, 20 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>参数校验</title>
+      <link>/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
+      <pubDate>Mon, 24 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
       <description>通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
 步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.</description>
     </item>
     
     <item>
-      <title>Ehcache和Redis</title>
-      <link>http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/</link>
+      <title>WebStorm</title>
+      <link>/web/webstorm/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/web/webstorm/</guid>
+      <description>当执行webpack -v报错时 One CLI for webpack must be installed. These are recommended choices
+先全局安装webpack和webpack-cli cnpm install webpack -g cnpm install webpack-cli -g 再局部安装webpack和webpack-cli cnpm install webpack &amp;ndash;save-dev cnpm install webpack-cli &amp;ndash;save-dev</description>
+    </item>
+    
+    <item>
+      <title>阿里巴巴Java开发手册与代码规约插件P3C-PMD</title>
+      <link>/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</guid>
+      <description> P-3C Orion【猎户座反潜巡逻机】，阿里大概取p3c先进，监测，发现潜在问题的意思
+前言 2017年的时，阿里官方首次公开阿里Java代码规范标准，发布阿里巴巴Java开发手册。 这套Java统一规范标准将有助于提高行业编码规范化水平，帮助行业人员提高开发质量和效率、大大降低代码维护成本。
+目前已更迭了五个版本，2019年6月19日，阿里巴巴Java开发手册（华山版）》正式发布，该版本命名为华山版是因为最新版本手册集成了社区开发者集体智慧的结晶。
+该开发手册阿里内部Java工程师所遵循的开发规范，涵盖编程规约、单元测试规约、异常日志规约、MySQL规约、工程规约、安全规约等，这是近万名阿里Java技术精英的经验总结，并经历了多次大规模一线实战检验及完善。这是阿里回馈给Java社区的一份礼物，希望能够帮助企业开发团队在Java开发上更高效、容错、有协作性，提高代码质量，降低项目维护成本。
+虽然已经发布了开发手册，但是为了让开发者更加方便、快速的将规范推动并实行起来，阿里巴巴基于手册内容，研发了一套自动化的IDE检测插件（IDEA、Eclipse）， 该插件在扫描代码后，将不符合《手册》的代码按Blocker/Critical/Major三个等级显示在下方，甚至在IDEA上，还基于检查机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。另外对于历史代码，部分规则实现了批量一键修复的功能，提升代码质量，提高团队研发效能。
+如何安装 eclipse安装 1.打开https://p3c.alibaba.com/plugin/eclipse/update 2.点击Zip File直接下载，下载完成后解压缩，将将【features】及【plugins】两个目录复制到eclipse安装目录下（eclipse.exe同级目录），重启eclipse idea安装 1.访问：https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines/versions 下载对应版本的安装包 2.依次点击【File】-&amp;gt;【Settings】-&amp;gt;【Plugins】-&amp;gt;【install plugin from disk】然后点击确认
+如何使用 1.首先现贴一段测试代码
+public class Test { public static void main(String[] args) { String _name = &amp;quot;name&amp;quot;; System.out.println(_name.equals(&amp;quot;name&amp;quot;)); Long temp = 10l; if(temp ==10L) System.out.println(&amp;quot;temp = 10&amp;quot;); else System.out.println(&amp;quot;temp != 10&amp;quot;); HashMap&amp;lt;String,Integer&amp;gt; map = new HashMap&amp;lt;&amp;gt;(); } }  扫描后的结果： </description>
+    </item>
+    
+    <item>
+      <title>阿里支付</title>
+      <link>/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/</guid>
+      <description> [x]当面付-扫码支付快速接入(https://docs.open.alipay.com/194/106078/) [x]电脑网站支付（https://docs.open.alipay.com/270/105899/）  </description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>/web/css/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/web/css/</guid>
+      <description>list-style-type: 默认点 none 无 square 方格
+后代组合器 li em 相邻兄弟选择器 h1 + p 根据状态确定样式 a:link 链接颜色 a:visited 访问后的颜色 a:hover{ text-decoration: none; 覆盖后，链接去除下划线 }
+body h1 + p .special { color: yellow; background-color: black; padding: 5px; } 上面的代码为以下元素建立样式：在之内，紧接在后面的元素的内部，类名为special。
+refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML</description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>/web/html/</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/web/html/</guid>
+      <description>disabled 布尔熟悉，可以使输入框变得不可选（变灰色） 例如：
+&amp;lt;!-- 使用disabled属性来防止终端用户输入文本到输入框中 --&amp;gt; &amp;lt;input type=&amp;quot;text&amp;quot; disabled&amp;gt;  粗体  有语义  斜体  有语义  下划线  无语义
+当链接到同一网站的其他位置时，你应该使用相对链接（当链接到另一个网站时，你需要使用绝对链接）
+ 下标  上标
+有大量的HTML元素可以来标记计算机代码：
+: 用于标记计算机通用代码。 : 对保留的空格（通常是代码块）——如果您在文本中使用缩进或多余的空白，浏览器将忽略它，您将不会在呈现的页面上看到它。但是，如果您将文本包含在标签中，那么空白将会以与你在文本编辑器中看到的相同的方式渲染出来。 : 用于标记具体变量名。 : 用于标记输入电脑的键盘（或其他类型）输入。 : 用于标记计算机程序的输出。
+HTML 还支持将时间和日期标记为可供机器识别的格式的  元素。例如： 2016年1月20日
+html5包括，，，，，和元素。
+div中的img和p可替换成 figure中的img和figcaption html5 中的 和  元素
+总而言之，如果图像对您的内容里有意义，则应使用HTML图像。 如果图像纯粹是装饰，则应使用CSS背景图片
+可点击图片创建
+&amp;lt;a href=&amp;quot;https://developer.mozilla.org/en-US/&amp;quot;&amp;gt; &amp;lt;img src=&amp;quot;https://mdn.mozillademos.org/files/6851/mdn_logo.png&amp;quot; alt=&amp;quot;MDN logo&amp;quot; /&amp;gt; &amp;lt;/a&amp;gt;  refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML</description>
+    </item>
+    
+    <item>
+      <title>HTML&amp;CSS</title>
+      <link>/web/htmlcss/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/web/htmlcss/</guid>
+      <description>第一课 常见HTML术语：  元素(elements)：
+&amp;lt;h1&amp;gt;-&amp;lt;h6&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;a&amp;gt;，&amp;lt;div&amp;gt;，&amp;lt;span&amp;gt;，&amp;lt;strong&amp;gt;，和&amp;lt;em&amp;gt;元素，等等。  自封闭元素 &amp;lt;br&amp;gt;&amp;lt;embed&amp;gt;&amp;lt;hr&amp;gt;&amp;lt;img&amp;gt;&amp;lt;input&amp;gt;&amp;lt;link&amp;gt;&amp;lt;meta&amp;gt;&amp;lt;param&amp;gt;&amp;lt;source&amp;gt;&amp;lt;wbr&amp;gt;  标签(tags)：
+&amp;lt;a&amp;gt;...&amp;lt;/a&amp;gt;  属性(attribute)：
+&amp;lt;a href=&amp;quot;http://shayhowe.com/&amp;quot;&amp;gt;Shay Howe&amp;lt;/a&amp;gt;    典型的HTML文档结构 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Hello World&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;Hello World&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;This is a web page.&amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  CSS术语 选择器
+在CSS中，选择器后跟花括号，{}其中包含要应用于所选元素的样式。这里的选择器以所有&amp;lt;p&amp;gt;元素为目标  属性
+p { color: ...; font-size: ...; }  值
+p { color: orange; font-size: 16px; }  选择器分类  类型选择器
+div { ... }  类选择器</description>
+    </item>
+    
+    <item>
+      <title>TODO</title>
+      <link>/other/todo/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/other/todo/</guid>
+      <description>GitBook netty Android ?  Web TypeScript node.js JAVA-JWT (Json Web Token) JAVA-OAuth2.0  </description>
+    </item>
+    
+    <item>
+      <title>SQL语法</title>
+      <link>/sql/sql-%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/sql-%E8%AF%AD%E6%B3%95/</guid>
+      <description>Mysql  Mysql分页
+select * from stu limit m, n; //m = (startPage-1)*pageSize,n = pageSize  第一个参数值m表示起始行，第二个参数表示取多少行（页面大小） mysql从0开始计数行数
+Oracle Oralce分页
+select * from ( select rownum rn,a.* from table_name a where rownum &amp;lt;= x //结束行，x = startPage*pageSize ) where rn &amp;gt;= y; //起始行，y = (startPage-1)*pageSize+1  创建索引
+create index index_name(idx_****) on table table_name(column1_name,column2_name);  oracle只查第一条数据
+select * from (select * from &amp;lt;table&amp;gt; order by &amp;lt;key&amp;gt; desc) where rownum=1;  oracle触发器</description>
+    </item>
+    
+    <item>
+      <title>微信开发</title>
+      <link>/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
+      <description>微信商户平台-现金红包 微信商户平台-企业付款到零钱 微信公众号开发-授权  接口配置信息修改  例如：编写一个公网接口 http://1b51z57431.51mypc.cn/tokenAuth 点击修改接口配置信息的时候，腾讯会给http://1b51z57431.51mypc.cn/tokenAuth 发送一个get请求，包含参数echostr，此时需要将echostr原路返回，就能够 修改接口配置信成功
+@GetMapping(value = &amp;quot;/tokenAuth&amp;quot;) public String tokenAuth(HttpServletRequest httpServletRequest){ Map&amp;lt;String, String&amp;gt; param = Request2Map.toMap(httpServletRequest); return param.get(&amp;quot;echostr&amp;quot;); }   修改JS安全域名  将http://1b51z57431.51mypc.cn设置为安全域名即可  设置网页帐号-网页授权获取用户基本信息  将1b51z57431.51mypc.cn填入即可  获取授权code  拼装并请求：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=123#wechat_redirect H5平台demo【https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0d453bb3d089f6f9&amp;amp;redirect_uri=http%3A%2F%2Ffanxx4.natapp1.cc%2Fww_h5_dx%2F%23%2Fard%3Ftoken%3D12345&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=123#wechat_redirect】 微信会回调到：http://1b51z57431.51mypc.cn/authorization?code=001NOmD91cWL6N1S1lF911BoD91NOmDO&amp;amp;state=123 回调会带入授权code 将获取到的授权code生成授权链接  静默授权： https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=123#wechat_redirect 会得到openid，access_token等参数 非静默授权-用户确认授权：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization_userinfo&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=123#wechat_redirect 会得到头像昵称等数据   公众号菜单栏配置  打开https://mp.weixin.qq.com/debug/cgi-bin/apiinfo
+ 接口类型选择-基础支持 设置appid和appsecret获取access_token 选择自定义菜单-自定义菜单创建接口/menue/create填入access_token并填入body为下：
+{ &amp;quot;button&amp;quot;:[ { &amp;quot;type&amp;quot;:&amp;quot;click&amp;quot;, &amp;quot;name&amp;quot;:&amp;quot;测试&amp;quot;, &amp;quot;key&amp;quot;:&amp;quot;V1001_TODAY_MUSIC&amp;quot; }, { &amp;quot;name&amp;quot;:&amp;quot;营销服务&amp;quot;, &amp;quot;sub_button&amp;quot;:[ { &amp;quot;type&amp;quot;:&amp;quot;view&amp;quot;, &amp;quot;name&amp;quot;:&amp;quot;百度&amp;quot;, &amp;quot;url&amp;quot;:&amp;quot;http://www.</description>
+    </item>
+    
+    <item>
+      <title>全局异常处理</title>
+      <link>/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
+      <description>通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
+步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.</description>
+    </item>
+    
+    <item>
+      <title>Caffeine Cache接入</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/caffeine-cache%E6%8E%A5%E5%85%A5/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/</guid>
-      <description> ehcache 和 redis 比较  ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。 redis是通过socket访问到缓存服务，效率比ecache低，比数据库要快很多， 处理集群和分布式缓存方便，有成熟的方案。如果是单个应用或者对缓存访问要求很高的应用，用ehcache。如果是大型系统，存在缓存共享、分布式部署、缓存内容很大的，建议用redis。  </description>
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/caffeine-cache%E6%8E%A5%E5%85%A5/</guid>
+      <description> Caffeine Cache接入  Caffeine Cache，目前最快的Java内存框架，堆内存。
+ 接入方式：
+ 1.引入pom文件
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.ben-manes.caffeine&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;caffeine&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.7.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-cache&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  2.编写CaffeineConfig并注入CacheManager
+import org.springframework.cache.CacheManager; import org.springframework.cache.annotation.CachingConfigurerSupport; import org.springframework.cache.annotation.EnableCaching; import org.springframework.cache.caffeine.*; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import com.github.benmanes.caffeine.cache.Caffeine; import java.util.concurrent.TimeUnit; @Configuration @EnableCaching public class CaffeineConfig extends CachingConfigurerSupport { @Bean public CacheManager caffeineCacheManager() { CaffeineCacheManager cacheManager = new CaffeineCacheManager(); //定制化缓存Cache cacheManager.setCaffeine(Caffeine.newBuilder() .expireAfterWrite(3, TimeUnit.MINUTES) .initialCapacity(100) .maximumSize(10000)) ; return cacheManager; } }  3.通过注解使用
+@Cacheable(cacheNames = &amp;quot;cache name&amp;quot;, key = &amp;quot;#patam1+&#39;-&#39;+#param2&amp;quot;) public void test(String param1,String param2){ }     </description>
     </item>
     
     <item>
       <title>Filter和Interceptor</title>
-      <link>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</link>
+      <link>/spring/filter%E5%92%8Cinterceptor/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</guid>
-      <description>Filter调用链 // Interceptor的源码 public interface HandlerInterceptor { // 在调用真正的处理请求类之前调用 boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception; // 在调用真正的处理请求类之后调用 void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception; // 在完成渲染或者出错之后调用 void afterCompletion( HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception; }  refer to: https://www.jianshu.com/p/5f5e5211bbdb refer to: https://www.cnblogs.com/junzi2099/p/8022058.html</description>
+      <guid>/spring/filter%E5%92%8Cinterceptor/</guid>
+      <description>#Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
+&amp;lt;filter&amp;gt; &amp;lt;description&amp;gt;字符集过滤器&amp;lt;/description&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;org.springframework.web.filter.CharacterEncodingFilter&amp;lt;/filter-class&amp;gt; &amp;lt;init-param&amp;gt; &amp;lt;description&amp;gt;字符集编码&amp;lt;/description&amp;gt; &amp;lt;param-name&amp;gt;encoding&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;UTF-8&amp;lt;/param-value&amp;gt; &amp;lt;/init-param&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.</description>
     </item>
     
     <item>
       <title>JSR-303参数校验</title>
-      <link>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
+      <link>/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
+      <guid>/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
       <description>JSR-303参数校验 步骤 1.创建校验参数类
 import lombok.Data; import org.hibernate.validator.constraints.Range; import org.springframework.format.annotation.DateTimeFormat; import javax.validation.constraints.*; import java.util.Date; /** * 参数验证请求参数 * @Author shizhongcai * @Date 2019/11/20 15:35 */ @Data public class ValidatorReqVo{ @NotNull(message = &amp;quot;id不能为空&amp;quot;) private Integer id; @NotNull @Future(message = &amp;quot;格式为yyyy-MM-dd,且为将来时间&amp;quot;) @DateTimeFormat(pattern = &amp;quot;yyyy-MM-dd&amp;quot;) private Date future; @NotNull @DecimalMin(value = &amp;quot;0.1&amp;quot;) @DecimalMax(value = &amp;quot;1000&amp;quot;) private Double doubleValue; @NotNull @Min(value = 1) @Max(value = 10) private Integer intValue; @NotNull @Range(min = 1,max = 10,message = &amp;quot;最小为1，最大为10&amp;quot;) private Integer range; @NotBlank @Email private String email; @NotBlank @Size(min = 10,max = 20,message = &amp;quot;字符串长度在10-20之间&amp;quot;) private String strSize; }  2.</description>
     </item>
     
     <item>
-      <title>其他</title>
-      <link>http://www.sszblog.xyz/spring/%E5%85%B6%E4%BB%96/</link>
+      <title>Redis缓存</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/redis%E7%BC%93%E5%AD%98/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E5%85%B6%E4%BB%96/</guid>
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/redis%E7%BC%93%E5%AD%98/</guid>
+      <description>1.Redis简单介绍  语言开发的内存数据库，除了做KV缓存外还能做分布式锁、延时队列、定时任务等等  2.缓存读写模式/更新策略/处理流程  Cache Aside Pattern（旁路缓存模式） Read/Write Through Pattern（读写穿透） Write Behind Pattern（异步缓存写入）  3.为什么要用 Redis/为什么要用缓存？  简单来说使用缓存主要是为了提高接口响应速度，提升用户体验以及应对更多的用户。 高性能：对于高频数据并且不会经常改变的数据，保证下一次用户访问的数据直接从缓存中读取。 高并发：数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+， &amp;gt; QPS（Query Per Second）：服务器每秒可以执行的查询次数；  4.Redis 常见数据结构以及使用场景分析 4.1 String  普通操作：
+127.0.0.1:6379&amp;gt; set key value #设置 key-value 类型的值 OK 127.0.0.1:6379&amp;gt; get key # 根据 key 获得对应的 value &amp;quot;value&amp;quot; 127.0.0.1:6379&amp;gt; exists key # 判断某个 key 是否存在 (integer) 1 127.</description>
+    </item>
+    
+    <item>
+      <title>其他</title>
+      <link>/spring/%E5%85%B6%E4%BB%96/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/%E5%85%B6%E4%BB%96/</guid>
       <description>其他一些日常工作中遇到的问题：
 1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&amp;ldquo;singleton&amp;rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&amp;ldquo;prototype&amp;rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</description>
     </item>
     
     <item>
       <title>基于自定义注解的参数解析器</title>
-      <link>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
+      <link>/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
+      <guid>/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
       <description>基于自定义注解的参数解析器 背景 在工作中，常会对接一些第三方应用，通常第三方会采用Rsa+Aes加密来通信，但是每个第三方的加密方式可能不一致。此时得好好规划一下实现方案了。因此我们采用注解+Spring自带了参数解析类，实现自己的参数解析器。
 原理 通过HandlerMethodArgumentResolver实现自定义参数解析
 实现 步骤1：创建注解，例如创建一个解析Aes加密的注解AesJson import java.lang.annotation.*; @Target({ElementType.PARAMETER}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface AesJson { }  步骤2：创建加密参数实体类对象 传入的JSON数据格式为{&amp;ldquo;data&amp;rdquo;:&amp;ldquo;xxxxxxxxxx&amp;rdquo;}
@@ -124,58 +540,57 @@ import lombok.Data; @Data public class AesBaseParams { private String data; }  �
     
     <item>
       <title>接口限流-令牌桶限流</title>
-      <link>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
+      <link>/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
+      <guid>/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
       <description>guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&amp;lt;String, RateLimiter&amp;gt; map = new ConcurrentHashMap&amp;lt;&amp;gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&amp;quot;@annotation(com.</description>
     </item>
     
     <item>
       <title>日志优化MDC</title>
-      <link>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
+      <link>/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
+      <guid>/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
       <description>MDC(Mapped Diagnostic Context) 实现 步骤1：创建MDCFilter实现Filter filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。 在过滤之前在reqId钟放入uuid并在结束之后remove
 import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; import org.springframework.stereotype.Component; import javax.servlet.*; import javax.servlet.http.HttpServletRequest; import java.io.IOException; import java.util.UUID; /** * @Author shizhongcai * @Date 2019/11/15 11:15 */ @Component public class MDCFilter implements Filter { private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class); public static final String MDC_ID = &amp;quot;reqId&amp;quot;; @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { boolean mdcFlag = false; try { MDC.</description>
     </item>
     
     <item>
       <title>统一返回对象</title>
-      <link>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
+      <link>/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
       <description>1.创建实体类BaseRspVo
 @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo(ErrorCodesEnum errorCode) { if(errorCode == ErrorCodesEnum.SUCCESS) { this.success = true; } else { this.success = false; } this.msg = errorCode.getMsg(); this.errorCode = errorCode.getCode(); } } 错误Code枚举类 public enum ErrorCodesEnum { SUCCESS(10000,&amp;quot;成功&amp;quot;), SYS_ERROR(1000,&amp;quot;系统异常，请稍后再试&amp;quot;), DUPLICATE_KEY(10001,&amp;quot;数据库中已存在该记录&amp;quot;), NO_HANDLER_FOUND(10002,&amp;quot;路径不存在，请检查路径是否正确&amp;quot;), DEFAULT_FAIL(10003,&amp;quot;未知异常，请稍后再试&amp;quot;), DECRYPT_ERROR(10004,&amp;quot;解密出错&amp;quot;), ; /** * 错误码 */ private int code; /** * 错误描述 */ private String msg; ErrorCodesEnum(int code, String msg) { this.</description>
     </item>
     
     <item>
       <title>项目开发</title>
-      <link>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
+      <link>/spring/todo/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
+      <guid>/spring/todo/</guid>
       <description>Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  </description>
     </item>
     
     <item>
-      <title>单例模式</title>
-      <link>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
+      <title>项目开发</title>
+      <link>/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
-      <description> 单例模式 1. 2. 3. 4.静态内部类实现：
-public class SingleTon{ private SingleTon(){} private static class SingleTonHoler{ private static SingleTon INSTANCE = new SingleTon(); } public static SingleTon getInstance(){ return SingleTonHoler.INSTANCE; } }  </description>
+      <guid>/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
+      <description>Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  </description>
     </item>
     
     <item>
       <title>JAVA IO流</title>
-      <link>http://www.sszblog.xyz/java/io%E6%B5%81/</link>
+      <link>/java/io%E6%B5%81/</link>
       <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/io%E6%B5%81/</guid>
+      <guid>/java/io%E6%B5%81/</guid>
       <description>Java IO流 Java 中 IO 流分为几种?  按照流的流向分，可以分为输入流和输出流；  输出流：从内存读出到文件。只能进行写操作。 输入流：从文件读入到内存。只能进行读操作。 输入和输出，都是相对于系统内存而言  按照操作单元划分，可以划分为字节流和字符流；  字节流：以字节为单位，每次次读入或读出是8位数据。可以读任何类型数据。(1byte（B） = 8bit(位)) 字符流：以字符为单位，每次次读入或读出是16位数据。其只能读取字符类型数据。(1字符=2字节 )  按照流的角色划分为节点流和处理流。  节点流：直接与数据源相连，读入或读出。 处理流（Filter Stream）：与节点流一块使用，在节点流的基础上，再套接一层，套接在节点流上的就是处理流。（DataInputStream、BufferedInputStream、BufferedReader等）   Java Io流的40多个类都是从如下4个抽象类基类中派生出来的。 - InputStream/Reader: 所有的输入流的基类，前者是字节输入流，后者是字符输入流。 - OutputStream/Writer: 所有输出流的基类，前者是字节输出流，后者是字符输出流。
 不同平台的换行符号： |符号|linux|windows|Java建议写法| |-|-|-|-| |换行符|\n|\r\n|System.getProperty(&amp;ldquo;line.separator&amp;rdquo;)| |路径分隔符|/|\|File.separator| |多个路径分隔符|:|;|File.pathSeparator|
 字节流和字符流的区别: 字符流使用了缓存区（内存），执行了write()，文件中不会立刻有内容（除非缓冲区满了或者主动刷新缓冲区），需要等输出流对象关闭了，文件中才会有内容；字节流不使用缓冲区，执行了wirite()，文件中立刻就有内容了。 - ### 1.字符流
@@ -184,10 +599,10 @@ public class SingleTon{ private SingleTon(){} private static class SingleTonHole
     
     <item>
       <title>JAVA基础</title>
-      <link>http://www.sszblog.xyz/java/java%E5%9F%BA%E7%A1%80/</link>
+      <link>/java/java%E5%9F%BA%E7%A1%80/</link>
       <pubDate>Tue, 05 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/java%E5%9F%BA%E7%A1%80/</guid>
+      <guid>/java/java%E5%9F%BA%E7%A1%80/</guid>
       <description>Java基础知识 1. String 、StringBuilder 、StringBuffer String 类中使用 final 关键字修饰字符数组来保存字符串，private　final　char　value[]，所以 String 对象是不可变的。 每次对 String 类型进行改变的时候，都会生成一个新的 String 对象，然后将指针指向新的 String 对象。StringBuffer 每次都会对 StringBuffer 对象本身进行操作，而不是生成新的对象并改变对象引用。相同情况下使用 StringBuilder 相比使用 StringBuffer 仅能获得 10%~15% 左右的性能提升，但却要冒多线程不安全的风险。 对于三者使用的总结：
 操作少量的数据: 适用String 单线程操作字符串缓冲区下操作大量数据: 适用StringBuilder 多线程操作字符串缓冲区下操作大量数据: 适用StringBuffer  2.== 和 equals == : 它的作用是判断两个对象的地址是不是相等。即，判断两个对象是不是同一个对象(基本数据类型==比较的是值，引用数据类型==比较的是内存地址)。
 equals() : 它的作用也是判断两个对象是否相等。但它一般有两种使用情况：
@@ -196,10 +611,10 @@ equals() : 它的作用也是判断两个对象是否相等。但它一般有两
     
     <item>
       <title>Automic</title>
-      <link>http://www.sszblog.xyz/java/automic/</link>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/automic/</link>
       <pubDate>Fri, 18 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/automic/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/automic/</guid>
       <description>Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。 所以，所谓原子类说简单点就是具有原子/原子操作特征的类
 public final int get() //获取当前的值 public final int getAndSet(int newValue)//获取当前的值，并设置新的值 public final int getAndIncrement()//获取当前的值，并自增 public final int getAndDecrement() //获取当前的值，并自减 public final int getAndAdd(int delta) //获取当前的值，并加上预期的值 boolean compareAndSet(int expect, int update) //如果输入的数值等于预期值，则以原子方式将该值设置为输入值（update） public final void lazySet(int newValue)//最终设置为newValue,使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。  基本数据类型原子类优势 - ①多线程环境不使用原子类保证线程安全（基本数据类型）
 class Test { private volatile int count = 0; //若要线程安全执行执行count++，需要加锁 public synchronized void increment() { count++; } public int getCount() { return count; } }   ②多线程环境使用原子类保证线程安全</description>
@@ -207,107 +622,108 @@ class Test { private volatile int count = 0; //若要线程安全执行执行cou
     
     <item>
       <title>ThreadLocal</title>
-      <link>http://www.sszblog.xyz/java/threadlocal/</link>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/threadlocal/</link>
       <pubDate>Wed, 16 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/threadlocal/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/threadlocal/</guid>
       <description>ThreadLocal ThreadLocal是什么？ ThreadLocal是一个本地线程变量副本工具类。 保存线程上下文信息，在任意需要的地方可以获取！！！
-ThreadLocal的作用？ ThreadLocal的作用是提供线程内的局部变量，这种变量在线程的生命周期内起作用，减少同一个线程内多个函数或者组件之间一些公共变量的传递的复杂度。
+ThreadLocal解决什么问题？  并发问题:使用 ThreadLocal 代替 Synchronized 来保证线程安全,同步机制采用空间换时间 -&amp;gt; 仅仅先提供一份变量，各个线程轮流访问，后者每个线程都持有一份变量，访问时互不影响。 数据存储问题: ThreadLocal 为变量在每个线程中创建了一个副本，所以每个线程可以访问自己内部的副本变量。
+threadlocal在Spring中的使用-&amp;gt;解决线程安全问题。 正常情况下，在Web中从接收请求到响应请求都应该属于同一个线程，而 ThreadLocal 是一个很好的机制，它为每个线程提供了一个独立的变量副本解决了变量并发访问的冲突问题，比如每个请求的用户信息。
 ThreadLocal实践？ 写一个验证token的切面
-@Aspect @Component public class DemoAspect { @Pointcut(&amp;quot;execution(* *.*..*Controller.*(..))&amp;quot;) public void pointService(){ } @Around(&amp;quot;pointService()&amp;quot;) public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable { threadLocal.set(Object); //before Object obj = null; try { obj = joinPoint.proceed(); } catch (Throwable throwable) { ... } finally{ threadLocal.remove(); } //after return obj; } } 在请求方法中可以在任意地点获取存放的本地线程副本变量  ThreadLocal注意事项 如果使用ThreadLocal的set方法之后，没有显示的调用remove方法，就有可能发生内存泄露，所以养成良好的编程习惯十分重要，使用完ThreadLocal之后，记得调用remove方法。
-ThreadLocal与Synchronized ThreadLocal和Synchronized都是为了解决多线程中相同变量的访问冲突问题，不同的点是 - Synchronized是通过线程等待，牺牲时间来解决访问冲突 - ThreadLocal是通过每个线程单独一份存储空间，牺牲空间来解决冲突，并且相比于Synchronized，ThreadLocal具有线程隔离的效果，只有在线程内才能获取到对应的值，线程外则不能访问到想要的值。</description>
+@Aspect @Component public class DemoAspect { @Pointcut(&amp;quot;execution(* *.*..*Controller.*(..))&amp;quot;) public void pointService(){ } @Around(&amp;quot;pointService()&amp;quot;) public Object aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable { threadLocal.set(Object); //before Object obj = null; try { obj = joinPoint.proceed(); } catch (Throwable throwable) { ... } finally{ threadLocal.remove(); } //after return obj; } } 在请求方法中可以在任意地点获取存放的本地线程副本变量   ThreadLocal注意事项 如果使用ThreadLocal的set方法之后，没有显示的调用remove方法，就有可能发生内存泄露，所以养成良好的编程习惯十分重要，使用完ThreadLocal之后，记得调用remove方法。</description>
     </item>
     
     <item>
       <title>Volatile</title>
-      <link>http://www.sszblog.xyz/java/volatile/</link>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/volatile/</link>
       <pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/volatile/</guid>
-      <description>首先我们需要知道原子性、可见性、有序性
-原子性 即一个操作或者多个操作 要么全部执行并且执行的过程不会被任何因素打断，要么就都不执行。
-可见性 可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。
-有序性 即程序执行的顺序按照代码的先后顺序执行。
-int a = 10; int b = 5;  在Java内存模型中，允许编译器和处理器对指令进行重排序，但是重排序过程不会影响到单线程程序的执行，却会影响到多线程并发执行的正确性。
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/volatile/</guid>
+      <description>并发编程3个重要特性 并发编程的三个重要特性原子性、可见性、有序性
+ 原子性 即一个操作或者多个操作 要么全部执行并且执行的过程不会被任何因素打断，要么就都不执行。 可见性 可见性是指当多个线程访问同一个变量时，一个线程修改了这个变量的值，其他线程能够立即看得到修改的值。 有序性 即程序执行的顺序按照代码的先后顺序执行。 &amp;gt;java int a = 10; int b = 5; &amp;gt;  在Java内存模型中，允许编译器和处理器对指令进行重排序，但是重排序过程不会影响到单线程程序的执行，却会影响到多线程并发执行的正确性。
 ps:要想并发程序正确地执行，必须要保证原子性、可见性以及有序性。只要有一个没有被保证，就有可能会导致程序运行不正确。
-volatile 保证 可见性 &amp;amp; 有序性，但不保证原子性
-volatile:当一个共享变量被volatile修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。
+volatile volatile语义 - 1）保证了不同线程对这个变量进行操作时的可见性，即一个线程修改了某个变量的值，这新值对其他线程来说是立即可见的。（保证变量的可见性） - 2）禁止进行指令重排序。(保证有序性)
 为什么不保证原子性：volatile修饰的属性若再修改前被另一个线程读取了值，那么修改后，无法改变已经复制到工作内存中的值。
-volatile static int a=0; a++; // 包含了2步操作：1、读取a。2、执行a+1 &amp;amp; 将a+1结果赋值给a // 设：线程A、B同时执行以下语句，线程A执行完第1步后被挂起、线程B执行了a++，那么主存中a的值为1 // 但线程A的工作内存中还是0，由于线程A之前已读取了a的值 = 0，执行a++后再次将a的值刷新到主存 = 1 // 即 a++执行了2次，但2次都是从0变为1，故a的值最终为1  为什么保证可见性： - volatile修饰的属性能够保证每次读取都是最新的值 - 但在多线程下不会 也 无法更新已经读取了的值
-为什么保证有序性重排序时，以volatile修饰的属性的读/写操作代码为分界线，读/写操作前的代码不允许排到后面，后面不允许排到前面，由此保证有序性。
-使用条件： 您只能在有限的一些情形下使用 volatile 变量替代锁。要使 volatile 变量提供理想的线程安全，必须同时满足下面两个条件： - 对变量的写操作不依赖于当前值。 - 该变量没有包含在具有其他变量的不变式中。
-使用场景：
- 模式 #1：状态标志</description>
+volatile static int a=0; a++; // 包含了2步操作：1、读取a。2、执行a+1 &amp;amp; 将a+1结果赋值给a // 设：线程A、B同时执行以下语句，线程A执行完第1步后被挂起、线程B执行了a++，那么主存中a的值为1 // 但线程A的工作内存中还是0，由于线程A之前已读取了a的值 = 0，执行a++后再次将a的值刷新到主存 = 1 // 即 a++执行了2次，但2次都是从0变为1，故a的值最终为1  通过上图可知： Java内存模型规定所有的变量都是存在主存当中，每个线程都有自己的工作内存。线程对变量的所有操作都必须在自己的工作内存中进行，而不能直接对主存进行操作。并且每个线程不能访问其他线程的工作内存。 Java内存模型只保证了基本读取和赋值是原子性操作。
+为什么保证可见性： - volatile修饰的属性能够保证每次读取都是最新的值 - 但在多线程下不会也无法更新已经读取了的值
+ (1)对于普通的成员变量不能保证可见性，因为普通共享变量被修改之后，什么时候被写入主存是不确定的，当其他线程去读取时，此时内存中可能还是原来的旧值，因此无法保证可见性。 (2)当一个共享变量被volatile修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。
+ 为什么保证有序性重排序时，以volatile修饰的属性的读/写操作代码为分界线（lock前缀指令），读/写操作前的代码不允许排到后面，后面不允许排到前面，由此保证有序性。
+使用条件： 您只能在有限的一些情形下使用 volatile 变量替代锁。要使 volatile 变量提供理想的线程安全，必须同时满足下面两个条件： - 对变量的写操作不依赖于当前值。 - 该变量没有包含在具有其他变量的不变式中。</description>
     </item>
     
     <item>
       <title>CountDownLatch和CyclicBarrier以及join()</title>
-      <link>http://www.sszblog.xyz/java/countdownlatch%E5%92%8Ccyclicbarrier/</link>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/countdownlatch%E5%92%8Ccyclicbarrier/</link>
       <pubDate>Sat, 12 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/countdownlatch%E5%92%8Ccyclicbarrier/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/countdownlatch%E5%92%8Ccyclicbarrier/</guid>
       <description>CountDownLatch、CyclicBarrier、join() 一、CountDownLatch(倒计时器)：
- 功能：同步辅助类，也可以理解为倒计时锁，用于同步线程状态，允许一个或多个线程，等待其他一组线程完成操作，再继续往下执行。（会阻塞主线程） 特点：不可复用！ 重要方法：  countDown()方法：计数器-1，每次线程执行完后调用； await（）方法：等待方法，在需要阻塞的地方调用，当所有线程都执行完后，自动往下执行  用法：构造的时候指定一个计数器的值，每个线程执行完后就减1，直到为0再往下走。  二、CyclicBarrier（循环栅栏）：
- 功能：同步辅助类，功能和CountDownLatch类似，用于同步线程状态，允许一组线程相互之间等待，达到一个共同点，再继续执行。(不会阻塞主线程) 特点：可复用！当组内所有线程都到达某个执行点后，count参数会被重置，于是就可重用了。 重要方法：  await（）方法：当某个线程到达某个点（比如执行完某个任务）后调用该方法，就会等待其他线程，直到所有线程都到达这个点，再自动往下执行。 还有个重载方法await（long timeOut,TimeUnit unit），用- 于当某个线程执行超过指定时间后还未到达某个点时，就会抛出异常，不再等待这个线程，并往下执行。  用法：构造的时候指定一个线程数量的值和到达某个点后执行的动作。  三、join()方法
- join方法也是管理线程状态同步的一个方法，和CountDownLatch和CyclicBarrier均由自身调用不同的是，join的调用者为当前线程，后面的线程必须等调用join的线程执行完后才能执行。  refer to:https://www.cnblogs.com/be-thinking/p/9292290.html refer to:https://blog.csdn.net/qq_39241239/article/details/87030142</description>
+ 功能：同步辅助类，也可以理解为倒计时锁，用于同步线程状态，允许一个或多个线程，等待其他一组线程完成操作，再继续往下执行。（会阻塞主线程） 特点：不可复用！ 重要方法：  countDown()方法：计数器-1，每次线程执行完后调用； await（）方法：等待方法，在需要阻塞的地方调用，当所有线程都执行完后，自动往下执行  用法：构造的时候指定一个计数器的值，每个线程执行完后就减1，直到为0再往下走。 DEMO:四个线程 A B C D，其中 D 要等到 A B C 全执行完毕后才执行，而且 A B C 是同步运行的。 二、CyclicBarrier（循环栅栏）：
+ 功能：同步辅助类，功能和CountDownLatch类似，用于同步线程状态，允许一组线程相互之间等待，达到一个共同点，再继续执行。(不会阻塞主线程)
+ 特点：可复用！当组内所有线程都到达某个执行点后，count参数会被重置，于是就可重用了。
+ 重要方法：
+ await（）方法：当某个线程到达某个点（比如执行完某个任务）后调用该方法，就会等待其他线程，直到所有线程都到达这个点，再自动往下执行。 还有个重载方法await（long timeOut,TimeUnit unit），用- 于当某个线程执行超过指定时间后还未到达某个点时，就会抛出异常，不再等待这个线程，并往下执行。  用法：构造的时候指定一个线程数量的值和到达某个点后执行的动作。
+ DEMO:三个运动员各自准备，等到三个人都准备好后，再一起跑
+  三、join()方法
+ join方法也是管理线程状态同步的一个方法，和CountDownLatch和CyclicBarrier均由自身调用不同的是，join的调用者为当前线程，后面的线程必须等调用join的线程执行完后才能执行。  参考：https://www.cnblogs.com/be-thinking/p/9292290.html 参考：https://blog.csdn.net/qq_39241239/article/details/87030142</description>
     </item>
     
     <item>
       <title>Java8-简化代码</title>
-      <link>http://www.sszblog.xyz/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</link>
+      <link>/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Sat, 12 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</guid>
+      <guid>/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Synchronized关键字</title>
-      <link>http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/</link>
+      <title>Synchronized和Lock</title>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/synchronized%E5%92%8Clock/</link>
       <pubDate>Sat, 12 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/synchronized%E5%92%8Clock/</guid>
       <description>Synchronized关键字 1.作用 保证同一时刻最多只有1个线程执行 被Synchronized修饰的方法 / 代码
 其他线程 必须等待当前线程执行完该方法 / 代码块后才能执行该方法 / 代码块
-2.修饰 2.1修饰方法 //对象锁 //写法1 public synchronized void method() { // todo } //写法2，写法2其实是同步代码块的写法，但在这里也是相当于修饰了方法 public void method() { synchronized(this) { // todo } }  2.2修饰静态方法 //类锁 public synchronized static void method() { // todo }  2.3修饰类 //类锁 class ClassName { public void method() { synchronized(ClassName.class) { // todo } } }  2.4修饰代码块 //对象锁 //写法一 synchronized(this) { //todo } //写法二 Object obj =new Object(); synchronized(obj) { //todo }  3.</description>
+2.修饰 2.1修饰方法 //对象锁 //写法1 public synchronized void method() { // todo } //写法2，写法2其实是同步代码块的写法，但在这里也是相当于修饰了方法 public void method() { synchronized(this) { // todo } }  2.2修饰静态方法 //类锁 public synchronized static void method() { // todo }  2.3修饰类 //类锁 class ClassName { public void method() { synchronized(ClassName.class) { // todo } } }  2.4修饰代码块 //对象锁 //写法一 synchronized(this) { //todo } &#39; //写法二 Object obj =new Object(); synchronized(obj) { //todo }  2.</description>
     </item>
     
     <item>
       <title>Future、FutureTask、CompletableFuture</title>
-      <link>http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/</link>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/futurefuturetaskcompletablefuture/</link>
       <pubDate>Fri, 11 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/</guid>
-      <description>Future
-public interface Future&amp;lt;V&amp;gt; { /** * 取消任务的执行 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败 * 如果任务在调用时还未启动，那么返回成功 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行 * @param mayInterruptIfRunning * @return */ boolean cancel(boolean mayInterruptIfRunning); /** * 判断任务是否已经取消，任务正常完成前将其取消，则返回true * @return */ boolean isCancelled(); /** * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true * @return */ boolean isDone(); /** * 等待任务执行结束，并返回结果 * @return * @throws InterruptedException 线程被中断异常 * @throws ExecutionException 任务执行异常 */ V get() throws InterruptedException, ExecutionException; /** * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间， * @param timeout * @param unit * @return * @throws InterruptedException * @throws ExecutionException * @throws TimeoutException */ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException; }  FutureTask介绍</description>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/futurefuturetaskcompletablefuture/</guid>
+      <description>Future、FutureTask、CompletableFuture Future Feature接口 public interface Future&amp;lt;V&amp;gt; { /** * 取消任务的执行 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败 * 如果任务在调用时还未启动，那么返回成功 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行 * @param mayInterruptIfRunning * @return */ boolean cancel(boolean mayInterruptIfRunning); /** * 判断任务是否已经取消，任务正常完成前将其取消，则返回true * @return */ boolean isCancelled(); /** * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true * @return */ boolean isDone(); /** * 等待任务执行结束，并返回结果 * @return * @throws InterruptedException 线程被中断异常 * @throws ExecutionException 任务执行异常 */ V get() throws InterruptedException, ExecutionException; /** * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间， * @param timeout * @param unit * @return * @throws InterruptedException * @throws ExecutionException * @throws TimeoutException */ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException; }  FutureTask介绍  Future只是一个接口，无法直接创建对象，因此有了FutureTask。RunnableFuture继承了Runnable和Future接口，而FutureTask实现了RunnableFuture接口。 Future是一个接口， FutureTask类是Future 的一个实现类，并实现了Runnable，因此FutureTask可以传递到线程对象Thread中新建一个线程执行。 FutureTask实现了RunnableFuture接口，而RunnableFuture继承了Runnable和Future，也就是说FutureTask既是Runnable，也是Future。</description>
     </item>
     
     <item>
       <title>短语</title>
-      <link>http://www.sszblog.xyz/other/english/phrase/</link>
+      <link>/other/english/phrase/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/english/phrase/</guid>
+      <guid>/other/english/phrase/</guid>
       <description>Managerial tasks could be delegated to others 管理任务可以委托给其他人</description>
     </item>
     
     <item>
       <title>linux命令</title>
-      <link>http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/</link>
+      <link>/linux/linux%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Tue, 08 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/</guid>
+      <guid>/linux/linux%E6%93%8D%E4%BD%9C/</guid>
       <description>一行shell命令杀死指定进程名称的进程方法
-ps -efww|grep -w &#39;程序名称&#39;|grep -v grep|cut -c 9-15|xargs kill -9  ps:杀死程序名称为ssz-h5的程序
-[root@sagdb ssz-h5]# ps -ef|grep java root 28414 1 2 Sep27 ? 05:39:12 java -jar ssz-llyy.jar root 29837 1 99 14:37 pts/0 00:00:03 java -jar ssz-h5.jar root 29856 29557 0 14:37 pts/0 00:00:00 grep java [root@sagdb ssz-h5]# ps -efww|grep -w &#39;ssz-h5&#39;|grep -v grep|cut -c 9-15|xargs kill -9  </description>
+ps -efww|grep -w &#39;程序名称&#39;|grep -v grep|cut -c 9-15|xargs kill -9  杀死程序名称为ssz-h5的程序
+[root@sagdb ssz-h5]# ps -ef|grep java root 28414 1 2 Sep27 ? 05:39:12 java -jar ssz-llyy.jar root 29837 1 99 14:37 pts/0 00:00:03 java -jar ssz-h5.jar root 29856 29557 0 14:37 pts/0 00:00:00 grep java [root@sagdb ssz-h5]# ps -efww|grep -w &#39;ssz-h5&#39;|grep -v grep|cut -c 9-15|xargs kill -9  远程启动脚本
+nohup java -Xdebug -Xrunjdwp:transport=dt_socket,address=2345,server=y,suspend=n -jar ssz-h5.jar testinfo2 &amp;gt; h5.</description>
     </item>
     
     <item>
       <title>Thread、Runnable、Callable、线程池</title>
-      <link>http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
       <description>1.创建线程的三种方式  (1)继承thread,重写run方法 (2)实现Runnable接口，实现run方法 (3)实现Callable接口，实现call方法 (4)线程池  2.Runnable和Callable的区别：  (1)Callable实现的方法是call(),Runnable实现的方法是run(). (2)Callable的任务执行后可返回值，可以拿到一个Future对象，而Runnable的任务没有返回值 (3)call方法需要抛出异常InterruptedException和ExecutionExecption，run方法只能在内部消化InterruptedException  3.Thread的缺点：  Java是单继承多实现，不利于扩展.  4. 线程池 4.1 为什么要使用线程池  降低资源消耗。 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。 当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。  4.2 execute()和submit()的区别  (1)可接受任务类型：
  submit:
 submit(Callable&amp;lt;T&amp;gt; task):Future&amp;lt;T&amp;gt; -ExecutorService submit(Runnable task):Future&amp;lt;?&amp;gt; -ExecutorService submit(Runnable task,T result):Future&amp;lt;T&amp;gt; -ExecutorService  execute:
@@ -319,52 +735,81 @@ execute(Runnable command):void -Executor  从源码种可以看出
     </item>
     
     <item>
-      <title>异常</title>
-      <link>http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/</link>
+      <title>创建型模式</title>
+      <link>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/</guid>
+      <guid>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>创建型模式 1.简单工厂模式（静态工厂方法模式） 2.工厂方法模式 3.抽象工厂模式 4.建造者模式 5.单例模式 6.原型模式 1.简单工厂模式（静态工厂方法模式）  作用：当你需要什么，只需要传入一个正确的参数，就可以获取你所需要的对象，而无须知道其创建细节。 应用场景：Java加解密
+ （解密）获取不同加密算法的密钥生成器:
+KeyGenerator keyGen=KeyGenerator.getInstance(&amp;quot;AES&amp;quot;);  （加密）创建密码器:
+Cipher cp=Cipher.getInstance(&amp;quot;AES&amp;quot;,&amp;quot;BC&amp;quot;);    2.工厂方法模式  作用：当需要加入新产品时，对原有产品无需改动，只需要新增一个抽象工厂和具体产品就可以了。 主要角色：  抽象工厂(Abstract Factory) 具体工厂（ConcreteFactory） 抽象产品（Product） 具体产品（ConcreteProduct）  应用场景：JDBC中的工厂方法
+ 比如加载不同厂商的数据库驱动
+Connection conn=DriverManager.getConnection(&amp;quot;jdbc:microsoft:sqlserver://localhost:1433; DatabaseName=DB;user=;password=&amp;quot;); Statement statement=conn.createStatement(); ResultSet rs=statement.executeQuery(&amp;quot;select * from UserInfo&amp;quot;);    3.抽象工厂模式 4.建造者模式  作用：将一个复杂的对象分解为多个简单的对象，然后一步一步构建而成。它将变与不变相分离，即产品的组成部分是不变，但每一部分是可以灵活选择。 优点  封装性好，构建和表示分离。 扩展性好，各个具体的建造者相互独立，有利于系统的解耦。 客户端不必知道产品内部组成的细节，建造者可以对创建过程逐步细化，而不对其它模块产生任何影响，便于控制细节风险。  主要角色  Builder：抽象建造者 Concrete Builder：具体建造者 Director：指挥者 Product：产品角色  应用场景StringBuilder.append源码
+public StringBuilder append(boolean b) { super.</description>
+    </item>
+    
+    <item>
+      <title>异常</title>
+      <link>/java/%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%BC%82%E5%B8%B8/</guid>
       <description> 异常和错误的区别：异常能被程序本身处理，错误是无法处理。
 异常层次结构图 </description>
     </item>
     
     <item>
-      <title>责任链模式使用</title>
-      <link>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/</link>
+      <title>结构型模式</title>
+      <link>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%BD%A2%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/</guid>
-      <description>责任链模式的重点在“链上”，由一条链去处理相似的请求，在链中决定谁来处理这个请求，并返回相应的结果。
-角色：
-抽象处理者（Handler）角色：该角色对请求进行抽象，并定义一个方法来设定和返回对下一个处理者的引用。
-具体处理者（Concrete Handler）：该角色接到请求后，可以选择将请求处理掉，或者将请求传给下一个处理者。由于具体处理者持有对下一个处理者的引用，因此，如果需要，处理者可以访问下一个处理者。
-优点 责任链模式将请求和处理分开，请求者不知道是谁处理的，处理者可以不用知道请求的全貌。 提高系统的灵活性。 缺点 降低程序的性能。每个请求都是从链头遍历到链尾，当链比较长的时候，性能会大幅下降。 不易于调试。由于该模式采用了类似递归的方式，调试的时候逻辑比较复杂。</description>
+      <guid>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%BD%A2%E6%A8%A1%E5%BC%8F/</guid>
+      <description>结构型模式 1.适配器模式 2.装饰器模式 3.代理模式 4.外观模式(门面模式) 5.桥接模式 6.组合模式 7.享元模式 1.适配器模式  定义：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。适配器模式分为类结构型模式和对象结构型模式两种。  类结构型模式适配器 对象结构型模式适配器  优点：  客户端通过适配器可以透明地调用目标接口。 复用了现存的类，程序员不需要修改原有代码而重用现有的适配者类。 将目标类和适配者类解耦，解决了目标类和适配者类接口不一致的问题。  主要角色：  目标接口（Target）：当前系统业务所期待的接口，它可以是抽象类或接口。 适配者类（Adaptee）：它是被访问和适配的现存组件库中的组件接口。 适配器类（Adapter）：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。  实现：
+ 类适配器:
+//目标接口 interface Target { public void targetMethod(); } //适配者类 class Adaptee { public void adapteeMethod() { System.out.println(&amp;quot;适配者中的业务代码被调用！&amp;quot;); } } //类适配器类 class ClassAdapter extends Adaptee implements Target { public void targetMethod() { adapteeMethod(); } } //客户端代码 public class ClassAdapterTest { public static void main(String[] args) { System.</description>
+    </item>
+    
+    <item>
+      <title>行为型模式</title>
+      <link>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>行为型模式 1.策略模式 2.责任链模式 3.模板方法模式 4.观察者模式 5.迭代子模式 6.命令模式 7.备忘录模式 8.状态模式 9.访问者模式 10.中介者模式 11.解释器模式 1.策略模式  定义：定义一系列算法，将每一个算法封装起来，并让它们可以相互替换。 解决问题：在有多种算法相似的情况下，使用 if&amp;hellip;else 所带来的复杂和难以维护。将这些算法封装成一个一个的类，任意地替换。 主要角色：  抽象策略（Strategy）类：定义了一个公共接口，各种不同的算法以不同的方式实现这个接口，环境角色使用这个接口调用不同的算法，一般使用接口或抽象类实现。 具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现。 环境（Context）类：持有一个策略类的引用，最终给客户端调用。  实现：
+//抽象策略 public interface Strategy { public int doOperation(int num1, int num2); } //具体策略 public class OperationAdd implements Strategy{ @Override public int doOperation(int num1, int num2) { return num1 + num2; } } //Context上下文 public class Context { private Strategy strategy; public Context(Strategy strategy){ this.</description>
+    </item>
+    
+    <item>
+      <title>责任链模式使用</title>
+      <link>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/</guid>
+      <description> 责任链模式的重点在“链上”，由一条链去处理相似的请求，在链中决定谁来处理这个请求，并返回相应的结果。
+ 角色：
+ 抽象处理者（Handler）角色：该角色对请求进行抽象，并定义一个方法来设定和返回对下一个处理者的引用。
+ 具体处理者（Concrete Handler）：该角色接到请求后，可以选择将请求处理掉，或者将请求传给下一个处理者。由于具体处理者持有对下一个处理者的引用，因此，如果需要，处理者可以访问下一个处理者。
+  优点 责任链模式将请求和处理分开，请求者不知道是谁处理的，处理者可以不用知道请求的全貌。 提高系统的灵活性。
+ 缺点 降低程序的性能。每个请求都是从链头遍历到链尾，当链比较长的时候，性能会大幅下降。 不易于调试。由于该模式采用了类似递归的方式，调试的时候逻辑比较复杂。
+  </description>
     </item>
     
     <item>
       <title>Java8计算时间差</title>
-      <link>http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</link>
+      <link>/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</link>
       <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</guid>
+      <guid>/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/</guid>
       <description>&lt;p&gt;&lt;strong&gt;计算某个并行任务的总耗时。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>SQL</title>
-      <link>http://www.sszblog.xyz/other/oracle/</link>
-      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.sszblog.xyz/other/oracle/</guid>
-      <description>ORALE一条SQL插入多条记录 INSERT ALL INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES (&amp;lsquo;1700601010&amp;rsquo;,&amp;lsquo;范磊&amp;rsquo;) INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES (&amp;lsquo;1700601011&amp;rsquo;,&amp;lsquo;吴凯&amp;rsquo;) SELECT 1 FROM DUAL;</description>
-    </item>
-    
-    <item>
       <title>我的书单</title>
-      <link>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
+      <link>/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</guid>
+      <guid>/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</guid>
       <description> [ ]《睡眠革命》
  [x]《软技能》
  [ ]《指数基金投资指南》
@@ -377,10 +822,10 @@ execute(Runnable command):void -Executor  从源码种可以看出
     
     <item>
       <title>软技能分享</title>
-      <link>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</link>
+      <link>/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</guid>
+      <guid>/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</guid>
       <description>#《软技能》 前言 对于优秀的软件开发者来说，埋头写代码绝并不应该是工作的全部。这本书给出了很多非常好的建议，不仅仅“码农”们可以从中获益，还可以推而广之到很多其他的行业。
 职业 主要讲的是如何进行自己的职业规划
 你所能犯的最大错误就是相信自己是在为别人工作。这样一来你对工作的安全感已然尽失。职业发展的驱动力一定是个体本身。记住：工作是属于公司的，而职业生涯确实属于你自己的。 - 厄尔.南丁格尔
@@ -399,31 +844,32 @@ execute(Runnable command):void -Executor  从源码种可以看出
     
     <item>
       <title>git创建新仓库</title>
-      <link>http://www.sszblog.xyz/git/git%E6%93%8D%E4%BD%9C/</link>
+      <link>/git/git%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/git/git%E6%93%8D%E4%BD%9C/</guid>
+      <guid>/git/git%E6%93%8D%E4%BD%9C/</guid>
       <description>&lt;p&gt;通过命令行方式对本地文件创建git，再远程创建git并提交。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Java8相关</title>
-      <link>http://www.sszblog.xyz/java/java8/</link>
+      <link>/java/java8/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/java8/</guid>
+      <guid>/java/java8/</guid>
       <description>&lt;p&gt;&lt;strong&gt;阅读Java8实战后的一些笔记&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>markdown模板</title>
-      <link>http://www.sszblog.xyz/markdown/markdown/</link>
+      <link>/markdown/markdown/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/markdown/markdown/</guid>
+      <guid>/markdown/markdown/</guid>
       <description>&lt;p&gt;&lt;strong&gt;markdown模板&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://img.shields.io/github/release/wildfirechat/server&#34; alt=&#34;版本图标&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Executor类图.png&#34; alt=&#34;Demo&#34; /&gt;
+&lt;img src=&#34;https://img.shields.io/github/release/wildfirechat/server&#34; alt=&#34;版本图标&#34; /&gt;
 类似于这样添加版本
 &lt;img src=&#34;http://progressed.io/bar/10&#34; alt=&#34;Progress&#34; /&gt;&lt;/p&gt;
 
@@ -436,38 +882,79 @@ execute(Runnable command):void -Executor  从源码种可以看出
     
     <item>
       <title>xml与json互转</title>
-      <link>http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/</link>
+      <link>/java/xml%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/xml%E8%A7%A3%E6%9E%90/</guid>
+      <guid>/java/xml%E8%A7%A3%E6%9E%90/</guid>
       <description>&lt;p&gt;&lt;strong&gt;开发场景中，需要对返回的xml数据转为json再进行处理&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>我的单词本</title>
-      <link>http://www.sszblog.xyz/other/english/word/</link>
+      <link>/other/english/word/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/english/word/</guid>
+      <guid>/other/english/word/</guid>
       <description>&lt;p&gt;&lt;strong&gt;日常开发中遇到的一些术语生词&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>按指定长度切割list</title>
-      <link>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</link>
+      <link>/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</guid>
+      <guid>/java/%E6%8C%89%E6%8C%87%E5%AE%9A%E9%95%BF%E5%BA%A6%E5%88%87%E5%89%B2list/</guid>
       <description>&lt;p&gt;&lt;strong&gt;某一次需求开发中，遇到这样的场景，需要对名单进行分组然后再对这批名单处理。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
-      <link>http://www.sszblog.xyz/java/%E5%85%B6%E4%BB%96/</link>
+      <link>/java/%E5%85%B6%E4%BB%96/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/java/%E5%85%B6%E4%BB%96/</guid>
+      <guid>/java/%E5%85%B6%E4%BB%96/</guid>
       <description>Maps.newHashMapWithExpectedSize(1)；创建固定长度的map;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/java/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/</guid>
+      <description>1.java进程快照 java -v 获取进程号 jstack -F 进程号 &amp;gt;&amp;gt; jstack.txt
+2.获取内存快照 利用 jmap 生成堆转储快照，命令： jmap -dump:format=b,file=heapdump.hprof {pid} heapdump.hprof文件
+mat(memory analyzer tool)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/java/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/</guid>
+      <description>1 Dubbo 1.1 服务调用超时问题怎么解决？ 1.2 Dubbo支持哪些序列化方式？ 1.3 Dubbo和SpringCloud的关系？ 1.4 Dubbo的架构设计？一共划分了哪些层？ 1.5 Dubbo的默认集群容错方案？ 1.6 Dubbo使用的是什么通信框架? 1.7 Dubbo的主要应用场景？ 1.8 Dubbo服务注册与发现的流程？流程说明。 1.9 Dubbo的集群容错方案有哪些？ 1.10 Dubbo的四大组件 1.11 Dubbo在安全机制方面是如何解决的 1.12 Dubbo和SpringCloud的区别？ 1.13 Dubbo支持哪些协议，每种协议的应用场景，优缺点？ 1.14 Dubbo的核心功能有哪些？ 1.15 Dubbo的注册中心集群挂掉，发布者和订阅者之间还能通信么？ 1.16 Dubbo集群的负载均衡有哪些策略 1.17 为什么需要服务治理？ 1.18 Dubbo超时时间怎样设置？
+2 ElasticSearch 2.1 你们公司的ES集群，一个node一般会分配几个分片？ 2.2 Elasticsearch是如何实现Master选举的？ 2.3 你是如何做写入调优的？ 2.4 如何避免脑裂？ 2.5 19-Elasticsearch对于大数据量（上亿量级）的聚合如何实现？ 2.6 ES主分片数量可以在后期更改吗？为什么？ 2.7 如何监控集群状态？ 2.8 ElasticSearch中的副本是什么？ 2.9 20.ES更新数据的执行流程？ 2.10 shard里面是什么组成的？ 2.11 ElasticSearch中的分析器是什么？ 2.12 什么是脑裂？ 2.13 客户端在和集群连接时，如何选择特定的节点执行请求的？ 2.14 Elasticsearch中的倒排索引是什么？ 2.15 什么是索引？索引（名词） 一个索引(index) 2.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/other/%E7%AE%80%E5%8E%86%E6%A8%A1%E6%9D%BF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/other/%E7%AE%80%E5%8E%86%E6%A8%A1%E6%9D%BF/</guid>
+      <description>Tim Qian A full-stack JS developer and open-source activist.
+Contact | GitHub | Twitter | Email | Website | Blog | Patreon |
+Teck Stack  Backend: Node.js; Express; AWS lambda; serverless; GraphQL; RabbitMQ Database: DynamoDB; MongoDB; Postgres; SQLite; AWS RDS; Redis Frontend: react.js; SASS/CSS; d3.js Chrome Extension: react.js; SASS/CSS;  Projects (open source)  chart.xkcd: xkcd styled chart lib.  5.5k+ stars on GitHub, 100k downloads Built with d3.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/solve_problem/solve_problem/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/solve_problem/solve_problem/</guid>
+      <description></description>
     </item>
     
   </channel>

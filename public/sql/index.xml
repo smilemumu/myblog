@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sqls on Shi.bro的博客</title>
+    <link>/sql/</link>
+    <description>Recent content in Sqls on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySql Explain</title>
+      <link>/sql/mysql-explain/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql-explain/</guid>
+      <description>Explain Explain 列  1.select_type 表示查询类型，分为简单查询(SIMPLE)和复杂查询(PRIMARY)，复杂查询又分为三类：简单子查询、派生表（from语句中的子查询）、union 查询。
+ 2.type列(非常重要)
+ 表示MySQL在表中找到所需行的方式，又称“访问类型”
+ 依次从最优到最差分别为：system &amp;gt; const &amp;gt; eq_ref &amp;gt; ref&amp;gt; fulltext &amp;gt; ref_or_null &amp;gt; index_merge &amp;gt; unique_subquery &amp;gt; index_subquery&amp;gt; range &amp;gt; index &amp;gt; ALL
+ ★注意：一般来说，得保证查询至少达到range级别，最好能达到ref。
+   3.possible_keys列 指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+ 6.key列(非常重要) key列显示MySQL实际决定使用的键（索引)
+  如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX</description>
+    </item>
+    
+    <item>
+      <title>SQL优化</title>
+      <link>/sql/sql-%E4%BC%98%E5%8C%96/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/sql-%E4%BC%98%E5%8C%96/</guid>
+      <description>SQL优化 1.SQL语句中过滤条件where和having的区别  where 是一个约束声明，使用 where 约束来自数据库的数据，where 是在结果返回之前起作用，where 中不能使用聚合函数。 Having 是一个过滤声明，是在查询返回结果集以后对查询结果进行的过滤操作，在 Having 中可以使用聚合函数。 在查询过程中，where 子句执行优先级高于聚合语句。聚合语句(sum，min，max，avg，count)优先级高于 having 子句。  2.优化查询  MySQL只有对以下操作符才使用索引：&amp;lt;，&amp;lt;=，=，&amp;gt;，&amp;gt;=，BETWEEN，IN，以及右模糊查询LIKE（&amp;rsquo;a%&amp;lsquo;）。 对于不等于(!= 和 &amp;lt;&amp;gt;)会放弃使用索引而进行全表扫描。 对于左模糊like ‘%&amp;hellip;’无法直接使用索引，但可以利用reverse，变化成 右模糊like ‘…%’。 对于联合索引来说，如果存在范围查询，比如between、&amp;gt;、&amp;lt;等条件时，会造成后面的索引字段失效。 对查询进行优化，应尽量避免全表扫描，首先应考虑在 where 及 order by 涉及的列上建立索引。 在 where 子句中对字段进行 null 值判断，会导致引擎放弃使用索引而进行全表扫描，所以字段要有默认值 在 where 子句中对字段进行函数、算术运算或其他表达式运算，会导致引擎放弃使用索引而进行全表扫描。 如果字段类型是字符串，where 时一定用引号括起来，否则索引失效 将大的 delete，update 或者 insert 查询变成多个小查询 如果插入数据过多，考虑批量插入 select语句务必指明字段名称，尽量避免使用&amp;rdquo;select * &amp;ldquo;。因为它会进行全表扫描。 Inner join 、left join、right join，优先使用 Inner join。如果是 left join，左边表结果尽量小。Inner join 内连接，在两张表进行连接查询时，只保留两张表中完全匹配的结果集。left join 在两张表进行连接查询时，会返回左表所有的行，即使在右表中没有匹配的记录。right join 在两张表进行连接查询时，会返回右表所有的行，即使在左表中没有匹配的记录。都满足 SQL 需求的前提下，推荐优先使用 Inner join(内连接)，如果要使用 left join，左边表数据结果尽量小，如果有条件的尽量放到左边处理。 区分 in 和 exists、not in 和not exists</description>
+    </item>
+    
+    <item>
+      <title>MySql索引</title>
+      <link>/sql/mysql%E7%B4%A2%E5%BC%95/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E7%B4%A2%E5%BC%95/</guid>
+      <description>MySql索引 1.基础 - 首先Mysql的基本存储结构是页(记录都存在页里边)：  各个数据页可以组成一个双向链表 而每个数据页中的记录又可以组成一个单向链表 每个数据页都会为存储在它里边儿的记录生成一个页目录，在通过主键查找某条记录的时候可以在页目录中使用二分法快速定位到对应的槽，然后再遍历该槽对应分组中的记录即可快速找到指定的记录 总结就是：使用二分查找算法从页目录中快速定位记录。 以其他列(非主键)作为搜索条件：只能从最小记录开始依次遍历单链表中的每条记录。
+ 所以说，如果我们写select * from user where username = &amp;lsquo;Java3y&amp;rsquo;这样没有进行任何优化的sql语句，默认会这样做：
+ 定位到记录所在的页
+ 1.需要遍历双向链表，找到所在的页
+ 2.从所在的页内中查找相应的记录
+ 3.由于不是根据主键查询，只能遍历所在页的单链表了 总结就是：遍历双向链表定位页，遍历所在页的单链表定位数据。
+ 很明显，在数据量很大的情况下这样查找会很慢！
+  2.索引提高检索速度 - 一般经常需要搜索、排序、WHERE的列上加上索引，可以加快对应操作的速度。 - 索引将无序的数据变成有序(相对)： - 很明显的是：没有用索引我们是需要遍历双向链表来定位对应的页，有索引可以通过“目录”就可以很快地定位到对应的页上了！ - 其实底层结构就是B+树，B+树作为树的一种实现，能够让我们很快地查找出对应的记录。
+3.索引降低增删改的速度 - B+树是平衡树的一种。 &amp;gt;平衡树：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。
+ 如果一棵普通的树在极端的情况下，是能退化成链表的(树的优点就不复存在了) 检索的时间复杂度就是O(logn) B+树是一颗平衡树，如果我们对这颗树增删改的话，那肯定会破坏它的原有结构。 要维持平衡树，就必须做额外的工作。正因为这些额外的工作开销，导致索引会降低增删改的速度  4.聚簇和非聚簇索引 简单概括： - 聚簇索引就是以主键创建的索引，检索效率比非聚簇索引高，但对数据更新影响较大。 - 非聚簇索引就是以非主键创建的索引，非聚簇索引检索效率比聚集索引低，但对数据更新影响较小。 &amp;gt;非聚集索引表示数据存储在一个地方，索引存储在另一个地方，索引带有指针指向数据的存储位置。
+区别：
+ 聚簇索引在叶子节点存储的是表中的数据 非聚簇索引在叶子节点存储的是主键值 使用非聚簇索引查询出数据时，拿到叶子上的主键再去查到想要查找的数据。(拿到主键再查找这个过程叫做回表) 非聚集索引也叫做二级索引  5.索引最左匹配原则 - 索引可以简单如一个列(a)，也可以复杂如多个列(a, b, c, d)，即联合索引。 - 如果是联合索引，那么key也由多个列组成，同时，索引只能用于查找key是否存在（相等），遇到范围查询(&amp;gt;、&amp;lt;、between、like左匹配(%As))等就不能进一步匹配了，后续退化为线性查找。 - 因此，列的排列顺序决定了可命中索引的列数。 &amp;gt;如有索引(a, b, c, d)，查询条件a = 1 and b = 2 and c &amp;gt; 3 and d = 4，则会在每个节点依次命中a、b、c，无法命中d。(很简单：索引命中只能是相等的情况，不能是范围匹配) - 通过a,c条件查询能不能使用或命中这个索引？&amp;mdash;&amp;ndash;能 - 通过b,c条件查询能不能使用或命中这个索引？&amp;mdash;&amp;ndash;不能</description>
+    </item>
+    
+    <item>
+      <title>MySQL乐观锁电商库存并发问题应用</title>
+      <link>/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/</guid>
+      <description>MySQL乐观锁电商库存并发问题应用 下单涉及的一些操作  1.下单 2.下单同时预占库存 3.支付 4.支付成功真正减扣库存 5.取消订单 6.回退预占库存
+ 方案选择：  商品加入购物车后，选择下单，这个时候去预占库存。用户选择去支付说明了，用户购买欲望强烈的。订单也有一个时效，例如半个小时。超过半个小时后，系统自动取消订单，回退预占库存。  可进行操作：  1.UI拦截，点击后按钮置灰，不能继续点击，防止用户，连续点击造成的重复下单。 2.下单前获取一个下单的唯一token，下单的时候需要这个token。后台系统校验这个 token是否有效，才继续进行下单操作。 3.进来的时候 先 get 库存数量是否充足，再执行 increment。以 increment &amp;gt; 0 为准。 4.因为检查库存 与 减少库存 不是原子性的，而redis.increment 是个原子操作，可以此为准。 redisService.increment(key, -req.getNum().longValue()) &amp;gt;= 0 说明库存充足，可以下单。 redisService.increment(key, -req.getNum().longValue()) &amp;lt; 0 的时候 不能下单，次数库存不足。并且需要 回加刚刚减去的库存数量，否则会导致刚才减扣的数量 一直买不出去。数据库与缓存的库存不一致。 5.都满足进行真正的扣减库存 5.1生成订单 5.2订单超过时效，订单取消等，订单取消，库存回滚。  MySQL乐观锁电商库存并发问题应用 1.使用数据版本(Version)记录机制实现，这是乐观锁最常用的一种实现方式。 mysql&amp;gt; select * from t_goods; +----+--------+------+---------+ | id | status | name | version | +----+--------+------+---------+ | 1 | 1 | 道具 | 1 | | 2 | 2 | 装备 | 2 | +----+--------+------+---------+ 2 rows in set  何谓数据版本？即为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 “version” 字段来实现。当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。</description>
+    </item>
+    
+    <item>
+      <title>MySql锁</title>
+      <link>/sql/mysql%E9%94%81/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E9%94%81/</guid>
+      <description>MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分  乐观锁 悲观锁  1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&amp;gt;SELECT * FROM table_name WHERE &amp;hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &amp;gt;SELECT * FROM table_name WHERE &amp;hellip; FOR UPDATE  1.3 从锁粒度划分  表级锁(table lock)  开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低  行级锁(row lock)  开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高   表锁 LOCK TABLE mchopin READ;用读锁锁表，会阻塞其他事务修改表数据，但不会阻塞其他事务读该表。 LOCK TABLE mchopin WRITE;用写锁锁表，会阻塞其他事务读和写。 批量解锁：unlock tables; 行锁 select * from mchopin where id = 3 lock in share mode;读行锁，仅对一行数据加了读锁。 select * from mchopin where id = 3 for update;写行锁，仅对一行数据加了写锁。**</description>
+    </item>
+    
+    <item>
+      <title>乐观锁和悲观锁</title>
+      <link>/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/</guid>
+      <description>乐观锁和悲观锁 1.乐观锁  总是认为不会产生并发问题，每次去取数据的时候总认为不会有其他线程对数据进行修改，因此不会上锁，但是在更新时会判断其他线程在这之前有没有对数据进行修改，一般会使用版本号机制或CAS操作实现  version方式： 一般是在数据表中加上一个数据版本号version字段，表示数据被修改的次数，当数据被修改时，version值会加一。当线程A要更新数据值时，在读取数据的同时也会读取version值，在提交更新时，若刚才读取到的version值为当前数据库中的version值相等时才更新，否则重试更新操作，直到更新成功。
+update table set x=x+1, version=version+1 where id=#{id} and version=#{version};  CAS操作方式： 即compare and swap 或者 compare and set，涉及到三个操作数，数据所在的内存值，预期值，新值。当需要更新时，判断当前内存值与之前取到的值是否相等，若相等，则用新值更新，若失败则重试，一般情况下是一个自旋操作，即不断的重试。
+2.悲观锁  总是假设最坏的情况，每次取数据时都认为其他线程会修改，所以都会加锁（读锁、写锁、行锁等），当其他线程想要访问数据时，都需要阻塞挂起。可以依靠数据库实现，如行锁、读锁和写锁等，都是在操作之前加锁，在Java中，synchronized的思想也是悲观锁。 比如共享锁和排他锁（行锁，表锁的读写锁）都是悲观锁。  3.适用场景  悲观锁：比较适合写入操作比较频繁的场景，如果出现 大量的读取操作，每次读取的时候都会进行加锁，这样会增加大量的锁的开销，降低了系统的吞吐量。 乐观锁：比较适合读取操作比较频繁的场景，如果出现大量的写入操作，数据发生冲突的可能性就会增大，为了保证数据的一致性，应用层需要不断的重新获取数据，这样会增加大量的查询操作，降低了系统的吞吐量。 总结：两种所各有优缺点，读取频繁使用乐观锁，写入频繁使用悲观锁。  参考：https://blog.csdn.net/weixin_41835916/article/details/81487767</description>
+    </item>
+    
+    <item>
+      <title>SQL语法</title>
+      <link>/sql/sql-%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/sql-%E8%AF%AD%E6%B3%95/</guid>
+      <description>Mysql  Mysql分页
+select * from stu limit m, n; //m = (startPage-1)*pageSize,n = pageSize  第一个参数值m表示起始行，第二个参数表示取多少行（页面大小） mysql从0开始计数行数
+Oracle Oralce分页
+select * from ( select rownum rn,a.* from table_name a where rownum &amp;lt;= x //结束行，x = startPage*pageSize ) where rn &amp;gt;= y; //起始行，y = (startPage-1)*pageSize+1  创建索引
+create index index_name(idx_****) on table table_name(column1_name,column2_name);  oracle只查第一条数据
+select * from (select * from &amp;lt;table&amp;gt; order by &amp;lt;key&amp;gt; desc) where rownum=1;  oracle触发器</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Filter和Interceptor | Shi.bro的博客</title>
+    <meta property="og:title" content="Filter和Interceptor - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-20T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-20T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Filter和Interceptor">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/spring/filter%E5%92%8Cinterceptor/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Filter和Interceptor</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月20日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>#Filter
+- Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。
+- 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。
+- 实现：
+    1. 如果是传统项目，需要在web.xml中配置filter</p>
+
+<pre><code class="language-java">	  &lt;filter&gt;
+        &lt;description&gt;字符集过滤器&lt;/description&gt;
+        &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;description&gt;字符集编码&lt;/description&gt;
+            &lt;param-name&gt;encoding&lt;/param-name&gt;
+            &lt;param-value&gt;UTF-8&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+</code></pre>
+
+<pre><code>2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。
+</code></pre>
+
+<pre><code class="language-java">	public class MDCFilter implements Filter {
+	    @Override
+	    public void init(FilterConfig filterConfig) throws ServletException {
+	    }
+	    @Override
+	    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+	        filterChain.doFilter(servletRequest, servletResponse);
+	    }
+	    @Override
+	    public void destroy() {
+	    }
+	}
+
+	 @Bean
+    public FilterRegistrationBean mdcFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setDispatcherTypes(DispatcherType.REQUEST);
+        registration.setFilter(new MDCFilter());
+        registration.addUrlPatterns(&quot;/*&quot;);
+        registration.setName(&quot;MDCFilter&quot;);
+        //设置过滤器顺序
+        registration.setOrder(Integer.MAX_VALUE);
+        return registration;
+    }
+</code></pre>
+
+<ul>
+<li>Filter随着项目的启动而启动，只初始化一次，随着web项目的停止而销毁</li>
+<li>Filter主要包括3个方法init()、doFilter()、destroy();</li>
+<li>Filter调用链</li>
+</ul>
+
+<p><img src="img/89ccb721-dbaa-4630-9946-074af6ca11bc.webp" alt="Filter调用链" /></p>
+
+<ul>
+<li><p>Filter接口</p>
+
+<pre><code class="language-java">	public interface Filter {
+
+    // 容器创建的时候调用, 即启动tomcat的时候调用
+    public void init(FilterConfig filterConfig) throws ServletException;
+    
+    // 由FilterChain调用, 并且传入Filter Chain本身
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain chain) throws IOException, ServletException;
+    
+    // 容器销毁的时候调用, 即关闭tomcat的时候调用
+    public void destroy();
+}
+</code></pre></li>
+</ul>
+
+<h1 id="interceptor">Interceptor</h1>
+
+<ul>
+<li>拦截器，请求的接口被访问之前，进行拦截然后在之前或之后加入某些操作。拦截是AOP的一种实现策略。 拦截器主要用来按照指定规则拒绝请求。</li>
+<li>用途：
+
+<ul>
+<li>Token令牌验证</li>
+<li>请求数据校验</li>
+<li>用户权限校验</li>
+<li>放行指定接口</li>
+</ul></li>
+
+<li><p>preHandle-&gt;handle-&gt;postHandle-&gt;afterCompletion</p>
+
+<pre><code class="language-java">/**
+*Interceptor的源码
+*
+*/
+public interface HandlerInterceptor {
+
+// 在调用真正的处理请求类之前调用
+boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+        throws Exception;
+
+// 在调用真正的处理请求类之后调用
+void postHandle(
+        HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
+        throws Exception;
+
+//  在完成渲染或者出错之后调用
+void afterCompletion(
+        HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+        throws Exception;
+}
+</code></pre></li>
+
+<li><p>实现</p>
+
+<ol>
+<li><p>创建拦截器，实现HandlerInterceptor接口,重写preHandle、postHandle、afterCompletion方法。</p>
+
+<pre><code class="language-java">/**
+*
+*创建拦截器
+*/
+@Component
+public class LoginHandlerInterceptor implements HandlerInterceptor {
+
+//目标方法执行之前
+@Override
+public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+//也可以做权限处理，获取用户权限
+Object user = request.getSession().getAttribute(&quot;currentUser&quot;);
+if (user == null) {
+    //未登录,返回登录页面
+    //response.sendRedirect(&quot;/LoginError.html&quot;);
+    //return false;
+    //或者返回固定错误码值让前端处理
+}else {
+    //放行
+    return true;
+}
+}
+
+@Override
+public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+
+}
+
+@Override
+public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+
+}
+}
+</code></pre></li>
+
+<li><p>创建一个InterceptorConfig实现WebMvcConfigurer来注册拦截器</p>
+
+<pre><code class="language-java">/**
+*注册拦截器
+*/
+@Configuration
+public class InterceptorConfig implements WebMvcConfigurer {
+
+@Override
+public void addInterceptors(InterceptorRegistry registry) {
+// 自定义拦截器，添加拦截路径和排除拦截路径
+registry.addInterceptor(new LoginHandlerInterceptor())
+        .addPathPatterns(&quot;/**&quot;)
+        .excludePathPatterns(&quot;/index.html&quot;);
+}
+}
+</code></pre></li>
+</ol></li>
+</ul>
+
+<h1 id="总结">总结</h1>
+
+<ol>
+<li>实现的方式的不同. Filter是利用了方法的调用(入栈出栈)完成整个流程, 而Interceptor是利用了for循环完成了整个流程.</li>
+<li>filter是servlet容器支持的，interceptor是spring框架支持的。</li>
+<li>Filter的优先级是高于Interceptor, 即请求是先到Filter再到Interceptor的, 因为Interceptor的实现主体还是一个servlet。</li>
+<li>filter只在方法前后执行，interceptor粒度更细，可以深入到方法前后，异常抛出前后。</li>
+<li>Interceptor可以访问Controller上下文、值栈里的对象，而过滤器不能访问。</li>
+<li>Interceptor只能对Controller请求起作用，而Filter则可以对几乎所有的请求起作用</li>
+</ol>
+
+<p>参考: <a href="https://www.jianshu.com/p/5f5e5211bbdb">https://www.jianshu.com/p/5f5e5211bbdb</a>
+参考: <a href="https://www.cnblogs.com/junzi2099/p/8022058.html">https://www.cnblogs.com/junzi2099/p/8022058.html</a></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">JSR-303参数校验</a></li>
+        
+        <li><a href="/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">基于自定义注解的参数解析器</a></li>
+        
+        <li><a href="/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">接口限流-令牌桶限流</a></li>
+        
+        <li><a href="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a></li>
+        
+        <li><a href="/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="/tags/spring">Spring</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

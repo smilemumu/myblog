@@ -2,22 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wechats on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/wechat/</link>
+    <link>/wechat/</link>
     <description>Recent content in Wechats on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 29 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/wechat/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/wechat/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>微信开发</title>
-      <link>http://www.sszblog.xyz/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+      <link>/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
       <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
-      <description>微信商户平台-现金红包 微信商户平台-企业付款到零钱 微信公众号开发-授权  </description>
+      <guid>/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
+      <description>微信商户平台-现金红包 微信商户平台-企业付款到零钱 微信公众号开发-授权  接口配置信息修改  例如：编写一个公网接口 http://1b51z57431.51mypc.cn/tokenAuth 点击修改接口配置信息的时候，腾讯会给http://1b51z57431.51mypc.cn/tokenAuth 发送一个get请求，包含参数echostr，此时需要将echostr原路返回，就能够 修改接口配置信成功
+@GetMapping(value = &amp;quot;/tokenAuth&amp;quot;) public String tokenAuth(HttpServletRequest httpServletRequest){ Map&amp;lt;String, String&amp;gt; param = Request2Map.toMap(httpServletRequest); return param.get(&amp;quot;echostr&amp;quot;); }   修改JS安全域名  将http://1b51z57431.51mypc.cn设置为安全域名即可  设置网页帐号-网页授权获取用户基本信息  将1b51z57431.51mypc.cn填入即可  获取授权code  拼装并请求：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization&amp;amp;response_type=code&amp;amp;scope=snsapi_base&amp;amp;state=123#wechat_redirect H5平台demo【https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0d453bb3d089f6f9&amp;amp;redirect_uri=http%3A%2F%2Ffanxx4.natapp1.cc%2Fww_h5_dx%2F%23%2Fard%3Ftoken%3D12345&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=123#wechat_redirect】 微信会回调到：http://1b51z57431.51mypc.cn/authorization?code=001NOmD91cWL6N1S1lF911BoD91NOmDO&amp;amp;state=123 回调会带入授权code 将获取到的授权code生成授权链接  静默授权： https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=123#wechat_redirect 会得到openid，access_token等参数 非静默授权-用户确认授权：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization_userinfo&amp;amp;response_type=code&amp;amp;scope=snsapi_userinfo&amp;amp;state=123#wechat_redirect 会得到头像昵称等数据   公众号菜单栏配置  打开https://mp.weixin.qq.com/debug/cgi-bin/apiinfo
+ 接口类型选择-基础支持 设置appid和appsecret获取access_token 选择自定义菜单-自定义菜单创建接口/menue/create填入access_token并填入body为下：
+{ &amp;quot;button&amp;quot;:[ { &amp;quot;type&amp;quot;:&amp;quot;click&amp;quot;, &amp;quot;name&amp;quot;:&amp;quot;测试&amp;quot;, &amp;quot;key&amp;quot;:&amp;quot;V1001_TODAY_MUSIC&amp;quot; }, { &amp;quot;name&amp;quot;:&amp;quot;营销服务&amp;quot;, &amp;quot;sub_button&amp;quot;:[ { &amp;quot;type&amp;quot;:&amp;quot;view&amp;quot;, &amp;quot;name&amp;quot;:&amp;quot;百度&amp;quot;, &amp;quot;url&amp;quot;:&amp;quot;http://www.</description>
     </item>
     
   </channel>

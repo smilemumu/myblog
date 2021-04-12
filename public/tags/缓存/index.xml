@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>缓存 on Shi.bro的博客</title>
+    <link>/tags/%E7%BC%93%E5%AD%98/</link>
+    <description>Recent content in 缓存 on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/%E7%BC%93%E5%AD%98/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>布隆Bloom过滤器</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
+      <description>1.什么是布隆过滤器？  一个名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。 &amp;gt;位数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1。这样申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000&amp;frasl;1024 kb ≈ 122kb 的空间。 &amp;gt; bit数组 0 0 0 0 0 0 0 0 0 0 0 0 0 0  2.布隆过滤器的原理  当一个元素加入布隆过滤器中的时候，会进行如下操作：
+ 使用布隆过滤器中的哈希函数对元素值进行计算，得到哈希值（有几个哈希函数得到几个哈希值）。 根据得到的哈希值，在位数组中把对应下标的值置为 1。   当我们需要判断一个元素是否存在于布隆过滤器的时候，会进行如下操作：
+ 对给定元素再次进行相同的哈希计算； 得到值之后判断位数组中的每个元素是否都为 1，如果值都为 1，那么说明这个值在布隆过滤器中，如果存在一个值不为 1，说明该元素不在布隆过滤器中。    布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。
+ 3.使用Google开源的 Guava中自带的布隆过滤器  创建了一个最多存放 最多 1500个整数的布隆过滤器，并且我们可以容忍误判的概率为百分之（0.</description>
+    </item>
+    
+    <item>
+      <title>Java缓存</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/java%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Mon, 12 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/java%E7%BC%93%E5%AD%98/</guid>
+      <description> 缓存 1.基本思想  避免用户在请求数据的时候获取速度过于缓慢，所以我们在数据库之上增加了缓存这一层来弥补。  2.本地缓存解决方案  常见的有Ehcache、guavaCache、Caffeine Cache等，性能最优的为Caffeine cache。 常见的单体架构使用 Nginx 来做负载均衡，部署两个相同的服务到服务器，两个服务使用同一个数据库，并且使用的是本地缓存。
+3.为什么要用分布式缓存？而不用本地缓存？ 本地缓存存在局限性：
+ 本地缓存对分布式架构支持不友好，比如同一个相同的服务部署在多台机器上的时候，各个服务之间的缓存是无法共享的，因为本地缓存只在当前机器上有。 本地缓存容量受服务部署所在的机器限制明显。 如果当前系统服务所耗费的内存多，那么本地缓存可用的容量就很少。   4.缓存读写模式/更新策略/处理流程  Cache Aside Pattern（旁路缓存模式）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：更新 DB，然后直接删除 cache 。  Read/Write Through Pattern（读写穿透）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：先查 cache，cache 中不存在，直接更新 DB。 cache 中存在，则先更新 cache，然后 cache 服务自己更新 DB（同步更新 cache 和 DB）。  Write Behind Pattern（异步缓存写入）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：无论是否存在，都直接跟新缓存，最好异步批量的方式来更新 DB。   </description>
+    </item>
+    
+    <item>
+      <title>Caffeine Cache接入</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/caffeine-cache%E6%8E%A5%E5%85%A5/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/caffeine-cache%E6%8E%A5%E5%85%A5/</guid>
+      <description> Caffeine Cache接入  Caffeine Cache，目前最快的Java内存框架，堆内存。
+ 接入方式：
+ 1.引入pom文件
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.github.ben-manes.caffeine&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;caffeine&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.7.0&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-starter-cache&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  2.编写CaffeineConfig并注入CacheManager
+import org.springframework.cache.CacheManager; import org.springframework.cache.annotation.CachingConfigurerSupport; import org.springframework.cache.annotation.EnableCaching; import org.springframework.cache.caffeine.*; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import com.github.benmanes.caffeine.cache.Caffeine; import java.util.concurrent.TimeUnit; @Configuration @EnableCaching public class CaffeineConfig extends CachingConfigurerSupport { @Bean public CacheManager caffeineCacheManager() { CaffeineCacheManager cacheManager = new CaffeineCacheManager(); //定制化缓存Cache cacheManager.setCaffeine(Caffeine.newBuilder() .expireAfterWrite(3, TimeUnit.MINUTES) .initialCapacity(100) .maximumSize(10000)) ; return cacheManager; } }  3.通过注解使用
+@Cacheable(cacheNames = &amp;quot;cache name&amp;quot;, key = &amp;quot;#patam1+&#39;-&#39;+#param2&amp;quot;) public void test(String param1,String param2){ }     </description>
+    </item>
+    
+    <item>
+      <title>Redis缓存</title>
+      <link>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/redis%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/redis%E7%BC%93%E5%AD%98/</guid>
+      <description>1.Redis简单介绍  语言开发的内存数据库，除了做KV缓存外还能做分布式锁、延时队列、定时任务等等  2.缓存读写模式/更新策略/处理流程  Cache Aside Pattern（旁路缓存模式） Read/Write Through Pattern（读写穿透） Write Behind Pattern（异步缓存写入）  3.为什么要用 Redis/为什么要用缓存？  简单来说使用缓存主要是为了提高接口响应速度，提升用户体验以及应对更多的用户。 高性能：对于高频数据并且不会经常改变的数据，保证下一次用户访问的数据直接从缓存中读取。 高并发：数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+， &amp;gt; QPS（Query Per Second）：服务器每秒可以执行的查询次数；  4.Redis 常见数据结构以及使用场景分析 4.1 String  普通操作：
+127.0.0.1:6379&amp;gt; set key value #设置 key-value 类型的值 OK 127.0.0.1:6379&amp;gt; get key # 根据 key 获得对应的 value &amp;quot;value&amp;quot; 127.0.0.1:6379&amp;gt; exists key # 判断某个 key 是否存在 (integer) 1 127.</description>
+    </item>
+    
+  </channel>
+</rss>

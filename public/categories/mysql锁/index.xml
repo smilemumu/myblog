@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mysql锁 on Shi.bro的博客</title>
+    <link>/categories/mysql%E9%94%81/</link>
+    <description>Recent content in Mysql锁 on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 19 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/mysql%E9%94%81/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MySQL乐观锁电商库存并发问题应用</title>
+      <link>/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/</guid>
+      <description>MySQL乐观锁电商库存并发问题应用 下单涉及的一些操作  1.下单 2.下单同时预占库存 3.支付 4.支付成功真正减扣库存 5.取消订单 6.回退预占库存
+ 方案选择：  商品加入购物车后，选择下单，这个时候去预占库存。用户选择去支付说明了，用户购买欲望强烈的。订单也有一个时效，例如半个小时。超过半个小时后，系统自动取消订单，回退预占库存。  可进行操作：  1.UI拦截，点击后按钮置灰，不能继续点击，防止用户，连续点击造成的重复下单。 2.下单前获取一个下单的唯一token，下单的时候需要这个token。后台系统校验这个 token是否有效，才继续进行下单操作。 3.进来的时候 先 get 库存数量是否充足，再执行 increment。以 increment &amp;gt; 0 为准。 4.因为检查库存 与 减少库存 不是原子性的，而redis.increment 是个原子操作，可以此为准。 redisService.increment(key, -req.getNum().longValue()) &amp;gt;= 0 说明库存充足，可以下单。 redisService.increment(key, -req.getNum().longValue()) &amp;lt; 0 的时候 不能下单，次数库存不足。并且需要 回加刚刚减去的库存数量，否则会导致刚才减扣的数量 一直买不出去。数据库与缓存的库存不一致。 5.都满足进行真正的扣减库存 5.1生成订单 5.2订单超过时效，订单取消等，订单取消，库存回滚。  MySQL乐观锁电商库存并发问题应用 1.使用数据版本(Version)记录机制实现，这是乐观锁最常用的一种实现方式。 mysql&amp;gt; select * from t_goods; +----+--------+------+---------+ | id | status | name | version | +----+--------+------+---------+ | 1 | 1 | 道具 | 1 | | 2 | 2 | 装备 | 2 | +----+--------+------+---------+ 2 rows in set  何谓数据版本？即为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 “version” 字段来实现。当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。</description>
+    </item>
+    
+    <item>
+      <title>MySql锁</title>
+      <link>/sql/mysql%E9%94%81/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sql/mysql%E9%94%81/</guid>
+      <description>MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分  乐观锁 悲观锁  1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&amp;gt;SELECT * FROM table_name WHERE &amp;hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &amp;gt;SELECT * FROM table_name WHERE &amp;hellip; FOR UPDATE  1.3 从锁粒度划分  表级锁(table lock)  开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低  行级锁(row lock)  开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高   表锁 LOCK TABLE mchopin READ;用读锁锁表，会阻塞其他事务修改表数据，但不会阻塞其他事务读该表。 LOCK TABLE mchopin WRITE;用写锁锁表，会阻塞其他事务读和写。 批量解锁：unlock tables; 行锁 select * from mchopin where id = 3 lock in share mode;读行锁，仅对一行数据加了读锁。 select * from mchopin where id = 3 for update;写行锁，仅对一行数据加了写锁。**</description>
+    </item>
+    
+  </channel>
+</rss>

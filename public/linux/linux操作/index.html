@@ -20,7 +20,7 @@
     <meta name="description" content="linux命令">
         
     <meta name="author" content="Shi.bro">
-    <meta property="og:url" content="http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/">
+    <meta property="og:url" content="/linux/linux%E6%93%8D%E4%BD%9C/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -43,7 +43,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://www.sszblog.xyz">
+                    <a id="logo" href="">
                         Shi.bro的博客
                     </a>
                 
@@ -51,11 +51,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    <a class="" href="">首页</a>
                     
-                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    <a  href="/archives/" title="目录">目录</a>
                     
-                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    <a  href="/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -83,28 +83,62 @@
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/linux">linux</a></span>
+                                <span class="meta-category"><a href="/categories/linux">linux</a></span>
                             
                         </div>
                         
                         
                         
                         <div class="post-content">
-                            <p>一行shell命令杀死指定进程名称的进程方法</p>
+                            
+
+<ul>
+<li><p>一行shell命令杀死指定进程名称的进程方法</p>
 
 <pre><code>ps -efww|grep -w '程序名称'|grep -v grep|cut -c 9-15|xargs kill -9
-</code></pre>
+</code></pre></li>
 
-<p>ps:杀死程序名称为ssz-h5的程序</p>
+<li><p>杀死程序名称为ssz-h5的程序</p>
 
 <pre><code>[root@sagdb ssz-h5]# ps -ef|grep java
 root     28414     1  2 Sep27 ?        05:39:12 java -jar ssz-llyy.jar
 root     29837     1 99 14:37 pts/0    00:00:03 java -jar ssz-h5.jar
 root     29856 29557  0 14:37 pts/0    00:00:00 grep java
-
 [root@sagdb ssz-h5]# ps -efww|grep -w 'ssz-h5'|grep -v grep|cut -c 9-15|xargs kill -9
+</code></pre></li>
 
+<li><p>远程启动脚本</p>
+
+<pre><code>nohup java -Xdebug -Xrunjdwp:transport=dt_socket,address=2345,server=y,suspend=n -jar ssz-h5.jar testinfo2 &gt; h5.log 2&gt;&amp;1 &amp;
+</code></pre></li>
+</ul>
+
+<h3 id="curl">curl</h3>
+
+<ul>
+<li><p>使用curl发送GET请求：curl protocol://ip:port/url?args</p>
+
+<pre><code>curl https://proxy.mimvp.com/login?user=admin&amp;passwd=12345678  
+</code></pre></li>
+
+<li><p>使用curl发送POST请求： （推荐）</p>
+
+<pre><code>curl -d &quot;key1=value1&amp;key2=value2&amp;key3=value3&quot; protocol://ip:port/path
 </code></pre>
+
+<pre><code>示例1：curl -d 'post_data=i_love_mimvp.com' https://proxy.mimvp.com/ip.php   // 测试 post ，发送什么数据就返回什么数据，如 'i_love_mimvp.com'
+示例2：curl -d &quot;user=admin&amp;passwd=12345678&quot; https://proxy.mimvp.com/login    // 测试 post ，模拟发送登录的用户名和密码
+</code></pre></li>
+
+<li><p>这种方法是参数直接在header里面的，如需将输出指定到文件可以通过重定向进行操作.</p>
+
+<pre><code>curl -H &quot;Content-Type:application/json&quot; -X POST -d 'json data' URL
+</code></pre>
+
+<pre><code>示例1：curl -H &quot;Content-Type:application/json&quot; -X POST -d '{&quot;post_data&quot;:&quot;i_love_mimvp.com&quot;}' 'https://proxy.mimvp.com/ip.php'
+示例2：curl -H &quot;Content-Type:application/json&quot; -X POST -d '{&quot;user&quot;: &quot;admin&quot;, &quot;passwd&quot;:&quot;12345678&quot;}' https://proxy.mimvp.com/login  
+</code></pre></li>
+</ul>
 
                         </div>
 
@@ -117,15 +151,15 @@ root     29856 29557  0 14:37 pts/0    00:00:00 grep java
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Thread、Runnable、Callable、线程池</a></li>
+        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Thread、Runnable、Callable、线程池</a></li>
+        
+        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></li>
         
         <li><a href="/java/%E5%BC%82%E5%B8%B8/">异常</a></li>
         
-        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">责任链模式使用</a></li>
+        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%BD%A2%E6%A8%A1%E5%BC%8F/">结构型模式</a></li>
         
-        <li><a href="/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">Java8计算时间差</a></li>
-        
-        <li><a href="/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/">我的书单</a></li>
+        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></li>
         
     </ul>
 </div>
@@ -135,7 +169,7 @@ root     29856 29557  0 14:37 pts/0    00:00:00 grep java
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="http://www.sszblog.xyz/tags/linux">linux</a></li>
+                                <li><a href="/tags/linux">linux</a></li>
                                 
                             </ul>
                             
@@ -153,7 +187,7 @@ root     29856 29557  0 14:37 pts/0    00:00:00 grep java
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <input type="hidden" name="sitesearch" value="">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -172,31 +206,63 @@ root     29856 29557  0 14:37 pts/0    00:00:00 grep java
 <ul class="widget-list">
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+        <a href="/categories/algorithm/">algorithm(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+        <a href="/categories/git/">git(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+        <a href="/categories/java/">java(31)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+        <a href="/categories/linux/">linux(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+        <a href="/categories/markdown/">markdown(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+        <a href="/categories/mysql/">mysql(2)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
     </li>
     
 </ul>
@@ -206,35 +272,71 @@ root     29856 29557  0 14:37 pts/0    00:00:00 grep java
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    <a href="/tags/algorithm/">algorithm</a>
     
-    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    <a href="/tags/git/">git</a>
     
-    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    <a href="/tags/guava/">guava</a>
     
-    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    <a href="/tags/h5/">h5</a>
     
-    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    <a href="/tags/java/">java</a>
     
-    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    <a href="/tags/java8/">java8</a>
     
-    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
     
-    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    <a href="/tags/jvm/">jvm</a>
     
-    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    <a href="/tags/linux/">linux</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    <a href="/tags/markdown/">markdown</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a href="/tags/mysql/">mysql</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    <a href="/tags/other/">other</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    <a href="/tags/spring/">spring</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
     
 </div>
     </section>
@@ -248,7 +350,7 @@ root     29856 29557  0 14:37 pts/0    00:00:00 grep java
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

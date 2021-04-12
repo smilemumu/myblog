@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alis on Shi.bro的博客</title>
+    <link>/ali/</link>
+    <description>Recent content in Alis on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 24 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/ali/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>阿里支付</title>
+      <link>/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/</guid>
+      <description> [x]当面付-扫码支付快速接入(https://docs.open.alipay.com/194/106078/) [x]电脑网站支付（https://docs.open.alipay.com/270/105899/）  </description>
+    </item>
+    
+  </channel>
+</rss>

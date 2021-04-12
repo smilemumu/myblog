@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>阿里巴巴Java开发手册与代码规约插件P3C-PMD | Shi.bro的博客</title>
+    <meta property="og:title" content="阿里巴巴Java开发手册与代码规约插件P3C-PMD - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-12-24T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-12-24T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="阿里巴巴Java开发手册与代码规约插件P3C-PMD">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">阿里巴巴Java开发手册与代码规约插件P3C-PMD</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年12月24日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>P-3C Orion【猎户座反潜巡逻机】，阿里大概取p3c先进，监测，发现潜在问题的意思</p>
+
+<h2 id="前言">前言</h2>
+
+<p>2017年的时，阿里官方首次公开阿里Java代码规范标准，发布阿里巴巴Java开发手册。
+这套Java统一规范标准将有助于提高行业编码规范化水平，帮助行业人员提高开发质量和效率、大大降低代码维护成本。</p>
+
+<p>目前已更迭了五个版本，2019年6月19日，阿里巴巴Java开发手册（华山版）》正式发布，该版本命名为华山版是因为最新版本手册集成了社区开发者集体智慧的结晶。</p>
+
+<p>该开发手册阿里内部Java工程师所遵循的开发规范，涵盖编程规约、单元测试规约、异常日志规约、MySQL规约、工程规约、安全规约等，这是近万名阿里Java技术精英的经验总结，并经历了多次大规模一线实战检验及完善。这是阿里回馈给Java社区的一份礼物，希望能够帮助企业开发团队在Java开发上更高效、容错、有协作性，提高代码质量，降低项目维护成本。</p>
+
+<p>虽然已经发布了开发手册，但是为了让开发者更加方便、快速的将规范推动并实行起来，阿里巴巴基于手册内容，研发了一套自动化的IDE检测插件（IDEA、Eclipse）， 该插件在扫描代码后，将不符合《手册》的代码按Blocker/Critical/Major三个等级显示在下方，甚至在IDEA上，还基于检查机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。另外对于历史代码，部分规则实现了批量一键修复的功能，提升代码质量，提高团队研发效能。</p>
+
+<h2 id="如何安装">如何安装</h2>
+
+<h2 id="eclipse安装">eclipse安装</h2>
+
+<p>1.打开<a href="https://p3c.alibaba.com/plugin/eclipse/update">https://p3c.alibaba.com/plugin/eclipse/update</a>
+<img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Java开发手册/Eclipse_plugin_download1.png" alt="Eclipse 插件下载图1" />
+2.点击Zip File直接下载，下载完成后解压缩，将将【features】及【plugins】两个目录复制到eclipse安装目录下（eclipse.exe同级目录），重启eclipse
+<img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Java开发手册/Eclipse_plugin_download2.png" alt="Eclipse 插件下载图2" /></p>
+
+<h3 id="idea安装">idea安装</h3>
+
+<p>1.访问：<a href="https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines/versions">https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines/versions</a>
+下载对应版本的安装包
+<img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Java开发手册/IDEA_Plugins_Download.png" alt="IDEA 插件下载图" />
+2.依次点击【File】-&gt;【Settings】-&gt;【Plugins】-&gt;【install plugin from disk】然后点击确认</p>
+
+<p><img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Java开发手册/Offline_Install_Steps.png" alt="扫描结果" /></p>
+
+<h2 id="如何使用">如何使用</h2>
+
+<p>1.首先现贴一段测试代码</p>
+
+<pre><code class="language-java">public class Test {
+    public static void main(String[] args) {
+        String _name = &quot;name&quot;;
+        System.out.println(_name.equals(&quot;name&quot;));
+        Long temp = 10l;
+        if(temp ==10L)
+            System.out.println(&quot;temp = 10&quot;);
+        else
+            System.out.println(&quot;temp != 10&quot;);
+        HashMap&lt;String,Integer&gt; map = new HashMap&lt;&gt;();
+    }
+}
+</code></pre>
+
+<p><img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Java开发手册/Selected_guide.png" alt="扫描结果" />
+扫描后的结果：
+<img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Java开发手册/Inspection_Result.png" alt="扫描结果" /></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/">阿里支付</a></li>
+        
+        <li><a href="/web/css/">HTML</a></li>
+        
+        <li><a href="/web/html/">HTML</a></li>
+        
+        <li><a href="/web/htmlcss/">HTML&amp;CSS</a></li>
+        
+        <li><a href="/other/todo/">TODO</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            没有标签
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

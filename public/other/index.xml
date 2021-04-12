@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Others on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/other/</link>
+    <link>/other/</link>
     <description>Recent content in Others on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 09 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/other/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/other/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>TODO</title>
+      <link>/other/todo/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/other/todo/</guid>
+      <description>GitBook netty Android ?  Web TypeScript node.js JAVA-JWT (Json Web Token) JAVA-OAuth2.0  </description>
+    </item>
+    
+    <item>
       <title>短语</title>
-      <link>http://www.sszblog.xyz/other/english/phrase/</link>
+      <link>/other/english/phrase/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/english/phrase/</guid>
+      <guid>/other/english/phrase/</guid>
       <description>Managerial tasks could be delegated to others 管理任务可以委托给其他人</description>
     </item>
     
     <item>
-      <title>SQL</title>
-      <link>http://www.sszblog.xyz/other/oracle/</link>
-      <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.sszblog.xyz/other/oracle/</guid>
-      <description>ORALE一条SQL插入多条记录 INSERT ALL INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES (&amp;lsquo;1700601010&amp;rsquo;,&amp;lsquo;范磊&amp;rsquo;) INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES (&amp;lsquo;1700601011&amp;rsquo;,&amp;lsquo;吴凯&amp;rsquo;) SELECT 1 FROM DUAL;</description>
-    </item>
-    
-    <item>
       <title>我的书单</title>
-      <link>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
+      <link>/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</guid>
+      <guid>/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/</guid>
       <description> [ ]《睡眠革命》
  [x]《软技能》
  [ ]《指数基金投资指南》
@@ -47,10 +47,10 @@
     
     <item>
       <title>软技能分享</title>
-      <link>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</link>
+      <link>/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</link>
       <pubDate>Wed, 18 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</guid>
+      <guid>/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/</guid>
       <description>#《软技能》 前言 对于优秀的软件开发者来说，埋头写代码绝并不应该是工作的全部。这本书给出了很多非常好的建议，不仅仅“码农”们可以从中获益，还可以推而广之到很多其他的行业。
 职业 主要讲的是如何进行自己的职业规划
 你所能犯的最大错误就是相信自己是在为别人工作。这样一来你对工作的安全感已然尽失。职业发展的驱动力一定是个体本身。记住：工作是属于公司的，而职业生涯确实属于你自己的。 - 厄尔.南丁格尔
@@ -69,11 +69,22 @@
     
     <item>
       <title>我的单词本</title>
-      <link>http://www.sszblog.xyz/other/english/word/</link>
+      <link>/other/english/word/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/other/english/word/</guid>
+      <guid>/other/english/word/</guid>
       <description>&lt;p&gt;&lt;strong&gt;日常开发中遇到的一些术语生词&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/other/%E7%AE%80%E5%8E%86%E6%A8%A1%E6%9D%BF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/other/%E7%AE%80%E5%8E%86%E6%A8%A1%E6%9D%BF/</guid>
+      <description>Tim Qian A full-stack JS developer and open-source activist.
+Contact | GitHub | Twitter | Email | Website | Blog | Patreon |
+Teck Stack  Backend: Node.js; Express; AWS lambda; serverless; GraphQL; RabbitMQ Database: DynamoDB; MongoDB; Postgres; SQLite; AWS RDS; Redis Frontend: react.js; SASS/CSS; d3.js Chrome Extension: react.js; SASS/CSS;  Projects (open source)  chart.xkcd: xkcd styled chart lib.  5.5k+ stars on GitHub, 100k downloads Built with d3.</description>
     </item>
     
   </channel>

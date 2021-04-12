@@ -14,7 +14,7 @@ Terminal adj.最终 n.终端
 
 merchant 商人  
 
-queue apacity 队列 容量
+queue cpacity 队列 容量
 
 partitioning 分区
 
@@ -136,6 +136,8 @@ recruit 招，招募，招收，征募，吸收，录取，收录 v.
 
 recursive 递归 n.
 
+fork n.餐叉，分流处，岔路口. v.分支，分叉
+
 shuffle 拖拽 v.，shuffling 洗牌
 
 material 材料 n
@@ -163,3 +165,59 @@ Immutable adj,一成不变的
 Diagnostic adj.诊断；n.病的特征(\/)
 
 optimization 优化
+
+inventory n.库存，物品清单；v.开列清单
+
+peek n.v.窥视，窥见
+
+cluster n.族、团，束，组，群。（计算机中-集群）
+
+clustered adj.成群的，成簇的；v.群聚，聚集
+
+clustering v.群聚，聚集
+
+arithmetic n.算术
+
+algorithm  n.算法
+
+sibling  n.兄弟节点
+
+lottery n.抽奖
+
+exclude v.排除
+
+include v.包括
+
+Refined adj.精致、提炼
+
+subject n.主题、主题、课程、科
+
+eviction n.驱逐
+
+propagation n.传播
+
+mandatory adj.强制性
+
+nested adj.嵌套
+
+Intention n.意向
+
+isolation n.隔离
+
+Exclusive adj.独占、排他
+
+Phantom n.幻影
+
+sentinel n.哨兵
+
+lease n.v.租
+
+scavenge v.清道夫
+
+Partial  adj.部分的
+
+implicit adj.含蓄，盲从的
+
+credentials n.证书，证件
+
+certificate n.证书

@@ -2,69 +2,88 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spring on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/categories/spring/</link>
+    <link>/categories/spring/</link>
     <description>Recent content in Spring on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 21 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/spring/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>全局异常处理</title>
-      <link>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
-      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
+      <title>Spring事务的隔离级别和传播行为</title>
+      <link>/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
+      <guid>/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</guid>
+      <description>简述 在高并发的情况下，MySQL 事务的并发处理会带来几个问题脏读、不可重复读、幻读。由于高并发事务带来这几个问题，所以就产生了事务的隔离级别。
+事务是什么  事务是数据库操作的最小工作单元，用户定义的一系列数据库操作作为一个整体一起向系统提交，要么都执行、要么都不执行。是不可分割的工作单元。 &amp;gt; 如果没做好并发控制，可能会造成脏读、不可重复读和幻读等问题。  可交叉程度  脏读Dirty Read（看到的数据则是不正确的） 当一个事务能看见另外一个事务未提交的数据时，就称为脏读。如果这个事务被回滚了而不是提交了，那么其它事务看到的数据则是不正确的，是“脏”的。  Non-repeatable Read(不可重复读) 两次读取到的数据不同 假设事务A读取了一行数据，接下来事务B改变了这行数据，之后事务A再一次读取这行数据，结果就是事务A两次读取到的数据不同。  Phantom Read(幻读) 发现多出来一条数据
+假设事务A通过一个 where 条件读取到了一个结果集，事务B这时插入了一条符合事务A的 where 条件的数据，之后事务A通过同样的 where 条件再次查询时，发现多出来一条数据。   1.事务隔离级别(Isolation) JDBC 规范增加了隔离级别，来满足了 SQL:2003 定义的 4 种事务隔离级别。 在安装MySQL时，安装默认的隔离级别就是：可重复读。 可以通过 select @@global.tx_isolation; 来查看当前隔离级别。 隔离级别从最宽松到最严格，排序如下所示：
+TRANSACTION_NONE(无事务) 这意味着当前的 JDBC 驱动不支持事务，也意味着这个驱动不符合 JDBC 规范。
+ 1.READ_UNCOMMITTED(读未提交) 允许事务看到其它事务修改了但未提交的数据，这意味着有可能是脏读、不可重复读或者、幻读。
+ 2.READ_COMMITTED(读提交) 一个事务在未提交之前，所做的修改不会被其它事务所看见。这能避免脏读，但避免不了不可重复读和幻读。
+ 3.**REPEATABLE_READ(可重复读取) MySQL默认的事务隔离级别 避免了脏读和不可重复读，但幻读**依然是有可能发生的。
+ 4.SERIALIZABLE(序列化) 避免了脏读、不可重复读以及幻读。   2.Propagation事务传播行为 Propagation属性用来枚举事务的传播行为。所谓事务传播行为就是多个事务方法相互调用时，事务如何在这些方法间传播。Spring支持7种事务传播行为，默认为REQUIRED。
+ 1.</description>
+    </item>
+    
+    <item>
+      <title>参数校验</title>
+      <link>/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
+      <pubDate>Mon, 24 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
       <description>通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
 步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.</description>
     </item>
     
     <item>
-      <title>Ehcache和Redis</title>
-      <link>http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/</link>
-      <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
+      <title>全局异常处理</title>
+      <link>/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/</guid>
-      <description> ehcache 和 redis 比较  ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。 redis是通过socket访问到缓存服务，效率比ecache低，比数据库要快很多， 处理集群和分布式缓存方便，有成熟的方案。如果是单个应用或者对缓存访问要求很高的应用，用ehcache。如果是大型系统，存在缓存共享、分布式部署、缓存内容很大的，建议用redis。  </description>
+      <guid>/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</guid>
+      <description>通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
+步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.</description>
     </item>
     
     <item>
       <title>Filter和Interceptor</title>
-      <link>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</link>
+      <link>/spring/filter%E5%92%8Cinterceptor/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/filter%E5%92%8Cinterceptor/</guid>
-      <description>Filter调用链 // Interceptor的源码 public interface HandlerInterceptor { // 在调用真正的处理请求类之前调用 boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception; // 在调用真正的处理请求类之后调用 void postHandle( HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception; // 在完成渲染或者出错之后调用 void afterCompletion( HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception; }  refer to: https://www.jianshu.com/p/5f5e5211bbdb refer to: https://www.cnblogs.com/junzi2099/p/8022058.html</description>
+      <guid>/spring/filter%E5%92%8Cinterceptor/</guid>
+      <description>#Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
+&amp;lt;filter&amp;gt; &amp;lt;description&amp;gt;字符集过滤器&amp;lt;/description&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;org.springframework.web.filter.CharacterEncodingFilter&amp;lt;/filter-class&amp;gt; &amp;lt;init-param&amp;gt; &amp;lt;description&amp;gt;字符集编码&amp;lt;/description&amp;gt; &amp;lt;param-name&amp;gt;encoding&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;UTF-8&amp;lt;/param-value&amp;gt; &amp;lt;/init-param&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.</description>
     </item>
     
     <item>
       <title>JSR-303参数校验</title>
-      <link>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
+      <link>/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
+      <guid>/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/</guid>
       <description>JSR-303参数校验 步骤 1.创建校验参数类
 import lombok.Data; import org.hibernate.validator.constraints.Range; import org.springframework.format.annotation.DateTimeFormat; import javax.validation.constraints.*; import java.util.Date; /** * 参数验证请求参数 * @Author shizhongcai * @Date 2019/11/20 15:35 */ @Data public class ValidatorReqVo{ @NotNull(message = &amp;quot;id不能为空&amp;quot;) private Integer id; @NotNull @Future(message = &amp;quot;格式为yyyy-MM-dd,且为将来时间&amp;quot;) @DateTimeFormat(pattern = &amp;quot;yyyy-MM-dd&amp;quot;) private Date future; @NotNull @DecimalMin(value = &amp;quot;0.1&amp;quot;) @DecimalMax(value = &amp;quot;1000&amp;quot;) private Double doubleValue; @NotNull @Min(value = 1) @Max(value = 10) private Integer intValue; @NotNull @Range(min = 1,max = 10,message = &amp;quot;最小为1，最大为10&amp;quot;) private Integer range; @NotBlank @Email private String email; @NotBlank @Size(min = 10,max = 20,message = &amp;quot;字符串长度在10-20之间&amp;quot;) private String strSize; }  2.</description>
     </item>
     
     <item>
       <title>其他</title>
-      <link>http://www.sszblog.xyz/spring/%E5%85%B6%E4%BB%96/</link>
+      <link>/spring/%E5%85%B6%E4%BB%96/</link>
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E5%85%B6%E4%BB%96/</guid>
+      <guid>/spring/%E5%85%B6%E4%BB%96/</guid>
       <description>其他一些日常工作中遇到的问题：
 1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&amp;ldquo;singleton&amp;rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&amp;ldquo;prototype&amp;rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</description>
     </item>
     
     <item>
       <title>基于自定义注解的参数解析器</title>
-      <link>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
+      <link>/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
+      <guid>/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/</guid>
       <description>基于自定义注解的参数解析器 背景 在工作中，常会对接一些第三方应用，通常第三方会采用Rsa+Aes加密来通信，但是每个第三方的加密方式可能不一致。此时得好好规划一下实现方案了。因此我们采用注解+Spring自带了参数解析类，实现自己的参数解析器。
 原理 通过HandlerMethodArgumentResolver实现自定义参数解析
 实现 步骤1：创建注解，例如创建一个解析Aes加密的注解AesJson import java.lang.annotation.*; @Target({ElementType.PARAMETER}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface AesJson { }  步骤2：创建加密参数实体类对象 传入的JSON数据格式为{&amp;ldquo;data&amp;rdquo;:&amp;ldquo;xxxxxxxxxx&amp;rdquo;}
@@ -73,39 +92,48 @@ import lombok.Data; @Data public class AesBaseParams { private String data; }  �
     
     <item>
       <title>接口限流-令牌桶限流</title>
-      <link>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
+      <link>/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
+      <guid>/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/</guid>
       <description>guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&amp;lt;String, RateLimiter&amp;gt; map = new ConcurrentHashMap&amp;lt;&amp;gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&amp;quot;@annotation(com.</description>
     </item>
     
     <item>
       <title>日志优化MDC</title>
-      <link>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
+      <link>/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
+      <guid>/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/</guid>
       <description>MDC(Mapped Diagnostic Context) 实现 步骤1：创建MDCFilter实现Filter filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。 在过滤之前在reqId钟放入uuid并在结束之后remove
 import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; import org.springframework.stereotype.Component; import javax.servlet.*; import javax.servlet.http.HttpServletRequest; import java.io.IOException; import java.util.UUID; /** * @Author shizhongcai * @Date 2019/11/15 11:15 */ @Component public class MDCFilter implements Filter { private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class); public static final String MDC_ID = &amp;quot;reqId&amp;quot;; @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { boolean mdcFlag = false; try { MDC.</description>
     </item>
     
     <item>
       <title>统一返回对象</title>
-      <link>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
+      <link>/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/</guid>
       <description>1.创建实体类BaseRspVo
 @Data public class BaseRspVo&amp;lt;T&amp;gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo(ErrorCodesEnum errorCode) { if(errorCode == ErrorCodesEnum.SUCCESS) { this.success = true; } else { this.success = false; } this.msg = errorCode.getMsg(); this.errorCode = errorCode.getCode(); } } 错误Code枚举类 public enum ErrorCodesEnum { SUCCESS(10000,&amp;quot;成功&amp;quot;), SYS_ERROR(1000,&amp;quot;系统异常，请稍后再试&amp;quot;), DUPLICATE_KEY(10001,&amp;quot;数据库中已存在该记录&amp;quot;), NO_HANDLER_FOUND(10002,&amp;quot;路径不存在，请检查路径是否正确&amp;quot;), DEFAULT_FAIL(10003,&amp;quot;未知异常，请稍后再试&amp;quot;), DECRYPT_ERROR(10004,&amp;quot;解密出错&amp;quot;), ; /** * 错误码 */ private int code; /** * 错误描述 */ private String msg; ErrorCodesEnum(int code, String msg) { this.</description>
     </item>
     
     <item>
       <title>项目开发</title>
-      <link>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
+      <link>/spring/todo/</link>
       <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
+      <guid>/spring/todo/</guid>
+      <description>Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  </description>
+    </item>
+    
+    <item>
+      <title>项目开发</title>
+      <link>/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/</guid>
       <description>Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  </description>
     </item>
     

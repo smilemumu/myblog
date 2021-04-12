@@ -144,3 +144,54 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
 -    转列表: asList()
 -    转字符串 : toString()
 -    复制: copyOf()
+
+### 12.Java反射
+- 反射作用：
+	1. 在运行时判断任意一个对象所属的类
+	2. 在运行时构造任意一个类的对象
+	3. 在运行时判断任意一个类所具有的成员变量和方法
+	4. 在运行时调用任意一个对象的方法
+- 如何使用
+	- 通过一个全限类名创建一个对象
+		- 1) Class.forName(“全限类名”); 例如：com.mysql.jdbc.Driver Driver类已经被加载到 jvm中，并且完成了类的初始化工作就行了
+		- 2) 名.class; 获取Class<？> clz 对象
+		- 3) 对象.getClass();
+	- 获取构造器对象，通过构造器new出一个对象
+		- 1) Clazz.getConstructor([String.class]);
+		- 2) Con.newInstance([参数]);
+	- 通过class对象创建一个实例对象（就相当与new类名（）无参构造器)
+		- 1) Clazz.newInstance();
+	- 通过class对象获得一个属性对象
+		- 1) Field c=clz.getFields()：获得某个类的所有的公共（public）的字段，包括父类中的字段。
+		- 2) Field c=clz.getDeclaredFields()：获得某个类的所有声明的字段，即包括public、private和proteced，但是不包括父类的申明字段
+	- 通过class对象获得一个方法对象
+		- 1）Clazz.getMethod(“方法名”,class……parameaType);（只能获取公共的）
+		- 2）Clazz.getDeclareMethod(“方法名”);（获取任意修饰的方法，不能执行私有）
+		- 3）M.setAccessible(true);（让私有的方法可以执行）
+	- 让方法执行
+		- 1）Method.invoke(obj实例对象,obj可变参数);-----（是有返回值的）设计模式-结构型模式
+		
+### 13.代理
+参考：设计模式-结构型模式-代理模式
+
+### 14.Comparable和Comparator
+```java
+comparable接口
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+```
+
+```java
+//类实现Comparator接口，重写compare方法
+public class MyComparator implements Comparator<User> {
+    @Override
+    public int compare(User o1, User o2) {
+        return o1.getName().charAt(0)-o2.getName().charAt(0);
+    }
+}
+```
+
+- Comparable为可排序的（内部比较器），实现该接口的类的对象自动拥有可排序功能。
+- Comparator为比较器（外部比较器），实现该接口可以定义一个针对某个类的排序方式。
+- Comparator与Comparable同时存在的情况下，前者优先级高。

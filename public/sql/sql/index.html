@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SQL | Shi.bro的博客</title>
+    <meta property="og:title" content="SQL - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-29T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-29T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="SQL">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/sql/sql/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">SQL</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月29日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/sql">SQL</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="oracle">Oracle</h1>
+
+<ul>
+<li><p>创建索引</p>
+
+<pre><code>create index index_name(idx_****) on table table_name(column1_name,column2_name);
+</code></pre></li>
+
+<li><p>oracle只查第一条数据</p>
+
+<pre><code class="language-sql">select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rownum=1;
+</code></pre></li>
+
+<li><p>oracle触发器</p>
+
+<pre><code class="language-sql">create or replace trigger HF_20_G_TRIGGER
+before insert or update on HF_20_G_INFO
+for each row
+begin
+select sysdate into :new.update_time from dual;
+end;
+</code></pre></li>
+
+<li><p>ORALE一条SQL插入多条记录</p>
+
+<pre><code>INSERT ALL
+INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES ('1700601010','范磊')
+INTO HF_ACCOUNT_MANAGER_INFO(ID, NAME) VALUES ('1700601011','吴凯')
+SELECT 1 FROM DUAL;
+</code></pre></li>
+
+<li><p>SQL多线程查询</p>
+
+<pre><code>例如存在sql:select * from table_name
+4线程查询sql:select /*+ parallel(4)*/ * from table_name
+</code></pre></li>
+</ul>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发</a></li>
+        
+        <li><a href="/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">全局异常处理</a></li>
+        
+        <li><a href="/spring/ehcache%E5%92%8Credis/">Ehcache和Redis</a></li>
+        
+        <li><a href="/spring/filter%E5%92%8Cinterceptor/">Filter和Interceptor</a></li>
+        
+        <li><a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">JSR-303参数校验</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="http://www.sszblog.xyz/tags/sql">SQL</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(19)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/sql/">sql(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/web/">web(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/algorithm/">algorithm</a>
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/h5/">h5</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/redis/">redis</a>
+    
+    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
+    <a href="http://www.sszblog.xyz/tags/sql/">sql</a>
+    
+    <a href="http://www.sszblog.xyz/tags/todo/">todo</a>
+    
+    <a href="http://www.sszblog.xyz/tags/web/">web</a>
+    
+    <a href="http://www.sszblog.xyz/tags/wechat/">wechat</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

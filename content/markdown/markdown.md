@@ -8,6 +8,7 @@ draft: true
 
 **markdown模板**
 
+![Demo](https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Executor类图.png)
 ![版本图标](https://img.shields.io/github/release/wildfirechat/server)
 类似于这样添加版本
 ![Progress](http://progressed.io/bar/10)
@@ -124,7 +125,7 @@ $(document).ready(function () {
 ---
 
 # 反斜杠 ''DEMO
-相当于转义字符 \{\}
+相当于转义字符 \{\}\*
 
 ---
 # 表格DEMO

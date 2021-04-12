@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mysql锁 | Shi.bro的博客</title>
+    <meta property="og:title" content="Mysql锁 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Mysql锁">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/categories/mysql%E9%94%81/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="/categories/mysql%E9%94%81/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        分类
+                        <span class="keyword">Mysql锁</span>
+                        中的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/">MySQL乐观锁电商库存并发问题应用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月19日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/mysql%E9%94%81">Mysql锁</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                MySQL乐观锁电商库存并发问题应用 下单涉及的一些操作  1.下单 2.下单同时预占库存 3.支付 4.支付成功真正减扣库存 5.取消订单 6.回退预占库存
+ 方案选择：  商品加入购物车后，选择下单，这个时候去预占库存。用户选择去支付说明了，用户购买欲望强烈的。订单也有一个时效，例如半个小时。超过半个小时后，系统自动取消订单，回退预占库存。  可进行操作：  1.UI拦截，点击后按钮置灰，不能继续点击，防止用户，连续点击造成的重复下单。 2.下单前获取一个下单的唯一token，下单的时候需要这个token。后台系统校验这个 token是否有效，才继续进行下单操作。 3.进来的时候 先 get 库存数量是否充足，再执行 increment。以 increment &gt; 0 为准。 4.因为检查库存 与 减少库存 不是原子性的，而redis.increment 是个原子操作，可以此为准。 redisService.increment(key, -req.getNum().longValue()) &gt;= 0 说明库存充足，可以下单。 redisService.increment(key, -req.getNum().longValue()) &lt; 0 的时候 不能下单，次数库存不足。并且需要 回加刚刚减去的库存数量，否则会导致刚才减扣的数量 一直买不出去。数据库与缓存的库存不一致。 5.都满足进行真正的扣减库存 5.1生成订单 5.2订单超过时效，订单取消等，订单取消，库存回滚。  MySQL乐观锁电商库存并发问题应用 1.使用数据版本(Version)记录机制实现，这是乐观锁最常用的一种实现方式。 mysql&gt; select * from t_goods; +----+--------+------+---------+ | id | status | name | version | +----+--------+------+---------+ | 1 | 1 | 道具 | 1 | | 2 | 2 | 装备 | 2 | +----+--------+------+---------+ 2 rows in set  何谓数据版本？即为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 “version” 字段来实现。当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。……
+                                <p class="readmore"><a href="/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/mysql%E9%94%81/">MySql锁</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月19日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/mysql%E9%94%81">Mysql锁</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分  乐观锁 悲观锁  1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&gt;SELECT * FROM table_name WHERE &hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &gt;SELECT * FROM table_name WHERE &hellip; FOR UPDATE  1.3 从锁粒度划分  表级锁(table lock)  开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低  行级锁(row lock)  开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高   表锁 LOCK TABLE mchopin READ;用读锁锁表，会阻塞其他事务修改表数据，但不会阻塞其他事务读该表。 LOCK TABLE mchopin WRITE;用写锁锁表，会阻塞其他事务读和写。 批量解锁：unlock tables; 行锁 select * from mchopin where id = 3 lock in share mode;读行锁，仅对一行数据加了读锁。 select * from mchopin where id = 3 for update;写行锁，仅对一行数据加了写锁。**……
+                                <p class="readmore"><a href="/sql/mysql%E9%94%81/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

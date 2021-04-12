@@ -32,6 +32,24 @@ public class Test {
         System.out.printf("年龄 : %d 年 %d 月 %d 日", p.getYears(), p.getMonths(), p.getDays());
     }
 }
+
+ /**
+     * 计算两个时间段内的相差时分秒
+     * @param createTime
+     * @return
+     */
+    private String getLeftTimeByCreateTime(Date createTime) {
+        LocalDateTime deadLine = LocalDateTimeUtils.date2LocalDateTime(createTime).plusDays(3L);
+        Duration duration = Duration.between(LocalDateTime.now(),deadLine);
+        if(duration.getSeconds()<=0){
+            return "00:00:00";
+        }else{
+            Long hour = duration.getSeconds() / ChronoUnit.HOURS.getDuration().getSeconds();
+            Long minute = (duration.getSeconds() - ChronoUnit.HOURS.getDuration().getSeconds() * hour) / ChronoUnit.MINUTES.getDuration().getSeconds();
+            Long second = (duration.getSeconds() - ChronoUnit.HOURS.getDuration().getSeconds() * hour) - minute * ChronoUnit.MINUTES.getDuration().getSeconds();
+            return hour+":"+minute+":"+second;
+        }
+    }
 ```
 输出:  
 今天 : 2019-09-23  

@@ -2,93 +2,147 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 05 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>WEB</title>
-      <link>http://www.sszblog.xyz/categories/web/</link>
-      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.sszblog.xyz/categories/web/</guid>
-      <description></description>
-    </item>
     
     <item>
-      <title>微信开发</title>
-      <link>http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
-      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      <title>Web</title>
+      <link>/categories/web/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Spring</title>
-      <link>http://www.sszblog.xyz/categories/spring/</link>
-      <pubDate>Thu, 21 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.sszblog.xyz/categories/spring/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>设计模式</title>
-      <link>http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
-      <pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>/categories/web/</guid>
       <description></description>
     </item>
     
     <item>
       <title>java</title>
-      <link>http://www.sszblog.xyz/categories/java/</link>
-      <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
+      <link>/categories/java/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/categories/java/</guid>
+      <guid>/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySql</title>
+      <link>/categories/mysql/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySql索引</title>
+      <link>/categories/mysql%E7%B4%A2%E5%BC%95/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/mysql%E7%B4%A2%E5%BC%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mysql锁</title>
+      <link>/categories/mysql%E9%94%81/</link>
+      <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/mysql%E9%94%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>/categories/spring/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>/categories/sql/</link>
+      <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm</title>
+      <link>/categories/algorithm/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 10 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TODO</title>
+      <link>/categories/todo/</link>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/todo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微信开发</title>
+      <link>/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>other</title>
-      <link>http://www.sszblog.xyz/categories/other/</link>
+      <link>/categories/other/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/categories/other/</guid>
+      <guid>/categories/other/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>http://www.sszblog.xyz/categories/linux/</link>
+      <link>/categories/linux/</link>
       <pubDate>Tue, 08 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/categories/linux/</guid>
+      <guid>/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>http://www.sszblog.xyz/categories/git/</link>
+      <link>/categories/git/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/categories/git/</guid>
+      <guid>/categories/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>markdown</title>
-      <link>http://www.sszblog.xyz/categories/markdown/</link>
+      <link>/categories/markdown/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/categories/markdown/</guid>
+      <guid>/categories/markdown/</guid>
       <description></description>
     </item>
     

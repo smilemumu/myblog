@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Shi.bro的博客 | 我的个人博客</title>
+    <meta property="og:title" content="Shi.bro的博客 | 我的个人博客">
+    <meta property="og:type" content="website">
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="专注于IT互联网，JAVA、设计模式、程序员的生存方式">
+    <meta property="og:url" content="/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <h1>
+                        <a id="logo" href="">
+                            Shi.bro的博客
+                        </a>
+                    </h1>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E5%BC%82%E5%B8%B8/" title="异常" >异常</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 异常和错误的区别：异常能被程序本身处理，错误是无法处理。
+异常层次结构图 ……
+                            </div>
+                            <p class="readmore"><a href="/java/%E5%BC%82%E5%B8%B8/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%BD%A2%E6%A8%A1%E5%BC%8F/" title="结构型模式" >结构型模式</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                结构型模式 1.适配器模式 2.装饰器模式 3.代理模式 4.外观模式(门面模式) 5.桥接模式 6.组合模式 7.享元模式 1.适配器模式  定义：将一个类的接口转换成客户希望的另外一个接口，使得原本由于接口不兼容而不能一起工作的那些类能一起工作。适配器模式分为类结构型模式和对象结构型模式两种。  类结构型模式适配器 对象结构型模式适配器  优点：  客户端通过适配器可以透明地调用目标接口。 复用了现存的类，程序员不需要修改原有代码而重用现有的适配者类。 将目标类和适配者类解耦，解决了目标类和适配者类接口不一致的问题。  主要角色：  目标接口（Target）：当前系统业务所期待的接口，它可以是抽象类或接口。 适配者类（Adaptee）：它是被访问和适配的现存组件库中的组件接口。 适配器类（Adapter）：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。  实现：
+ 类适配器:
+//目标接口 interface Target { public void targetMethod(); } //适配者类 class Adaptee { public void adapteeMethod() { System.out.println(&quot;适配者中的业务代码被调用！&quot;); } } //类适配器类 class ClassAdapter extends Adaptee implements Target { public void targetMethod() { adapteeMethod(); } } //客户端代码 public class ClassAdapterTest { public static void main(String[] args) { System.……
+                            </div>
+                            <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%BD%A2%E6%A8%A1%E5%BC%8F/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/" title="行为型模式" >行为型模式</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                行为型模式 1.策略模式 2.责任链模式 3.模板方法模式 4.观察者模式 5.迭代子模式 6.命令模式 7.备忘录模式 8.状态模式 9.访问者模式 10.中介者模式 11.解释器模式 1.策略模式  定义：定义一系列算法，将每一个算法封装起来，并让它们可以相互替换。 解决问题：在有多种算法相似的情况下，使用 if&hellip;else 所带来的复杂和难以维护。将这些算法封装成一个一个的类，任意地替换。 主要角色：  抽象策略（Strategy）类：定义了一个公共接口，各种不同的算法以不同的方式实现这个接口，环境角色使用这个接口调用不同的算法，一般使用接口或抽象类实现。 具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现。 环境（Context）类：持有一个策略类的引用，最终给客户端调用。  实现：
+//抽象策略 public interface Strategy { public int doOperation(int num1, int num2); } //具体策略 public class OperationAdd implements Strategy{ @Override public int doOperation(int num1, int num2) { return num1 + num2; } } //Context上下文 public class Context { private Strategy strategy; public Context(Strategy strategy){ this.……
+                            </div>
+                            <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" title="责任链模式使用" >责任链模式使用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 责任链模式的重点在“链上”，由一条链去处理相似的请求，在链中决定谁来处理这个请求，并返回相应的结果。
+ 角色：
+ 抽象处理者（Handler）角色：该角色对请求进行抽象，并定义一个方法来设定和返回对下一个处理者的引用。
+ 具体处理者（Concrete Handler）：该角色接到请求后，可以选择将请求处理掉，或者将请求传给下一个处理者。由于具体处理者持有对下一个处理者的引用，因此，如果需要，处理者可以访问下一个处理者。
+  优点 责任链模式将请求和处理分开，请求者不知道是谁处理的，处理者可以不用知道请求的全貌。 提高系统的灵活性。
+ 缺点 降低程序的性能。每个请求都是从链头遍历到链尾，当链比较长的时候，性能会大幅下降。 不易于调试。由于该模式采用了类似递归的方式，调试的时候逻辑比较复杂。
+  ……
+                            </div>
+                            <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/" title="Java8计算时间差" >Java8计算时间差</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月23日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">Java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p><strong>计算某个并行任务的总耗时。</strong></p>……
+                            </div>
+                            <p class="readmore"><a href="/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/" title="我的书单" >我的书单</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月18日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/other">other</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 [ ]《睡眠革命》
+ [x]《软技能》
+ [ ]《指数基金投资指南》
+ [ ]《解读基金》
+ [ ]《傻瓜式投资》
+ [ ]《习惯的力量》
+ [ ]《人性的弱点》
+ [ ]《金字塔原理》 [ ]《董莉华之书》  ……
+                            </div>
+                            <p class="readmore"><a href="/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/" title="软技能分享" >软技能分享</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月18日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/other">other</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                #《软技能》 前言 对于优秀的软件开发者来说，埋头写代码绝并不应该是工作的全部。这本书给出了很多非常好的建议，不仅仅“码农”们可以从中获益，还可以推而广之到很多其他的行业。
+职业 主要讲的是如何进行自己的职业规划
+你所能犯的最大错误就是相信自己是在为别人工作。这样一来你对工作的安全感已然尽失。职业发展的驱动力一定是个体本身。记住：工作是属于公司的，而职业生涯确实属于你自己的。 - 厄尔.南丁格尔
+那么我们该如何解决这样的问题呢？
+思考未来，你的目标是什么（√） 工作属于公司的，而职业属于自己的。没有目标的就更不可能去实现自己的目标，浑浑噩噩混过一生，这个是大多数人的自然状态，我们通常保护会充分思考自己该关注什么，这样我们的行动也就漫无目的，无的放矢。（想象一下，海中的船只）。 为什么需要目标？ 如何设定目标。 首先，必须定义一个大目标，不需要那么具体，但是一定要清晰，能够让你自己知道你自己是再向它前进还是离它越来越远。
+如果你可以驱动小目标逐渐前行并靠近你的大目标， 那么最终你一定会到达目的地。 设定大小不同的目标， 确保你向着自己的大目标前进， 这一点非常重要。 例如， 你设定了 一个年度目标， 阅读很多技术书籍， 或是学习新的编程语言。 这个年度目标可能是引领你 走向“成为一名高级开发人员”这个大目标的小目标。 同样， 每年的目标可能被分解成更小 的目标， 比如每月阅读一本书， 或者每天读多少页。
+　较小的目标可以让你航行在自己的轨道上， 激励你保持航向朝着更大的目标前进。 如 果你准备达成一个大目标， 却没有分解为小目标， 那么当你偏离航向时也不会有时间去校 正。 达成较小的目标也能经常奖励自己， 帮助并激励自己。 每一天、 每一个星期的小胜利 会让我们觉得自己正在取得进展、 达成目标， 这让我们感觉良好， 帮助我们继续前进。 较 小的目标似乎也不像大目标那样令人望而生畏
+追踪你的目标。
+采取行动
+ 坐下来，为职业生涯设置至少一个大目标。 将大目标分解成若干个小目标，例如  月度目标 周目标 每日目标  把大目标写在每天的必经之地，达到吾日三省吾身的效果  学会与人打交道（√） ‘别管我，我只想一个人安静地写代码！’
+是不是每天想安安静静地写代码时，微信窗口或者Email总会不合时宜地弹出各种提示，一会要开会啦一会要讨论需求了，再一会测试又来和你理论Bug了。世界这么喧嚣，还让不让人安静地写代码了？“别管我，我只想一个人安静地写代码”，这句话道出了多少程序员的心声啊，我们都想“静静”！不过今天我要告诉你，这种想法是多么的错误，并且严重影响了你职业生涯的发展。
+如果你觉得自己的工作就是写写代码，那你最好三思。在开发的领域，我们大多数是与人而不是与计算机打交道。我们所写的代码首先是供人使用的，其次才是让计算机可以理解的，如果你只想和机器打交道，那写二进制的代码机器才能理解你。仔细想想自己一天的工作中有多少时间用在了与人互动上，收发邮件、会议、讨论（扯皮）等等，作为一个开发人员，你的工作就是与人打交道（其实几乎所有的职业都是这样）。
+所以，虽然你是一个码代码的码农，看似你工作的重心是在码代码上，但其实你自己统计一下也会发现：你真正写代码的时间占你工作时间的比例并不高甚至有些人非常低。即使没有人打扰你，你仍然需要花很多的时间去设计（思考）怎么写你的代码，或者花很长的时间去看懂别人的代码然后找到Bug产生的原理，这个过程中看似你面对的是代码是机器，但其实你面对的是人（写代码的人和读你代码的人）。这还没有谈论怎么把业务的需求变成代码，你仍然需要了解一定的业务知识，当然最好的方式是先和业务、需求设计人员进行沟通，而不是闷头写代码。
+那么问题来了，如何与人打交道呢？ 许多优秀的书籍都阐述了“如何与人打交道“这个主题，再这本书中作者强烈推荐《人性的弱点》这本书，此外作者还在这一篇中引用了这本书中的一些观点。 1. 每个人都希望感到自己很重要 我们常常容易犯的一项错误就是，轻率地否决同事的想法，以便于可以提出自己的想法。然而随着你做出这样的错误判断，你往往会发现他们对你的想法充耳不闻，仅仅因为你让他们感觉自己是无足轻重的。如果你希望人们接受你的想法，并认可其中的价值，首先你最好先主动给他人相同的礼遇。如果你不能保全他人的自尊，那你永远也不可能赢得他的心。 2.……
+                            </div>
+                            <p class="readmore"><a href="/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/git/git%E6%93%8D%E4%BD%9C/" title="git创建新仓库" >git创建新仓库</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月11日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/git">git</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p>通过命令行方式对本地文件创建git，再远程创建git并提交。</p>……
+                            </div>
+                            <p class="readmore"><a href="/git/git%E6%93%8D%E4%BD%9C/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java8/" title="Java8相关" >Java8相关</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月11日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">Java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p><strong>阅读Java8实战后的一些笔记</strong></p>……
+                            </div>
+                            <p class="readmore"><a href="/java/java8/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/markdown/markdown/" title="markdown模板" >markdown模板</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月11日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/markdown">markdown</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p><strong>markdown模板</strong></p>
+
+<p><img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/java/Executor类图.png" alt="Demo" />
+<img src="https://img.shields.io/github/release/wildfirechat/server" alt="版本图标" />
+类似于这样添加版本
+<img src="http://progressed.io/bar/10" alt="Progress" /></p>
+
+<p><a href="https://travis-ci.org/f/wolves"> <img src="https://travis-ci.org/f/wolves.svg?branch=master" alt="Build Status" /></a>
+<a href="http://badge.fury.io/js/wolves"> <img src="https://badge.fury.io/js/wolves.svg" alt="NPM version" /></a>
+<a href="https://david-dm.org/f/wolves#info=dependencies&amp;view=table"> <img src="https://david-dm.org/f/wolves/status.svg" alt="Dependencies" /></a>
+<a href="https://david-dm.org/f/wolves#info=devDependencies&amp;view=table"> <img src="https://david-dm.org/f/wolves/dev-status.svg" alt="Dev Dependencies" /></a>
+类似于这样添加进度</p>……
+                            </div>
+                            <p class="readmore"><a href="/markdown/markdown/">阅读全文</a></p>
+                        </article>
+                    
+                    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="/page/6/">上一页</a>
+    </li>
+    
+
+    
+    <li >
+        <a href="/">1</a>
+    </li>
+    
+    <li >
+        <a href="/page/2/">2</a>
+    </li>
+    
+    <li >
+        <a href="/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="/page/5/">5</a>
+    </li>
+    
+    <li >
+        <a href="/page/6/">6</a>
+    </li>
+    
+    <li  class="current">
+        <a href="/page/7/">7</a>
+    </li>
+    
+    <li >
+        <a href="/page/8/">8</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="/page/8/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

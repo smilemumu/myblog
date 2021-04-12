@@ -27,7 +27,8 @@ draft: true
 	}
 </font>  
 
-+ **定义一个类，实现该接口**
++ **定义一个类
++ 实现该接口**
 >
     public class AppleRedAndHeavyPredicate implements ApplePredicate{  
 		public boolean test(Apple apple){  
@@ -177,6 +178,7 @@ draft: true
 
 + **distinct()**  
 返回不重复的元素
+如果是对象去重，可使用map的特效去重
 + **limit(3)**  
 截断流，只选择前3个
 + **skip(3)**  

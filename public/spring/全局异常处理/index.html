@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>全局异常处理 | Shi.bro的博客</title>
+    <meta property="og:title" content="全局异常处理 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-11-21T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-11-21T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="全局异常处理">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">全局异常处理</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年11月21日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="通过restcontrolleradvice和exceptionhandler实现全局异常捕获">通过RestControllerAdvice和ExceptionHandler实现全局异常捕获</h1>
+
+<h2 id="起因">起因：</h2>
+
+<p>我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。</p>
+
+<h2 id="步骤">步骤:</h2>
+
+<h3 id="1-定义一个统一结果返回类baserspvo">1.定义一个统一结果返回类BaseRspVo</h3>
+
+<pre><code class="language-java">import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum;
+import com.shizhongcai.business.common.exception.BaseException;
+import lombok.Data;
+
+@Data
+public class BaseRspVo&lt;T&gt; {
+    private boolean success;
+    private String msg;
+    private Integer errorCode;
+    private T data;
+
+    public BaseRspVo() {
+    }
+
+    public BaseRspVo (T data){
+        this.success = true;
+        this.msg= ErrorCodesEnum.SUCCESS.getMsg();
+        this.errorCode = ErrorCodesEnum.SUCCESS.getCode();
+        this.data = data;
+    }
+    public BaseRspVo (boolean success, String msg, int errorCode) {
+        this.success = success;
+        this.msg = msg;
+        this.errorCode = errorCode;
+    }
+
+    public BaseRspVo (boolean success, String msg, int errorCode, T data) {
+        this(success,msg,errorCode);
+        this.data = data;
+    }
+
+
+    public BaseRspVo(ErrorCodesEnum errorCode) {
+        if(errorCode == ErrorCodesEnum.SUCCESS) {
+            this.success = true;
+        } else {
+            this.success = false;
+        }
+        this.msg = errorCode.getMsg();
+        this.errorCode = errorCode.getCode();
+    }
+
+    public static BaseRspVo success(Object data){
+        return new BaseRspVo(data);
+    }
+    public static BaseRspVo fail(ErrorCodesEnum errorCode){
+        return new BaseRspVo(errorCode);
+    }
+
+    public static BaseRspVo fail(BaseException e){
+        return new BaseRspVo(false,e.getMsg(), ErrorCodesEnum.DEFAULT_FAIL.getCode());
+    }
+
+    public static BaseRspVo fail(int code,String msg){
+        return new BaseRspVo(false,msg, code);
+    }
+    
+}
+</code></pre>
+
+<h3 id="2-定义统一错误枚举类-包含错误码及错误原因">2.定义统一错误枚举类，包含错误码及错误原因</h3>
+
+<pre><code class="language-java">public enum ErrorCodesEnum {
+
+    SUCCESS(10000,&quot;成功&quot;),
+    SYS_ERROR(10001,&quot;系统异常，请稍后再试&quot;),
+    PARAM_ERROR(10002,&quot;参数异常&quot;),
+    NO_HANDLER_FOUND(10003,&quot;路径不存在，请检查路径是否正确&quot;),
+    DEFAULT_FAIL(10004,&quot;未知异常，请稍后再试&quot;),
+    DECRYPT_ERROR(10005,&quot;解密出错&quot;),
+    REQUEST_TOO_FAST(10006,&quot;您的请求太快啦！请在稍后再试&quot;),
+    ;
+
+    /**
+     * 错误码
+     */
+    private int code;
+
+    /**
+     * 错误描述
+     */
+    private String msg;
+
+    ErrorCodesEnum(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+}
+</code></pre>
+
+<h3 id="3-定义基础异常类baseexception">3.定义基础异常类BaseException</h3>
+
+<p>接下来我们需要将业务异常都同意封装到这个异常类中</p>
+
+<pre><code class="language-java">import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum;
+import lombok.Data;
+
+@Data
+public class BaseException extends Exception{
+
+    private int code;
+    private String msg;
+
+
+    public BaseException(ErrorCodesEnum errorCode){
+        this.code = errorCode.getCode();
+        this.msg = errorCode.getMsg();
+    }
+}
+</code></pre>
+
+<h3 id="4-创建全局异常处理器globalexceptionhandler">4.创建全局异常处理器GlobalExceptionHandler</h3>
+
+<p>@ControllerAdvice可以捕获全局异常
+@RestControllerAdvice相对于@ControllerAdvice直接返回JSON
+@ExceptionHandler 对于捕获的异常进行拦截处理，我们可以通过该注解实现自定义异常处理，配置的 value 指定需要拦截的异常类型。</p>
+
+<pre><code class="language-java">
+import com.shizhongcai.business.common.domain.vo.BaseRspVo;
+import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    /**
+     * 基础异常捕获
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(BaseException.class)
+    public BaseRspVo handleTSharkException(BaseException e) {
+        logger.error(&quot;异常信息：{}&quot;,e);
+        return BaseRspVo.fail(e);
+    }
+
+    /**
+     * 未知异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    public BaseRspVo handleException(Exception e) {
+        logger.error(&quot;异常信息：{}&quot;,e);
+        return BaseRspVo.fail(ErrorCodesEnum.DEFAULT_FAIL);
+    }
+
+    /**
+     * 参数校验异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public BaseRspVo handleException(MethodArgumentNotValidException e) {
+        logger.error(&quot;请求参数不合法：{}&quot;,e.getBindingResult());
+        //获取所有校验失败项
+        List&lt;FieldError&gt; errors = e.getBindingResult().getFieldErrors();
+        //处理异常校验项
+        Map&lt;String,String&gt; errorMap = new HashMap&lt;&gt;();
+        if(!CollectionUtils.isEmpty(errors)) {
+            for (FieldError error : errors) {
+                errorMap.put(error.getField(),error.getDefaultMessage());
+            }
+        }
+        BaseRspVo baseRspVo =  BaseRspVo.fail(ErrorCodesEnum.PARAM_ERROR);
+        baseRspVo.setData(errorMap);
+        return baseRspVo;
+    }
+
+
+}
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/spring/filter%E5%92%8Cinterceptor/">Filter和Interceptor</a></li>
+        
+        <li><a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">JSR-303参数校验</a></li>
+        
+        <li><a href="/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">基于自定义注解的参数解析器</a></li>
+        
+        <li><a href="/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">接口限流-令牌桶限流</a></li>
+        
+        <li><a href="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="/tags/spring">Spring</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

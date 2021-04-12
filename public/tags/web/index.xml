@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WEB on Shi.bro的博客</title>
+    <link>/tags/web/</link>
+    <description>Recent content in WEB on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 07 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WebStorm</title>
+      <link>/web/webstorm/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/web/webstorm/</guid>
+      <description>当执行webpack -v报错时 One CLI for webpack must be installed. These are recommended choices
+先全局安装webpack和webpack-cli cnpm install webpack -g cnpm install webpack-cli -g 再局部安装webpack和webpack-cli cnpm install webpack &amp;ndash;save-dev cnpm install webpack-cli &amp;ndash;save-dev</description>
+    </item>
+    
+  </channel>
+</rss>

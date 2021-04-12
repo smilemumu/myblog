@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JVM | Shi.bro的博客</title>
+    <meta property="og:title" content="JVM - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="JVM">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/tags/jvm/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="/tags/jvm/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">JVM</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/2.gc%E7%AE%97%E6%B3%95%E5%92%8C%E7%A7%8D%E7%B1%BB/">GC算法和种类</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年12月18日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                GC算法和种类 GC的工作区域 1.不是GC的工作区域 程序计数器、虚拟机栈和本地方法栈三个区域是线程私有的，随线程生而生，随线程灭而灭； 在这几个区域不需要过多考虑回收的问题方法结束或线程结束时，内存自然就跟随着回收了。 2.GC的工作区域（哪些内存需要GC回收？） 垃圾回收重点关注的是堆和方法区部分的内存。 程序处于运行期间才能知道会创建哪些对象，这部分内存的分配和回收都是动态的，所以垃圾回收器所关注的主要是这部分的内存。 垃圾对象的判定 Java堆中存放着几乎所有的对象实例，垃圾收集器对堆中的对象进行回收前，要先确定这些对象是否还有用，哪些还活着。对象死去的时候才需要回收。 1. 引用计数法 在堆中存储对象时，在对象头处维护一个counter计数器，如果一个对象增加了一个引用与之相连，则将counter++。 如果一个引用关系失效则counter–。如果一个对象的counter变为0，则说明该对象已经被废弃，不处于存活状态。 2. 可达性分析算法 通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。
+可作为GC Roots的对象包括下面几种： (1)虚拟机栈（栈帧中的本地变量表）中引用的对象。 (2)方法区中的常量、类静态属性引用的对象。 (3)本地方法栈中JNI（Native方法）的引用对象。
+垃圾回收算法  标记清除算法 (1). 标记阶段：找到所有可访问的对象，做个标记 (2). 清除阶段：遍历堆，把未被标记的对象回收 缺点： （1）因为涉及大量的内存遍历工作，所以执行性能较低 （2）对象被清除之后，被清除的对象留下内存的空缺位置会造成内存不连续，空间浪费。
+ 标记整理算法 适合用于存活对象较多的场合，如老年代。 (1)、标记阶段：它的第一个阶段与标记/清除算法是一模一样的。 (2)、整理阶段：移动所有存活的对象，且按照内存地址次序依次排列，然后将末端内存地址以后的内存全部回收。 优点：内存连续，消除复制算法内存减半的代价问题 缺点:不仅要标记所有存活对象，还要整理所有存活对象的引用地址。性能低于复制算法。
+ 复制算法 复制算法简单来说就是把内存一分为二，但只使用其中一份，在垃圾回收时，将正在使用的那份内存中存活的对象复制到另一份空白的内存中，最后将正在使用的内存空间的对象清除，完成垃圾回收。 优点：复制算法使得每次都只对整个半区进行内存回收，内存分配时也就不用考虑内存碎片等复杂情况，只要移动堆顶指针，按顺序分配内存即可，实现简单，运行高效。 缺点：复制算法的代价是将内存缩小为原来的一半，这个太要命了。
+  **现在的虚拟机使用复制算法来进行新生代的内存回收。因为在新生代中绝大多数的对象都是“朝生夕亡”，所以不需要将整个内存分为两个部分，而是分为三个部分，一块为Eden（伊甸区）和两块较小的Survivor（幸存区）空间(默认比例-&gt;8:1:1)。每次使用Eden和其中的一块Survivor，垃圾回收时候将上述两块中存活的对象复制到另外一块Survivor上，同时清理上述Eden和Survivor。所以每次新生代就可以使用90%的内存。只有10%的内存是浪费的。(不能保证每次新生代都少于10%的对象存活，当在垃圾回收复制时候如果一块Survivor不够时候，需要老年代来分担，大对象直接进入老年代) **
+总的来讲：复制算法不适用于存活对象较多的场合，如老年代（复制算法适合做新生代的GC）
+三种算法比较 相同点： 进行GC时需要暂停应用程序。 区别： 效率：复制算法&gt;标记-整理算法&gt;标记-清除算法； 内存整齐度：复制算法=标记-整理算法&gt;标记-清除算法 内存利用率：标记-整理算法=标记-清除算法&gt;复制算法
+分代收集思想 新生代：由于存活的对象相对比较少，因此可以采用复制算法该算法效率比较快。 &gt; 新生代包含Eden（伊甸区）和两块Survivor(幸存区)
+老年代：由于存活的对象比较多哈，可以采用标记-清除算法或是标记-整理算法。
+ java8以后，已经没有(PermGen Space)永久区了，之前永久区存放的东西基本上放到了元空间（Meta Space）中。
+ 参考：https://www.cnblogs.com/qdhxhz/p/9211095.html1……
+                                <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/2.gc%E7%AE%97%E6%B3%95%E5%92%8C%E7%A7%8D%E7%B1%BB/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">垃圾回收器</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年12月18日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                垃圾回收器 GC的工作区域 基础概念 1、并发和并行 - a：并行（Parallel）：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。 - b：并发（Concurrent）：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替执行），用户程序在继续运行，而垃圾收集程序运行在另一个CPU上。
+2、新生代 GC 和老年代GC - a:新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。 - b:老年代GC（Major GC / Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC（但非绝对的）。Major GC的速度一般会比Minor GC慢10倍以上。
+3、吞吐量 - 吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值，即吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）。
+ 虚拟机总共运行了100分钟，其中垃圾收集花掉1分钟，那吞吐量就是99%。
+ 垃圾收集器  Serial收集器  新生代、老年代使用串行回收；新生代复制算法、老年代标记-压缩;收集过程中服务会暂停。 参数控制：-XX:+UseSerialGC 串行收集器  ParNew收集器
+ 新生代并行，老年代串行；新生代复制算法、老年代标记-压缩；ParNew收集器其实就是Serial收集器的多线程版本。 参数控制：  -XX:+UseParNewGC ParNew收集器 -XX:ParallelGCThreads 限制线程数量   Parallel Scavenge收集器
+ 新生代复制算法。老年代标记压缩，串行 参数控制：-XX:+UseParallelGC   Serial Old收集器
+ 它是Serial收集器的老年代版，它同样是一个单线程收集器，使用“标记&ndash;整理”算法。
+  Parallel Old 收集器……
+                                <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/4.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">性能调优</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年12月18日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                性能调优 调优策略 调优的目的 调优的最终目的当然增大吞吐量，减少暂停时间，映射到GC层面主要关心下面这两点： (1)将转移到老年代的对象数量降低到最小。 (2)减少full GC的执行时间。（尽量减少GC的次数）
+那什么情况对象会转移到老年代 主要有这四种：
+(1)新生代对象每经历依次minor gc，年龄会加一，当达到年龄阀值会直接进入老年代。阀值大小一般为15。 (2)Survivor空间中年龄所有对象大小的总和大于survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，而无需等到年龄阀值。 (3)大对象直接进入老年代。 (4)新生代复制算法需要一个survivor区进行轮换备份，如果出现大量对象在minor gc后仍然存活的情况时，就需要老年代进行分配担保，让survivor无法容纳的对象直接进入老年代。
+再来分析为什么说要减少full GC时间次数，那得先看GC的两大分类
+ Partial GC：并不收集整个GC堆的模式  Young GC：只收集young gen的GC Old GC：只收集old gen的GC。只有CMS的concurrent collection是这个模式 Mixed GC：收集整个young gen以及部分old gen的GC。只有G1有这个模式  Full GC：针对整个新生代、老生代、元空间（metaspace，java8以上版本取代perm gen）的全局范围的GC。
+ 一般Full GC所花费的时间是Young GC的十倍,这里就明白为什么要减少Full GC的次数了。
+  哪些方面可以考虑调优？ （1）减少使用全局变量和大对象。 （2）新生代和老年代的大小是否合适。 （3）新生代和老年代所占的比例是否合适。 （4）幸存者区和新生区所占的比例到是否合适。 （5）选择合适的GC收集器。
+什么情况说明GC已经不错了呢？ 此外，如果GC执行时间满足下列所有条件，就没有必要进行GC优化了： Minor GC执行非常迅速（50ms以内） Minor GC没有频繁执行（大约10s执行一次） Full GC执行非常迅速（1s以内） Full GC没有频繁执行（大约10min执行一次） 括号中的数字并不是绝对的，它们也随着服务的状态而变化。
+二、调优经验(规则) 这些规则，一般是大家比较建议的，可以作为初始配置的时候进行配置建议，当然具体的还得通过JVM工具监测来具体分析。 (1) -Xmx 和-Xms 一般设置为一样大小。这样能稍微提高GC的运行效率，因为他/她不再需要估算堆是否需要调整大小了。
+(2)官方推荐新生代占堆的3/8。 (3)幸存代占新生代的1/10。 (4)垃圾收集器如果内存比较大建议G1收集器，当然也可以用CMS收集器。 (5)-XX:+DisableExplicitGC禁止System.……
+                                <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/4.%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/">OOM</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月16日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Java OOM 1.什么是OOM OOM，全称“Out Of Memory”，翻译成中文就是“内存用完了”,当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也已经没有空间可回收时，就会抛出这个erro
+2.为什么会OOM、出现的原因是什么?  分配的少了：比如虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。 应用用的太多，并且用完没释放，浪费了。此时就会造成内存泄露或者内存溢出。  3.解决办法  java.lang.OutOfMemoryError: Java heap space ——&gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。 java.lang.OutOfMemoryError: PermGen space ——&gt;java永久代溢出，即方法区溢出了，一般出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。此种情况可以通过更改方法区的大小来解决，使用类似-XX:PermSize=64m -XX:MaxPermSize=256m的形式修改。另外，过多的常量尤其是字符串也会导致方法区溢出。 java.lang.StackOverflowError ——&gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在死循环或者深度递归调用造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数-Xss来设置栈的大小  ps:JVM调优参数  -Xms:为jvm启动时分配的内存，比如-Xms200m，表示分配200M -Xmx:为jvm运行过程中分配的最大内存，比如-Xms500m，表示jvm进程最多只能够占用500M内存 -Xss:为jvm启动的每个线程分配的内存大小，默认JDK1.4中是256K，JDK1.5+中是1M  参考：https://blog.csdn.net/weixin_41835916/article/details/81558310……
+                                <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">Java内存模型</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Java内存模型 1.java程序执行过程: &gt;Java源代码文件(.java后缀)会被Java编译器编译为字节码文件(.class后缀)，然后由JVM中的类加载器加载各个类的字节码文件，加载完毕之后，交由JVM执行引擎执行。在整个程序执行过程中，JVM会用一段空间来存储程序执行期间需要用到的数据和相关信息，这段空间一般被称作为Runtime Data Area（运行时数据区），也就是我们常说的JVM内存。因此，在Java中我们常常说到的内存管理就是针对这段空间进行管理（如何分配和回收内存空间）。
+2.运行时数据区包括哪几部分： 2.1 方法区（Method Area）  方法区是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。当方法区无法满足内存分配需求时，将抛出OutOfMemoryError 异常。 方法区里存放着类的版本，字段，方法，接口和常量池。常量池里存储着字面量和符号引用。符号引用包括：  1.类的全限定名 2.字段名和属性 3.方法名和属性。   2.2 JVM堆（Java Heap）  Java 堆也是属于线程共享的内存区域，它在虚拟机启动时创建，是Java 虚拟机所管理的内存中最大的一块，主要用于存放对象实例，几乎所有的对象实例都在这里分配内存，注意Java 堆是垃圾收集器管理的主要区域，因此很多时候也被称做GC堆，如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError 异常。  2.3 程序计数器(Program Counter Register)：  字节码解释器工作时，通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。 多线程中，为了让线程切换后能恢复到正确的执行 位置，每条线程都需要有一个独立的程序计数器，各条线程之间互不影响、独立存储，因此这块内存是线程私有的。  2.4 虚拟机栈(Java Virtual Machine Stacks)：  Java虚拟机栈也是线程私有的，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链表、方法出口信息等。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。  2.5 本地方法栈(Native Method Stacks)：  本地方法栈属于线程私有的数据区域，这部分主要与虚拟机用到的 Native 方法相关，一般情况下，我们无需关心此区域。  参考：http://blog.csdn.net/javazejian/article/details/72772461……
+                                <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

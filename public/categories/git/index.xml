@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>git on Shi.bro的博客</title>
-    <link>http://www.sszblog.xyz/categories/git/</link>
+    <link>/categories/git/</link>
     <description>Recent content in git on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 11 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://www.sszblog.xyz/categories/git/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/git/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>git创建新仓库</title>
-      <link>http://www.sszblog.xyz/git/git%E6%93%8D%E4%BD%9C/</link>
+      <link>/git/git%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://www.sszblog.xyz/git/git%E6%93%8D%E4%BD%9C/</guid>
+      <guid>/git/git%E6%93%8D%E4%BD%9C/</guid>
       <description>&lt;p&gt;通过命令行方式对本地文件创建git，再远程创建git并提交。&lt;/p&gt;</description>
     </item>
     

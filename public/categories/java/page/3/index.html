@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>java | Shi.bro的博客</title>
+    <meta property="og:title" content="java - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="java">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/categories/java/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="/categories/java/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        分类
+                        <span class="keyword">java</span>
+                        中的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/countdownlatch%E5%92%8Ccyclicbarrier/">CountDownLatch和CyclicBarrier以及join()</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                CountDownLatch、CyclicBarrier、join() 一、CountDownLatch(倒计时器)：
+ 功能：同步辅助类，也可以理解为倒计时锁，用于同步线程状态，允许一个或多个线程，等待其他一组线程完成操作，再继续往下执行。（会阻塞主线程） 特点：不可复用！ 重要方法：  countDown()方法：计数器-1，每次线程执行完后调用； await（）方法：等待方法，在需要阻塞的地方调用，当所有线程都执行完后，自动往下执行  用法：构造的时候指定一个计数器的值，每个线程执行完后就减1，直到为0再往下走。 DEMO:四个线程 A B C D，其中 D 要等到 A B C 全执行完毕后才执行，而且 A B C 是同步运行的。 二、CyclicBarrier（循环栅栏）：
+ 功能：同步辅助类，功能和CountDownLatch类似，用于同步线程状态，允许一组线程相互之间等待，达到一个共同点，再继续执行。(不会阻塞主线程)
+ 特点：可复用！当组内所有线程都到达某个执行点后，count参数会被重置，于是就可重用了。
+ 重要方法：
+ await（）方法：当某个线程到达某个点（比如执行完某个任务）后调用该方法，就会等待其他线程，直到所有线程都到达这个点，再自动往下执行。 还有个重载方法await（long timeOut,TimeUnit unit），用- 于当某个线程执行超过指定时间后还未到达某个点时，就会抛出异常，不再等待这个线程，并往下执行。  用法：构造的时候指定一个线程数量的值和到达某个点后执行的动作。
+ DEMO:三个运动员各自准备，等到三个人都准备好后，再一起跑
+  三、join()方法
+ join方法也是管理线程状态同步的一个方法，和CountDownLatch和CyclicBarrier均由自身调用不同的是，join的调用者为当前线程，后面的线程必须等调用join的线程执行完后才能执行。  参考：https://www.cnblogs.com/be-thinking/p/9292290.html 参考：https://blog.csdn.net/qq_39241239/article/details/87030142……
+                                <p class="readmore"><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/countdownlatch%E5%92%8Ccyclicbarrier/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/">Java8-简化代码</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                ……
+                                <p class="readmore"><a href="/java/java8-%E7%AE%80%E5%8C%96%E4%BB%A3%E7%A0%81/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/synchronized%E5%92%8Clock/">Synchronized和Lock</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Synchronized关键字 1.作用 保证同一时刻最多只有1个线程执行 被Synchronized修饰的方法 / 代码
+其他线程 必须等待当前线程执行完该方法 / 代码块后才能执行该方法 / 代码块
+2.修饰 2.1修饰方法 //对象锁 //写法1 public synchronized void method() { // todo } //写法2，写法2其实是同步代码块的写法，但在这里也是相当于修饰了方法 public void method() { synchronized(this) { // todo } }  2.2修饰静态方法 //类锁 public synchronized static void method() { // todo }  2.3修饰类 //类锁 class ClassName { public void method() { synchronized(ClassName.class) { // todo } } }  2.4修饰代码块 //对象锁 //写法一 synchronized(this) { //todo } ' //写法二 Object obj =new Object(); synchronized(obj) { //todo }  2.……
+                                <p class="readmore"><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/synchronized%E5%92%8Clock/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/futurefuturetaskcompletablefuture/">Future、FutureTask、CompletableFuture</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年10月11日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Future、FutureTask、CompletableFuture Future Feature接口 public interface Future&lt;V&gt; { /** * 取消任务的执行 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败 * 如果任务在调用时还未启动，那么返回成功 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行 * @param mayInterruptIfRunning * @return */ boolean cancel(boolean mayInterruptIfRunning); /** * 判断任务是否已经取消，任务正常完成前将其取消，则返回true * @return */ boolean isCancelled(); /** * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true * @return */ boolean isDone(); /** * 等待任务执行结束，并返回结果 * @return * @throws InterruptedException 线程被中断异常 * @throws ExecutionException 任务执行异常 */ V get() throws InterruptedException, ExecutionException; /** * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间， * @param timeout * @param unit * @return * @throws InterruptedException * @throws ExecutionException * @throws TimeoutException */ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException; }  FutureTask介绍  Future只是一个接口，无法直接创建对象，因此有了FutureTask。RunnableFuture继承了Runnable和Future接口，而FutureTask实现了RunnableFuture接口。 Future是一个接口， FutureTask类是Future 的一个实现类，并实现了Runnable，因此FutureTask可以传递到线程对象Thread中新建一个线程执行。 FutureTask实现了RunnableFuture接口，而RunnableFuture继承了Runnable和Future，也就是说FutureTask既是Runnable，也是Future。……
+                                <p class="readmore"><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/futurefuturetaskcompletablefuture/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Thread、Runnable、Callable、线程池</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                1.创建线程的三种方式  (1)继承thread,重写run方法 (2)实现Runnable接口，实现run方法 (3)实现Callable接口，实现call方法 (4)线程池  2.Runnable和Callable的区别：  (1)Callable实现的方法是call(),Runnable实现的方法是run(). (2)Callable的任务执行后可返回值，可以拿到一个Future对象，而Runnable的任务没有返回值 (3)call方法需要抛出异常InterruptedException和ExecutionExecption，run方法只能在内部消化InterruptedException  3.Thread的缺点：  Java是单继承多实现，不利于扩展.  4. 线程池 4.1 为什么要使用线程池  降低资源消耗。 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。 当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。  4.2 execute()和submit()的区别  (1)可接受任务类型：
+ submit:
+submit(Callable&lt;T&gt; task):Future&lt;T&gt; -ExecutorService submit(Runnable task):Future&lt;?&gt; -ExecutorService submit(Runnable task,T result):Future&lt;T&gt; -ExecutorService  execute:
+execute(Runnable command):void -Executor  从源码种可以看出
+ execute只能接受Runnable类型的任务 submit不管是Runnable还是Callable类型的任务都可以接受   (2)返回值
+ 由Callable和Runnable的区别可以看出：  execute没有返回值 submit有返回值，所以需要返回值的时候必须使用submit   (3)异常处理
+ submit在执行过程中与execute不一样，不会抛出异常而是把异常保存在成员变量中，在FutureTask.get阻塞获取的时候再把异常抛出来。
+ execute中抛出异常 execute中的是Runnable接口的实现，所以只能使用try、catch来捕获CheckedException，通过实现UncaughtExceptionHande接口处理UncheckedException 即和普通线程的处理方式完全一致……
+                                <p class="readmore"><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E5%BC%82%E5%B8%B8/">异常</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 异常和错误的区别：异常能被程序本身处理，错误是无法处理。
+异常层次结构图 ……
+                                <p class="readmore"><a href="/java/%E5%BC%82%E5%B8%B8/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">责任链模式使用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月26日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 责任链模式的重点在“链上”，由一条链去处理相似的请求，在链中决定谁来处理这个请求，并返回相应的结果。
+ 角色：
+ 抽象处理者（Handler）角色：该角色对请求进行抽象，并定义一个方法来设定和返回对下一个处理者的引用。
+ 具体处理者（Concrete Handler）：该角色接到请求后，可以选择将请求处理掉，或者将请求传给下一个处理者。由于具体处理者持有对下一个处理者的引用，因此，如果需要，处理者可以访问下一个处理者。
+  优点 责任链模式将请求和处理分开，请求者不知道是谁处理的，处理者可以不用知道请求的全貌。 提高系统的灵活性。
+ 缺点 降低程序的性能。每个请求都是从链头遍历到链尾，当链比较长的时候，性能会大幅下降。 不易于调试。由于该模式采用了类似递归的方式，调试的时候逻辑比较复杂。
+  ……
+                                <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">Java8计算时间差</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月23日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">Java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p><strong>计算某个并行任务的总耗时。</strong></p>……
+                                <p class="readmore"><a href="/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java8/">Java8相关</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月11日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">Java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p><strong>阅读Java8实战后的一些笔记</strong></p>……
+                                <p class="readmore"><a href="/java/java8/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/xml%E8%A7%A3%E6%9E%90/">xml与json互转</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年9月11日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/java">Java</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                <p><strong>开发场景中，需要对返回的xml数据转为json再进行处理</strong></p>……
+                                <p class="readmore"><a href="/java/xml%E8%A7%A3%E6%9E%90/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+<ol class="page-navigator">
+    
+    <li class="prev">
+        <a href="/categories/java/page/2/">上一页</a>
+    </li>
+    
+
+    
+    <li >
+        <a href="/categories/java/">1</a>
+    </li>
+    
+    <li >
+        <a href="/categories/java/page/2/">2</a>
+    </li>
+    
+    <li  class="current">
+        <a href="/categories/java/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="/categories/java/page/4/">4</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="/categories/java/page/4/">下一页</a>
+    </li>
+    
+</ol>
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

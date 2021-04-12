@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on Shi.bro的博客</title>
+    <link>/tags/algorithm/</link>
+    <description>Recent content in algorithm on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>git创建新仓库</title>
+      <link>/algorithm/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/algorithm/%E7%AE%97%E6%B3%95/</guid>
+      <description>小灰的算法之旅 1.算法和数据结构  算法是什么？ 算法是一系列程序指令，用来处理特定运算和逻辑问题。 什么是数据结构？ 数据结构是数据的组织、管理和存储格式，其使用的目的是为了高效的访问和修改。 数据结构包含数组，链表。以及树，图这种复杂的数据结构。 3.什么是时间复杂度？ T(n) = O(f(n)) 4.什么是空间复杂度？ S(n) = O(f(n))  2.数据结构基础  数组VS链表     VS 查找 更新 插入 删除     数组 O(1) O(1) O(n) O(n)   链表 O(n) O(1) O(1) O(1)     栈和队列
+ 栈是先入后出FILO(First In Last Out) 入栈：PUSH 出栈：POP 可以用来实现递归逻辑，以及面包屑导航（浏览器浏览历史回退）
+ 队列是先入先出FIFO(First In First Out) 队头:Front 队尾：Rear 入队：enquere 出队：dequeue
+  散列表（哈希表 hash table） 散列表也叫哈希表，是存储Key-Value的集合，对于一个key，散列表可以在接近 O(1)的时间内完成读写操作。散列表通过哈希函数实现key和数组下标的转换，通过开放寻址法和链表法来解决冲突。 哈希函数：通过哈希函数，可以将字符串和其他类型的Key，转换成数组下标index 例如Key=abcd,index= HashCode(&amp;ldquo;abcd&amp;rdquo;)%Array.</description>
+    </item>
+    
+  </channel>
+</rss>

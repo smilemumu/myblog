@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Future、FutureTask、CompletableFuture | Shi.bro的博客</title>
+    <meta property="og:title" content="Future、FutureTask、CompletableFuture - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-10-11T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-10-11T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Future、FutureTask、CompletableFuture">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/futurefuturetaskcompletablefuture/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Future、FutureTask、CompletableFuture</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年10月11日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="future-futuretask-completablefuture">Future、FutureTask、CompletableFuture</h1>
+
+<h2 id="future">Future</h2>
+
+<h3 id="feature接口">Feature接口</h3>
+
+<pre><code class="language-java">public interface Future&lt;V&gt; {
+
+    /**
+	 * 取消任务的执行
+	 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败
+	 * 如果任务在调用时还未启动，那么返回成功
+	 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行
+	 * @param mayInterruptIfRunning
+	 * @return
+	 */
+    boolean cancel(boolean mayInterruptIfRunning);
+
+	/**
+     * 判断任务是否已经取消，任务正常完成前将其取消，则返回true
+     * @return
+     */
+    boolean isCancelled();
+
+     /**
+     * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true
+     * @return
+     */
+    boolean isDone();
+ 	/**
+     * 等待任务执行结束，并返回结果
+     * @return
+     * @throws InterruptedException  线程被中断异常
+     * @throws ExecutionException 任务执行异常
+     */
+    V get() throws InterruptedException, ExecutionException;
+
+   /**
+     * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间，
+     * @param timeout
+     * @param unit
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @throws TimeoutException
+     */
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+}
+</code></pre>
+
+<h2 id="futuretask介绍">FutureTask介绍</h2>
+
+<ul>
+<li>Future只是一个接口，无法直接创建对象，因此有了FutureTask。RunnableFuture继承了Runnable和Future接口，而FutureTask实现了RunnableFuture接口。</li>
+<li>Future是一个接口， FutureTask类是Future 的一个实现类，并实现了Runnable，因此FutureTask可以传递到线程对象Thread中新建一个线程执行。</li>
+
+<li><p>FutureTask实现了RunnableFuture接口，而RunnableFuture继承了Runnable和Future，也就是说FutureTask既是Runnable，也是Future。</p>
+
+<pre><code class="language-java">public class FutureTask&lt;V&gt; implements RunnableFuture&lt;V&gt; {
+	......
+}
+</code></pre>
+
+<pre><code class="language-java">public interface RunnableFuture&lt;V&gt; extends Runnable, Future&lt;V&gt; {
+void run();
+}
+</code></pre></li>
+</ul>
+
+<h2 id="completablefuture-组合式异步编程">CompletableFuture（组合式异步编程）</h2>
+
+<ul>
+<li>future存在局限性：Future很难直接表述多个Future 结果之间的依赖性，开发中，我们经常需要达成以下目的：</li>
+<li>将两个异步计算合并为一个（这两个异步计算之间相互独立，同时第二个又依赖于第一个的结果）</li>
+<li>等待 Future 集合中的所有任务都完成。</li>
+<li>仅等待 Future 集合中最快结束的任务完成，并返回它的结果。</li>
+<li>future的缺点也很明显:</li>
+<li>实现了异步获取执行结果的需求，但是没有提供通知，无法知道任务什么时候完成；</li>
+
+<li><p>get方法获取结果的时候，会进入等待阻塞状态，这时候又变成同步操作，如果使用isDone循环判断任务是否完成，会耗费cpu资源。</p></li>
+
+<li><p>complatableFuture弥补了Future模式的缺点，在异步的任务完成后，需要用其结果继续操作时，无需等待。可以直接将异步处理的结果交给另外一个异步事件处理线程来处理。</p></li>
+
+<li><p>CompletableFuture是一个静态辅助方法，以下四个静态方法用来为一段异步执行的代码创建CompletableFuture对象：</p>
+
+<pre><code class="language-java">	//使用ForkJoinPool.commonPool()作为它的线程池执行异步代码，异步操作有返回值
+public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier) {
+    return asyncSupplyStage(asyncPool, supplier);
+}
+ 
+//使用指定的thread pool执行异步代码，异步操作有返回值
+public static &lt;U&gt; CompletableFuture&lt;U&gt; supplyAsync(Supplier&lt;U&gt; supplier,Executor executor) {
+    return asyncSupplyStage(screenExecutor(executor), supplier);
+}
+ 
+//使用ForkJoinPool.commonPool()作为他的线程池执行异步代码
+public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable) {
+    return asyncRunStage(asyncPool, runnable);
+}
+ 
+//使用指定的thread pool执行异步代码
+public static CompletableFuture&lt;Void&gt; runAsync(Runnable runnable,Executor executor) {
+    return asyncRunStage(screenExecutor(executor), runnable);
+}
+
+	//demo
+	//使用ForkJoinPool.commonPool()来执行
+	CompletableFuture&lt;FileTransferResponseDto&gt; responseDtoFuture = CompletableFuture.supplyAsync(()-&gt; uploadFile(file,urn));
+	//使用自定义线程池来执行
+	CompletableFuture&lt;FileTransferResponseDto&gt; responseDtoFuture = CompletableFuture.supplyAsync(()-&gt; uploadFile(file,urn),threadPoolExecutor);
+</code></pre></li>
+</ul>
+
+<p><em>run方法不支持返回值。</em>
+<em>supply可以支持返回值。</em></p>
+
+<ul>
+<li><p>CompletableFuture.complete方法：
+在执行future.get()方法时，如果执行的结果还没有出来，会一直处于阻塞的状态，这时候可以调用complete方法会立即执行，但是complete方法只会执行一次，对于重复调用只会获取到第一次的结果，同时如果future已经能够返回结果，那么调用complete方法也会无效</p>
+
+<pre><code class="language-java">public boolean complete(T value) {
+    boolean triggered = completeValue(value);
+    postComplete();
+    return triggered;
+}
+</code></pre></li>
+</ul>
+
+<h3 id="completablefuture处理方法">CompletableFuture处理方法</h3>
+
+<ul>
+<li><p>串行
+<strong>then</strong> 直译【然后】，也就是表示下一步，所以通常是一种串行关系体现, then 后面的单词（比如 run /apply/accept）的方法的参数为对应的函数式接口，它的作用和那几个函数式接口的作用一样</p>
+
+<pre><code class="language-java">CompletableFuture&lt;Void&gt; thenRun(Runnable action)
+CompletableFuture&lt;Void&gt; thenRunAsync(Runnable action)
+CompletableFuture&lt;Void&gt; thenRunAsync(Runnable action, Executor executor)
+      
+&lt;U&gt; CompletableFuture&lt;U&gt; thenApply(Function&lt;? super T,? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; thenApplyAsync(Function&lt;? super T,? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; thenApplyAsync(Function&lt;? super T,? extends U&gt; fn, Executor executor)
+      
+CompletableFuture&lt;Void&gt; thenAccept(Consumer&lt;? super T&gt; action) 
+CompletableFuture&lt;Void&gt; thenAcceptAsync(Consumer&lt;? super T&gt; action)
+CompletableFuture&lt;Void&gt; thenAcceptAsync(Consumer&lt;? super T&gt; action, Executor executor)
+      
+&lt;U&gt; CompletableFuture&lt;U&gt; thenCompose(Function&lt;? super T, ? extends CompletionStage&lt;U&gt;&gt; fn)  
+&lt;U&gt; CompletableFuture&lt;U&gt; thenComposeAsync(Function&lt;? super T, ? extends CompletionStage&lt;U&gt;&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; thenComposeAsync(Function&lt;? super T, ? extends CompletionStage&lt;U&gt;&gt; fn, Executor executor)
+</code></pre></li>
+
+<li><p>并行
+并行可理解成组合的聚合处理。</p></li>
+
+<li><p>组合-and聚合
+combine&hellip; with&hellip; 和 both&hellip;and&hellip; 都是要求两者都满足，也就是and关系</p>
+
+<pre><code class="language-java">&lt;U,V&gt; CompletableFuture&lt;V&gt; thenCombine(CompletionStage&lt;? extends U&gt; other, BiFunction&lt;? super T,? super U,? extends V&gt; fn)
+&lt;U,V&gt; CompletableFuture&lt;V&gt; thenCombineAsync(CompletionStage&lt;? extends U&gt; other, BiFunction&lt;? super T,? super U,? extends V&gt; fn)
+&lt;U,V&gt; CompletableFuture&lt;V&gt; thenCombineAsync(CompletionStage&lt;? extends U&gt; other, BiFunction&lt;? super T,? super U,? extends V&gt; fn, Executor executor)
+     
+&lt;U&gt; CompletableFuture&lt;Void&gt; thenAcceptBoth(CompletionStage&lt;? extends U&gt; other, BiConsumer&lt;? super T, ? super U&gt; action)
+&lt;U&gt; CompletableFuture&lt;Void&gt; thenAcceptBothAsync(CompletionStage&lt;? extends U&gt; other, BiConsumer&lt;? super T, ? super U&gt; action)
+&lt;U&gt; CompletableFuture&lt;Void&gt; thenAcceptBothAsync( CompletionStage&lt;? extends U&gt; other, BiConsumer&lt;? super T, ? super U&gt; action, Executor executor)
+      
+CompletableFuture&lt;Void&gt; runAfterBoth(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterBothAsync(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterBothAsync(CompletionStage&lt;?&gt; other, Runnable action, Executor executor)
+</code></pre></li>
+
+<li><p>组合-or聚合
+Either&hellip;or&hellip; 表示两者中的一个，也就是 Or 的体现</p>
+
+<pre><code class="language-java">&lt;U&gt; CompletableFuture&lt;U&gt; applyToEither(CompletionStage&lt;? extends T&gt; other, Function&lt;? super T, U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; applyToEitherAsync(CompletionStage&lt;? extends T&gt; other, Function&lt;? super T, U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; applyToEitherAsync(CompletionStage&lt;? extends T&gt; other, Function&lt;? super T, U&gt; fn, Executor executor)
+     
+CompletableFuture&lt;Void&gt; acceptEither(CompletionStage&lt;? extends T&gt; other, Consumer&lt;? super T&gt; action)
+CompletableFuture&lt;Void&gt; acceptEitherAsync(CompletionStage&lt;? extends T&gt; other, Consumer&lt;? super T&gt; action)
+CompletableFuture&lt;Void&gt; acceptEitherAsync(CompletionStage&lt;? extends T&gt; other, Consumer&lt;? super T&gt; action, Executor executor)
+     
+CompletableFuture&lt;Void&gt; runAfterEither(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterEitherAsync(CompletionStage&lt;?&gt; other, Runnable action)
+CompletableFuture&lt;Void&gt; runAfterEitherAsync(CompletionStage&lt;?&gt; other, Runnable action, Executor executor)
+</code></pre></li>
+
+<li><p>异常处理</p></li>
+
+<li><p>whenComplete 和 handle 的区别在于接受的参数函数式接口不同，前者使用Comsumer, 自然也就不会2有返回值；后者使用 Function，自然也就会有返回值</p></li>
+
+<li><p>另外exceptionally-&gt;try/catch , whenComplete/handle-&gt;try/finally</p>
+
+<pre><code class="language-java">CompletableFuture&lt;T&gt; exceptionally(Function&lt;Throwable, ? extends T&gt; fn)
+CompletableFuture&lt;T&gt; exceptionallyAsync(Function&lt;Throwable, ? extends T&gt; fn)
+CompletableFuture&lt;T&gt; exceptionallyAsync(Function&lt;Throwable, ? extends T&gt; fn, Executor executor)
+
+CompletableFuture&lt;T&gt; whenComplete(BiConsumer&lt;? super T, ? super Throwable&gt; action)
+CompletableFuture&lt;T&gt; whenCompleteAsync(BiConsumer&lt;? super T, ? super Throwable&gt; action)
+CompletableFuture&lt;T&gt; whenCompleteAsync(BiConsumer&lt;? super T, ? super Throwable&gt; action, Executor executor)
+
+&lt;U&gt; CompletableFuture&lt;U&gt; handle(BiFunction&lt;? super T, Throwable, ? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; handleAsync(BiFunction&lt;? super T, Throwable, ? extends U&gt; fn)
+&lt;U&gt; CompletableFuture&lt;U&gt; handleAsync(BiFunction&lt;? super T, Throwable, ? extends U&gt; fn, Executor executor)
+</code></pre></li>
+
+<li><p>DEMO</p></li>
+
+<li><p>runAsync,入参为runnable,无结果</p></li>
+
+<li><p>supplyAsync，异步处理，返回结果</p></li>
+
+<li><p>thenAccept,串行后续处理上一异步结果，不返回结果</p></li>
+
+<li><p>thenRun,串行不处理上一异步结果，不返回结果</p></li>
+
+<li><p>thenApplyAsync为thenRun的异步变体</p></li>
+
+<li><p>thenCompose，类似于lambda的flatMap，将结果“拍平”，将原本返回CompletableFuture<CompletableFuture<Double>&gt;的结果返回为CompletableFuture<Double></p></li>
+
+<li><p>thenCombine,and组合俩个独立的结果,有返回CompletableFuture对象</p></li>
+
+<li><p>allOf和anyOf</p></li>
+
+<li><p>exceptionally,就相当于 catch，出现异常，将会跳过 thenApply 的后续操作，直接捕获异常，进行一场处理</p></li>
+
+<li><p>handle,用多线程，良好的习惯是使用 try/finally 范式，handle 就可以起到 finally 的作用</p></li>
+</ul>
+
+<p>参考:<a href="https://blog.csdn.net/Mr_Flouxetin/article/details/107485191">https://blog.csdn.net/Mr_Flouxetin/article/details/107485191</a></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">Thread、Runnable、Callable、线程池</a></li>
+        
+        <li><a href="/other/english/phrase/">短语</a></li>
+        
+        <li><a href="/linux/linux%E6%93%8D%E4%BD%9C/">linux命令</a></li>
+        
+        <li><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></li>
+        
+        <li><a href="/java/%E5%BC%82%E5%B8%B8/">异常</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

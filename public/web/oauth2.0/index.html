@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Oauth2.0 | Shi.bro的博客</title>
+    <meta property="og:title" content="Oauth2.0 - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2020-12-25T00:00:00&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2020-12-25T00:00:00&#43;08:00">
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="Oauth2.0">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/web/oauth2.0/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Oauth2.0</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2020年12月25日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="/categories/web">Web</a></span>
+                            
+                        </div>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="oauth2-0">Oauth2.0</h1>
+
+<h2 id="什么是oauth2-0">什么是Oauth2.0?</h2>
+
+<p>OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。
+简单说：OAuth 就是一种授权机制。数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。</p>
+
+<h2 id="令牌与密码">令牌与密码</h2>
+
+<p>令牌（token）与密码（password）的作用是一样的，都可以进入系统，但是有三点差异。
+- （1）令牌是短期的，到期会自动失效，用户自己无法修改。密码一般长期有效，用户不修改，就不会发生变化。</p>
+
+<ul>
+<li><p>（2）令牌可以被数据所有者撤销，会立即失效。以上例而言，屋主可以随时取消快递员的令牌。密码一般不允许被他人撤销。</p></li>
+
+<li><p>（3）令牌有权限范围（scope），比如只能进小区的二号门。对于网络服务来说，只读令牌就比读写令牌更安全。密码一般是完整权限。</p></li>
+</ul>
+
+<p>上面这些设计，保证了令牌既可以让第三方应用获得权限，同时又随时可控，不会危及系统安全。这就是 OAuth 2.0 的优点。</p>
+
+<h2 id="oauth-2-0-对于如何颁发令牌-四种授权类型-authorization-grant">OAuth 2.0 对于如何颁发令牌？四种授权类型（authorization grant）</h2>
+
+<h3 id="授权码-authorization-code-方式">授权码（authorization code）方式</h3>
+
+<p>授权码方式指的是：第三方应用先申请一个授权码，然后再用该码获取令牌。
+这种方式是最常用的流程，安全性也最高，它适用于那些有后端的 Web 应用。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。</p>
+
+<ul>
+<li><p>第一步:A网站生成授权链接，用户点击后跳转到B网站，授权用户数据给A网站使用。</p>
+
+<pre><code>https://b.com/oauth/authorize?
+response_type=code&amp;
+client_id=CLIENT_ID&amp;
+redirect_uri=CALLBACK_URL&amp;
+scope=read
+</code></pre></li>
+
+<li><p>主要参数：</p>
+
+<ul>
+<li>response_type参数表示要求返回授权码（code）</li>
+<li>client_id参数让 B 知道是谁在请求</li>
+<li>redirect_uri参数是 B 接受或拒绝请求后的跳转网址</li>
+<li>scope参数表示要求的授权范围（这里是只读）</li>
+</ul></li>
+
+<li><p>第二步：跳转到B网站后，需要用户确认授权，用户确认后跳转到第一步的redirect_url，并返回一个授权码。</p>
+
+<pre><code>https://a.com/callback?code=AUTHORIZATION_CODE
+</code></pre></li>
+
+<li><p>第三步：A网站拿到授权码后，后台请求B网站，获取令牌。</p>
+
+<pre><code>https://b.com/oauth/token?
+client_id=CLIENT_ID&amp;
+client_secret=CLIENT_SECRET&amp;
+grant_type=authorization_code&amp;
+code=AUTHORIZATION_CODE&amp;
+redirect_uri=CALLBACK_URL
+</code></pre></li>
+
+<li><p>主要参数</p>
+
+<ul>
+<li>client_id参数和client_secret参数用来让 B 确认 A 的身份（client_secret参数是保密的，因此只能在后端发请求）。</li>
+<li>grant_type参数的值是AUTHORIZATION_CODE，表示采用的授权方式是授权码。</li>
+<li>code参数是上一步拿到的授权码。</li>
+<li>redirect_uri参数是令牌颁发后的回调网址。</li>
+</ul></li>
+
+<li><p>第四步：B 网站收到请求以后，就会颁发令牌。具体为向第三 步的redirect_url发送一段令牌json。</p>
+
+<pre><code>{    
+&quot;access_token&quot;:&quot;ACCESS_TOKEN&quot;,
+&quot;token_type&quot;:&quot;bearer&quot;,
+&quot;expires_in&quot;:2592000,
+&quot;refresh_token&quot;:&quot;REFRESH_TOKEN&quot;,
+&quot;scope&quot;:&quot;read&quot;,
+&quot;uid&quot;:100101,
+&quot;info&quot;:{...}
+}
+</code></pre>
+
+<p>access_token就是令牌，refresh_token为刷新令牌。</p></li>
+</ul>
+
+<h3 id="隐藏式-implicit">隐藏式（implicit）</h3>
+
+<p>有些 Web 应用是纯前端应用，没有后端。这种方式没有授权码这个中间步骤，所以称为（授权码）&rdquo;隐藏式&rdquo;（implicit）。
+- 第一步:A 网站提供一个链接，要求用户跳转到 B 网站，授权用户数据给 A 网站使用。</p>
+
+<pre><code>https://b.com/oauth/authorize?
+  response_type=token&amp;
+  client_id=CLIENT_ID&amp;
+  redirect_uri=CALLBACK_URL&amp;
+  scope=read
+</code></pre>
+
+<ul>
+<li><p>重要参数：</p>
+
+<ul>
+<li>response_type参数为token，表示要求直接返回令牌。
+<br /></li>
+</ul></li>
+
+<li><p>第二步:用户跳转到 B 网站确认授权。这时，B 网站就会回调redirect_uri，并且把令牌作为 URL 参数，传给 A 网站。</p>
+
+<pre><code>https://a.com/callback#token=ACCESS_TOKEN
+</code></pre></li>
+
+<li><p>这种方式把令牌直接传给前端，是很不安全的。因此，只能用于一些安全要求不高的场景，并且令牌的有效期必须非常短，通常就是会话期间（session）有效，浏览器关掉，令牌就失效了。</p></li>
+</ul>
+
+<h3 id="密码式-password">密码式（password）</h3>
+
+<ul>
+<li><p>第一步:A 网站要求用户提供 B 网站的用户名和密码。拿到以后，A 就直接向 B 请求令牌。</p>
+
+<pre><code>https://oauth.b.com/token?
+grant_type=password&amp;
+username=USERNAME&amp;
+password=PASSWORD&amp;
+client_id=CLIENT_ID
+</code></pre></li>
+</ul>
+
+<h3 id="凭证式-client-credentials">凭证式（client credentials）</h3>
+
+<ul>
+<li><p>第一步:A 应用在命令行向 B 发出请求。</p>
+
+<pre><code>https://oauth.b.com/token?
+grant_type=client_credentials&amp;
+client_id=CLIENT_ID&amp;
+client_secret=CLIENT_SECRET
+</code></pre></li>
+
+<li><p>主要参数：</p>
+
+<ul>
+<li>grant_type参数等于client_credentials表示采用凭证式</li>
+<li>client_id和client_secret用来让 B 确认 A 的身份。</li>
+</ul></li>
+
+<li><p>第二步，B 网站验证通过以后，直接返回令牌。
+这种方式给出的令牌，是针对第三方应用的，而不是针对用户的，即有可能多个用户共享同一个令牌。</p></li>
+</ul>
+
+<h2 id="令牌使用">令牌使用</h2>
+
+<p>每个发到 API 的请求，都必须带有令牌。
+具体做法是在请求的头信息，加上一个Authorization字段</p>
+
+<h2 id="令牌更新">令牌更新</h2>
+
+<p>Oauth2.0允许用户自动更新令牌。
+- B 网站颁发令牌的时候，一次性颁发两个令牌，一个用于获取数据，另一个用于获取新的令牌（refresh token 字段）。令牌到期前，用户使用 refresh token 发一个请求，去更新令牌。</p>
+
+<pre><code>https://b.com/oauth/token?
+  grant_type=refresh_token&amp;
+  client_id=CLIENT_ID&amp;
+  client_secret=CLIENT_SECRET&amp;
+  refresh_token=REFRESH_TOKEN
+</code></pre>
+
+<ul>
+<li>主要参数：
+
+<ul>
+<li>rant_type参数为refresh_token表示要求更新令牌。</li>
+<li>client_id参数和client_secret参数用于确认身份。</li>
+<li>refresh_token参数就是用于更新令牌的令牌。</li>
+</ul></li>
+</ul>
+
+<p>参考：<a href="http://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html">http://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html</a></p>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/java/oauth2.0/">Oauth2.0</a></li>
+        
+        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/condition/">Condition</a></li>
+        
+        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E9%80%9A%E8%AE%AF%E6%9C%BA%E5%88%B6/">线程的生命周期和通讯机制</a></li>
+        
+        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/2.gc%E7%AE%97%E6%B3%95%E5%92%8C%E7%A7%8D%E7%B1%BB/">GC算法和种类</a></li>
+        
+        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">垃圾回收器</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="/tags/%E5%AE%89%E5%85%A8">安全</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

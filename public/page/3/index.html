@@ -12,13 +12,13 @@
     <meta property="og:type" content="website">
     <meta name="Keywords" content="java,博客,分享">
     <meta name="description" content="专注于IT互联网，JAVA、设计模式、程序员的生存方式">
-    <meta property="og:url" content="http://www.sszblog.xyz/">
+    <meta property="og:url" content="/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://www.sszblog.xyz/index.xml" title="Shi.bro的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="/index.xml" title="Shi.bro的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -36,7 +36,7 @@
             <div class="site-name ">
                 
                     <h1>
-                        <a id="logo" href="http://www.sszblog.xyz">
+                        <a id="logo" href="">
                             Shi.bro的博客
                         </a>
                     </h1>
@@ -45,11 +45,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="http://www.sszblog.xyz">首页</a>
+                    <a class="current" href="">首页</a>
                     
-                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    <a  href="/archives/" title="目录">目录</a>
                     
-                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    <a  href="/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -68,267 +68,251 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/" title="Synchronized关键字" >Synchronized关键字</a>
+                                    <a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/" title="布隆Bloom过滤器" >布隆Bloom过滤器</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年10月12日
+                                2020年10月16日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                Synchronized关键字 1.作用 保证同一时刻最多只有1个线程执行 被Synchronized修饰的方法 / 代码
-其他线程 必须等待当前线程执行完该方法 / 代码块后才能执行该方法 / 代码块
-2.修饰 2.1修饰方法 //对象锁 //写法1 public synchronized void method() { // todo } //写法2，写法2其实是同步代码块的写法，但在这里也是相当于修饰了方法 public void method() { synchronized(this) { // todo } }  2.2修饰静态方法 //类锁 public synchronized static void method() { // todo }  2.3修饰类 //类锁 class ClassName { public void method() { synchronized(ClassName.class) { // todo } } }  2.4修饰代码块 //对象锁 //写法一 synchronized(this) { //todo } //写法二 Object obj =new Object(); synchronized(obj) { //todo }  3.……
+                                1.什么是布隆过滤器？  一个名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。 &gt;位数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1。这样申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000&frasl;1024 kb ≈ 122kb 的空间。 &gt; bit数组 0 0 0 0 0 0 0 0 0 0 0 0 0 0  2.布隆过滤器的原理  当一个元素加入布隆过滤器中的时候，会进行如下操作：
+ 使用布隆过滤器中的哈希函数对元素值进行计算，得到哈希值（有几个哈希函数得到几个哈希值）。 根据得到的哈希值，在位数组中把对应下标的值置为 1。   当我们需要判断一个元素是否存在于布隆过滤器的时候，会进行如下操作：
+ 对给定元素再次进行相同的哈希计算； 得到值之后判断位数组中的每个元素是否都为 1，如果值都为 1，那么说明这个值在布隆过滤器中，如果存在一个值不为 1，说明该元素不在布隆过滤器中。    布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。
+ 3.使用Google开源的 Guava中自带的布隆过滤器  创建了一个最多存放 最多 1500个整数的布隆过滤器，并且我们可以容忍误判的概率为百分之（0.……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/synchronized%E5%85%B3%E9%94%AE%E5%AD%97/">阅读全文</a></p>
+                            <p class="readmore"><a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/" title="Future、FutureTask、CompletableFuture" >Future、FutureTask、CompletableFuture</a>
+                                    <a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/java%E7%BC%93%E5%AD%98/" title="Java缓存" >Java缓存</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年10月11日
+                                2020年10月12日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                Future
-public interface Future&lt;V&gt; { /** * 取消任务的执行 * 如果任务已经完成，或者已经被取消，或者因为其他原因不能被取消，则返回失败 * 如果任务在调用时还未启动，那么返回成功 * 如果任务已经在执行过程中，则根据参数确定此执行任务的线程能否被中断，来试图停止任务的执行 * @param mayInterruptIfRunning * @return */ boolean cancel(boolean mayInterruptIfRunning); /** * 判断任务是否已经取消，任务正常完成前将其取消，则返回true * @return */ boolean isCancelled(); /** * 判断任务是否已经完成，需要注意的是如果任务正常、异常或取消，都返回true * @return */ boolean isDone(); /** * 等待任务执行结束，并返回结果 * @return * @throws InterruptedException 线程被中断异常 * @throws ExecutionException 任务执行异常 */ V get() throws InterruptedException, ExecutionException; /** * 等待任务执行结束，并返回结果，同上面get方法的区别是设置了超时时间， * @param timeout * @param unit * @return * @throws InterruptedException * @throws ExecutionException * @throws TimeoutException */ V get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException; }  FutureTask介绍……
+                                 缓存 1.基本思想  避免用户在请求数据的时候获取速度过于缓慢，所以我们在数据库之上增加了缓存这一层来弥补。  2.本地缓存解决方案  常见的有Ehcache、guavaCache、Caffeine Cache等，性能最优的为Caffeine cache。 常见的单体架构使用 Nginx 来做负载均衡，部署两个相同的服务到服务器，两个服务使用同一个数据库，并且使用的是本地缓存。
+3.为什么要用分布式缓存？而不用本地缓存？ 本地缓存存在局限性：
+ 本地缓存对分布式架构支持不友好，比如同一个相同的服务部署在多台机器上的时候，各个服务之间的缓存是无法共享的，因为本地缓存只在当前机器上有。 本地缓存容量受服务部署所在的机器限制明显。 如果当前系统服务所耗费的内存多，那么本地缓存可用的容量就很少。   4.缓存读写模式/更新策略/处理流程  Cache Aside Pattern（旁路缓存模式）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：更新 DB，然后直接删除 cache 。  Read/Write Through Pattern（读写穿透）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：先查 cache，cache 中不存在，直接更新 DB。 cache 中存在，则先更新 cache，然后 cache 服务自己更新 DB（同步更新 cache 和 DB）。  Write Behind Pattern（异步缓存写入）  读：从 cache 中读取数据，读取到就直接返回 。读取不到的话，先从 DB 加载，写入到 cache 后返回响应。 写：无论是否存在，都直接跟新缓存，最好异步批量的方式来更新 DB。   ……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/futurefuturetaskcompletablefuture/">阅读全文</a></p>
+                            <p class="readmore"><a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/java%E7%BC%93%E5%AD%98/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/other/english/phrase/" title="短语" >短语</a>
+                                    <a href="/algorithm/%E7%AE%97%E6%B3%95/" title="git创建新仓库" >git创建新仓库</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年10月9日
+                                2020年9月22日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/other">other</a></span>
+                                <span class="meta-category"><a href="/categories/algorithm">algorithm</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                Managerial tasks could be delegated to others 管理任务可以委托给其他人……
+                                小灰的算法之旅 1.算法和数据结构  算法是什么？ 算法是一系列程序指令，用来处理特定运算和逻辑问题。 什么是数据结构？ 数据结构是数据的组织、管理和存储格式，其使用的目的是为了高效的访问和修改。 数据结构包含数组，链表。以及树，图这种复杂的数据结构。 3.什么是时间复杂度？ T(n) = O(f(n)) 4.什么是空间复杂度？ S(n) = O(f(n))  2.数据结构基础  数组VS链表     VS 查找 更新 插入 删除     数组 O(1) O(1) O(n) O(n)   链表 O(n) O(1) O(1) O(1)     栈和队列
+ 栈是先入后出FILO(First In Last Out) 入栈：PUSH 出栈：POP 可以用来实现递归逻辑，以及面包屑导航（浏览器浏览历史回退）
+ 队列是先入先出FIFO(First In First Out) 队头:Front 队尾：Rear 入队：enquere 出队：dequeue
+  散列表（哈希表 hash table） 散列表也叫哈希表，是存储Key-Value的集合，对于一个key，散列表可以在接近 O(1)的时间内完成读写操作。散列表通过哈希函数实现key和数组下标的转换，通过开放寻址法和链表法来解决冲突。 哈希函数：通过哈希函数，可以将字符串和其他类型的Key，转换成数组下标index 例如Key=abcd,index= HashCode(&ldquo;abcd&rdquo;)%Array.……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/other/english/phrase/">阅读全文</a></p>
+                            <p class="readmore"><a href="/algorithm/%E7%AE%97%E6%B3%95/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/" title="linux命令" >linux命令</a>
+                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/" title="设计模式分类" >设计模式分类</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年10月8日
+                                2020年9月10日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/linux">linux</a></span>
+                                <span class="meta-category"><a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                一行shell命令杀死指定进程名称的进程方法
-ps -efww|grep -w '程序名称'|grep -v grep|cut -c 9-15|xargs kill -9  ps:杀死程序名称为ssz-h5的程序
-[root@sagdb ssz-h5]# ps -ef|grep java root 28414 1 2 Sep27 ? 05:39:12 java -jar ssz-llyy.jar root 29837 1 99 14:37 pts/0 00:00:03 java -jar ssz-h5.jar root 29856 29557 0 14:37 pts/0 00:00:00 grep java [root@sagdb ssz-h5]# ps -efww|grep -w 'ssz-h5'|grep -v grep|cut -c 9-15|xargs kill -9  ……
+                                 看懂UML类图和时序图  从一个示例开始 类之间的关系 时序图 附录  创建型模式  简单工厂模式（静态工厂方法模式）（不在创建型里面） 工厂方法模式 抽象工厂模式 单例模式 建造者模式 原型模式  结构型模式  适配器模式 桥接模式 装饰模式 外观模式 享元模式 代理模式  行为型模式  命令模式 中介者模式 观察者模式 状态模式 策略模式   ……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/linux/linux%E6%93%8D%E4%BD%9C/">阅读全文</a></p>
+                            <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="Thread、Runnable、Callable、线程池" >Thread、Runnable、Callable、线程池</a>
+                                    <a href="/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" title="" ></a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月26日
+                                2020年3月20日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                1.创建线程的三种方式  (1)继承thread,重写run方法 (2)实现Runnable接口，实现run方法 (3)实现Callable接口，实现call方法 (4)线程池  2.Runnable和Callable的区别：  (1)Callable实现的方法是call(),Runnable实现的方法是run(). (2)Callable的任务执行后可返回值，可以拿到一个Future对象，而Runnable的任务没有返回值 (3)call方法需要抛出异常InterruptedException和ExecutionExecption，run方法只能在内部消化InterruptedException  3.Thread的缺点：  Java是单继承多实现，不利于扩展.  4. 线程池 4.1 为什么要使用线程池  降低资源消耗。 通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 提高响应速度。 当任务到达时，任务可以不需要的等到线程创建就能立即执行。 提高线程的可管理性。 线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。  4.2 execute()和submit()的区别  (1)可接受任务类型：
- submit:
-submit(Callable&lt;T&gt; task):Future&lt;T&gt; -ExecutorService submit(Runnable task):Future&lt;?&gt; -ExecutorService submit(Runnable task,T result):Future&lt;T&gt; -ExecutorService  execute:
-execute(Runnable command):void -Executor  从源码种可以看出
- execute只能接受Runnable类型的任务 submit不管是Runnable还是Callable类型的任务都可以接受   (2)返回值
- 由Callable和Runnable的区别可以看出：  execute没有返回值 submit有返回值，所以需要返回值的时候必须使用submit   (3)异常处理
- submit在执行过程中与execute不一样，不会抛出异常而是把异常保存在成员变量中，在FutureTask.get阻塞获取的时候再把异常抛出来。
- execute中抛出异常 execute中的是Runnable接口的实现，所以只能使用try、catch来捕获CheckedException，通过实现UncaughtExceptionHande接口处理UncheckedException 即和普通线程的处理方式完全一致……
+                                ……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">阅读全文</a></p>
+                            <p class="readmore"><a href="/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/" title="异常" >异常</a>
+                                    <a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="参数校验" >参数校验</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月26日
+                                2020年2月24日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                异常和错误的区别：异常能被程序本身处理，错误是无法处理。……
+                                通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
+步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E5%BC%82%E5%B8%B8/">阅读全文</a></p>
+                            <p class="readmore"><a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" title="责任链模式使用" >责任链模式使用</a>
+                                    <a href="/web/webstorm/" title="WebStorm" >WebStorm</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月26日
+                                2020年1月7日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">java</a></span>
+                                <span class="meta-category"><a href="/categories/web">WEB</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                责任链模式的重点在“链上”，由一条链去处理相似的请求，在链中决定谁来处理这个请求，并返回相应的结果。
-角色：
-抽象处理者（Handler）角色：该角色对请求进行抽象，并定义一个方法来设定和返回对下一个处理者的引用。
-具体处理者（Concrete Handler）：该角色接到请求后，可以选择将请求处理掉，或者将请求传给下一个处理者。由于具体处理者持有对下一个处理者的引用，因此，如果需要，处理者可以访问下一个处理者。
-优点 责任链模式将请求和处理分开，请求者不知道是谁处理的，处理者可以不用知道请求的全貌。 提高系统的灵活性。 缺点 降低程序的性能。每个请求都是从链头遍历到链尾，当链比较长的时候，性能会大幅下降。 不易于调试。由于该模式采用了类似递归的方式，调试的时候逻辑比较复杂。……
+                                当执行webpack -v报错时 One CLI for webpack must be installed. These are recommended choices
+先全局安装webpack和webpack-cli cnpm install webpack -g cnpm install webpack-cli -g 再局部安装webpack和webpack-cli cnpm install webpack &ndash;save-dev cnpm install webpack-cli &ndash;save-dev……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">阅读全文</a></p>
+                            <p class="readmore"><a href="/web/webstorm/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/" title="Java8计算时间差" >Java8计算时间差</a>
+                                    <a href="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" title="阿里巴巴Java开发手册与代码规约插件P3C-PMD" >阿里巴巴Java开发手册与代码规约插件P3C-PMD</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月23日
+                                2019年12月24日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/java">Java</a></span>
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                <p><strong>计算某个并行任务的总耗时。</strong></p>……
+                                 P-3C Orion【猎户座反潜巡逻机】，阿里大概取p3c先进，监测，发现潜在问题的意思
+前言 2017年的时，阿里官方首次公开阿里Java代码规范标准，发布阿里巴巴Java开发手册。 这套Java统一规范标准将有助于提高行业编码规范化水平，帮助行业人员提高开发质量和效率、大大降低代码维护成本。
+目前已更迭了五个版本，2019年6月19日，阿里巴巴Java开发手册（华山版）》正式发布，该版本命名为华山版是因为最新版本手册集成了社区开发者集体智慧的结晶。
+该开发手册阿里内部Java工程师所遵循的开发规范，涵盖编程规约、单元测试规约、异常日志规约、MySQL规约、工程规约、安全规约等，这是近万名阿里Java技术精英的经验总结，并经历了多次大规模一线实战检验及完善。这是阿里回馈给Java社区的一份礼物，希望能够帮助企业开发团队在Java开发上更高效、容错、有协作性，提高代码质量，降低项目维护成本。
+虽然已经发布了开发手册，但是为了让开发者更加方便、快速的将规范推动并实行起来，阿里巴巴基于手册内容，研发了一套自动化的IDE检测插件（IDEA、Eclipse）， 该插件在扫描代码后，将不符合《手册》的代码按Blocker/Critical/Major三个等级显示在下方，甚至在IDEA上，还基于检查机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。另外对于历史代码，部分规则实现了批量一键修复的功能，提升代码质量，提高团队研发效能。
+如何安装 eclipse安装 1.打开https://p3c.alibaba.com/plugin/eclipse/update 2.点击Zip File直接下载，下载完成后解压缩，将将【features】及【plugins】两个目录复制到eclipse安装目录下（eclipse.exe同级目录），重启eclipse idea安装 1.访问：https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines/versions 下载对应版本的安装包 2.依次点击【File】-&gt;【Settings】-&gt;【Plugins】-&gt;【install plugin from disk】然后点击确认
+如何使用 1.首先现贴一段测试代码
+public class Test { public static void main(String[] args) { String _name = &quot;name&quot;; System.out.println(_name.equals(&quot;name&quot;)); Long temp = 10l; if(temp ==10L) System.out.println(&quot;temp = 10&quot;); else System.out.println(&quot;temp != 10&quot;); HashMap&lt;String,Integer&gt; map = new HashMap&lt;&gt;(); } }  扫描后的结果： ……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/java/java8%E8%AE%A1%E7%AE%97%E6%97%B6%E9%97%B4%E5%B7%AE/">阅读全文</a></p>
+                            <p class="readmore"><a href="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/" title="我的书单" >我的书单</a>
+                                    <a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/" title="阿里支付" >阿里支付</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月18日
+                                2019年12月24日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/other">other</a></span>
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                 [ ]《睡眠革命》
- [x]《软技能》
- [ ]《指数基金投资指南》
- [ ]《解读基金》
- [ ]《傻瓜式投资》
- [ ]《习惯的力量》
- [ ]《人性的弱点》
- [ ]《金字塔原理》 [ ]《董莉华之书》  ……
+                                 [x]当面付-扫码支付快速接入(https://docs.open.alipay.com/194/106078/) [x]电脑网站支付（https://docs.open.alipay.com/270/105899/）  ……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/other/%E4%B9%A6%E5%8D%95/%E4%B9%A6%E5%8D%95/">阅读全文</a></p>
+                            <p class="readmore"><a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/">阅读全文</a></p>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/" title="软技能分享" >软技能分享</a>
+                                    <a href="/web/css/" title="HTML" >HTML</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年9月18日
+                                2019年12月10日
                             </date>
                             
                             <div class="post-meta">
                                 <span>|</span>
                                 
-                                <span class="meta-category"><a href="http://www.sszblog.xyz/categories/other">other</a></span>
+                                <span class="meta-category"><a href="/categories/web">WEB</a></span>
                                 
                             </div>
                             
                             <div class="post-content">
-                                #《软技能》 前言 对于优秀的软件开发者来说，埋头写代码绝并不应该是工作的全部。这本书给出了很多非常好的建议，不仅仅“码农”们可以从中获益，还可以推而广之到很多其他的行业。
-职业 主要讲的是如何进行自己的职业规划
-你所能犯的最大错误就是相信自己是在为别人工作。这样一来你对工作的安全感已然尽失。职业发展的驱动力一定是个体本身。记住：工作是属于公司的，而职业生涯确实属于你自己的。 - 厄尔.南丁格尔
-那么我们该如何解决这样的问题呢？
-思考未来，你的目标是什么（√） 工作属于公司的，而职业属于自己的。没有目标的就更不可能去实现自己的目标，浑浑噩噩混过一生，这个是大多数人的自然状态，我们通常保护会充分思考自己该关注什么，这样我们的行动也就漫无目的，无的放矢。（想象一下，海中的船只）。 为什么需要目标？ 如何设定目标。 首先，必须定义一个大目标，不需要那么具体，但是一定要清晰，能够让你自己知道你自己是再向它前进还是离它越来越远。
-如果你可以驱动小目标逐渐前行并靠近你的大目标， 那么最终你一定会到达目的地。 设定大小不同的目标， 确保你向着自己的大目标前进， 这一点非常重要。 例如， 你设定了 一个年度目标， 阅读很多技术书籍， 或是学习新的编程语言。 这个年度目标可能是引领你 走向“成为一名高级开发人员”这个大目标的小目标。 同样， 每年的目标可能被分解成更小 的目标， 比如每月阅读一本书， 或者每天读多少页。
-　较小的目标可以让你航行在自己的轨道上， 激励你保持航向朝着更大的目标前进。 如 果你准备达成一个大目标， 却没有分解为小目标， 那么当你偏离航向时也不会有时间去校 正。 达成较小的目标也能经常奖励自己， 帮助并激励自己。 每一天、 每一个星期的小胜利 会让我们觉得自己正在取得进展、 达成目标， 这让我们感觉良好， 帮助我们继续前进。 较 小的目标似乎也不像大目标那样令人望而生畏
-追踪你的目标。
-采取行动
- 坐下来，为职业生涯设置至少一个大目标。 将大目标分解成若干个小目标，例如  月度目标 周目标 每日目标  把大目标写在每天的必经之地，达到吾日三省吾身的效果  学会与人打交道（√） ‘别管我，我只想一个人安静地写代码！’
-是不是每天想安安静静地写代码时，微信窗口或者Email总会不合时宜地弹出各种提示，一会要开会啦一会要讨论需求了，再一会测试又来和你理论Bug了。世界这么喧嚣，还让不让人安静地写代码了？“别管我，我只想一个人安静地写代码”，这句话道出了多少程序员的心声啊，我们都想“静静”！不过今天我要告诉你，这种想法是多么的错误，并且严重影响了你职业生涯的发展。
-如果你觉得自己的工作就是写写代码，那你最好三思。在开发的领域，我们大多数是与人而不是与计算机打交道。我们所写的代码首先是供人使用的，其次才是让计算机可以理解的，如果你只想和机器打交道，那写二进制的代码机器才能理解你。仔细想想自己一天的工作中有多少时间用在了与人互动上，收发邮件、会议、讨论（扯皮）等等，作为一个开发人员，你的工作就是与人打交道（其实几乎所有的职业都是这样）。
-所以，虽然你是一个码代码的码农，看似你工作的重心是在码代码上，但其实你自己统计一下也会发现：你真正写代码的时间占你工作时间的比例并不高甚至有些人非常低。即使没有人打扰你，你仍然需要花很多的时间去设计（思考）怎么写你的代码，或者花很长的时间去看懂别人的代码然后找到Bug产生的原理，这个过程中看似你面对的是代码是机器，但其实你面对的是人（写代码的人和读你代码的人）。这还没有谈论怎么把业务的需求变成代码，你仍然需要了解一定的业务知识，当然最好的方式是先和业务、需求设计人员进行沟通，而不是闷头写代码。
-那么问题来了，如何与人打交道呢？ 许多优秀的书籍都阐述了“如何与人打交道“这个主题，再这本书中作者强烈推荐《人性的弱点》这本书，此外作者还在这一篇中引用了这本书中的一些观点。 1. 每个人都希望感到自己很重要 我们常常容易犯的一项错误就是，轻率地否决同事的想法，以便于可以提出自己的想法。然而随着你做出这样的错误判断，你往往会发现他们对你的想法充耳不闻，仅仅因为你让他们感觉自己是无足轻重的。如果你希望人们接受你的想法，并认可其中的价值，首先你最好先主动给他人相同的礼遇。如果你不能保全他人的自尊，那你永远也不可能赢得他的心。 2.……
+                                list-style-type: 默认点 none 无 square 方格
+后代组合器 li em 相邻兄弟选择器 h1 + p 根据状态确定样式 a:link 链接颜色 a:visited 访问后的颜色 a:hover{ text-decoration: none; 覆盖后，链接去除下划线 }
+body h1 + p .special { color: yellow; background-color: black; padding: 5px; } 上面的代码为以下元素建立样式：在之内，紧接在后面的元素的内部，类名为special。
+refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
                             </div>
-                            <p class="readmore"><a href="http://www.sszblog.xyz/other/%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/%E8%BD%AF%E6%8A%80%E8%83%BD%E8%AF%BB%E4%B9%A6%E5%88%86%E4%BA%AB/">阅读全文</a></p>
+                            <p class="readmore"><a href="/web/css/">阅读全文</a></p>
                         </article>
                     
                     
@@ -338,31 +322,47 @@ execute(Runnable command):void -Executor  从源码种可以看出
 <ol class="page-navigator">
     
     <li class="prev">
-        <a href="http://www.sszblog.xyz/page/2/">上一页</a>
+        <a href="/page/2/">上一页</a>
     </li>
     
 
     
     <li >
-        <a href="http://www.sszblog.xyz/">1</a>
+        <a href="/">1</a>
     </li>
     
     <li >
-        <a href="http://www.sszblog.xyz/page/2/">2</a>
+        <a href="/page/2/">2</a>
     </li>
     
     <li  class="current">
-        <a href="http://www.sszblog.xyz/page/3/">3</a>
+        <a href="/page/3/">3</a>
     </li>
     
     <li >
-        <a href="http://www.sszblog.xyz/page/4/">4</a>
+        <a href="/page/4/">4</a>
+    </li>
+    
+    <li >
+        <a href="/page/5/">5</a>
+    </li>
+    
+    <li >
+        <a href="/page/6/">6</a>
+    </li>
+    
+    <li >
+        <a href="/page/7/">7</a>
+    </li>
+    
+    <li >
+        <a href="/page/8/">8</a>
     </li>
     
 
     
     <li class="next">
-        <a href="http://www.sszblog.xyz/page/4/">下一页</a>
+        <a href="/page/4/">下一页</a>
     </li>
     
 </ol>
@@ -377,7 +377,7 @@ execute(Runnable command):void -Executor  从源码种可以看出
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <input type="hidden" name="sitesearch" value="">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -396,31 +396,63 @@ execute(Runnable command):void -Executor  从源码种可以看出
 <ul class="widget-list">
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+        <a href="/categories/algorithm/">algorithm(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+        <a href="/categories/git/">git(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+        <a href="/categories/java/">java(31)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+        <a href="/categories/linux/">linux(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+        <a href="/categories/markdown/">markdown(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+        <a href="/categories/mysql/">mysql(2)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
     </li>
     
 </ul>
@@ -430,35 +462,71 @@ execute(Runnable command):void -Executor  从源码种可以看出
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    <a href="/tags/algorithm/">algorithm</a>
     
-    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    <a href="/tags/git/">git</a>
     
-    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    <a href="/tags/guava/">guava</a>
     
-    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    <a href="/tags/h5/">h5</a>
     
-    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    <a href="/tags/java/">java</a>
     
-    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    <a href="/tags/java8/">java8</a>
     
-    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
     
-    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    <a href="/tags/jvm/">jvm</a>
     
-    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    <a href="/tags/linux/">linux</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    <a href="/tags/markdown/">markdown</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a href="/tags/mysql/">mysql</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    <a href="/tags/other/">other</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    <a href="/tags/spring/">spring</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
     
 </div>
     </section>
@@ -472,7 +540,7 @@ execute(Runnable command):void -Executor  从源码种可以看出
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

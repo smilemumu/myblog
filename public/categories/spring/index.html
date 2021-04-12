@@ -16,13 +16,13 @@
     <meta name="description" content="Spring">
         
     <meta name="author" content="Shi.bro">
-    <meta property="og:url" content="http://www.sszblog.xyz/categories/spring/">
+    <meta property="og:url" content="/categories/spring/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="http://www.sszblog.xyz/categories/spring/index.xml" title="Shi.bro的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="/categories/spring/index.xml" title="Shi.bro的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -39,7 +39,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="http://www.sszblog.xyz">
+                    <a id="logo" href="">
                         Shi.bro的博客
                     </a>
                 
@@ -47,11 +47,11 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    <a class="" href="">首页</a>
                     
-                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    <a  href="/archives/" title="目录">目录</a>
                     
-                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    <a  href="/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -78,7 +78,62 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">全局异常处理</a>
+                                    <a href="/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/">Spring事务的隔离级别和传播行为</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月18日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/spring">Spring</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                简述 在高并发的情况下，MySQL 事务的并发处理会带来几个问题脏读、不可重复读、幻读。由于高并发事务带来这几个问题，所以就产生了事务的隔离级别。
+事务是什么  事务是数据库操作的最小工作单元，用户定义的一系列数据库操作作为一个整体一起向系统提交，要么都执行、要么都不执行。是不可分割的工作单元。 &gt; 如果没做好并发控制，可能会造成脏读、不可重复读和幻读等问题。  可交叉程度  脏读Dirty Read（看到的数据则是不正确的） 当一个事务能看见另外一个事务未提交的数据时，就称为脏读。如果这个事务被回滚了而不是提交了，那么其它事务看到的数据则是不正确的，是“脏”的。  Non-repeatable Read(不可重复读) 两次读取到的数据不同 假设事务A读取了一行数据，接下来事务B改变了这行数据，之后事务A再一次读取这行数据，结果就是事务A两次读取到的数据不同。  Phantom Read(幻读) 发现多出来一条数据
+假设事务A通过一个 where 条件读取到了一个结果集，事务B这时插入了一条符合事务A的 where 条件的数据，之后事务A通过同样的 where 条件再次查询时，发现多出来一条数据。   1.事务隔离级别(Isolation) JDBC 规范增加了隔离级别，来满足了 SQL:2003 定义的 4 种事务隔离级别。 在安装MySQL时，安装默认的隔离级别就是：可重复读。 可以通过 select @@global.tx_isolation; 来查看当前隔离级别。 隔离级别从最宽松到最严格，排序如下所示：
+TRANSACTION_NONE(无事务) 这意味着当前的 JDBC 驱动不支持事务，也意味着这个驱动不符合 JDBC 规范。
+ 1.READ_UNCOMMITTED(读未提交) 允许事务看到其它事务修改了但未提交的数据，这意味着有可能是脏读、不可重复读或者、幻读。
+ 2.READ_COMMITTED(读提交) 一个事务在未提交之前，所做的修改不会被其它事务所看见。这能避免脏读，但避免不了不可重复读和幻读。
+ 3.**REPEATABLE_READ(可重复读取) MySQL默认的事务隔离级别 避免了脏读和不可重复读，但幻读**依然是有可能发生的。
+ 4.SERIALIZABLE(序列化) 避免了脏读、不可重复读以及幻读。   2.Propagation事务传播行为 Propagation属性用来枚举事务的传播行为。所谓事务传播行为就是多个事务方法相互调用时，事务如何在这些方法间传播。Spring支持7种事务传播行为，默认为REQUIRED。
+ 1.……
+                                <p class="readmore"><a href="/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">参数校验</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年2月24日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/spring">Spring</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
+步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.……
+                                <p class="readmore"><a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">全局异常处理</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -88,21 +143,21 @@
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
 步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">阅读全文</a></p>
+                                <p class="readmore"><a href="/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/">项目开发</a>
+                                    <a href="/spring/filter%E5%92%8Cinterceptor/">Filter和Interceptor</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -112,20 +167,21 @@
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                ……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/filter%E5%92%8Cinterceptor/">阅读全文</a></p>
+                                #Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
+&lt;filter&gt; &lt;description&gt;字符集过滤器&lt;/description&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;description&gt;字符集编码&lt;/description&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.……
+                                <p class="readmore"><a href="/spring/filter%E5%92%8Cinterceptor/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">项目开发</a>
+                                    <a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">JSR-303参数校验</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -135,21 +191,21 @@
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 JSR-303参数校验 步骤 1.创建校验参数类
 import lombok.Data; import org.hibernate.validator.constraints.Range; import org.springframework.format.annotation.DateTimeFormat; import javax.validation.constraints.*; import java.util.Date; /** * 参数验证请求参数 * @Author shizhongcai * @Date 2019/11/20 15:35 */ @Data public class ValidatorReqVo{ @NotNull(message = &quot;id不能为空&quot;) private Integer id; @NotNull @Future(message = &quot;格式为yyyy-MM-dd,且为将来时间&quot;) @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;) private Date future; @NotNull @DecimalMin(value = &quot;0.1&quot;) @DecimalMax(value = &quot;1000&quot;) private Double doubleValue; @NotNull @Min(value = 1) @Max(value = 10) private Integer intValue; @NotNull @Range(min = 1,max = 10,message = &quot;最小为1，最大为10&quot;) private Integer range; @NotBlank @Email private String email; @NotBlank @Size(min = 10,max = 20,message = &quot;字符串长度在10-20之间&quot;) private String strSize; }  2.……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
+                                <p class="readmore"><a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/">项目开发</a>
+                                    <a href="/spring/%E5%85%B6%E4%BB%96/">其他</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -159,21 +215,21 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 其他一些日常工作中遇到的问题：
 1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&ldquo;singleton&rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&ldquo;prototype&rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E5%85%B6%E4%BB%96/">阅读全文</a></p>
+                                <p class="readmore"><a href="/spring/%E5%85%B6%E4%BB%96/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">基于自定义注解的参数解析器</a>
+                                    <a href="/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">基于自定义注解的参数解析器</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -183,7 +239,7 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
@@ -192,14 +248,14 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
 原理 通过HandlerMethodArgumentResolver实现自定义参数解析
 实现 步骤1：创建注解，例如创建一个解析Aes加密的注解AesJson import java.lang.annotation.*; @Target({ElementType.PARAMETER}) @Retention(RetentionPolicy.RUNTIME) @Documented public @interface AesJson { }  步骤2：创建加密参数实体类对象 传入的JSON数据格式为{&ldquo;data&rdquo;:&ldquo;xxxxxxxxxx&rdquo;}
 import lombok.Data; @Data public class AesBaseParams { private String data; }  步骤3：新建AesArgumentResolver类实现HandlerMethodArgumentResolver import com.alibaba.fastjson.JSON; import org.apache.commons.lang.StringUtils; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.core.MethodParameter; import org.springframework.web.bind.support.WebDataBinderFactory; import org.springframework.web.context.request.NativeWebRequest; import org.springframework.web.method.support.HandlerMethodArgumentResolver; import org.springframework.web.method.support.ModelAndViewContainer; import javax.servlet.http.HttpServletRequest; import java.io.BufferedReader; import java.io.IOException; import java.io.InputStream; import java.io.InputStreamReader; import java.net.URLDecoder; import java.util.HashMap; import java.util.Map; import java.util.Objects; /** * aes加密算法加密的入参，通过@AesJson注解自动解析 */ public class AesArgumentResolver implements HandlerMethodArgumentResolver { private static final Logger logger = LoggerFactory.……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">阅读全文</a></p>
+                                <p class="readmore"><a href="/spring/%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%99%A8/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a>
+                                    <a href="/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">接口限流-令牌桶限流</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -209,21 +265,44 @@ import lombok.Data; @Data public class AesBaseParams { private String data; }  �
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&lt;String, RateLimiter&gt; map = new ConcurrentHashMap&lt;&gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&quot;@annotation(com.……
+                                <p class="readmore"><a href="/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年11月14日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 MDC(Mapped Diagnostic Context) 实现 步骤1：创建MDCFilter实现Filter filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。 在过滤之前在reqId钟放入uuid并在结束之后remove
 import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; import org.springframework.stereotype.Component; import javax.servlet.*; import javax.servlet.http.HttpServletRequest; import java.io.IOException; import java.util.UUID; /** * @Author shizhongcai * @Date 2019/11/15 11:15 */ @Component public class MDCFilter implements Filter { private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class); public static final String MDC_ID = &quot;reqId&quot;; @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { boolean mdcFlag = false; try { MDC.……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">阅读全文</a></p>
+                                <p class="readmore"><a href="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">阅读全文</a></p>
                             </div>
                         </article>
                     
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a>
+                                    <a href="/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -233,60 +312,14 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                    <a href="/categories/spring">Spring</a>
                                 
                             </div>
                             
                             <div class="post-content">
                                 1.创建实体类BaseRspVo
 @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo(ErrorCodesEnum errorCode) { if(errorCode == ErrorCodesEnum.SUCCESS) { this.success = true; } else { this.success = false; } this.msg = errorCode.getMsg(); this.errorCode = errorCode.getCode(); } } 错误Code枚举类 public enum ErrorCodesEnum { SUCCESS(10000,&quot;成功&quot;), SYS_ERROR(1000,&quot;系统异常，请稍后再试&quot;), DUPLICATE_KEY(10001,&quot;数据库中已存在该记录&quot;), NO_HANDLER_FOUND(10002,&quot;路径不存在，请检查路径是否正确&quot;), DEFAULT_FAIL(10003,&quot;未知异常，请稍后再试&quot;), DECRYPT_ERROR(10004,&quot;解密出错&quot;), ; /** * 错误码 */ private int code; /** * 错误描述 */ private String msg; ErrorCodesEnum(int code, String msg) { this.……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">项目开发</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月14日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&lt;String, RateLimiter&gt; map = new ConcurrentHashMap&lt;&gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&quot;@annotation(com.……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月14日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                Spring中Filter和Interceptor的区别 全局异常处理 统一返回结果对象 日志优化MDC(Mapped Diagnostic Context)的类（技术上使用了ThreadLocal实现，重点技术） 基于自定义注解的参数解析器（通过HandlerMethodArgumentResolver实现） 基于自定义注解的结果包装统一返回（通过HandlerMethodReturnValueHandler实现） 接口限流-令牌桶限流 参数校验-JSR-303  ……
-                                <p class="readmore"><a href="http://www.sszblog.xyz/project/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">阅读全文</a></p>
+                                <p class="readmore"><a href="/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">阅读全文</a></p>
                             </div>
                         </article>
                     
@@ -294,6 +327,26 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
                     
 
 
+
+<ol class="page-navigator">
+    
+
+    
+    <li  class="current">
+        <a href="/categories/spring/">1</a>
+    </li>
+    
+    <li >
+        <a href="/categories/spring/page/2/">2</a>
+    </li>
+    
+
+    
+    <li class="next">
+        <a href="/categories/spring/page/2/">下一页</a>
+    </li>
+    
+</ol>
 
 
 
@@ -305,7 +358,7 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <input type="hidden" name="sitesearch" value="">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -324,31 +377,63 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
 <ul class="widget-list">
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+        <a href="/categories/algorithm/">algorithm(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/java/">java(16)</a>
+        <a href="/categories/git/">git(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+        <a href="/categories/java/">java(31)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+        <a href="/categories/linux/">linux(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+        <a href="/categories/markdown/">markdown(1)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/spring/">spring(9)</a>
+        <a href="/categories/mysql/">mysql(2)</a>
     </li>
     
     <li>
-        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
     </li>
     
 </ul>
@@ -358,35 +443,71 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    <a href="/tags/algorithm/">algorithm</a>
     
-    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    <a href="/tags/git/">git</a>
     
-    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    <a href="/tags/guava/">guava</a>
     
-    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    <a href="/tags/h5/">h5</a>
     
-    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    <a href="/tags/java/">java</a>
     
-    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    <a href="/tags/java8/">java8</a>
     
-    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
     
-    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    <a href="/tags/jvm/">jvm</a>
     
-    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    <a href="/tags/linux/">linux</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    <a href="/tags/markdown/">markdown</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    <a href="/tags/mysql/">mysql</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    <a href="/tags/other/">other</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    <a href="/tags/spring/">spring</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
     
-    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
     
 </div>
     </section>
@@ -400,7 +521,7 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2019 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

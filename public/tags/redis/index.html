@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>redis | Shi.bro的博客</title>
+    <meta property="og:title" content="redis - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="redis">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="http://www.sszblog.xyz/tags/redis/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="http://www.sszblog.xyz/tags/redis/index.xml" title="Shi.bro的博客" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="http://www.sszblog.xyz">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="http://www.sszblog.xyz">首页</a>
+                    
+                    <a  href="http://www.sszblog.xyz/archives/" title="目录">目录</a>
+                    
+                    <a  href="http://www.sszblog.xyz/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">redis</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/">Ehcache和Redis</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年11月20日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="http://www.sszblog.xyz/categories/spring">Spring</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                ehcache 和 redis 比较  ehcache直接在jvm虚拟机中缓存，速度快，效率高；但是缓存共享麻烦，集群分布式应用不方便。 redis是通过socket访问到缓存服务，效率比ehcache低，比数据库要快很多， 处理集群和分布式缓存方便，有成熟的方案。如果是单个应用或者对缓存访问要求很高的应用，用ehcache。如果是大型系统，存在缓存共享、分布式部署、缓存内容很大的，建议用redis。 Caffeine Cache，目前最快的Java内存框架，堆内存。
+ 接入方式：
+ 1.引入pom文件
+&lt;dependency&gt; &lt;groupId&gt;com.github.ben-manes.caffeine&lt;/groupId&gt; &lt;artifactId&gt;caffeine&lt;/artifactId&gt; &lt;version&gt;2.7.0&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt; &lt;/dependency&gt;  2.编写CaffeineConfig并注入CacheManager
+import org.springframework.cache.CacheManager; import org.springframework.cache.annotation.CachingConfigurerSupport; import org.springframework.cache.annotation.EnableCaching; import org.springframework.cache.caffeine.*; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import com.github.benmanes.caffeine.cache.Caffeine; import java.util.concurrent.TimeUnit; @Configuration @EnableCaching public class CaffeineConfig extends CachingConfigurerSupport { @Bean public CacheManager caffeineCacheManager() { CaffeineCacheManager cacheManager = new CaffeineCacheManager(); //定制化缓存Cache cacheManager.setCaffeine(Caffeine.newBuilder() .expireAfterWrite(3, TimeUnit.MINUTES) .initialCapacity(100) .maximumSize(10000)) ; return cacheManager; } }  3.……
+                                <p class="readmore"><a href="http://www.sszblog.xyz/spring/ehcache%E5%92%8Credis/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="http://www.sszblog.xyz">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/java/">java(19)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/spring/">spring(12)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/sql/">sql(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/web/">web(4)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="http://www.sszblog.xyz/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(1)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="http://www.sszblog.xyz/tags/algorithm/">algorithm</a>
+    
+    <a href="http://www.sszblog.xyz/tags/git/">git</a>
+    
+    <a href="http://www.sszblog.xyz/tags/guava/">guava</a>
+    
+    <a href="http://www.sszblog.xyz/tags/h5/">h5</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java/">java</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java8/">java8</a>
+    
+    <a href="http://www.sszblog.xyz/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="http://www.sszblog.xyz/tags/linux/">linux</a>
+    
+    <a href="http://www.sszblog.xyz/tags/markdown/">markdown</a>
+    
+    <a href="http://www.sszblog.xyz/tags/other/">other</a>
+    
+    <a href="http://www.sszblog.xyz/tags/redis/">redis</a>
+    
+    <a href="http://www.sszblog.xyz/tags/spring/">spring</a>
+    
+    <a href="http://www.sszblog.xyz/tags/sql/">sql</a>
+    
+    <a href="http://www.sszblog.xyz/tags/todo/">todo</a>
+    
+    <a href="http://www.sszblog.xyz/tags/web/">web</a>
+    
+    <a href="http://www.sszblog.xyz/tags/wechat/">wechat</a>
+    
+    <a href="http://www.sszblog.xyz/tags/xml/">xml</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="http://www.sszblog.xyz/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="http://www.sszblog.xyz">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+
+</body>
+</html>

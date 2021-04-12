@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring事务 on Shi.bro的博客</title>
+    <link>/tags/spring%E4%BA%8B%E5%8A%A1/</link>
+    <description>Recent content in Spring事务 on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 18 Nov 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/spring%E4%BA%8B%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring事务的隔离级别和传播行为</title>
+      <link>/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</link>
+      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/</guid>
+      <description>简述 在高并发的情况下，MySQL 事务的并发处理会带来几个问题脏读、不可重复读、幻读。由于高并发事务带来这几个问题，所以就产生了事务的隔离级别。
+事务是什么  事务是数据库操作的最小工作单元，用户定义的一系列数据库操作作为一个整体一起向系统提交，要么都执行、要么都不执行。是不可分割的工作单元。 &amp;gt; 如果没做好并发控制，可能会造成脏读、不可重复读和幻读等问题。  可交叉程度  脏读Dirty Read（看到的数据则是不正确的） 当一个事务能看见另外一个事务未提交的数据时，就称为脏读。如果这个事务被回滚了而不是提交了，那么其它事务看到的数据则是不正确的，是“脏”的。  Non-repeatable Read(不可重复读) 两次读取到的数据不同 假设事务A读取了一行数据，接下来事务B改变了这行数据，之后事务A再一次读取这行数据，结果就是事务A两次读取到的数据不同。  Phantom Read(幻读) 发现多出来一条数据
+假设事务A通过一个 where 条件读取到了一个结果集，事务B这时插入了一条符合事务A的 where 条件的数据，之后事务A通过同样的 where 条件再次查询时，发现多出来一条数据。   1.事务隔离级别(Isolation) JDBC 规范增加了隔离级别，来满足了 SQL:2003 定义的 4 种事务隔离级别。 在安装MySQL时，安装默认的隔离级别就是：可重复读。 可以通过 select @@global.tx_isolation; 来查看当前隔离级别。 隔离级别从最宽松到最严格，排序如下所示：
+TRANSACTION_NONE(无事务) 这意味着当前的 JDBC 驱动不支持事务，也意味着这个驱动不符合 JDBC 规范。
+ 1.READ_UNCOMMITTED(读未提交) 允许事务看到其它事务修改了但未提交的数据，这意味着有可能是脏读、不可重复读或者、幻读。
+ 2.READ_COMMITTED(读提交) 一个事务在未提交之前，所做的修改不会被其它事务所看见。这能避免脏读，但避免不了不可重复读和幻读。
+ 3.**REPEATABLE_READ(可重复读取) MySQL默认的事务隔离级别 避免了脏读和不可重复读，但幻读**依然是有可能发生的。
+ 4.SERIALIZABLE(序列化) 避免了脏读、不可重复读以及幻读。   2.Propagation事务传播行为 Propagation属性用来枚举事务的传播行为。所谓事务传播行为就是多个事务方法相互调用时，事务如何在这些方法间传播。Spring支持7种事务传播行为，默认为REQUIRED。
+ 1.</description>
+    </item>
+    
+  </channel>
+</rss>
