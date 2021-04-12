@@ -93,14 +93,7 @@
                             </div>
                             
                             <div class="post-content">
-                                Explain Explain 列  1.select_type 表示查询类型，分为简单查询(SIMPLE)和复杂查询(PRIMARY)，复杂查询又分为三类：简单子查询、派生表（from语句中的子查询）、union 查询。
- 2.type列(非常重要)
- 表示MySQL在表中找到所需行的方式，又称“访问类型”
- 依次从最优到最差分别为：system &gt; const &gt; eq_ref &gt; ref&gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery&gt; range &gt; index &gt; ALL
- ★注意：一般来说，得保证查询至少达到range级别，最好能达到ref。
-   3.possible_keys列 指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
- 6.key列(非常重要) key列显示MySQL实际决定使用的键（索引)
-  如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX……
+                                Explain Explain 列 mysql&gt; explain select * from users where userid=1; +----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+ | id | select_type | table | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra | +----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+ | 1 | SIMPLE | users | NULL | const | PRIMARY | PRIMARY | 8 | const | 1 | 100.00 | NULL | +----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+ 1 row in set, 1 warning (0.……
                                 <p class="readmore"><a href="/sql/mysql-explain/">阅读全文</a></p>
                             </div>
                         </article>
@@ -226,7 +219,11 @@ select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rown
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -238,7 +235,7 @@ select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rown
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -258,11 +255,19 @@ select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rown
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -280,6 +285,8 @@ select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rown
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -290,9 +297,13 @@ select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rown
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -334,7 +345,7 @@ select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rown
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

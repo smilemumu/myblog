@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zuul on Shi.bro的博客</title>
+    <link>/tags/zuul/</link>
+    <description>Recent content in Zuul on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/zuul/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Zuul</title>
+      <link>/springcloud/zuul/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/zuul/</guid>
+      <description>Zuul 在微服务架构中，需要几个基础的服务治理组件，包括服务注册与发现、服务消费、负载均衡、断路器、智能路由、配置管理等，由这几个基础组件相互协作，共同组建了一个简单的微服务系统。
+Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。
+服务路由 第一步：在其启动类上添加注解@EnableZuulProxy，开启zuul的功能：
+第二步：加上配置文件application.yml加上以下的配置代码：
+eureka: client: serviceUrl: defaultZone: http://localhost:8761/eureka/ server: port: 8769 spring: application: name: service-zuul zuul: routes: api-a: path: /api-a/** serviceId: service-hello api-b: path: /api-b/** serviceId: service-feign  以/api-a/ 开头的请求都转发给service-hello服务； 以/api-b/开头的请求都转发给service-feign服务；
+服务过滤 @Component public class MyFilter extends ZuulFilter{ private static Logger log = LoggerFactory.getLogger(MyFilter.class); @Override public String filterType() { return &amp;quot;pre&amp;quot;; } @Override public int filterOrder() { return 0; } @Override public boolean shouldFilter() { return true; } @Override public Object run() { RequestContext ctx = RequestContext.</description>
+    </item>
+    
+  </channel>
+</rss>

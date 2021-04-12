@@ -6,7 +6,7 @@
     <description>Recent content on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -40,29 +40,127 @@
     </item>
     
     <item>
-      <title>Oauth2.0</title>
-      <link>/java/oauth2.0/</link>
-      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      <title>WebService</title>
+      <link>/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>/java/oauth2.0/</guid>
-      <description> 异常和错误的区别：异常能被程序本身处理，错误是无法处理。
-异常层次结构图 </description>
+      <guid>/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/</guid>
+      <description>SpringBoot提供webService服务 1.编码 1.1第一步：引入maven依赖  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.cxf&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;cxf-spring-boot-starter-jaxws&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.2.5&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  1.2第二步：创建CXF配置类 import com.shizhongcai.webservice.server.advertise.*; import org.apache.cxf.Bus; import org.apache.cxf.bus.spring.SpringBus; import org.apache.cxf.jaxws.EndpointImpl; import org.apache.cxf.transport.servlet.CXFServlet; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.boot.web.servlet.ServletRegistrationBean; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import javax.annotation.Resource; import javax.xml.ws.Endpoint; @Configuration public class CXFConfig { /** * 这里需要注意 由于springmvc 的核心类 为DispatcherServlet * 此处若不重命名此bean的话 原本的mvc就被覆盖了。可查看配置类：DispatcherServletAutoConfiguration * 一种方法是修改方法名称 或者指定bean名称 * 这里需要注意 若beanName命名不是 cxfServletRegistration 时，会创建两个CXFServlet的。 * 具体可查看下自动配置类：Declaration org.apache.cxf.spring.boot.autoconfigure.CxfAutoConfiguration * 也可以不设置此bean 直接通过配置项 cxf.path 来修改访问路径的 * @return */ @Bean(&amp;quot;cxfServletRegistration&amp;quot;) public ServletRegistrationBean dispatcherServlet() { //注册servlet 拦截services 开头的请求 不设置 默认为：/services/* return new ServletRegistrationBean(new CXFServlet(), &amp;quot;/services/*&amp;quot;); } @Resource private AdvertiseService advertiseService; @Bean(name = Bus.</description>
+    </item>
+    
+    <item>
+      <title>Config</title>
+      <link>/springcloud/config%E4%B8%AD%E5%BF%83/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/config%E4%B8%AD%E5%BF%83/</guid>
+      <description>Config 在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。 在spring cloud config 组件中，分两个角色，一是config server，二是config client。
+使用spring cloud config 创建config server 第一步：启动类加上@EnableConfigServer
+第二步：配置文件
+spring.application.name=config-server server.port=8888 spring.cloud.config.server.git.uri=https://github.com/forezp/SpringcloudConfig/ spring.cloud.config.server.git.searchPaths=respo spring.cloud.config.label=master spring.cloud.config.server.git.username=your username spring.cloud.config.server.git.password=your password   spring.cloud.config.server.git.uri：配置git仓库地址 spring.cloud.config.server.git.searchPaths：配置仓库路径 spring.cloud.config.label：配置仓库的分支 spring.cloud.config.server.git.username：访问git仓库的用户名 spring.cloud.config.server.git.password：访问git仓库的用户密码  创建config client 配置文件：
+spring.application.name=config-client spring.cloud.config.label=master spring.cloud.config.profile=dev spring.cloud.config.uri= http://localhost:8888/ server.port=8881   spring.cloud.config.label 指明远程仓库的分支 spring.cloud.config.profile  dev开发环境配置文件 test测试环境 pro正式环境  spring.cloud.config.uri= http://localhost:8888/ 指明配置服务中心的网址。  用@Value可读取配置内容
+refer to : https://www.fangzhipeng.com/springcloud/2017/06/06/sc06-config.html</description>
+    </item>
+    
+    <item>
+      <title>Feign</title>
+      <link>/springcloud/feign/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/feign/</guid>
+      <description>Feign Feign 采用的是基于接口的注解 Feign 整合了ribbon
+Feign服务调用 1.需要添加依赖spring-cloud-starter-openfeign
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-cloud-starter-openfeign&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  2.需要在启动类中添加@EnableFeignClients注解 需要在启动类中添加@EnableDiscoveryClient注解
+3.Client端创建一个新的接口并定义Client端需要调用的服务方法
+@FeignClient(name = &amp;quot;service-hello&amp;quot;) public interface ServerApi { @GetMapping(&amp;quot;/hello/world&amp;quot;) String sayHelloWord(); }  使用时
+@GetMapping(&amp;quot;/sayHelloWord&amp;quot;) public Object sayHelloWord() { return serverApi.sayHelloWord(); }  refer to : https://www.fangzhipeng.com/springcloud/2017/06/03/sc03-feign.html</description>
+    </item>
+    
+    <item>
+      <title>Hystrix</title>
+      <link>/springcloud/hystrix/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/hystrix/</guid>
+      <description>Hystrix Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。
+Netflix开源了Hystrix组件，实现了断路器模式，SpringCloud对这一组件进行了整合。 较底层的服务如果出现故障，会导致连锁故障。当对特定的服务的调用的不可用达到一个阀值（Hystric 是5秒20次） 断路器将会被打开。 断路打开后，可用避免连锁故障，fallback方法可以直接返回一个固定值。
+###启用hystrix 第一步：添加依赖
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-cloud-starter-hystrix&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt;  第二步：在程序的启动类加@EnableHystrix注解开启Hystrix
+第三步：在HelloService方法上加上@HystrixCommand注解。该注解对该方法创建了熔断器的功能。 指定fallbackMethod熔断方法为sayError;
+@Service public class HelloService { @Autowired RestTemplate restTemplate; @HystrixCommand(fallbackMethod = &amp;quot;sayError&amp;quot;) @GetMapping(&amp;quot;/sayHelloWord&amp;quot;) public Object sayHelloWord() { return serverApi.sayHelloWord(); } public String sayError() { return &amp;quot;sorry,error!&amp;quot;; } }  ###Feign中使用断路器 Feign是自带断路器的，在D版本的Spring Cloud中，它没有默认打开
+feign.hystrix.enabled=true  @FeignClient(name = &amp;quot;service-hello&amp;quot;,fallback = ServiceHelloHystric.class) public interface ServerApi { @GetMapping(&amp;quot;/hello/world&amp;quot;) String sayHelloWord(); }  ServiceHelloHystric需要实现ServerApi 接口，并注入到Ioc容器中，代码如下：
+@Component public class ServiceHelloHystric implements ServerApi { @Override public String sayHelloWord(String name) { return &amp;quot;sorry ,error&amp;quot;; } }  Hystrix Dashboard (断路器：Hystrix 仪表盘)  在pom.</description>
+    </item>
+    
+    <item>
+      <title>Ribbon</title>
+      <link>/springcloud/ribbon/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/ribbon/</guid>
+      <description>Ribbon ribbon是一个负载均衡客户端，可以很好的控制htt和tcp的一些行为。Feign默认集成了ribbon。
+默认负载 均衡策略 SpringCloud默认的负载策略为轮询方式 @LoadBalanced注解会自动采用默信的负载策略（轮询） 在工程的启动类中, 通过@EnableDiscoveryClient向服务中心注册; 并且向程序的ioc注入一个bean: restTemplate; 并通过@LoadBalanced注解表明这个restRemplate开启负载均衡的功能。
+@Bean @LoadBalanced RestTemplate restTemplate() { return new RestTemplate(); }  SpringCloud中提供的常见的为:随机、轮询、哈希、权重等 SpringCloud底层采用的是Ribbon来实现的负载均衡，Ribbon的核心组件为IRule IRule常见的子类有RandomRule、RoundRobinRule、WeightedResponseTimeRule等。分别对应着随机、轮询、和权重
+两种方式设置负载均衡策略 - 代码方式 注入bean
+@Bean public IRule initIRule() { return new RandomRule(); }   yml方式
+注册中心服务端名字: ribbon: NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule   refer to : https://www.fangzhipeng.com/springcloud/2017/06/02/sc02-rest-ribbon.html</description>
+    </item>
+    
+    <item>
+      <title>Zuul</title>
+      <link>/springcloud/zuul/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/zuul/</guid>
+      <description>Zuul 在微服务架构中，需要几个基础的服务治理组件，包括服务注册与发现、服务消费、负载均衡、断路器、智能路由、配置管理等，由这几个基础组件相互协作，共同组建了一个简单的微服务系统。
+Zuul的主要功能是路由转发和过滤器。路由功能是微服务的一部分，比如／api/user转发到到user服务，/api/shop转发到到shop服务。zuul默认和Ribbon结合实现了负载均衡的功能。
+服务路由 第一步：在其启动类上添加注解@EnableZuulProxy，开启zuul的功能：
+第二步：加上配置文件application.yml加上以下的配置代码：
+eureka: client: serviceUrl: defaultZone: http://localhost:8761/eureka/ server: port: 8769 spring: application: name: service-zuul zuul: routes: api-a: path: /api-a/** serviceId: service-hello api-b: path: /api-b/** serviceId: service-feign  以/api-a/ 开头的请求都转发给service-hello服务； 以/api-b/开头的请求都转发给service-feign服务；
+服务过滤 @Component public class MyFilter extends ZuulFilter{ private static Logger log = LoggerFactory.getLogger(MyFilter.class); @Override public String filterType() { return &amp;quot;pre&amp;quot;; } @Override public int filterOrder() { return 0; } @Override public boolean shouldFilter() { return true; } @Override public Object run() { RequestContext ctx = RequestContext.</description>
+    </item>
+    
+    <item>
+      <title>Eureka服务注册服务发现模块</title>
+      <link>/springcloud/eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>Eureka服务注册服务发现 创建服务注册中心 @EnableEurekaServer， 在application启动类上加：@EnableEurekaServer注解
+ 具体配置文件：
+server: port: 8761 eureka: instance: hostname: localhost client: registerWithEureka: false fetchRegistry: false serviceUrl: defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   通过eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server
+创建服务提供者 当client向server注册时，它会提供一些元数据，例如主机和端口，URL，主页等。Eureka server 从每个client实例接收心跳消息。 如果心跳超时，则通常将该实例从注册server中删除。
+@EnableEurekaClient 1.在application启动类上加：@EnableEurekaClient注解 2.在配置文件中注明自己的服务注册中心的地址 - 具体配置文件
+eureka: client: serviceUrl: defaultZone: http://localhost:8761/eureka/ server: port: 8762 spring: application: name: service-hello  假设存在接口/hello/word
+spring.application.name,服务与服务之间相互调用一般都是根据这个name
+服务调用 RestTemplate 例如：RestTemplate中提供的getForObject方法
+方式1： String result = template.getForObject(&amp;quot;http://127.0.0.1:8762/hello/word&amp;quot;, String.class); 方式2： ServiceInstance serviceInstance = loadBalancerClient.choose(&amp;quot;service-hello&amp;quot;); String url = String.format(&amp;quot;http://%s:%s/server/get&amp;quot;, serviceInstance.getHost(), serviceInstance.</description>
+    </item>
+    
+    <item>
+      <title>雪花算法</title>
+      <link>/spring/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95%E7%94%9F%E6%88%90uuid/</link>
+      <pubDate>Tue, 29 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95%E7%94%9F%E6%88%90uuid/</guid>
+      <description>Java静态内部类实现雪花算法（SnowFlake） 前言 在生成表主键时，通常可以考虑自增主键/UUID/雪花算法 - 自增主键： - 1.容易被爬虫遍历数据。 - 2.分库分表可能会有ID冲突。 - UUID - 1.太长，有索引碎片 - 2.无序 - 雪花算法 - 适合在分布式场景下生成唯一ID，保证唯一可排序
+原理 SnowFlake算法生成ID的是一个64bit大小的整数。 由于在Java中64bit的整数是long类型,所以在Java中SnowFlake算法生成的id就是long来存储的。 - id结构如下： 0-0000000000 0000000000 0000000000 0000000000 0-00000-00000-000000000000
+ 算法描述：  1bit 因为二进制中最高位是符号位，1表示负数，0表示正数。生成的ID都是正整数，所以最高位固定为0。 41bit-时间戳 精确到毫秒级，41位的长度可以使用69年。时间位还有一个很重要的作用是可以根据时间进行排序。 10bit-工作机器id，Twitter实现中使用前5位作为数据中心标识，后5位作为机器标识，可以部署2^10 = 1024个节点； 12bit-序列号 这个是用来记录同一个毫秒内产生的不同 id。 &amp;gt;12位（bit）可以表示的最大正整数是2^{12}-1 = 4095，即可以用0、1、2、3、&amp;hellip;.4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号。   实现代码 /** * 描述: Twitter的分布式自增ID雪花算法snowflake (Java版) * **/ public class SnowFlake { /** * 起始的时间戳 * 2021-01-01 00:00:00 */ private final static long START_STMP = 1609430400000L; /** * 每一部分占用的位数 */ private final static long SEQUENCE_BIT = 12; //序列号占用的位数 private final static long MACHINE_BIT = 5; //机器标识占用的位数 private final static long DATACENTER_BIT = 5;//数据中心占用的位数 /** * 每一部分的最大值 */ private final static long MAX_DATACENTER_NUM = -1L ^ (-1L &amp;lt;&amp;lt; DATACENTER_BIT); private final static long MAX_MACHINE_NUM = -1L ^ (-1L &amp;lt;&amp;lt; MACHINE_BIT); private final static long MAX_SEQUENCE = -1L ^ (-1L &amp;lt;&amp;lt; SEQUENCE_BIT); /** * 每一部分向左的位移 */ private final static long MACHINE_LEFT = SEQUENCE_BIT; private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT; private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT; private long datacenterId; //数据中心 private long machineId; //机器标识 private long sequence = 0L; //序列号 private long lastStmp = -1L;//上一次时间戳 public SnowFlake(long datacenterId, long machineId) { if (datacenterId &amp;gt; MAX_DATACENTER_NUM || datacenterId &amp;lt; 0) { throw new IllegalArgumentException(&amp;quot;datacenterId can&#39;t be greater than MAX_DATACENTER_NUM or less than 0&amp;quot;); } if (machineId &amp;gt; MAX_MACHINE_NUM || machineId &amp;lt; 0) { throw new IllegalArgumentException(&amp;quot;machineId can&#39;t be greater than MAX_MACHINE_NUM or less than 0&amp;quot;); } this.</description>
     </item>
     
     <item>
       <title>Oauth2.0</title>
-      <link>/web/oauth2.0/</link>
+      <link>/spring/oauth2.0/</link>
       <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>/web/oauth2.0/</guid>
+      <guid>/spring/oauth2.0/</guid>
       <description>Oauth2.0 什么是Oauth2.0? OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。 简单说：OAuth 就是一种授权机制。数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。
 令牌与密码 令牌（token）与密码（password）的作用是一样的，都可以进入系统，但是有三点差异。 - （1）令牌是短期的，到期会自动失效，用户自己无法修改。密码一般长期有效，用户不修改，就不会发生变化。
  （2）令牌可以被数据所有者撤销，会立即失效。以上例而言，屋主可以随时取消快递员的令牌。密码一般不允许被他人撤销。
  （3）令牌有权限范围（scope），比如只能进小区的二号门。对于网络服务来说，只读令牌就比读写令牌更安全。密码一般是完整权限。
   上面这些设计，保证了令牌既可以让第三方应用获得权限，同时又随时可控，不会危及系统安全。这就是 OAuth 2.0 的优点。
-OAuth 2.0 对于如何颁发令牌？四种授权类型（authorization grant） 授权码（authorization code）方式 授权码方式指的是：第三方应用先申请一个授权码，然后再用该码获取令牌。 这种方式是最常用的流程，安全性也最高，它适用于那些有后端的 Web 应用。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。
- 第一步:A网站生成授权链接，用户点击后跳转到B网站，授权用户数据给A网站使用。
-https://b.com/oauth/authorize? response_type=code&amp;amp; client_id=CLIENT_ID&amp;amp; redirect_uri=CALLBACK_URL&amp;amp; scope=read  主要参数：
+OAuth 2.0 对于如何颁发令牌？四种授权类型（authorization grant） 授权码（authorization code）方式 授权码方式指的是：第三方应用先申请一个授权码，然后再用该码获取令牌。 这种方式是最常用的流程，安全性也最高，它适用于那些有后端的 Web 应用。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。 - 第一步:A网站生成授权链接，用户点击后跳转到B网站，授权用户数据给A网站使用。
+https://b.com/oauth/authorize? response_type=code&amp;amp; client_id=CLIENT_ID&amp;amp; redirect_uri=CALLBACK_URL&amp;amp; scope=read   主要参数：
  response_type参数表示要求返回授权码（code） client_id参数让 B 知道是谁在请求 redirect_uri参数是 B 接受或拒绝请求后的跳转网址 scope参数表示要求的授权范围（这里是只读）  第二步：跳转到B网站后，需要用户确认授权，用户确认后跳转到第一步的redirect_url，并返回一个授权码。
 https://a.com/callback?code=AUTHORIZATION_CODE  第三步：A网站拿到授权码后，后台请求B网站，获取令牌。
 https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SECRET&amp;amp; grant_type=authorization_code&amp;amp; code=AUTHORIZATION_CODE&amp;amp; redirect_uri=CALLBACK_URL  主要参数
@@ -109,8 +207,7 @@ https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SEC
       <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/2.gc%E7%AE%97%E6%B3%95%E5%92%8C%E7%A7%8D%E7%B1%BB/</guid>
-      <description>GC算法和种类 GC的工作区域 1.不是GC的工作区域 程序计数器、虚拟机栈和本地方法栈三个区域是线程私有的，随线程生而生，随线程灭而灭； 在这几个区域不需要过多考虑回收的问题方法结束或线程结束时，内存自然就跟随着回收了。 2.GC的工作区域（哪些内存需要GC回收？） 垃圾回收重点关注的是堆和方法区部分的内存。 程序处于运行期间才能知道会创建哪些对象，这部分内存的分配和回收都是动态的，所以垃圾回收器所关注的主要是这部分的内存。 垃圾对象的判定 Java堆中存放着几乎所有的对象实例，垃圾收集器对堆中的对象进行回收前，要先确定这些对象是否还有用，哪些还活着。对象死去的时候才需要回收。 1. 引用计数法 在堆中存储对象时，在对象头处维护一个counter计数器，如果一个对象增加了一个引用与之相连，则将counter++。 如果一个引用关系失效则counter–。如果一个对象的counter变为0，则说明该对象已经被废弃，不处于存活状态。 2. 可达性分析算法 通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。
-可作为GC Roots的对象包括下面几种： (1)虚拟机栈（栈帧中的本地变量表）中引用的对象。 (2)方法区中的常量、类静态属性引用的对象。 (3)本地方法栈中JNI（Native方法）的引用对象。
+      <description>GC算法和种类 GC的工作区域 1.不是GC的工作区域 程序计数器、虚拟机栈和本地方法栈三个区域是线程私有的，随线程生而生，随线程灭而灭； 在这几个区域不需要过多考虑回收的问题方法结束或线程结束时，内存自然就跟随着回收了。 2.GC的工作区域（哪些内存需要GC回收？） 垃圾回收重点关注的是堆和方法区部分的内存。 程序处于运行期间才能知道会创建哪些对象，这部分内存的分配和回收都是动态的，所以垃圾回收器所关注的主要是这部分的内存。 垃圾对象的判定 Java堆中存放着几乎所有的对象实例，垃圾收集器对堆中的对象进行回收前，要先确定这些对象是否还有用，哪些还活着。对象死去的时候才需要回收。 1. 引用计数法 在堆中存储对象时，在对象头处维护一个counter计数器，如果一个对象增加了一个引用与之相连，则将counter++。 如果一个引用关系失效则counter–。如果一个对象的counter变为0，则说明该对象已经被废弃，不处于存活状态。 2. 可达性分析算法 通过一系列名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链相连时，就证明此对象是不可用的。 - 可作为GC Roots的对象包括下面几种： (1)虚拟机栈（栈帧中的本地变量表）中引用的对象。 (2)方法区中的常量、类静态属性引用的对象(静态变量)。 (3)本地方法栈中JNI（Native方法）的引用对象。
 垃圾回收算法  标记清除算法 (1). 标记阶段：找到所有可访问的对象，做个标记 (2). 清除阶段：遍历堆，把未被标记的对象回收 缺点： （1）因为涉及大量的内存遍历工作，所以执行性能较低 （2）对象被清除之后，被清除的对象留下内存的空缺位置会造成内存不连续，空间浪费。
  标记整理算法 适合用于存活对象较多的场合，如老年代。 (1)、标记阶段：它的第一个阶段与标记/清除算法是一模一样的。 (2)、整理阶段：移动所有存活的对象，且按照内存地址次序依次排列，然后将末端内存地址以后的内存全部回收。 优点：内存连续，消除复制算法内存减半的代价问题 缺点:不仅要标记所有存活对象，还要整理所有存活对象的引用地址。性能低于复制算法。
  复制算法 复制算法简单来说就是把内存一分为二，但只使用其中一份，在垃圾回收时，将正在使用的那份内存中存活的对象复制到另一份空白的内存中，最后将正在使用的内存空间的对象清除，完成垃圾回收。 优点：复制算法使得每次都只对整个半区进行内存回收，内存分配时也就不用考虑内存碎片等复杂情况，只要移动堆顶指针，按顺序分配内存即可，实现简单，运行高效。 缺点：复制算法的代价是将内存缩小为原来的一半，这个太要命了。
@@ -120,7 +217,7 @@ https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SEC
 分代收集思想 新生代：由于存活的对象相对比较少，因此可以采用复制算法该算法效率比较快。 &amp;gt; 新生代包含Eden（伊甸区）和两块Survivor(幸存区)
 老年代：由于存活的对象比较多哈，可以采用标记-清除算法或是标记-整理算法。
  java8以后，已经没有(PermGen Space)永久区了，之前永久区存放的东西基本上放到了元空间（Meta Space）中。
- 参考：https://www.cnblogs.com/qdhxhz/p/9211095.html1</description>
+ 参考：https://www.</description>
     </item>
     
     <item>
@@ -129,7 +226,7 @@ https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SEC
       <pubDate>Fri, 18 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/</guid>
-      <description>垃圾回收器 GC的工作区域 基础概念 1、并发和并行 - a：并行（Parallel）：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。 - b：并发（Concurrent）：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替执行），用户程序在继续运行，而垃圾收集程序运行在另一个CPU上。
+      <description>垃圾回收器 基础概念 1、并发和并行 - a：并行（Parallel）：指多条垃圾收集线程并行工作，但此时用户线程仍然处于等待状态。 - b：并发（Concurrent）：指用户线程与垃圾收集线程同时执行（但不一定是并行的，可能会交替执行），用户程序在继续运行，而垃圾收集程序运行在另一个CPU上。
 2、新生代 GC 和老年代GC - a:新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。 - b:老年代GC（Major GC / Full GC）：指发生在老年代的GC，出现了Major GC，经常会伴随至少一次的Minor GC（但非绝对的）。Major GC的速度一般会比Minor GC慢10倍以上。
 3、吞吐量 - 吞吐量就是CPU用于运行用户代码的时间与CPU总消耗时间的比值，即吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）。
  虚拟机总共运行了100分钟，其中垃圾收集花掉1分钟，那吞吐量就是99%。
@@ -155,7 +252,7 @@ https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SEC
   哪些方面可以考虑调优？ （1）减少使用全局变量和大对象。 （2）新生代和老年代的大小是否合适。 （3）新生代和老年代所占的比例是否合适。 （4）幸存者区和新生区所占的比例到是否合适。 （5）选择合适的GC收集器。
 什么情况说明GC已经不错了呢？ 此外，如果GC执行时间满足下列所有条件，就没有必要进行GC优化了： Minor GC执行非常迅速（50ms以内） Minor GC没有频繁执行（大约10s执行一次） Full GC执行非常迅速（1s以内） Full GC没有频繁执行（大约10min执行一次） 括号中的数字并不是绝对的，它们也随着服务的状态而变化。
 二、调优经验(规则) 这些规则，一般是大家比较建议的，可以作为初始配置的时候进行配置建议，当然具体的还得通过JVM工具监测来具体分析。 (1) -Xmx 和-Xms 一般设置为一样大小。这样能稍微提高GC的运行效率，因为他/她不再需要估算堆是否需要调整大小了。
-(2)官方推荐新生代占堆的3/8。 (3)幸存代占新生代的1/10。 (4)垃圾收集器如果内存比较大建议G1收集器，当然也可以用CMS收集器。 (5)-XX:+DisableExplicitGC禁止System.</description>
+(2)官方推荐新生代占堆的3/8。 (3)幸存区占新生代的1/10。 (4)垃圾收集器如果内存比较大建议G1收集器，当然也可以用CMS收集器。 (5)-XX:+DisableExplicitGC禁止System.</description>
     </item>
     
     <item>
@@ -175,14 +272,7 @@ https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SEC
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>/sql/mysql-explain/</guid>
-      <description>Explain Explain 列  1.select_type 表示查询类型，分为简单查询(SIMPLE)和复杂查询(PRIMARY)，复杂查询又分为三类：简单子查询、派生表（from语句中的子查询）、union 查询。
- 2.type列(非常重要)
- 表示MySQL在表中找到所需行的方式，又称“访问类型”
- 依次从最优到最差分别为：system &amp;gt; const &amp;gt; eq_ref &amp;gt; ref&amp;gt; fulltext &amp;gt; ref_or_null &amp;gt; index_merge &amp;gt; unique_subquery &amp;gt; index_subquery&amp;gt; range &amp;gt; index &amp;gt; ALL
- ★注意：一般来说，得保证查询至少达到range级别，最好能达到ref。
-   3.possible_keys列 指出MySQL能使用哪个索引在表中找到记录，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
- 6.key列(非常重要) key列显示MySQL实际决定使用的键（索引)
-  如果没有选择索引，键是NULL。要想强制MySQL使用或忽视possible_keys列中的索引，在查询中使用FORCE INDEX、USE INDEX或者IGNORE INDEX</description>
+      <description>Explain Explain 列 mysql&amp;gt; explain select * from users where userid=1; +----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+ | id | select_type | table | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra | +----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+ | 1 | SIMPLE | users | NULL | const | PRIMARY | PRIMARY | 8 | const | 1 | 100.00 | NULL | +----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+ 1 row in set, 1 warning (0.</description>
     </item>
     
     <item>
@@ -230,7 +320,8 @@ https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SEC
       <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>/sql/mysql%E9%94%81/</guid>
-      <description>MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分  乐观锁 悲观锁  1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&amp;gt;SELECT * FROM table_name WHERE &amp;hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &amp;gt;SELECT * FROM table_name WHERE &amp;hellip; FOR UPDATE  1.3 从锁粒度划分  表级锁(table lock)  开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低  行级锁(row lock)  开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高   表锁 LOCK TABLE mchopin READ;用读锁锁表，会阻塞其他事务修改表数据，但不会阻塞其他事务读该表。 LOCK TABLE mchopin WRITE;用写锁锁表，会阻塞其他事务读和写。 批量解锁：unlock tables; 行锁 select * from mchopin where id = 3 lock in share mode;读行锁，仅对一行数据加了读锁。 select * from mchopin where id = 3 for update;写行锁，仅对一行数据加了写锁。**</description>
+      <description>MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分 (参考乐观锁悲观锁) - 乐观锁 - 悲观锁
+1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&amp;gt;SELECT * FROM table_name WHERE &amp;hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &amp;gt;SELECT * FROM table_name WHERE &amp;hellip; FOR UPDATE  1.</description>
     </item>
     
     <item>
@@ -263,10 +354,10 @@ update table set x=x+1, version=version+1 where id=#{id} and version=#{version};
     
     <item>
       <title>OOM</title>
-      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/</link>
+      <link>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/</link>
       <pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/</guid>
+      <guid>/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/</guid>
       <description>Java OOM 1.什么是OOM OOM，全称“Out Of Memory”，翻译成中文就是“内存用完了”,当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也已经没有空间可回收时，就会抛出这个erro
 2.为什么会OOM、出现的原因是什么?  分配的少了：比如虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。 应用用的太多，并且用完没释放，浪费了。此时就会造成内存泄露或者内存溢出。  3.解决办法  java.lang.OutOfMemoryError: Java heap space ——&amp;gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。 java.lang.OutOfMemoryError: PermGen space ——&amp;gt;java永久代溢出，即方法区溢出了，一般出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。此种情况可以通过更改方法区的大小来解决，使用类似-XX:PermSize=64m -XX:MaxPermSize=256m的形式修改。另外，过多的常量尤其是字符串也会导致方法区溢出。 java.lang.StackOverflowError ——&amp;gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在死循环或者深度递归调用造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数-Xss来设置栈的大小  ps:JVM调优参数  -Xms:为jvm启动时分配的内存，比如-Xms200m，表示分配200M -Xmx:为jvm运行过程中分配的最大内存，比如-Xms500m，表示jvm进程最多只能够占用500M内存 -Xss:为jvm启动的每个线程分配的内存大小，默认JDK1.4中是256K，JDK1.5+中是1M  参考：https://blog.csdn.net/weixin_41835916/article/details/81558310</description>
     </item>
@@ -492,8 +583,8 @@ import org.springframework.cache.CacheManager; import org.springframework.cache.
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/spring/filter%E5%92%8Cinterceptor/</guid>
-      <description>#Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
-&amp;lt;filter&amp;gt; &amp;lt;description&amp;gt;字符集过滤器&amp;lt;/description&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;org.springframework.web.filter.CharacterEncodingFilter&amp;lt;/filter-class&amp;gt; &amp;lt;init-param&amp;gt; &amp;lt;description&amp;gt;字符集编码&amp;lt;/description&amp;gt; &amp;lt;param-name&amp;gt;encoding&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;UTF-8&amp;lt;/param-value&amp;gt; &amp;lt;/init-param&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.</description>
+      <description>#Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：字符过滤集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
+&amp;lt;filter&amp;gt; &amp;lt;description&amp;gt;字符集过滤器&amp;lt;/description&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;filter-class&amp;gt;org.springframework.web.filter.CharacterEncodingFilter&amp;lt;/filter-class&amp;gt; &amp;lt;init-param&amp;gt; &amp;lt;description&amp;gt;字符集编码&amp;lt;/description&amp;gt; &amp;lt;param-name&amp;gt;encoding&amp;lt;/param-name&amp;gt; &amp;lt;param-value&amp;gt;UTF-8&amp;lt;/param-value&amp;gt; &amp;lt;/init-param&amp;gt; &amp;lt;/filter&amp;gt; &amp;lt;filter-mapping&amp;gt; &amp;lt;filter-name&amp;gt;encodingFilter&amp;lt;/filter-name&amp;gt; &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; &amp;lt;/filter-mapping&amp;gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterRegisterationBean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.</description>
     </item>
     
     <item>
@@ -522,8 +613,8 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
       <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/spring/%E5%85%B6%E4%BB%96/</guid>
-      <description>其他一些日常工作中遇到的问题：
-1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&amp;ldquo;singleton&amp;rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&amp;ldquo;prototype&amp;rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</description>
+      <description> 其他一些日常工作中遇到的问题：
+其他  1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&amp;ldquo;singleton&amp;rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&amp;ldquo;prototype&amp;rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。 4.获取配置文件中的值  4.1属性获取配置文件的值@Value(“${属性名}”) 4.2将配置文件的属性赋给实体类@ConfigurationProperties(prefix = &amp;ldquo;my&amp;rdquo;)  5.  </description>
     </item>
     
     <item>
@@ -610,11 +701,11 @@ equals() : 它的作用也是判断两个对象是否相等。但它一般有两
     </item>
     
     <item>
-      <title>Automic</title>
-      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/automic/</link>
+      <title>Atomic</title>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/atomic/</link>
       <pubDate>Fri, 18 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/automic/</guid>
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/atomic/</guid>
       <description>Atomic 是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰。 所以，所谓原子类说简单点就是具有原子/原子操作特征的类
 public final int get() //获取当前的值 public final int getAndSet(int newValue)//获取当前的值，并设置新的值 public final int getAndIncrement()//获取当前的值，并自增 public final int getAndDecrement() //获取当前的值，并自减 public final int getAndAdd(int delta) //获取当前的值，并加上预期的值 boolean compareAndSet(int expect, int update) //如果输入的数值等于预期值，则以原子方式将该值设置为输入值（update） public final void lazySet(int newValue)//最终设置为newValue,使用 lazySet 设置之后可能导致其他线程在之后的一小段时间内还是可以读到旧的值。  基本数据类型原子类优势 - ①多线程环境不使用原子类保证线程安全（基本数据类型）
 class Test { private volatile int count = 0; //若要线程安全执行执行count++，需要加锁 public synchronized void increment() { count++; } public int getCount() { return count; } }   ②多线程环境使用原子类保证线程安全</description>
@@ -918,6 +1009,22 @@ public StringBuilder append(boolean b) { super.</description>
     
     <item>
       <title></title>
+      <link>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/cas%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/cas%E5%8E%9F%E7%90%86/</guid>
+      <description>面试官：讲一下CAS - CAS(Compare And Swap)，比较并交换。整个AQS同步组件，Atomic原子类操作等等都是基于CAS实现的，甚至ConcurrentHashMap在JDK1.8版本中，也调整为CAS+synchronized。可以说，CAS是整个JUC的基石。
+ CAS的实现方式其实不难。在CAS中有三个参数：内存值V、旧的预期值A、要更新的值B，当且仅当内存值V的值等于旧的预期值A时，才会将内存值V的值修改为B，否则什么也不干，是一种乐观锁。
+ 举了个AtomicInteger的例子，来给面试官阐述CAS的实现。 面试官：那CAS有什么缺陷吗？
+ 我：CAS虽然高效的解决了原子问题，但是还是存在一些缺陷的，主要体现在三个方面：
+ 1.循环时间太长： 如果自旋CAS长时间不成功，则会给CPU带来非常大的开销，在JUC中，有些地方就会限制CAS自旋的次数。
+ 2.只能保证一个共享变量原子操作： 看了CAS的实现就知道这只能针对一个共享变量，如果是多个共享变量就只能使用锁了。或者把多个变量整成一个变量也可以用CAS。
+ 3.ABA问题： CAS需要检查操作值有没有发生改变，如果没有发生改变则更新，但是存在这样一种情况：如果一个值原来是A，变成了B，然后又变成了A，那么在CAS检查的时候会发现没有改变，但是实质上它已经发生了改变，这就是所谓的ABA问题。对于ABA问题的解决方案是加上版本号，即在每个变量都加上一个版本号，每次改变时加1，即A-&amp;gt;B-&amp;gt;A，变成1A-&amp;gt;2B-&amp;gt;3A。例如原子类中AtomicInteger会发生ABA问题，使用AtomicStampedReference可以解决ABA问题。
+  面试官：你能说下轻量级锁吗？ 面试官：你先说下你对synchronized的了解。 面试官：什么是原子操作？ 面试官：什么是Executors框架？ 面试官：什么是阻塞队列？阻塞队列的实现原理是什么？如何使用阻塞队列来实现生产者-消费者模型？ 面试官：CycliBarriar和CountdownLatch有什么区别？ 面试官：Java中用到的线程调度算法是什么？</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/java/%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -955,6 +1062,18 @@ Teck Stack  Backend: Node.js; Express; AWS lambda; serverless; GraphQL; RabbitMQ
       
       <guid>/solve_problem/solve_problem/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/spring/aes&#43;rsa%E4%B8%80%E6%AC%A1%E4%B8%80%E5%AF%86/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/aes&#43;rsa%E4%B8%80%E6%AC%A1%E4%B8%80%E5%AF%86/</guid>
+      <description>#RSA+AES混合加解密流程(java实现)
+##前言 - AES128 - 密钥长度：16位 - 算法/模式/补码方式:AES/ECB/PKCS5Padding - 生成字节码后用Base64转码成字符串 - RSA1024 - 密钥格式：PKCS#8 - A私钥：  MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANgzOg6jy2eiAFmw/E9zC2zRCpPWIvN7YKkjDFMt8g3besq0eau3d+7ktXAX4c3qXp7TFXdTQsjV2d354+T3/mTBkXLVHHCLaucgS9+cl6k7BJCcHE5jOEDx4jLqeOKF474xSIz7v0WhrlxFMl7XDXpDhka4clH1IdStHbvqjoODAgMBAAECgYEAwumMEd7BZnC6+CGDlu0VA8mCS73mTLSSdGnQlrz5WFzi2xTSDGmfipROrvwY6te87ltHIwjBUObbQDAlsSuTAAI2tnkFt57G7DXuYnYAufknT21z6CoLVJdiDt57kk+Num2wVQiSxWNVfDx+A/UUPQ7+/HfmHwC+QcEhDCfyB6ECQQD6CtI4nUIJOBPrnwhJZo+Yw54VOu1y5Z8+xxIkPqYfxtR9LE3v43SdVmC2bfEpHj3UwfiOpQI2BQ1JFigtOQu1AkEA3Vn6pfnmyioK3rxMhGqEyOoHUjI9QzhqVPN7T3r/2OXO6XYY2CSd2JHe89nLweY27LZ+oFYp87UTPCfTM80FVwJAJVzyltUg5gHEMEQ+V8GEmZ45hBCfJLkdN6NFmbbm2f67B81UBBGn/k7G+tuo2q0TLjSh8KbFks7kclRmQoOwtQJAezYaz0jLrry4UEOAVDT2tN+QM7DDaSd+CMt/WD6fK5zAEDQsoCPBuUt5T0NsqAH9kMYEtjtAHugsTM/eQHdfAQJAN7Sy0yXah/5RZ8oZe1bx8+XPt7R3ca6kRQtXP7NpEMI/lOuU8TAZRw7Ckj+C5lPZLu8WvEIPjtDQ4yTvvEJHiw== 
+- A公钥： ``` MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYMzoOo8tnogBZsPxPcwts0QqT1iLze2CpIwxTLfIN23rKtHmrt3fu5LVwF+HN6l6e0xV3U0LI1dnd+ePk9/5kwZFy1Rxwi2rnIEvfnJepOwSQnBxOYzhA8eIy6njiheO+MUiM+79Foa5cRTJe1w16Q4ZGuHJR9SHUrR276o6DgwIDAQAB ``` - B私钥： ``` MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANCyrNMoq9QWMNim0l5XnCWfnpXHnO2AQJvt4ygugjXah8xTBdJ6N1N0rFzmw1CDN1qwJJ5X6DhJs1l3PUkzIp6/wJPl9ht55DJiqC40GvRA78gJJD4g/KQMS3t4F4xZhQpFsu9Tha8gHIACXoM05+A34qLzUvxBkFUdssjHFStPAgMBAAECgYAdMrJNRKZtoMEqvoQ2IMm+1cspJ2lELSpc5nZee8tJ344aPw9UeDbfXTZ0NPDkhccrz/L/mErr/Ruzi6QuZpIUJQTIbTlcDb1I0d/Hi7W/rkY+3Y/vBfYBPTdORhQ866LdjD84DVnP8wphcR8rnKL4H/8uYC12W+TI2nlRVIassQJBAO/0LYsSvGYNDLVMQZXjcIgPqSjheMRZHpRm+w0NdQvytJlqqAJOy+gIGeQu3fF4n/sgGdVpPcAdAGzDsCIjk4kCQQDep2vMnOvK2QCRHXSFDXSzUkhCUnIbXFHBBzh8KwluIexFblNOl/xLpHs9TM04+ei8ir2f6fPZ5chbcAl87xoXAkBrgwh066wmPWqYQNaSBhoBnKK6gmvN7fBZpdqOep0bAWAR7Uvh3NRX3mlbZ/RhoR5tMnDgwgq87UGnefaNFUuhAkBr86KJhz+vjvz+Xtiitf5x/x/3v/+BEoa03ypc0YT1986Vb0NG5Nu3VR1HgFg0Gr7jwyTjRswrRoSZCL4g69CrAkEA2e3Qxql488djYd+aH+BBuD1TBJtwMZflPf9vCr4hlMw9aYOR6/BtDGdT2XEi+uyQGPOXjbozf96+WDreyFkQhQ== ``` - B公钥： ``` MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQsqzTKKvUFjDYptJeV5wln56Vx5ztgECb7eMoLoI12ofMUwXSejdTdKxc5sNQgzdasCSeV+g4SbNZdz1JMyKev8CT5fYbeeQyYqguNBr0QO/ICSQ+IPykDEt7eBeMWYUKRbLvU4WvIByAAl6DNOfgN+Ki81L8QZBVHbLIxxUrTwIDAQAB ```   假设要加密的数据为：{&amp;ldquo;a&amp;rdquo;:&amp;ldquo;1&amp;rdquo;}
+加密签名  第一步：生成随机AES128密钥 String aesRandomKey = EncryptUtil.getAesRandomKey(); //假设生成的密钥为：a7ab6ac42c20d747  第二步：将需要加密的数据进行AES128加密 String data = &amp;quot;{\&amp;quot;a\&amp;quot;:\&amp;quot;1\&amp;quot;}&amp;quot;; String data2Aes = EncryptUtil.encryptByAES(data2Aes,aesRandomKey); //使用随机AES密钥a7ab6ac42c20d747加密data后得到数据： //data2Aes=ag5nOGqwFa75tYBiwHB8hA==  第三步：将生成的随机AES128密钥用RSA方式加密 String randomKey = EncryptUtil.encryptByRSA(aesRandomKey, publicKeyB); //得到用RSA加密后的randomKey: //w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=  第四步：将timesTamp、data2Aes、randomKey用A私钥签名 //例如：timesTamp=1609753530 //data2Aes=ag5nOGqwFa75tYBiwHB8hA== //randomKey=w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y= //生成的签名串为（字典排序）： //linkStr=&amp;quot;data=ag5nOGqwFa75tYBiwHB8hA==&amp;amp;randomKey=w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=&amp;amp;timesTamp=1609753530&amp;quot; //生成签名的方法： String sign = EncryptUtil.</description>
     </item>
     
   </channel>

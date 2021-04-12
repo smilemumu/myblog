@@ -166,7 +166,7 @@
 &gt;如有索引(a, b, c, d)，查询条件c &gt; 3 and b = 2 and a = 1 and d &lt; 4与a = 1 and c &gt; 3 and b = 2 and d &lt; 4等顺序都是可以的，MySQL会自动优化为a = 1 and b = 2 and c &gt; 3 and d &lt; 4，依次命中a、b、c。</p>
 
 <p>7.总结
-1，<strong>最左前缀匹配原则。</strong>这是非常重要、非常重要、非常重要（重要的事情说三遍）的原则，MySQL会一直向右匹配直到遇到范围查询（&gt;,&lt;,BETWEEN,LIKE（右%））就停止匹配。
+1，<strong>最左前缀匹配原则。</strong>这是非常重要、非常重要、非常重要（重要的事情说三遍）的原则，MySQL会一直向右匹配直到遇到范围查询（&gt;,&lt;,BETWEEN,LIKE（左%））就停止匹配。
 2，<strong>尽量选择区分度高的列 OR 经常要作为查询条件的字段 作为索引</strong>，区分度的公式是 COUNT(DISTINCT col) / COUNT(*)。表示字段不重复的比率，比率越大我们扫描的记录数就越少。
 3，<strong>索引列不能参与计算，尽量保持列“干净”</strong>。比如，FROM_UNIXTIME(create_time) = &lsquo;2016-06-06&rsquo; 就不能使用索引，原因很简单，B+树中存储的都是数据表中的字段值，但是进行检索时，需要把所有元素都应用函数才能比较，显然这样的代价太大。所以语句要写成 ： create_time = UNIX_TIMESTAMP(&lsquo;2016-06-06&rsquo;)。
 4，<strong>尽可能的扩展索引，不要新建立索引。</strong> 比如表中已经有了a的索引，现在要加（a,b）的索引，那么只需要修改原来的索引即可。
@@ -198,7 +198,7 @@
         
         <li><a href="/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/">乐观锁和悲观锁</a></li>
         
-        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/">OOM</a></li>
+        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/">OOM</a></li>
         
     </ul>
 </div>
@@ -281,7 +281,11 @@
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -293,7 +297,7 @@
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -313,11 +317,19 @@
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -335,6 +347,8 @@
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -345,9 +359,13 @@
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -389,7 +407,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

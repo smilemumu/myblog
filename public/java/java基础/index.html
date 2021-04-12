@@ -302,9 +302,37 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
 <li>让方法执行
 
 <ul>
-<li>1）Method.invoke(obj实例对象,obj可变参数);&mdash;&ndash;（是有返回值的）</li>
+<li>1）Method.invoke(obj实例对象,obj可变参数);&mdash;&ndash;（是有返回值的）设计模式-结构型模式
+<br /></li>
 </ul></li>
 </ul></li>
+</ul>
+
+<h3 id="13-代理">13.代理</h3>
+
+<p>参考：设计模式-结构型模式-代理模式</p>
+
+<h3 id="14-comparable和comparator">14.Comparable和Comparator</h3>
+
+<pre><code class="language-java">comparable接口
+public interface Comparable&lt;T&gt; {
+    public int compareTo(T o);
+}
+</code></pre>
+
+<pre><code class="language-java">//类实现Comparator接口，重写compare方法
+public class MyComparator implements Comparator&lt;User&gt; {
+    @Override
+    public int compare(User o1, User o2) {
+        return o1.getName().charAt(0)-o2.getName().charAt(0);
+    }
+}
+</code></pre>
+
+<ul>
+<li>Comparable为可排序的（内部比较器），实现该接口的类的对象自动拥有可排序功能。</li>
+<li>Comparator为比较器（外部比较器），实现该接口可以定义一个针对某个类的排序方式。</li>
+<li>Comparator与Comparable同时存在的情况下，前者优先级高。</li>
 </ul>
 
                         </div>
@@ -318,7 +346,7 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/automic/">Automic</a></li>
+        <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/atomic/">Atomic</a></li>
         
         <li><a href="/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/threadlocal/">ThreadLocal</a></li>
         
@@ -409,7 +437,11 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -421,7 +453,7 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -441,11 +473,19 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -463,6 +503,8 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -473,9 +515,13 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -517,7 +563,7 @@ unmodifiableXxx(): 返回指定集合对象的不可变视图，此处的集合�
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

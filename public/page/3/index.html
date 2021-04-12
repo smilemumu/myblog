@@ -68,6 +68,192 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="/sql/mysql%E7%B4%A2%E5%BC%95/" title="MySql索引" >MySql索引</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/mysql%E7%B4%A2%E5%BC%95">MySql索引</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                MySql索引 1.基础 - 首先Mysql的基本存储结构是页(记录都存在页里边)：  各个数据页可以组成一个双向链表 而每个数据页中的记录又可以组成一个单向链表 每个数据页都会为存储在它里边儿的记录生成一个页目录，在通过主键查找某条记录的时候可以在页目录中使用二分法快速定位到对应的槽，然后再遍历该槽对应分组中的记录即可快速找到指定的记录 总结就是：使用二分查找算法从页目录中快速定位记录。 以其他列(非主键)作为搜索条件：只能从最小记录开始依次遍历单链表中的每条记录。
+ 所以说，如果我们写select * from user where username = &lsquo;Java3y&rsquo;这样没有进行任何优化的sql语句，默认会这样做：
+ 定位到记录所在的页
+ 1.需要遍历双向链表，找到所在的页
+ 2.从所在的页内中查找相应的记录
+ 3.由于不是根据主键查询，只能遍历所在页的单链表了 总结就是：遍历双向链表定位页，遍历所在页的单链表定位数据。
+ 很明显，在数据量很大的情况下这样查找会很慢！
+  2.索引提高检索速度 - 一般经常需要搜索、排序、WHERE的列上加上索引，可以加快对应操作的速度。 - 索引将无序的数据变成有序(相对)： - 很明显的是：没有用索引我们是需要遍历双向链表来定位对应的页，有索引可以通过“目录”就可以很快地定位到对应的页上了！ - 其实底层结构就是B+树，B+树作为树的一种实现，能够让我们很快地查找出对应的记录。
+3.索引降低增删改的速度 - B+树是平衡树的一种。 &gt;平衡树：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。
+ 如果一棵普通的树在极端的情况下，是能退化成链表的(树的优点就不复存在了) 检索的时间复杂度就是O(logn) B+树是一颗平衡树，如果我们对这颗树增删改的话，那肯定会破坏它的原有结构。 要维持平衡树，就必须做额外的工作。正因为这些额外的工作开销，导致索引会降低增删改的速度  4.聚簇和非聚簇索引 简单概括： - 聚簇索引就是以主键创建的索引，检索效率比非聚簇索引高，但对数据更新影响较大。 - 非聚簇索引就是以非主键创建的索引，非聚簇索引检索效率比聚集索引低，但对数据更新影响较小。 &gt;非聚集索引表示数据存储在一个地方，索引存储在另一个地方，索引带有指针指向数据的存储位置。
+区别：
+ 聚簇索引在叶子节点存储的是表中的数据 非聚簇索引在叶子节点存储的是主键值 使用非聚簇索引查询出数据时，拿到叶子上的主键再去查到想要查找的数据。(拿到主键再查找这个过程叫做回表) 非聚集索引也叫做二级索引  5.索引最左匹配原则 - 索引可以简单如一个列(a)，也可以复杂如多个列(a, b, c, d)，即联合索引。 - 如果是联合索引，那么key也由多个列组成，同时，索引只能用于查找key是否存在（相等），遇到范围查询(&gt;、&lt;、between、like左匹配(%As))等就不能进一步匹配了，后续退化为线性查找。 - 因此，列的排列顺序决定了可命中索引的列数。 &gt;如有索引(a, b, c, d)，查询条件a = 1 and b = 2 and c &gt; 3 and d = 4，则会在每个节点依次命中a、b、c，无法命中d。(很简单：索引命中只能是相等的情况，不能是范围匹配) - 通过a,c条件查询能不能使用或命中这个索引？&mdash;&ndash;能 - 通过b,c条件查询能不能使用或命中这个索引？&mdash;&ndash;不能……
+                            </div>
+                            <p class="readmore"><a href="/sql/mysql%E7%B4%A2%E5%BC%95/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/" title="MySQL乐观锁电商库存并发问题应用" >MySQL乐观锁电商库存并发问题应用</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月19日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/mysql%E9%94%81">Mysql锁</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                MySQL乐观锁电商库存并发问题应用 下单涉及的一些操作  1.下单 2.下单同时预占库存 3.支付 4.支付成功真正减扣库存 5.取消订单 6.回退预占库存
+ 方案选择：  商品加入购物车后，选择下单，这个时候去预占库存。用户选择去支付说明了，用户购买欲望强烈的。订单也有一个时效，例如半个小时。超过半个小时后，系统自动取消订单，回退预占库存。  可进行操作：  1.UI拦截，点击后按钮置灰，不能继续点击，防止用户，连续点击造成的重复下单。 2.下单前获取一个下单的唯一token，下单的时候需要这个token。后台系统校验这个 token是否有效，才继续进行下单操作。 3.进来的时候 先 get 库存数量是否充足，再执行 increment。以 increment &gt; 0 为准。 4.因为检查库存 与 减少库存 不是原子性的，而redis.increment 是个原子操作，可以此为准。 redisService.increment(key, -req.getNum().longValue()) &gt;= 0 说明库存充足，可以下单。 redisService.increment(key, -req.getNum().longValue()) &lt; 0 的时候 不能下单，次数库存不足。并且需要 回加刚刚减去的库存数量，否则会导致刚才减扣的数量 一直买不出去。数据库与缓存的库存不一致。 5.都满足进行真正的扣减库存 5.1生成订单 5.2订单超过时效，订单取消等，订单取消，库存回滚。  MySQL乐观锁电商库存并发问题应用 1.使用数据版本(Version)记录机制实现，这是乐观锁最常用的一种实现方式。 mysql&gt; select * from t_goods; +----+--------+------+---------+ | id | status | name | version | +----+--------+------+---------+ | 1 | 1 | 道具 | 1 | | 2 | 2 | 装备 | 2 | +----+--------+------+---------+ 2 rows in set  何谓数据版本？即为数据增加一个版本标识，一般是通过为数据库表增加一个数字类型的 “version” 字段来实现。当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加一。当提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据。……
+                            </div>
+                            <p class="readmore"><a href="/sql/mysql%E4%B9%90%E8%A7%82%E9%94%81%E7%94%B5%E5%95%86%E5%BA%93%E5%AD%98%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%BA%94%E7%94%A8/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/mysql%E9%94%81/" title="MySql锁" >MySql锁</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月19日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/mysql%E9%94%81">Mysql锁</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分 (参考乐观锁悲观锁) - 乐观锁 - 悲观锁
+1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&gt;SELECT * FROM table_name WHERE &hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &gt;SELECT * FROM table_name WHERE &hellip; FOR UPDATE  1.……
+                            </div>
+                            <p class="readmore"><a href="/sql/mysql%E9%94%81/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/" title="Spring事务的隔离级别和传播行为" >Spring事务的隔离级别和传播行为</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月18日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                简述 在高并发的情况下，MySQL 事务的并发处理会带来几个问题脏读、不可重复读、幻读。由于高并发事务带来这几个问题，所以就产生了事务的隔离级别。
+事务是什么  事务是数据库操作的最小工作单元，用户定义的一系列数据库操作作为一个整体一起向系统提交，要么都执行、要么都不执行。是不可分割的工作单元。 &gt; 如果没做好并发控制，可能会造成脏读、不可重复读和幻读等问题。  可交叉程度  脏读Dirty Read（看到的数据则是不正确的） 当一个事务能看见另外一个事务未提交的数据时，就称为脏读。如果这个事务被回滚了而不是提交了，那么其它事务看到的数据则是不正确的，是“脏”的。  Non-repeatable Read(不可重复读) 两次读取到的数据不同 假设事务A读取了一行数据，接下来事务B改变了这行数据，之后事务A再一次读取这行数据，结果就是事务A两次读取到的数据不同。  Phantom Read(幻读) 发现多出来一条数据
+假设事务A通过一个 where 条件读取到了一个结果集，事务B这时插入了一条符合事务A的 where 条件的数据，之后事务A通过同样的 where 条件再次查询时，发现多出来一条数据。   1.事务隔离级别(Isolation) JDBC 规范增加了隔离级别，来满足了 SQL:2003 定义的 4 种事务隔离级别。 在安装MySQL时，安装默认的隔离级别就是：可重复读。 可以通过 select @@global.tx_isolation; 来查看当前隔离级别。 隔离级别从最宽松到最严格，排序如下所示：
+TRANSACTION_NONE(无事务) 这意味着当前的 JDBC 驱动不支持事务，也意味着这个驱动不符合 JDBC 规范。
+ 1.READ_UNCOMMITTED(读未提交) 允许事务看到其它事务修改了但未提交的数据，这意味着有可能是脏读、不可重复读或者、幻读。
+ 2.READ_COMMITTED(读提交) 一个事务在未提交之前，所做的修改不会被其它事务所看见。这能避免脏读，但避免不了不可重复读和幻读。
+ 3.**REPEATABLE_READ(可重复读取) MySQL默认的事务隔离级别 避免了脏读和不可重复读，但幻读**依然是有可能发生的。
+ 4.SERIALIZABLE(序列化) 避免了脏读、不可重复读以及幻读。   2.Propagation事务传播行为 Propagation属性用来枚举事务的传播行为。所谓事务传播行为就是多个事务方法相互调用时，事务如何在这些方法间传播。Spring支持7种事务传播行为，默认为REQUIRED。
+ 1.……
+                            </div>
+                            <p class="readmore"><a href="/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/" title="乐观锁和悲观锁" >乐观锁和悲观锁</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月17日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/sql">SQL</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                乐观锁和悲观锁 1.乐观锁  总是认为不会产生并发问题，每次去取数据的时候总认为不会有其他线程对数据进行修改，因此不会上锁，但是在更新时会判断其他线程在这之前有没有对数据进行修改，一般会使用版本号机制或CAS操作实现  version方式： 一般是在数据表中加上一个数据版本号version字段，表示数据被修改的次数，当数据被修改时，version值会加一。当线程A要更新数据值时，在读取数据的同时也会读取version值，在提交更新时，若刚才读取到的version值为当前数据库中的version值相等时才更新，否则重试更新操作，直到更新成功。
+update table set x=x+1, version=version+1 where id=#{id} and version=#{version};  CAS操作方式： 即compare and swap 或者 compare and set，涉及到三个操作数，数据所在的内存值，预期值，新值。当需要更新时，判断当前内存值与之前取到的值是否相等，若相等，则用新值更新，若失败则重试，一般情况下是一个自旋操作，即不断的重试。
+2.悲观锁  总是假设最坏的情况，每次取数据时都认为其他线程会修改，所以都会加锁（读锁、写锁、行锁等），当其他线程想要访问数据时，都需要阻塞挂起。可以依靠数据库实现，如行锁、读锁和写锁等，都是在操作之前加锁，在Java中，synchronized的思想也是悲观锁。 比如共享锁和排他锁（行锁，表锁的读写锁）都是悲观锁。  3.适用场景  悲观锁：比较适合写入操作比较频繁的场景，如果出现 大量的读取操作，每次读取的时候都会进行加锁，这样会增加大量的锁的开销，降低了系统的吞吐量。 乐观锁：比较适合读取操作比较频繁的场景，如果出现大量的写入操作，数据发生冲突的可能性就会增大，为了保证数据的一致性，应用层需要不断的重新获取数据，这样会增加大量的查询操作，降低了系统的吞吐量。 总结：两种所各有优缺点，读取频繁使用乐观锁，写入频繁使用悲观锁。  参考：https://blog.csdn.net/weixin_41835916/article/details/81487767……
+                            </div>
+                            <p class="readmore"><a href="/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/" title="OOM" >OOM</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月16日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Java OOM 1.什么是OOM OOM，全称“Out Of Memory”，翻译成中文就是“内存用完了”,当JVM因为没有足够的内存来为对象分配空间并且垃圾回收器也已经没有空间可回收时，就会抛出这个erro
+2.为什么会OOM、出现的原因是什么?  分配的少了：比如虚拟机本身可使用的内存（一般通过启动时的VM参数指定）太少。 应用用的太多，并且用完没释放，浪费了。此时就会造成内存泄露或者内存溢出。  3.解决办法  java.lang.OutOfMemoryError: Java heap space ——&gt;java堆内存溢出，此种情况最常见，一般由于内存泄露或者堆的大小设置不当引起。对于内存泄露，需要通过内存监控软件查找程序中的泄露代码，而堆大小可以通过虚拟机参数-Xms,-Xmx等修改。 java.lang.OutOfMemoryError: PermGen space ——&gt;java永久代溢出，即方法区溢出了，一般出现于大量Class或者jsp页面，或者采用cglib等反射机制的情况，因为上述情况会产生大量的Class信息存储于方法区。此种情况可以通过更改方法区的大小来解决，使用类似-XX:PermSize=64m -XX:MaxPermSize=256m的形式修改。另外，过多的常量尤其是字符串也会导致方法区溢出。 java.lang.StackOverflowError ——&gt; 不会抛OOM error，但也是比较常见的Java内存溢出。JAVA虚拟机栈溢出，一般是由于程序中存在死循环或者深度递归调用造成的，栈大小设置太小也会出现此种溢出。可以通过虚拟机参数-Xss来设置栈的大小  ps:JVM调优参数  -Xms:为jvm启动时分配的内存，比如-Xms200m，表示分配200M -Xmx:为jvm运行过程中分配的最大内存，比如-Xms500m，表示jvm进程最多只能够占用500M内存 -Xss:为jvm启动的每个线程分配的内存大小，默认JDK1.4中是256K，JDK1.5+中是1M  参考：https://blog.csdn.net/weixin_41835916/article/details/81558310……
+                            </div>
+                            <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" title="Java内存模型" >Java内存模型</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年11月12日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Java内存模型 1.java程序执行过程: &gt;Java源代码文件(.java后缀)会被Java编译器编译为字节码文件(.class后缀)，然后由JVM中的类加载器加载各个类的字节码文件，加载完毕之后，交由JVM执行引擎执行。在整个程序执行过程中，JVM会用一段空间来存储程序执行期间需要用到的数据和相关信息，这段空间一般被称作为Runtime Data Area（运行时数据区），也就是我们常说的JVM内存。因此，在Java中我们常常说到的内存管理就是针对这段空间进行管理（如何分配和回收内存空间）。
+2.运行时数据区包括哪几部分： 2.1 方法区（Method Area）  方法区是各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。当方法区无法满足内存分配需求时，将抛出OutOfMemoryError 异常。 方法区里存放着类的版本，字段，方法，接口和常量池。常量池里存储着字面量和符号引用。符号引用包括：  1.类的全限定名 2.字段名和属性 3.方法名和属性。   2.2 JVM堆（Java Heap）  Java 堆也是属于线程共享的内存区域，它在虚拟机启动时创建，是Java 虚拟机所管理的内存中最大的一块，主要用于存放对象实例，几乎所有的对象实例都在这里分配内存，注意Java 堆是垃圾收集器管理的主要区域，因此很多时候也被称做GC堆，如果在堆中没有内存完成实例分配，并且堆也无法再扩展时，将会抛出OutOfMemoryError 异常。  2.3 程序计数器(Program Counter Register)：  字节码解释器工作时，通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。 多线程中，为了让线程切换后能恢复到正确的执行 位置，每条线程都需要有一个独立的程序计数器，各条线程之间互不影响、独立存储，因此这块内存是线程私有的。  2.4 虚拟机栈(Java Virtual Machine Stacks)：  Java虚拟机栈也是线程私有的，它的生命周期与线程相同。虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧用于存储局部变量表、操作数栈、动态链表、方法出口信息等。每一个方法从调用直至执行完成的过程，就对应着一个栈帧在虚拟机栈中入栈到出栈的过程。  2.5 本地方法栈(Native Method Stacks)：  本地方法栈属于线程私有的数据区域，这部分主要与虚拟机用到的 Native 方法相关，一般情况下，我们无需关心此区域。  参考：http://blog.csdn.net/javazejian/article/details/72772461……
+                            </div>
+                            <p class="readmore"><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/%E5%B8%83%E9%9A%86bloom%E8%BF%87%E6%BB%A4%E5%99%A8/" title="布隆Bloom过滤器" >布隆Bloom过滤器</a>
                                 </h1>
                             </header>
@@ -142,179 +328,6 @@
                             <p class="readmore"><a href="/algorithm/%E7%AE%97%E6%B3%95/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/" title="设计模式分类" >设计模式分类</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2020年9月10日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                 看懂UML类图和时序图  从一个示例开始 类之间的关系 时序图 附录  创建型模式  简单工厂模式（静态工厂方法模式）（不在创建型里面） 工厂方法模式 抽象工厂模式 单例模式 建造者模式 原型模式  结构型模式  适配器模式 桥接模式 装饰模式 外观模式 享元模式 代理模式  行为型模式  命令模式 中介者模式 观察者模式 状态模式 策略模式   ……
-                            </div>
-                            <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" title="" ></a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2020年3月20日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/java">java</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                ……
-                            </div>
-                            <p class="readmore"><a href="/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="参数校验" >参数校验</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2020年2月24日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
-步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.……
-                            </div>
-                            <p class="readmore"><a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/web/webstorm/" title="WebStorm" >WebStorm</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2020年1月7日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/web">WEB</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                当执行webpack -v报错时 One CLI for webpack must be installed. These are recommended choices
-先全局安装webpack和webpack-cli cnpm install webpack -g cnpm install webpack-cli -g 再局部安装webpack和webpack-cli cnpm install webpack &ndash;save-dev cnpm install webpack-cli &ndash;save-dev……
-                            </div>
-                            <p class="readmore"><a href="/web/webstorm/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" title="阿里巴巴Java开发手册与代码规约插件P3C-PMD" >阿里巴巴Java开发手册与代码规约插件P3C-PMD</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年12月24日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/java">java</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                 P-3C Orion【猎户座反潜巡逻机】，阿里大概取p3c先进，监测，发现潜在问题的意思
-前言 2017年的时，阿里官方首次公开阿里Java代码规范标准，发布阿里巴巴Java开发手册。 这套Java统一规范标准将有助于提高行业编码规范化水平，帮助行业人员提高开发质量和效率、大大降低代码维护成本。
-目前已更迭了五个版本，2019年6月19日，阿里巴巴Java开发手册（华山版）》正式发布，该版本命名为华山版是因为最新版本手册集成了社区开发者集体智慧的结晶。
-该开发手册阿里内部Java工程师所遵循的开发规范，涵盖编程规约、单元测试规约、异常日志规约、MySQL规约、工程规约、安全规约等，这是近万名阿里Java技术精英的经验总结，并经历了多次大规模一线实战检验及完善。这是阿里回馈给Java社区的一份礼物，希望能够帮助企业开发团队在Java开发上更高效、容错、有协作性，提高代码质量，降低项目维护成本。
-虽然已经发布了开发手册，但是为了让开发者更加方便、快速的将规范推动并实行起来，阿里巴巴基于手册内容，研发了一套自动化的IDE检测插件（IDEA、Eclipse）， 该插件在扫描代码后，将不符合《手册》的代码按Blocker/Critical/Major三个等级显示在下方，甚至在IDEA上，还基于检查机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。另外对于历史代码，部分规则实现了批量一键修复的功能，提升代码质量，提高团队研发效能。
-如何安装 eclipse安装 1.打开https://p3c.alibaba.com/plugin/eclipse/update 2.点击Zip File直接下载，下载完成后解压缩，将将【features】及【plugins】两个目录复制到eclipse安装目录下（eclipse.exe同级目录），重启eclipse idea安装 1.访问：https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines/versions 下载对应版本的安装包 2.依次点击【File】-&gt;【Settings】-&gt;【Plugins】-&gt;【install plugin from disk】然后点击确认
-如何使用 1.首先现贴一段测试代码
-public class Test { public static void main(String[] args) { String _name = &quot;name&quot;; System.out.println(_name.equals(&quot;name&quot;)); Long temp = 10l; if(temp ==10L) System.out.println(&quot;temp = 10&quot;); else System.out.println(&quot;temp != 10&quot;); HashMap&lt;String,Integer&gt; map = new HashMap&lt;&gt;(); } }  扫描后的结果： ……
-                            </div>
-                            <p class="readmore"><a href="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/" title="阿里支付" >阿里支付</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年12月24日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/java">java</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                 [x]当面付-扫码支付快速接入(https://docs.open.alipay.com/194/106078/) [x]电脑网站支付（https://docs.open.alipay.com/270/105899/）  ……
-                            </div>
-                            <p class="readmore"><a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/web/css/" title="HTML" >HTML</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年12月10日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/web">WEB</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                list-style-type: 默认点 none 无 square 方格
-后代组合器 li em 相邻兄弟选择器 h1 + p 根据状态确定样式 a:link 链接颜色 a:visited 访问后的颜色 a:hover{ text-decoration: none; 覆盖后，链接去除下划线 }
-body h1 + p .special { color: yellow; background-color: black; padding: 5px; } 上面的代码为以下元素建立样式：在之内，紧接在后面的元素的内部，类名为special。
-refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
-                            </div>
-                            <p class="readmore"><a href="/web/css/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -357,6 +370,10 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
     
     <li >
         <a href="/page/8/">8</a>
+    </li>
+    
+    <li >
+        <a href="/page/9/">9</a>
     </li>
     
 
@@ -432,7 +449,11 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -444,7 +465,7 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -464,11 +485,19 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -486,6 +515,8 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -496,9 +527,13 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -540,7 +575,7 @@ refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

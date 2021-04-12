@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eureka on Shi.bro的博客</title>
+    <link>/tags/eureka/</link>
+    <description>Recent content in Eureka on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/eureka/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Eureka服务注册服务发现模块</title>
+      <link>/springcloud/eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/eureka%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>Eureka服务注册服务发现 创建服务注册中心 @EnableEurekaServer， 在application启动类上加：@EnableEurekaServer注解
+ 具体配置文件：
+server: port: 8761 eureka: instance: hostname: localhost client: registerWithEureka: false fetchRegistry: false serviceUrl: defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/   通过eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server
+创建服务提供者 当client向server注册时，它会提供一些元数据，例如主机和端口，URL，主页等。Eureka server 从每个client实例接收心跳消息。 如果心跳超时，则通常将该实例从注册server中删除。
+@EnableEurekaClient 1.在application启动类上加：@EnableEurekaClient注解 2.在配置文件中注明自己的服务注册中心的地址 - 具体配置文件
+eureka: client: serviceUrl: defaultZone: http://localhost:8761/eureka/ server: port: 8762 spring: application: name: service-hello  假设存在接口/hello/word
+spring.application.name,服务与服务之间相互调用一般都是根据这个name
+服务调用 RestTemplate 例如：RestTemplate中提供的getForObject方法
+方式1： String result = template.getForObject(&amp;quot;http://127.0.0.1:8762/hello/word&amp;quot;, String.class); 方式2： ServiceInstance serviceInstance = loadBalancerClient.choose(&amp;quot;service-hello&amp;quot;); String url = String.format(&amp;quot;http://%s:%s/server/get&amp;quot;, serviceInstance.getHost(), serviceInstance.</description>
+    </item>
+    
+  </channel>
+</rss>

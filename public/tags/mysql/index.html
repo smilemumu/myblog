@@ -151,7 +151,8 @@
                             </div>
                             
                             <div class="post-content">
-                                MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分  乐观锁 悲观锁  1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&gt;SELECT * FROM table_name WHERE &hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &gt;SELECT * FROM table_name WHERE &hellip; FOR UPDATE  1.3 从锁粒度划分  表级锁(table lock)  开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低  行级锁(row lock)  开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高   表锁 LOCK TABLE mchopin READ;用读锁锁表，会阻塞其他事务修改表数据，但不会阻塞其他事务读该表。 LOCK TABLE mchopin WRITE;用写锁锁表，会阻塞其他事务读和写。 批量解锁：unlock tables; 行锁 select * from mchopin where id = 3 lock in share mode;读行锁，仅对一行数据加了读锁。 select * from mchopin where id = 3 for update;写行锁，仅对一行数据加了写锁。**……
+                                MySql锁    * 行锁 表锁 页锁     MyISAM × √ ×   BDB × √ √   InnoDB √ √ ×     表锁：开销小，加锁快；不会出现死锁；锁定力度大，发生锁冲突概率高，并发度最低 行锁：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率低，并发度高 页锁：开销和加锁速度介于表锁和行锁之间；会出现死锁；锁定粒度介于表锁和行锁之间，并发度一般  1.锁的分类 1.1 实现思想划分 (参考乐观锁悲观锁) - 乐观锁 - 悲观锁
+1.2 从对数据操作的类型来分  读锁（S共享锁）:针对同一份数据，多个读操作可以同时进行而不会互相影响。　&gt;SELECT * FROM table_name WHERE &hellip; LOCK IN SHARE MODE　 写锁（X排它锁）:当前写操作没有完成前，它会阻断其他写锁和读锁。 &gt;SELECT * FROM table_name WHERE &hellip; FOR UPDATE  1.……
                                 <p class="readmore"><a href="/sql/mysql%E9%94%81/">阅读全文</a></p>
                             </div>
                         </article>
@@ -226,7 +227,11 @@
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -238,7 +243,7 @@
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -258,11 +263,19 @@
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -280,6 +293,8 @@
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -290,9 +305,13 @@
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -334,7 +353,7 @@
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

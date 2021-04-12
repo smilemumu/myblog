@@ -13,28 +13,17 @@
     
     <item>
       <title>Oauth2.0</title>
-      <link>/java/oauth2.0/</link>
+      <link>/spring/oauth2.0/</link>
       <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
       
-      <guid>/java/oauth2.0/</guid>
-      <description> 异常和错误的区别：异常能被程序本身处理，错误是无法处理。
-异常层次结构图 </description>
-    </item>
-    
-    <item>
-      <title>Oauth2.0</title>
-      <link>/web/oauth2.0/</link>
-      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/web/oauth2.0/</guid>
+      <guid>/spring/oauth2.0/</guid>
       <description>Oauth2.0 什么是Oauth2.0? OAuth 2.0 是目前最流行的授权机制，用来授权第三方应用，获取用户数据。 简单说：OAuth 就是一种授权机制。数据的所有者告诉系统，同意授权第三方应用进入系统，获取这些数据。系统从而产生一个短期的进入令牌（token），用来代替密码，供第三方应用使用。
 令牌与密码 令牌（token）与密码（password）的作用是一样的，都可以进入系统，但是有三点差异。 - （1）令牌是短期的，到期会自动失效，用户自己无法修改。密码一般长期有效，用户不修改，就不会发生变化。
  （2）令牌可以被数据所有者撤销，会立即失效。以上例而言，屋主可以随时取消快递员的令牌。密码一般不允许被他人撤销。
  （3）令牌有权限范围（scope），比如只能进小区的二号门。对于网络服务来说，只读令牌就比读写令牌更安全。密码一般是完整权限。
   上面这些设计，保证了令牌既可以让第三方应用获得权限，同时又随时可控，不会危及系统安全。这就是 OAuth 2.0 的优点。
-OAuth 2.0 对于如何颁发令牌？四种授权类型（authorization grant） 授权码（authorization code）方式 授权码方式指的是：第三方应用先申请一个授权码，然后再用该码获取令牌。 这种方式是最常用的流程，安全性也最高，它适用于那些有后端的 Web 应用。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。
- 第一步:A网站生成授权链接，用户点击后跳转到B网站，授权用户数据给A网站使用。
-https://b.com/oauth/authorize? response_type=code&amp;amp; client_id=CLIENT_ID&amp;amp; redirect_uri=CALLBACK_URL&amp;amp; scope=read  主要参数：
+OAuth 2.0 对于如何颁发令牌？四种授权类型（authorization grant） 授权码（authorization code）方式 授权码方式指的是：第三方应用先申请一个授权码，然后再用该码获取令牌。 这种方式是最常用的流程，安全性也最高，它适用于那些有后端的 Web 应用。授权码通过前端传送，令牌则是储存在后端，而且所有与资源服务器的通信都在后端完成。这样的前后端分离，可以避免令牌泄漏。 - 第一步:A网站生成授权链接，用户点击后跳转到B网站，授权用户数据给A网站使用。
+https://b.com/oauth/authorize? response_type=code&amp;amp; client_id=CLIENT_ID&amp;amp; redirect_uri=CALLBACK_URL&amp;amp; scope=read   主要参数：
  response_type参数表示要求返回授权码（code） client_id参数让 B 知道是谁在请求 redirect_uri参数是 B 接受或拒绝请求后的跳转网址 scope参数表示要求的授权范围（这里是只读）  第二步：跳转到B网站后，需要用户确认授权，用户确认后跳转到第一步的redirect_url，并返回一个授权码。
 https://a.com/callback?code=AUTHORIZATION_CODE  第三步：A网站拿到授权码后，后台请求B网站，获取令牌。
 https://b.com/oauth/token? client_id=CLIENT_ID&amp;amp; client_secret=CLIENT_SECRET&amp;amp; grant_type=authorization_code&amp;amp; code=AUTHORIZATION_CODE&amp;amp; redirect_uri=CALLBACK_URL  主要参数

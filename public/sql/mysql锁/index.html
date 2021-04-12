@@ -138,10 +138,9 @@
 
 <h3 id="1-1-实现思想划分">1.1 实现思想划分</h3>
 
-<ul>
-<li>乐观锁</li>
-<li>悲观锁</li>
-</ul>
+<p>(参考乐观锁悲观锁)
+- 乐观锁
+- 悲观锁</p>
 
 <h3 id="1-2-从对数据操作的类型来分">1.2 从对数据操作的类型来分</h3>
 
@@ -176,7 +175,7 @@ select * from mchopin where id = 3 <font color="red">lock in share mode</font>;�
 select * from mchopin where id = 3 <font color="red">for update</font>;写行锁，仅对一行数据加了写锁。**</p>
 
 <blockquote>
-<p>使用 select…for update 会把数据给锁住，不过需要注意一些锁的级别，<strong>MySQL InnoDB 默认行级锁</strong>。<strong>行级锁都是基于索引的</strong>，<strong>如果一条 SQL 语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住，这点需要注意。</strong></p>
+<p>使用 select…for update 会把数据给锁住，不过需要注意一些锁的级别，<strong>MySQL InnoDB 默认行级锁</strong>。<strong>行级锁都是基于索引的</strong>，<strong><font color="red">如果一条 SQL 语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住，这点需要注意。</font></strong></p>
 </blockquote>
 
 <h3 id="1-4-意向锁-表级锁">1.4 意向锁（表级锁）</h3>
@@ -225,7 +224,7 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
 - 4）<strong>降低隔离级别</strong>。如果业务允许，将隔离级别调低也是较好的选择，比如将隔离级别从RR调整为RC，可以避免掉很多因为gap锁造成的死锁。
 - 5）<strong>为表添加合理的索引</strong>。可以看到如果不走索引将会为表的每一行记录添加上锁，死锁的概率大大增大。</p>
 
-<h2 id="什么场景下用表锁-什么时候走表锁-很常问">什么场景下用表锁？/什么时候走表锁（很常问）</h2>
+<h2 id="什么场景下用表锁-什么时候走表锁-常问">什么场景下用表锁？/什么时候走表锁（常问）</h2>
 
 <p>InnoDB默认采用行锁，在未使用索引字段查询时升级为表锁。MySQL这样设计并不是给你挖坑。它有自己的设计目的。即便你在条件中使用了索引字段，MySQL会根据自身的执行计划，考虑是否使用索引(所以explain命令中会有possible_key 和 key)。如果MySQL认为全表扫描效率更高，它就不会使用索引，这种情况下InnoDB将使用表锁，而不是行锁。因此，在分析锁冲突时，别忘了检查SQL的执行计划，以确认是否真正使用了索引。</p>
 
@@ -250,7 +249,7 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
         
         <li><a href="/sql/%E4%B9%90%E8%A7%82%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81/">乐观锁和悲观锁</a></li>
         
-        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/">OOM</a></li>
+        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/">OOM</a></li>
         
         <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">Java内存模型</a></li>
         
@@ -335,7 +334,11 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -347,7 +350,7 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -367,11 +370,19 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -389,6 +400,8 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -399,9 +412,13 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -443,7 +460,7 @@ select * from mchopin where id = 3 <font color="red">for update</font>;写行锁
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

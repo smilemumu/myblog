@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WebService on Shi.bro的博客</title>
+    <link>/tags/webservice/</link>
+    <description>Recent content in WebService on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/webservice/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WebService</title>
+      <link>/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/</guid>
+      <description>SpringBoot提供webService服务 1.编码 1.1第一步：引入maven依赖  &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.apache.cxf&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;cxf-spring-boot-starter-jaxws&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;3.2.5&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  1.2第二步：创建CXF配置类 import com.shizhongcai.webservice.server.advertise.*; import org.apache.cxf.Bus; import org.apache.cxf.bus.spring.SpringBus; import org.apache.cxf.jaxws.EndpointImpl; import org.apache.cxf.transport.servlet.CXFServlet; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.boot.web.servlet.ServletRegistrationBean; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import javax.annotation.Resource; import javax.xml.ws.Endpoint; @Configuration public class CXFConfig { /** * 这里需要注意 由于springmvc 的核心类 为DispatcherServlet * 此处若不重命名此bean的话 原本的mvc就被覆盖了。可查看配置类：DispatcherServletAutoConfiguration * 一种方法是修改方法名称 或者指定bean名称 * 这里需要注意 若beanName命名不是 cxfServletRegistration 时，会创建两个CXFServlet的。 * 具体可查看下自动配置类：Declaration org.apache.cxf.spring.boot.autoconfigure.CxfAutoConfiguration * 也可以不设置此bean 直接通过配置项 cxf.path 来修改访问路径的 * @return */ @Bean(&amp;quot;cxfServletRegistration&amp;quot;) public ServletRegistrationBean dispatcherServlet() { //注册servlet 拦截services 开头的请求 不设置 默认为：/services/* return new ServletRegistrationBean(new CXFServlet(), &amp;quot;/services/*&amp;quot;); } @Resource private AdvertiseService advertiseService; @Bean(name = Bus.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -180,7 +180,7 @@ NOT NULL[是否为null] default 0 comment '字段备注';
 <li><p>添加主键/删除主键</p>
 
 <pre><code>alter table tab add primary key(col);//添加主键
-alter table tab drop primary key(col);//删除主键
+alter table tab drop primary key(col);//删除主键 
 </code></pre></li>
 
 <li><p>创建索引/删除索引索引是不可以更改的，想更改必须删除重新建。</p>
@@ -215,6 +215,38 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
 <li><p>Oracle模糊查询like拼接</p>
 
 <pre><code class="language-SQL">select * from where column like '%'||'xxx';
+</code></pre></li>
+
+<li><p>修改列名</p>
+
+<pre><code>alter table 表名 rename column 现列名 to 新列名;
+</code></pre></li>
+
+<li><p>删除列</p>
+
+<pre><code>alter table A drop column 列名称；
+</code></pre></li>
+
+<li><p>修改表名</p>
+
+<pre><code>alter table 表名 rename to 新表名
+</code></pre></li>
+
+<li><p>新增字段</p>
+
+<pre><code>alter table 表名 add (字段名 字段类型 默认值 是否为空);
+例如：
+alter table sf_users add (userName varchar2(30) default '空' not null);
+</code></pre></li>
+
+<li><p>查看表结构</p>
+
+<pre><code>select * from user_tab_columns where table_name = '表名';
+</code></pre></li>
+
+<li><p>查看表注释</p>
+
+<pre><code>select * from user_col_comments where table_name = '表名';
 </code></pre></li>
 </ul>
 
@@ -320,7 +352,11 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -332,7 +368,7 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -352,11 +388,19 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -374,6 +418,8 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -384,9 +430,13 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -428,7 +478,7 @@ select CHARACTER_LENGTH(col) from table;查询该字段值的长度
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.58.1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> | Shi.bro的博客</title>
+    <meta property="og:title" content=" - Shi.bro的博客">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="java,博客,分享">
+    <meta name="description" content="">
+        
+    <meta name="author" content="Shi.bro">
+    <meta property="og:url" content="/spring/aes&#43;rsa%E4%B8%80%E6%AC%A1%E4%B8%80%E5%AF%86/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="">
+                        Shi.bro的博客
+                    </a>
+                
+                <p class="description">我的个人博客</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="">首页</a>
+                    
+                    <a  href="/archives/" title="目录">目录</a>
+                    
+                    <a  href="/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+        
+        
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title"></h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            1年1月1日
+                        </date>
+                        
+                        
+                        
+                        <div class="post-content">
+                            
+
+<p>#RSA+AES混合加解密流程(java实现)</p>
+
+<p><img src="img/RSA+AES.png" alt="RSA+AES混合加解密流程(java实现)" /></p>
+
+<p>##前言
+- AES128
+    - 密钥长度：16位
+    - 算法/模式/补码方式:AES/ECB/PKCS5Padding
+    - 生成字节码后用Base64转码成字符串
+- RSA1024
+    - 密钥格式：PKCS#8
+    - A私钥：
+    <code>
+    MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANgzOg6jy2eiAFmw/E9zC2zRCpPWIvN7YKkjDFMt8g3besq0eau3d+7ktXAX4c3qXp7TFXdTQsjV2d354+T3/mTBkXLVHHCLaucgS9+cl6k7BJCcHE5jOEDx4jLqeOKF474xSIz7v0WhrlxFMl7XDXpDhka4clH1IdStHbvqjoODAgMBAAECgYEAwumMEd7BZnC6+CGDlu0VA8mCS73mTLSSdGnQlrz5WFzi2xTSDGmfipROrvwY6te87ltHIwjBUObbQDAlsSuTAAI2tnkFt57G7DXuYnYAufknT21z6CoLVJdiDt57kk+Num2wVQiSxWNVfDx+A/UUPQ7+/HfmHwC+QcEhDCfyB6ECQQD6CtI4nUIJOBPrnwhJZo+Yw54VOu1y5Z8+xxIkPqYfxtR9LE3v43SdVmC2bfEpHj3UwfiOpQI2BQ1JFigtOQu1AkEA3Vn6pfnmyioK3rxMhGqEyOoHUjI9QzhqVPN7T3r/2OXO6XYY2CSd2JHe89nLweY27LZ+oFYp87UTPCfTM80FVwJAJVzyltUg5gHEMEQ+V8GEmZ45hBCfJLkdN6NFmbbm2f67B81UBBGn/k7G+tuo2q0TLjSh8KbFks7kclRmQoOwtQJAezYaz0jLrry4UEOAVDT2tN+QM7DDaSd+CMt/WD6fK5zAEDQsoCPBuUt5T0NsqAH9kMYEtjtAHugsTM/eQHdfAQJAN7Sy0yXah/5RZ8oZe1bx8+XPt7R3ca6kRQtXP7NpEMI/lOuU8TAZRw7Ckj+C5lPZLu8WvEIPjtDQ4yTvvEJHiw==
+</code></p>
+
+<pre><code>- A公钥：
+```
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYMzoOo8tnogBZsPxPcwts0QqT1iLze2CpIwxTLfIN23rKtHmrt3fu5LVwF+HN6l6e0xV3U0LI1dnd+ePk9/5kwZFy1Rxwi2rnIEvfnJepOwSQnBxOYzhA8eIy6njiheO+MUiM+79Foa5cRTJe1w16Q4ZGuHJR9SHUrR276o6DgwIDAQAB
+```
+
+- B私钥：
+```
+MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANCyrNMoq9QWMNim0l5XnCWfnpXHnO2AQJvt4ygugjXah8xTBdJ6N1N0rFzmw1CDN1qwJJ5X6DhJs1l3PUkzIp6/wJPl9ht55DJiqC40GvRA78gJJD4g/KQMS3t4F4xZhQpFsu9Tha8gHIACXoM05+A34qLzUvxBkFUdssjHFStPAgMBAAECgYAdMrJNRKZtoMEqvoQ2IMm+1cspJ2lELSpc5nZee8tJ344aPw9UeDbfXTZ0NPDkhccrz/L/mErr/Ruzi6QuZpIUJQTIbTlcDb1I0d/Hi7W/rkY+3Y/vBfYBPTdORhQ866LdjD84DVnP8wphcR8rnKL4H/8uYC12W+TI2nlRVIassQJBAO/0LYsSvGYNDLVMQZXjcIgPqSjheMRZHpRm+w0NdQvytJlqqAJOy+gIGeQu3fF4n/sgGdVpPcAdAGzDsCIjk4kCQQDep2vMnOvK2QCRHXSFDXSzUkhCUnIbXFHBBzh8KwluIexFblNOl/xLpHs9TM04+ei8ir2f6fPZ5chbcAl87xoXAkBrgwh066wmPWqYQNaSBhoBnKK6gmvN7fBZpdqOep0bAWAR7Uvh3NRX3mlbZ/RhoR5tMnDgwgq87UGnefaNFUuhAkBr86KJhz+vjvz+Xtiitf5x/x/3v/+BEoa03ypc0YT1986Vb0NG5Nu3VR1HgFg0Gr7jwyTjRswrRoSZCL4g69CrAkEA2e3Qxql488djYd+aH+BBuD1TBJtwMZflPf9vCr4hlMw9aYOR6/BtDGdT2XEi+uyQGPOXjbozf96+WDreyFkQhQ==
+```
+
+- B公钥：
+```
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQsqzTKKvUFjDYptJeV5wln56Vx5ztgECb7eMoLoI12ofMUwXSejdTdKxc5sNQgzdasCSeV+g4SbNZdz1JMyKev8CT5fYbeeQyYqguNBr0QO/ICSQ+IPykDEt7eBeMWYUKRbLvU4WvIByAAl6DNOfgN+Ki81L8QZBVHbLIxxUrTwIDAQAB
+```
+</code></pre>
+
+<ul>
+<li><p>假设要加密的数据为：{&ldquo;a&rdquo;:&ldquo;1&rdquo;}</p>
+
+<h2 id="加密签名">加密签名</h2></li>
+</ul>
+
+<h3 id="第一步-生成随机aes128密钥">第一步：生成随机AES128密钥</h3>
+
+<pre><code class="language-java">String aesRandomKey = EncryptUtil.getAesRandomKey();
+//假设生成的密钥为：a7ab6ac42c20d747
+</code></pre>
+
+<h3 id="第二步-将需要加密的数据进行aes128加密">第二步：将需要加密的数据进行AES128加密</h3>
+
+<pre><code class="language-java">String data = &quot;{\&quot;a\&quot;:\&quot;1\&quot;}&quot;;
+String data2Aes = EncryptUtil.encryptByAES(data2Aes,aesRandomKey);
+//使用随机AES密钥a7ab6ac42c20d747加密data后得到数据：
+//data2Aes=ag5nOGqwFa75tYBiwHB8hA==
+</code></pre>
+
+<h3 id="第三步-将生成的随机aes128密钥用rsa方式加密">第三步：将生成的随机AES128密钥用RSA方式加密</h3>
+
+<pre><code class="language-java">String randomKey = EncryptUtil.encryptByRSA(aesRandomKey, publicKeyB);
+//得到用RSA加密后的randomKey:
+//w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=
+</code></pre>
+
+<h3 id="第四步-将timestamp-data2aes-randomkey用a私钥签名">第四步：将timesTamp、data2Aes、randomKey用A私钥签名</h3>
+
+<pre><code>//例如：timesTamp=1609753530
+//data2Aes=ag5nOGqwFa75tYBiwHB8hA==
+//randomKey=w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=
+//生成的签名串为（字典排序）：
+//linkStr=&quot;data=ag5nOGqwFa75tYBiwHB8hA==&amp;randomKey=w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=&amp;timesTamp=1609753530&quot;
+//生成签名的方法：
+String sign = EncryptUtil.signByPrivateKey(linkStr, privateKeyA);
+//生成的签名：poxqmGGrnOtzzzy+HLmw6tAOHUWxi81b0JBJtmYk2ubFRGPRDiNSu3cRShRqOBEiRc0BukjvEZib4yyjNSk4w/4HFa1md9NmkY6B47ETnRvEShhjftoTPKBwwnQMrGRs6HYSPCbbFcG1QXqiQlIR7XvvI4shKNeKBljBA5Uk+08=
+</code></pre>
+
+<h3 id="第五步-组装请求报文">第五步：组装请求报文</h3>
+
+<pre><code class="language-json">{&quot;randomKey&quot;:&quot;w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=&quot;,&quot;sign&quot;:&quot;poxqmGGrnOtzzzy+HLmw6tAOHUWxi81b0JBJtmYk2ubFRGPRDiNSu3cRShRqOBEiRc0BukjvEZib4yyjNSk4w/4HFa1md9NmkY6B47ETnRvEShhjftoTPKBwwnQMrGRs6HYSPCbbFcG1QXqiQlIR7XvvI4shKNeKBljBA5Uk+08=&quot;,&quot;data&quot;:&quot;ag5nOGqwFa75tYBiwHB8hA==&quot;,&quot;timesTamp&quot;:&quot;1609753530&quot;}
+</code></pre>
+
+<h2 id="验签解密">验签解密</h2>
+
+<pre><code>接收到数据：
+{&quot;randomKey&quot;:&quot;w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=&quot;,&quot;sign&quot;:&quot;poxqmGGrnOtzzzy+HLmw6tAOHUWxi81b0JBJtmYk2ubFRGPRDiNSu3cRShRqOBEiRc0BukjvEZib4yyjNSk4w/4HFa1md9NmkY6B47ETnRvEShhjftoTPKBwwnQMrGRs6HYSPCbbFcG1QXqiQlIR7XvvI4shKNeKBljBA5Uk+08=&quot;,&quot;data&quot;:&quot;ag5nOGqwFa75tYBiwHB8hA==&quot;,&quot;timesTamp&quot;:&quot;1609753530&quot;}
+</code></pre>
+
+<h3 id="第一步-验证签名">第一步：验证签名</h3>
+
+<pre><code>//先生成签名串(签名串不包含sign)
+//linkStr=&quot;data=ag5nOGqwFa75tYBiwHB8hA==&amp;randomKey=w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=&amp;timesTamp=1609753530&quot;
+//验证方法：用A的公钥验证签名
+Boolean verifyResult = EncryptUtil.verifySignByPublicKey(linkStr, publicKeyA, sign);
+
+</code></pre>
+
+<h3 id="第二步-如果验证通过-解密randomkey获取aesrandomkey">第二步：如果验证通过，解密randomKey获取aesRandomKey</h3>
+
+<pre><code>//根据B自己的私钥解密randomKey
+randomKey=w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=
+String aesKey = EncryptUtil.decryptByRSA(randomKey, privateKeyB);
+//解密后获取aesKey=a7ab6ac42c20d747
+</code></pre>
+
+<h3 id="第三步-通过aes解密data获取解密后数据">第三步：通过AES解密data获取解密后数据</h3>
+
+<pre><code>//待解密data=ag5nOGqwFa75tYBiwHB8hA==
+String decryptBizData = EncryptUtil.decryptByAES(data, aesKey);
+//解密后decryptBizData = &quot;{\&quot;a\&quot;:\&quot;1\&quot;}&quot;;
+</code></pre>
+
+<p>##代码：</p>
+
+<h3 id="encryptutil-class">EncryptUtil.class</h3>
+
+<pre><code>import org.apache.commons.codec.binary.Base64;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.*;
+import java.util.*;
+
+public class RsaUtils
+{
+    private static final Random random = new Random();
+
+    public static String getAESRandomKey()
+    {
+        long longValue = random.nextLong();
+        return String.format(&quot;%016x&quot;, new Object[] { Long.valueOf(longValue) });
+    }
+
+
+    public static PublicKey getPublicKeyFromString(String base64String)
+            throws NoSuchAlgorithmException, InvalidKeySpecException
+    {
+        byte[] bt = Base64.decodeBase64(base64String);
+        X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(bt);
+        KeyFactory keyFactory = KeyFactory.getInstance(&quot;RSA&quot;);
+        PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
+        return publicKey;
+    }
+
+    public static PrivateKey getPrivateKeyFromString(String base64String)
+            throws InvalidKeySpecException, NoSuchAlgorithmException
+    {
+        byte[] bt = Base64.decodeBase64(base64String);
+        PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(bt);
+        KeyFactory keyFactory = KeyFactory.getInstance(&quot;RSA&quot;);
+        PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
+        return privateKey;
+    }
+
+    public static boolean verifySignByPublicKey(String inputStr, String publicKey, String base64SignStr)
+            throws Exception
+    {
+        return verifyByPublicKey(inputStr.getBytes(), getPublicKeyFromString(publicKey), Base64.decodeBase64(base64SignStr));
+    }
+
+    public static boolean verifyByPublicKey(byte[] data, PublicKey publicKey, byte[] signature)
+            throws Exception
+    {
+        Signature sig = Signature.getInstance(&quot;SHA256withRSA&quot;);
+        sig.initVerify(publicKey);
+        sig.update(data);
+        boolean ret = sig.verify(signature);
+        return ret;
+    }
+
+    public static String signByPrivateKey(String inputStr, String privateKey)
+            throws Exception
+    {
+        return Base64.encodeBase64String(signByPrivateKey(inputStr.getBytes(), getPrivateKeyFromString(privateKey)));
+    }
+
+    public static byte[] signByPrivateKey(byte[] data, PrivateKey privateKey)
+            throws Exception
+    {
+        Signature sig = Signature.getInstance(&quot;SHA256withRSA&quot;);
+        sig.initSign(privateKey);
+        sig.update(data);
+        byte[] ret = sig.sign();
+        return ret;
+    }
+
+    public static String encryptByRSA(String inputStr, String publicKey)
+            throws Exception
+    {
+        PublicKey key = getPublicKeyFromString(publicKey);
+        return Base64.encodeBase64String(encryptByRSA(inputStr.getBytes(), key));
+    }
+
+    public static byte[] encryptByRSA(byte[] input, Key key)
+            throws Exception
+    {
+        Cipher cipher = Cipher.getInstance(&quot;RSA&quot;);
+        cipher.init(1, key);
+        byte[] output = cipher.doFinal(input);
+        return output;
+    }
+
+    public static String decryptByRSA(String inputStr, String privateKey)
+            throws Exception
+    {
+        PrivateKey key = getPrivateKeyFromString(privateKey);
+        return new String(decryptByRSA(Base64.decodeBase64(inputStr), key));
+    }
+
+    public static byte[] decryptByRSA(byte[] input, Key key)
+            throws Exception
+    {
+        Cipher cipher = Cipher.getInstance(&quot;RSA&quot;);
+        cipher.init(2, key);
+        byte[] output = cipher.doFinal(input);
+        return output;
+    }
+
+    public static String encryptByAES(String inputStr, String password)
+            throws Exception
+    {
+        byte[] byteData = inputStr.getBytes();
+        byte[] bytePassword = password.getBytes();
+        return Base64.encodeBase64String(encryptByAES(byteData, bytePassword));
+    }
+
+    public static byte[] encryptByAES(byte[] data, byte[] pwd)
+            throws Exception
+    {
+        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);
+        SecretKeySpec keySpec = new SecretKeySpec(pwd, &quot;AES&quot;);
+        cipher.init(1, keySpec);
+        byte[] ret = cipher.doFinal(data);
+        return ret;
+    }
+
+    public static String decryptByAES(String inputStr, String password)
+            throws Exception
+    {
+        byte[] byteData = Base64.decodeBase64(inputStr);
+        byte[] bytePassword = password.getBytes();
+        return new String(decryptByAES(byteData, bytePassword));
+    }
+
+    public static byte[] decryptByAES(byte[] data, byte[] pwd)
+            throws Exception
+    {
+        Cipher cipher = Cipher.getInstance(&quot;AES&quot;);
+        SecretKeySpec keySpec = new SecretKeySpec(pwd, &quot;AES&quot;);
+        cipher.init(2, keySpec);
+        byte[] ret = cipher.doFinal(data);
+        return ret;
+    }
+
+
+
+    /**
+     * 将map对象转成需要签名的数据
+     * @param params
+     * @return key=value&amp;key=value......（按字母顺序排序）
+     */
+    public static String createLinkString(Map&lt;String, String&gt; params)
+    {
+        List&lt;String&gt; keys = new ArrayList(params.keySet());
+        Collections.sort(keys);
+        StringBuffer linkStr = new StringBuffer();
+        for (int i = 0; i &lt; keys.size(); i++)
+        {
+            String key = String.valueOf(keys.get(i));
+            String value = String.valueOf(params.get(key));
+            if (value != null) {
+                if (i == keys.size() - 1) {
+                    linkStr.append(key).append(&quot;=&quot;).append(value);
+                } else {
+                    linkStr.append(key).append(&quot;=&quot;).append(value).append(&quot;&amp;&quot;);
+                }
+            }
+        }
+        return linkStr.toString();
+    }
+
+    public static String MD5(String source)
+            throws NoSuchAlgorithmException
+    {
+        StringBuffer sb = new StringBuffer();
+        String part = null;
+        MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);
+        byte[] bytes = source.getBytes();
+        byte[] md5 = md.digest(bytes);
+        for (int i = 0; i &lt; md5.length; i++)
+        {
+            part = Integer.toHexString(md5[i] &amp; 0xFF);
+            if (part.length() == 1) {
+                part = &quot;0&quot; + part;
+            }
+            sb.append(part);
+        }
+        return sb.toString();
+    }
+
+
+    private static byte[] decryptByRSA4MicroSoft(byte[] input, PrivateKey key)
+            throws Exception
+    {
+        Security.addProvider(new BouncyCastleProvider());
+        Cipher cipher = Cipher.getInstance(&quot;RSA/NONE/NoPadding&quot;);
+        cipher.init(2, key);
+        byte[] output = cipher.doFinal(input);
+        return output;
+    }
+}
+</code></pre>
+
+<h3 id="rsaaestest-class">RsaAesTest.class</h3>
+
+<pre><code class="language-java">import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
+import com.*.EncryptUtil;
+
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @Author 程序员小董
+ * @Date 2020/12/31 16:40
+ */
+public class RsaAesTest {
+    private static final String PUBLIC_KEY_A = &quot;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYMzoOo8tnogBZsPxPcwts0QqT\n&quot; +
+            &quot;1iLze2CpIwxTLfIN23rKtHmrt3fu5LVwF+HN6l6e0xV3U0LI1dnd+ePk9/5kwZFy\n&quot; +
+            &quot;1Rxwi2rnIEvfnJepOwSQnBxOYzhA8eIy6njiheO+MUiM+79Foa5cRTJe1w16Q4ZG\n&quot; +
+            &quot;uHJR9SHUrR276o6DgwIDAQAB&quot;;
+    private static final String PRIVATE_KEY_A = &quot;MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANgzOg6jy2eiAFmw\n&quot; +
+            &quot;/E9zC2zRCpPWIvN7YKkjDFMt8g3besq0eau3d+7ktXAX4c3qXp7TFXdTQsjV2d35\n&quot; +
+            &quot;4+T3/mTBkXLVHHCLaucgS9+cl6k7BJCcHE5jOEDx4jLqeOKF474xSIz7v0WhrlxF\n&quot; +
+            &quot;Ml7XDXpDhka4clH1IdStHbvqjoODAgMBAAECgYEAwumMEd7BZnC6+CGDlu0VA8mC\n&quot; +
+            &quot;S73mTLSSdGnQlrz5WFzi2xTSDGmfipROrvwY6te87ltHIwjBUObbQDAlsSuTAAI2\n&quot; +
+            &quot;tnkFt57G7DXuYnYAufknT21z6CoLVJdiDt57kk+Num2wVQiSxWNVfDx+A/UUPQ7+\n&quot; +
+            &quot;/HfmHwC+QcEhDCfyB6ECQQD6CtI4nUIJOBPrnwhJZo+Yw54VOu1y5Z8+xxIkPqYf\n&quot; +
+            &quot;xtR9LE3v43SdVmC2bfEpHj3UwfiOpQI2BQ1JFigtOQu1AkEA3Vn6pfnmyioK3rxM\n&quot; +
+            &quot;hGqEyOoHUjI9QzhqVPN7T3r/2OXO6XYY2CSd2JHe89nLweY27LZ+oFYp87UTPCfT\n&quot; +
+            &quot;M80FVwJAJVzyltUg5gHEMEQ+V8GEmZ45hBCfJLkdN6NFmbbm2f67B81UBBGn/k7G\n&quot; +
+            &quot;+tuo2q0TLjSh8KbFks7kclRmQoOwtQJAezYaz0jLrry4UEOAVDT2tN+QM7DDaSd+\n&quot; +
+            &quot;CMt/WD6fK5zAEDQsoCPBuUt5T0NsqAH9kMYEtjtAHugsTM/eQHdfAQJAN7Sy0yXa\n&quot; +
+            &quot;h/5RZ8oZe1bx8+XPt7R3ca6kRQtXP7NpEMI/lOuU8TAZRw7Ckj+C5lPZLu8WvEIP\n&quot; +
+            &quot;jtDQ4yTvvEJHiw==&quot;;
+    private static final String PUBLIC_KEY_B = &quot;MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDQsqzTKKvUFjDYptJeV5wln56V\n&quot; +
+            &quot;x5ztgECb7eMoLoI12ofMUwXSejdTdKxc5sNQgzdasCSeV+g4SbNZdz1JMyKev8CT\n&quot; +
+            &quot;5fYbeeQyYqguNBr0QO/ICSQ+IPykDEt7eBeMWYUKRbLvU4WvIByAAl6DNOfgN+Ki\n&quot; +
+            &quot;81L8QZBVHbLIxxUrTwIDAQAB&quot;;
+    private static final String PRIVATE_KEY_B = &quot;MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBANCyrNMoq9QWMNim\n&quot; +
+            &quot;0l5XnCWfnpXHnO2AQJvt4ygugjXah8xTBdJ6N1N0rFzmw1CDN1qwJJ5X6DhJs1l3\n&quot; +
+            &quot;PUkzIp6/wJPl9ht55DJiqC40GvRA78gJJD4g/KQMS3t4F4xZhQpFsu9Tha8gHIAC\n&quot; +
+            &quot;XoM05+A34qLzUvxBkFUdssjHFStPAgMBAAECgYAdMrJNRKZtoMEqvoQ2IMm+1csp\n&quot; +
+            &quot;J2lELSpc5nZee8tJ344aPw9UeDbfXTZ0NPDkhccrz/L/mErr/Ruzi6QuZpIUJQTI\n&quot; +
+            &quot;bTlcDb1I0d/Hi7W/rkY+3Y/vBfYBPTdORhQ866LdjD84DVnP8wphcR8rnKL4H/8u\n&quot; +
+            &quot;YC12W+TI2nlRVIassQJBAO/0LYsSvGYNDLVMQZXjcIgPqSjheMRZHpRm+w0NdQvy\n&quot; +
+            &quot;tJlqqAJOy+gIGeQu3fF4n/sgGdVpPcAdAGzDsCIjk4kCQQDep2vMnOvK2QCRHXSF\n&quot; +
+            &quot;DXSzUkhCUnIbXFHBBzh8KwluIexFblNOl/xLpHs9TM04+ei8ir2f6fPZ5chbcAl8\n&quot; +
+            &quot;7xoXAkBrgwh066wmPWqYQNaSBhoBnKK6gmvN7fBZpdqOep0bAWAR7Uvh3NRX3mlb\n&quot; +
+            &quot;Z/RhoR5tMnDgwgq87UGnefaNFUuhAkBr86KJhz+vjvz+Xtiitf5x/x/3v/+BEoa0\n&quot; +
+            &quot;3ypc0YT1986Vb0NG5Nu3VR1HgFg0Gr7jwyTjRswrRoSZCL4g69CrAkEA2e3Qxql4\n&quot; +
+            &quot;88djYd+aH+BBuD1TBJtwMZflPf9vCr4hlMw9aYOR6/BtDGdT2XEi+uyQGPOXjboz\n&quot; +
+            &quot;f96+WDreyFkQhQ==&quot;;
+
+
+    public static void encryptDemo() throws Exception {
+        //生成数据过程
+        //需要加密的demo数据
+        String json = &quot;{\&quot;a:\&quot;:\&quot;1\&quot;}&quot;;
+        System.out.println(&quot;加密前数据:&quot;+json);
+        //生成的随机Aes密钥
+        String aesKey = EncryptUtil.getAESRandomKey();
+        System.out.println(&quot;随机生成的AES密钥：&quot;+aesKey);
+        String randomKey = EncryptUtil.encryptByRSA(aesKey, PUBLIC_KEY_B);
+        System.out.println(&quot;使用B公钥加密后的AES密钥【RSA加密后】：&quot;+randomKey);
+        //随机Aes加密后的业务数据
+        String data = EncryptUtil.encryptByAES(json, aesKey);
+        //根据自己的RSA私钥生成的签名
+        System.out.println(&quot;使用随机AES密钥&quot;+aesKey+&quot;加密后的数据：&quot;+data);
+        //当前时间戳
+        Long timesTamp = Instant.now().getEpochSecond();
+        Map&lt;String, String&gt; result = Maps.newHashMapWithExpectedSize(4);
+        result.put(&quot;data&quot;, data);
+        result.put(&quot;randomKey&quot;, randomKey);
+        result.put(&quot;timesTamp&quot;, timesTamp.toString());
+        String linkStr = EncryptUtil.createLinkString(result);
+        System.out.println(&quot;A生成待签名的串：&quot;+linkStr);
+        String sign = EncryptUtil.signByPrivateKey(linkStr, PRIVATE_KEY_A);
+        System.out.println(&quot;A生成的签名：&quot;+sign);
+        result.put(&quot;sign&quot;, sign);
+        System.out.println(&quot;A加密签名后的报文:&quot; + JSON.toJSONString(result));
+
+    }
+
+    public static void decryptDemo() throws Exception {
+        //解密数据过程
+        //需要解密的demo数据
+        String json = &quot;{\&quot;randomKey\&quot;:\&quot;w+glUqi5+RLkeWGNXP9SlVN7LmIa8Vi/EIKz/DUNHS6sfo6uDVssaCNDysOFpA0XhKRz28tIZ4p1eWmM3pOXDD9qXCi4PscRRlrPPA9njgigpvdm1sFLtEObr5CDBsKn/+XIsSZJ/8u9ZP33q6bw8yGRsfekD0FHSw4SsVEGs+Y=\&quot;,\&quot;sign\&quot;:\&quot;poxqmGGrnOtzzzy+HLmw6tAOHUWxi81b0JBJtmYk2ubFRGPRDiNSu3cRShRqOBEiRc0BukjvEZib4yyjNSk4w/4HFa1md9NmkY6B47ETnRvEShhjftoTPKBwwnQMrGRs6HYSPCbbFcG1QXqiQlIR7XvvI4shKNeKBljBA5Uk+08=\&quot;,\&quot;data\&quot;:\&quot;ag5nOGqwFa75tYBiwHB8hA==\&quot;,\&quot;timesTamp\&quot;:\&quot;1609753530\&quot;}&quot;;
+        Map map = (Map) JSON.parse(json);
+        String sign = (String) map.get(&quot;sign&quot;);
+        String data = (String) map.get(&quot;data&quot;);
+        String randomKey = (String) map.get(&quot;randomKey&quot;);
+        String timesTamp = String.valueOf(map.get(&quot;timesTamp&quot;));
+        //验证签名
+        Map&lt;String, String&gt; signMap = new HashMap&lt;&gt;();
+        signMap.put(&quot;timesTamp&quot;, timesTamp);
+        signMap.put(&quot;data&quot;, data);
+        signMap.put(&quot;randomKey&quot;, randomKey);
+        Boolean verifyResult = EncryptUtil.verifySignByPublicKey(EncryptUtil.createLinkString(signMap), PUBLIC_KEY_A, sign);
+        if (verifyResult) {
+            //解密加密的随机Aes密钥
+            String aesKey = EncryptUtil.decryptByRSA(randomKey, PRIVATE_KEY_B);
+            //用解密后的aes密钥解密数据
+            String decryptBizData = EncryptUtil.decryptByAES(data, aesKey);
+            System.out.println(&quot;解密报文:&quot; + decryptBizData);
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println(&quot;A私钥：&quot;+PRIVATE_KEY_A.replaceAll(&quot;\\s&quot;, &quot;&quot;));
+        System.out.println(&quot;A公钥：&quot;+PUBLIC_KEY_A.replaceAll(&quot;\\s&quot;, &quot;&quot;));
+        System.out.println(&quot;B私钥：&quot;+PRIVATE_KEY_B.replaceAll(&quot;\\s&quot;, &quot;&quot;));
+        System.out.println(&quot;B公钥：&quot;+PUBLIC_KEY_B.replaceAll(&quot;\\s&quot;, &quot;&quot;));
+        encryptDemo();
+        decryptDemo();
+    }
+</code></pre>
+
+                        </div>
+
+                        
+
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/">WebService</a></li>
+        
+        <li><a href="/springcloud/config%E4%B8%AD%E5%BF%83/">Config</a></li>
+        
+        <li><a href="/springcloud/feign/">Feign</a></li>
+        
+        <li><a href="/springcloud/hystrix/">Hystrix</a></li>
+        
+        <li><a href="/springcloud/ribbon/">Ribbon</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            没有标签
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="/categories/algorithm/">algorithm(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/git/">git(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/java/">java(31)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/linux/">linux(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/markdown/">markdown(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql/">mysql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E7%B4%A2%E5%BC%95/">mysql索引(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/mysql%E9%94%81/">mysql锁(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/other/">other(4)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/sql/">sql(2)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/todo/">todo(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/web/">web(5)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">微信开发(1)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="/tags/algorithm/">algorithm</a>
+    
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
+    <a href="/tags/git/">git</a>
+    
+    <a href="/tags/guava/">guava</a>
+    
+    <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
+    
+    <a href="/tags/java/">java</a>
+    
+    <a href="/tags/java8/">java8</a>
+    
+    <a href="/tags/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">java并发编程艺术</a>
+    
+    <a href="/tags/jvm/">jvm</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/markdown/">markdown</a>
+    
+    <a href="/tags/mysql/">mysql</a>
+    
+    <a href="/tags/other/">other</a>
+    
+    <a href="/tags/ribbon/">ribbon</a>
+    
+    <a href="/tags/spring/">spring</a>
+    
+    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
+    
+    <a href="/tags/sql/">sql</a>
+    
+    <a href="/tags/todo/">todo</a>
+    
+    <a href="/tags/web/">web</a>
+    
+    <a href="/tags/webservice/">webservice</a>
+    
+    <a href="/tags/wechat/">wechat</a>
+    
+    <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
+    
+    <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
+    
+    <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a>
+    
+    <a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a>
+    
+    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+    
+    <a href="/tags/%E5%AE%89%E5%85%A8/">安全</a>
+    
+    <a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a>
+    
+    <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+    
+    <a href="/tags/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a>
+    
+    <a href="/tags/%E7%BC%93%E5%AD%98/">缓存</a>
+    
+    <a href="/tags/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">设计模式分类</a>
+    
+    <a href="/tags/%E9%94%81/">锁</a>
+    
+    <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">高并发</a>
+    
+</div>
+    </section>
+
+    
+
+    
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function () {
+            $("pre code").parent().addClass("line-numbers")
+        }());
+
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+
+
+
+</body>
+</html>

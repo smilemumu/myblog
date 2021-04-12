@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Feign on Shi.bro的博客</title>
+    <link>/tags/feign/</link>
+    <description>Recent content in Feign on Shi.bro的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/feign/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Feign</title>
+      <link>/springcloud/feign/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/springcloud/feign/</guid>
+      <description>Feign Feign 采用的是基于接口的注解 Feign 整合了ribbon
+Feign服务调用 1.需要添加依赖spring-cloud-starter-openfeign
+&amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-cloud-starter-openfeign&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;2.1.1.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt;  2.需要在启动类中添加@EnableFeignClients注解 需要在启动类中添加@EnableDiscoveryClient注解
+3.Client端创建一个新的接口并定义Client端需要调用的服务方法
+@FeignClient(name = &amp;quot;service-hello&amp;quot;) public interface ServerApi { @GetMapping(&amp;quot;/hello/world&amp;quot;) String sayHelloWord(); }  使用时
+@GetMapping(&amp;quot;/sayHelloWord&amp;quot;) public Object sayHelloWord() { return serverApi.sayHelloWord(); }  refer to : https://www.fangzhipeng.com/springcloud/2017/06/03/sc03-feign.html</description>
+    </item>
+    
+  </channel>
+</rss>

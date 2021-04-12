@@ -267,17 +267,21 @@ where a.id not in (select b.id from tableB)
 	name varchar(20),
 	sex tinyint  not null default 0
 	) ENGINE=InnoDB DEFAULT=utf8;
+
 create table tb_member2(
 	id bigint primary key,
 	name varchar(20),
 	sex tinyint  not null default 0
 	) ENGINE=InnoDB DEFAULT=utf8;
+
 create table tb_member(
 	id bigint primary key,
 	name varchar(20),
 	sex tinyint  not null default 0
 	) ENGINE=MERGE UNION=(tb_member1,tb_member2) INSERT_METHOD=LAST DEFAULT=utf8;
-</code></pre>
+</code></pre></li>
+</ul></li>
+</ul>
 
 <p>2.将表数据分散到子表中</p>
 
@@ -288,9 +292,7 @@ mysql&gt; insert into tb_member2(id,name,sex) select id,name,sex from member whe
 <blockquote>
 <p>注意：总表只是一个外壳，存取数据发生在一个一个的子表里面。
 注意：每个子表都有自已独立的相关表文件，而主表只是一个壳，并没有完整的相关表文件</p>
-</blockquote></li>
-</ul></li>
-</ul>
+</blockquote>
 
 <h2 id="8-分区">8.分区</h2>
 
@@ -335,6 +337,8 @@ alter table test2.user add partition (partition p4 values less than maxvalue);
 <li><p>2.LIST分区</p>
 
 <ul>
+<li>使用VALUE IN操作符</li>
+
 <li><p>类似于按RANGE分区，区别在于LIST分区是基于列值匹配一个离散值集合中的某个值来进行选择。</p>
 
 <pre><code class="language-sql">PARTITION BY LIST(store_id)
@@ -521,7 +525,11 @@ refer to:<a href="https://blog.csdn.net/kangshuo2471781030/article/details/79316
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -533,7 +541,7 @@ refer to:<a href="https://blog.csdn.net/kangshuo2471781030/article/details/79316
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -553,11 +561,19 @@ refer to:<a href="https://blog.csdn.net/kangshuo2471781030/article/details/79316
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -575,6 +591,8 @@ refer to:<a href="https://blog.csdn.net/kangshuo2471781030/article/details/79316
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -585,9 +603,13 @@ refer to:<a href="https://blog.csdn.net/kangshuo2471781030/article/details/79316
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -629,7 +651,7 @@ refer to:<a href="https://blog.csdn.net/kangshuo2471781030/article/details/79316
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

@@ -78,6 +78,54 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/">WebService</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2021年3月25日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/spring">Spring</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                SpringBoot提供webService服务 1.编码 1.1第一步：引入maven依赖  &lt;dependency&gt; &lt;groupId&gt;org.apache.cxf&lt;/groupId&gt; &lt;artifactId&gt;cxf-spring-boot-starter-jaxws&lt;/artifactId&gt; &lt;version&gt;3.2.5&lt;/version&gt; &lt;/dependency&gt;  1.2第二步：创建CXF配置类 import com.shizhongcai.webservice.server.advertise.*; import org.apache.cxf.Bus; import org.apache.cxf.bus.spring.SpringBus; import org.apache.cxf.jaxws.EndpointImpl; import org.apache.cxf.transport.servlet.CXFServlet; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.boot.web.servlet.ServletRegistrationBean; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import javax.annotation.Resource; import javax.xml.ws.Endpoint; @Configuration public class CXFConfig { /** * 这里需要注意 由于springmvc 的核心类 为DispatcherServlet * 此处若不重命名此bean的话 原本的mvc就被覆盖了。可查看配置类：DispatcherServletAutoConfiguration * 一种方法是修改方法名称 或者指定bean名称 * 这里需要注意 若beanName命名不是 cxfServletRegistration 时，会创建两个CXFServlet的。 * 具体可查看下自动配置类：Declaration org.apache.cxf.spring.boot.autoconfigure.CxfAutoConfiguration * 也可以不设置此bean 直接通过配置项 cxf.path 来修改访问路径的 * @return */ @Bean(&quot;cxfServletRegistration&quot;) public ServletRegistrationBean dispatcherServlet() { //注册servlet 拦截services 开头的请求 不设置 默认为：/services/* return new ServletRegistrationBean(new CXFServlet(), &quot;/services/*&quot;); } @Resource private AdvertiseService advertiseService; @Bean(name = Bus.……
+                                <p class="readmore"><a href="/spring/springboot%E6%8F%90%E4%BE%9Bwebservice%E6%9C%8D%E5%8A%A1/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/spring/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95%E7%94%9F%E6%88%90uuid/">雪花算法</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年12月29日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="/categories/spring">Spring</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Java静态内部类实现雪花算法（SnowFlake） 前言 在生成表主键时，通常可以考虑自增主键/UUID/雪花算法 - 自增主键： - 1.容易被爬虫遍历数据。 - 2.分库分表可能会有ID冲突。 - UUID - 1.太长，有索引碎片 - 2.无序 - 雪花算法 - 适合在分布式场景下生成唯一ID，保证唯一可排序
+原理 SnowFlake算法生成ID的是一个64bit大小的整数。 由于在Java中64bit的整数是long类型,所以在Java中SnowFlake算法生成的id就是long来存储的。 - id结构如下： 0-0000000000 0000000000 0000000000 0000000000 0-00000-00000-000000000000
+ 算法描述：  1bit 因为二进制中最高位是符号位，1表示负数，0表示正数。生成的ID都是正整数，所以最高位固定为0。 41bit-时间戳 精确到毫秒级，41位的长度可以使用69年。时间位还有一个很重要的作用是可以根据时间进行排序。 10bit-工作机器id，Twitter实现中使用前5位作为数据中心标识，后5位作为机器标识，可以部署2^10 = 1024个节点； 12bit-序列号 这个是用来记录同一个毫秒内产生的不同 id。 &gt;12位（bit）可以表示的最大正整数是2^{12}-1 = 4095，即可以用0、1、2、3、&hellip;.4094这4095个数字，来表示同一机器同一时间截（毫秒)内产生的4095个ID序号。   实现代码 /** * 描述: Twitter的分布式自增ID雪花算法snowflake (Java版) * **/ public class SnowFlake { /** * 起始的时间戳 * 2021-01-01 00:00:00 */ private final static long START_STMP = 1609430400000L; /** * 每一部分占用的位数 */ private final static long SEQUENCE_BIT = 12; //序列号占用的位数 private final static long MACHINE_BIT = 5; //机器标识占用的位数 private final static long DATACENTER_BIT = 5;//数据中心占用的位数 /** * 每一部分的最大值 */ private final static long MAX_DATACENTER_NUM = -1L ^ (-1L &lt;&lt; DATACENTER_BIT); private final static long MAX_MACHINE_NUM = -1L ^ (-1L &lt;&lt; MACHINE_BIT); private final static long MAX_SEQUENCE = -1L ^ (-1L &lt;&lt; SEQUENCE_BIT); /** * 每一部分向左的位移 */ private final static long MACHINE_LEFT = SEQUENCE_BIT; private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT; private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT; private long datacenterId; //数据中心 private long machineId; //机器标识 private long sequence = 0L; //序列号 private long lastStmp = -1L;//上一次时间戳 public SnowFlake(long datacenterId, long machineId) { if (datacenterId &gt; MAX_DATACENTER_NUM || datacenterId &lt; 0) { throw new IllegalArgumentException(&quot;datacenterId can't be greater than MAX_DATACENTER_NUM or less than 0&quot;); } if (machineId &gt; MAX_MACHINE_NUM || machineId &lt; 0) { throw new IllegalArgumentException(&quot;machineId can't be greater than MAX_MACHINE_NUM or less than 0&quot;); } this.……
+                                <p class="readmore"><a href="/spring/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95%E7%94%9F%E6%88%90uuid/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="/spring/spring%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E4%BC%A0%E6%92%AD%E8%A1%8C%E4%B8%BA/">Spring事务的隔离级别和传播行为</a>
                                 </h1>
                             </header>
@@ -172,8 +220,8 @@ TRANSACTION_NONE(无事务) 这意味着当前的 JDBC 驱动不支持事务，�
                             </div>
                             
                             <div class="post-content">
-                                #Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
-&lt;filter&gt; &lt;description&gt;字符集过滤器&lt;/description&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;description&gt;字符集编码&lt;/description&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.……
+                                #Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：字符过滤集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
+&lt;filter&gt; &lt;description&gt;字符集过滤器&lt;/description&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;description&gt;字符集编码&lt;/description&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterRegisterationBean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.……
                                 <p class="readmore"><a href="/spring/filter%E5%92%8Cinterceptor/">阅读全文</a></p>
                             </div>
                         </article>
@@ -220,8 +268,8 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
                             </div>
                             
                             <div class="post-content">
-                                其他一些日常工作中遇到的问题：
-1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&ldquo;singleton&rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&ldquo;prototype&rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。……
+                                 其他一些日常工作中遇到的问题：
+其他  1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。 2.@Scope默认是单例模式，即scope=&ldquo;singleton&rdquo;。 另外scope还有prototype、request、session、global session作用域。scope=&ldquo;prototype&rdquo;多例 3.@Aspect执行顺序问题 Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。 4.获取配置文件中的值  4.1属性获取配置文件的值@Value(“${属性名}”) 4.2将配置文件的属性赋给实体类@ConfigurationProperties(prefix = &ldquo;my&rdquo;)  5.  ……
                                 <p class="readmore"><a href="/spring/%E5%85%B6%E4%BB%96/">阅读全文</a></p>
                             </div>
                         </article>
@@ -272,54 +320,6 @@ import lombok.Data; @Data public class AesBaseParams { private String data; }  �
                             <div class="post-content">
                                 guava之令牌桶算法实现接口限流 实现步骤 1.创建注解RateLimit import java.lang.annotation.*; /** * 自定义注解：限流令牌桶注解，用以创建令牌桶以及设定令牌桶大小 */ @Inherited @Documented @Target(ElementType.METHOD) @Retention(RetentionPolicy.RUNTIME) public @interface RateLimit { double limitNum() default 20; //默认每秒放入桶中20 }  2.创建令牌桶切面RateLimitAspect import com.google.common.util.concurrent.RateLimiter; import com.shizhongcai.business.common.annotation.RateLimit; import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import org.aspectj.lang.ProceedingJoinPoint; import org.aspectj.lang.annotation.Around; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.springframework.context.annotation.Scope; import org.springframework.stereotype.Component; import java.lang.reflect.Method; import java.util.concurrent.ConcurrentHashMap; /** * 令牌桶切面，桶中无令牌进行服务降级 * */ @Component @Scope @Aspect public class RateLimitAspect { //用来存放不同接口的RateLimiter令牌桶(key为接口名称，value为RateLimiter) //ConcurrentHashMap线程安全 private ConcurrentHashMap&lt;String, RateLimiter&gt; map = new ConcurrentHashMap&lt;&gt;(); //令牌桶 private RateLimiter rateLimiter; @Pointcut(&quot;@annotation(com.……
                                 <p class="readmore"><a href="/spring/%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81-%E4%BB%A4%E7%89%8C%E6%A1%B6%E9%99%90%E6%B5%81/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">日志优化MDC</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月14日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="/categories/spring">Spring</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                MDC(Mapped Diagnostic Context) 实现 步骤1：创建MDCFilter实现Filter filter（过滤器）作用于在intreceptor(拦截器)之前，不像intreceptor一样依赖于springmvc框架，只需要依赖于serverlet。 在过滤之前在reqId钟放入uuid并在结束之后remove
-import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; import org.springframework.stereotype.Component; import javax.servlet.*; import javax.servlet.http.HttpServletRequest; import java.io.IOException; import java.util.UUID; /** * @Author shizhongcai * @Date 2019/11/15 11:15 */ @Component public class MDCFilter implements Filter { private static final Logger LOG = LoggerFactory.getLogger(MDCFilter.class); public static final String MDC_ID = &quot;reqId&quot;; @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { boolean mdcFlag = false; try { MDC.……
-                                <p class="readmore"><a href="/spring/%E6%97%A5%E5%BF%97%E4%BC%98%E5%8C%96mdc/">阅读全文</a></p>
-                            </div>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">统一返回对象</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月14日
-                            </date>
-                            
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="/categories/spring">Spring</a>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                1.创建实体类BaseRspVo
-@Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo(ErrorCodesEnum errorCode) { if(errorCode == ErrorCodesEnum.SUCCESS) { this.success = true; } else { this.success = false; } this.msg = errorCode.getMsg(); this.errorCode = errorCode.getCode(); } } 错误Code枚举类 public enum ErrorCodesEnum { SUCCESS(10000,&quot;成功&quot;), SYS_ERROR(1000,&quot;系统异常，请稍后再试&quot;), DUPLICATE_KEY(10001,&quot;数据库中已存在该记录&quot;), NO_HANDLER_FOUND(10002,&quot;路径不存在，请检查路径是否正确&quot;), DEFAULT_FAIL(10003,&quot;未知异常，请稍后再试&quot;), DECRYPT_ERROR(10004,&quot;解密出错&quot;), ; /** * 错误码 */ private int code; /** * 错误描述 */ private String msg; ErrorCodesEnum(int code, String msg) { this.……
-                                <p class="readmore"><a href="/spring/%E7%BB%9F%E4%B8%80%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/">阅读全文</a></p>
                             </div>
                         </article>
                     
@@ -413,7 +413,11 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -425,7 +429,7 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -445,11 +449,19 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -467,6 +479,8 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -477,9 +491,13 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -521,7 +539,7 @@ import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.slf4j.MDC; i
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

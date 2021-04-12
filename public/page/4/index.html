@@ -68,6 +68,179 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/" title="设计模式分类" >设计模式分类</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年9月10日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 看懂UML类图和时序图  从一个示例开始 类之间的关系 时序图 附录  创建型模式  简单工厂模式（静态工厂方法模式）（不在创建型里面） 工厂方法模式 抽象工厂模式 单例模式 建造者模式 原型模式  结构型模式  适配器模式 桥接模式 装饰模式 外观模式 享元模式 代理模式  行为型模式  命令模式 中介者模式 观察者模式 状态模式 策略模式   ……
+                            </div>
+                            <p class="readmore"><a href="/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/" title="" ></a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年3月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                ……
+                            </div>
+                            <p class="readmore"><a href="/java/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E8%89%BA%E6%9C%AF/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="参数校验" >参数校验</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年2月24日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
+步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.……
+                            </div>
+                            <p class="readmore"><a href="/spring/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/web/webstorm/" title="WebStorm" >WebStorm</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2020年1月7日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/web">WEB</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                当执行webpack -v报错时 One CLI for webpack must be installed. These are recommended choices
+先全局安装webpack和webpack-cli cnpm install webpack -g cnpm install webpack-cli -g 再局部安装webpack和webpack-cli cnpm install webpack &ndash;save-dev cnpm install webpack-cli &ndash;save-dev……
+                            </div>
+                            <p class="readmore"><a href="/web/webstorm/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" title="阿里巴巴Java开发手册与代码规约插件P3C-PMD" >阿里巴巴Java开发手册与代码规约插件P3C-PMD</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年12月24日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 P-3C Orion【猎户座反潜巡逻机】，阿里大概取p3c先进，监测，发现潜在问题的意思
+前言 2017年的时，阿里官方首次公开阿里Java代码规范标准，发布阿里巴巴Java开发手册。 这套Java统一规范标准将有助于提高行业编码规范化水平，帮助行业人员提高开发质量和效率、大大降低代码维护成本。
+目前已更迭了五个版本，2019年6月19日，阿里巴巴Java开发手册（华山版）》正式发布，该版本命名为华山版是因为最新版本手册集成了社区开发者集体智慧的结晶。
+该开发手册阿里内部Java工程师所遵循的开发规范，涵盖编程规约、单元测试规约、异常日志规约、MySQL规约、工程规约、安全规约等，这是近万名阿里Java技术精英的经验总结，并经历了多次大规模一线实战检验及完善。这是阿里回馈给Java社区的一份礼物，希望能够帮助企业开发团队在Java开发上更高效、容错、有协作性，提高代码质量，降低项目维护成本。
+虽然已经发布了开发手册，但是为了让开发者更加方便、快速的将规范推动并实行起来，阿里巴巴基于手册内容，研发了一套自动化的IDE检测插件（IDEA、Eclipse）， 该插件在扫描代码后，将不符合《手册》的代码按Blocker/Critical/Major三个等级显示在下方，甚至在IDEA上，还基于检查机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。另外对于历史代码，部分规则实现了批量一键修复的功能，提升代码质量，提高团队研发效能。
+如何安装 eclipse安装 1.打开https://p3c.alibaba.com/plugin/eclipse/update 2.点击Zip File直接下载，下载完成后解压缩，将将【features】及【plugins】两个目录复制到eclipse安装目录下（eclipse.exe同级目录），重启eclipse idea安装 1.访问：https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines/versions 下载对应版本的安装包 2.依次点击【File】-&gt;【Settings】-&gt;【Plugins】-&gt;【install plugin from disk】然后点击确认
+如何使用 1.首先现贴一段测试代码
+public class Test { public static void main(String[] args) { String _name = &quot;name&quot;; System.out.println(_name.equals(&quot;name&quot;)); Long temp = 10l; if(temp ==10L) System.out.println(&quot;temp = 10&quot;); else System.out.println(&quot;temp != 10&quot;); HashMap&lt;String,Integer&gt; map = new HashMap&lt;&gt;(); } }  扫描后的结果： ……
+                            </div>
+                            <p class="readmore"><a href="/java/java%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/" title="阿里支付" >阿里支付</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年12月24日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/java">java</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                 [x]当面付-扫码支付快速接入(https://docs.open.alipay.com/194/106078/) [x]电脑网站支付（https://docs.open.alipay.com/270/105899/）  ……
+                            </div>
+                            <p class="readmore"><a href="/ali/%E9%98%BF%E9%87%8C%E6%89%AB%E7%A0%81%E6%94%AF%E4%BB%98/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="/web/css/" title="HTML" >HTML</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年12月10日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="/categories/web">WEB</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                list-style-type: 默认点 none 无 square 方格
+后代组合器 li em 相邻兄弟选择器 h1 + p 根据状态确定样式 a:link 链接颜色 a:visited 访问后的颜色 a:hover{ text-decoration: none; 覆盖后，链接去除下划线 }
+body h1 + p .special { color: yellow; background-color: black; padding: 5px; } 上面的代码为以下元素建立样式：在之内，紧接在后面的元素的内部，类名为special。
+refer to : https://developer.mozilla.org/zh-CN/docs/Web/HTML……
+                            </div>
+                            <p class="readmore"><a href="/web/css/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="/web/html/" title="HTML" >HTML</a>
                                 </h1>
                             </header>
@@ -152,184 +325,6 @@ div { ... }  类选择器……
                             <p class="readmore"><a href="/other/todo/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/sql/sql-%E8%AF%AD%E6%B3%95/" title="SQL语法" >SQL语法</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月29日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/sql">SQL</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                Mysql  Mysql分页
-select * from stu limit m, n; //m = (startPage-1)*pageSize,n = pageSize  第一个参数值m表示起始行，第二个参数表示取多少行（页面大小） mysql从0开始计数行数
-Oracle Oralce分页
-select * from ( select rownum rn,a.* from table_name a where rownum &lt;= x //结束行，x = startPage*pageSize ) where rn &gt;= y; //起始行，y = (startPage-1)*pageSize+1  创建索引
-create index index_name(idx_****) on table table_name(column1_name,column2_name);  oracle只查第一条数据
-select * from (select * from &lt;table&gt; order by &lt;key&gt; desc) where rownum=1;  oracle触发器……
-                            </div>
-                            <p class="readmore"><a href="/sql/sql-%E8%AF%AD%E6%B3%95/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/" title="微信开发" >微信开发</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月29日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91">微信开发</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                微信商户平台-现金红包 微信商户平台-企业付款到零钱 微信公众号开发-授权  接口配置信息修改  例如：编写一个公网接口 http://1b51z57431.51mypc.cn/tokenAuth 点击修改接口配置信息的时候，腾讯会给http://1b51z57431.51mypc.cn/tokenAuth 发送一个get请求，包含参数echostr，此时需要将echostr原路返回，就能够 修改接口配置信成功
-@GetMapping(value = &quot;/tokenAuth&quot;) public String tokenAuth(HttpServletRequest httpServletRequest){ Map&lt;String, String&gt; param = Request2Map.toMap(httpServletRequest); return param.get(&quot;echostr&quot;); }   修改JS安全域名  将http://1b51z57431.51mypc.cn设置为安全域名即可  设置网页帐号-网页授权获取用户基本信息  将1b51z57431.51mypc.cn填入即可  获取授权code  拼装并请求：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization&amp;response_type=code&amp;scope=snsapi_base&amp;state=123#wechat_redirect H5平台demo【https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0d453bb3d089f6f9&amp;redirect_uri=http%3A%2F%2Ffanxx4.natapp1.cc%2Fww_h5_dx%2F%23%2Fard%3Ftoken%3D12345&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=123#wechat_redirect】 微信会回调到：http://1b51z57431.51mypc.cn/authorization?code=001NOmD91cWL6N1S1lF911BoD91NOmDO&amp;state=123 回调会带入授权code 将获取到的授权code生成授权链接  静默授权： https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=123#wechat_redirect 会得到openid，access_token等参数 非静默授权-用户确认授权：https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx23007a86f39ac469&amp;redirect_uri=http%3A%2F%2F1b51z57431.51mypc.cn%2Fauthorization_userinfo&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=123#wechat_redirect 会得到头像昵称等数据   公众号菜单栏配置  打开https://mp.weixin.qq.com/debug/cgi-bin/apiinfo
- 接口类型选择-基础支持 设置appid和appsecret获取access_token 选择自定义菜单-自定义菜单创建接口/menue/create填入access_token并填入body为下：
-{ &quot;button&quot;:[ { &quot;type&quot;:&quot;click&quot;, &quot;name&quot;:&quot;测试&quot;, &quot;key&quot;:&quot;V1001_TODAY_MUSIC&quot; }, { &quot;name&quot;:&quot;营销服务&quot;, &quot;sub_button&quot;:[ { &quot;type&quot;:&quot;view&quot;, &quot;name&quot;:&quot;百度&quot;, &quot;url&quot;:&quot;http://www.……
-                            </div>
-                            <p class="readmore"><a href="/wechat/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="全局异常处理" >全局异常处理</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月21日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                通过RestControllerAdvice和ExceptionHandler实现全局异常捕获 起因： 我么希望通过全局统一的异常处理将自定义错误码以json的形式发送给前端。
-步骤: 1.定义一个统一结果返回类BaseRspVo import com.shizhongcai.business.common.domain.enums.ErrorCodesEnum; import com.shizhongcai.business.common.exception.BaseException; import lombok.Data; @Data public class BaseRspVo&lt;T&gt; { private boolean success; private String msg; private Integer errorCode; private T data; public BaseRspVo() { } public BaseRspVo (T data){ this.success = true; this.msg= ErrorCodesEnum.SUCCESS.getMsg(); this.errorCode = ErrorCodesEnum.SUCCESS.getCode(); this.data = data; } public BaseRspVo (boolean success, String msg, int errorCode) { this.success = success; this.msg = msg; this.errorCode = errorCode; } public BaseRspVo (boolean success, String msg, int errorCode, T data) { this(success,msg,errorCode); this.……
-                            </div>
-                            <p class="readmore"><a href="/spring/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/caffeine-cache%E6%8E%A5%E5%85%A5/" title="Caffeine Cache接入" >Caffeine Cache接入</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月20日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/java">java</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                 Caffeine Cache接入  Caffeine Cache，目前最快的Java内存框架，堆内存。
- 接入方式：
- 1.引入pom文件
-&lt;dependency&gt; &lt;groupId&gt;com.github.ben-manes.caffeine&lt;/groupId&gt; &lt;artifactId&gt;caffeine&lt;/artifactId&gt; &lt;version&gt;2.7.0&lt;/version&gt; &lt;/dependency&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt; &lt;/dependency&gt;  2.编写CaffeineConfig并注入CacheManager
-import org.springframework.cache.CacheManager; import org.springframework.cache.annotation.CachingConfigurerSupport; import org.springframework.cache.annotation.EnableCaching; import org.springframework.cache.caffeine.*; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration; import com.github.benmanes.caffeine.cache.Caffeine; import java.util.concurrent.TimeUnit; @Configuration @EnableCaching public class CaffeineConfig extends CachingConfigurerSupport { @Bean public CacheManager caffeineCacheManager() { CaffeineCacheManager cacheManager = new CaffeineCacheManager(); //定制化缓存Cache cacheManager.setCaffeine(Caffeine.newBuilder() .expireAfterWrite(3, TimeUnit.MINUTES) .initialCapacity(100) .maximumSize(10000)) ; return cacheManager; } }  3.通过注解使用
-@Cacheable(cacheNames = &quot;cache name&quot;, key = &quot;#patam1+'-'+#param2&quot;) public void test(String param1,String param2){ }     ……
-                            </div>
-                            <p class="readmore"><a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/caffeine-cache%E6%8E%A5%E5%85%A5/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/spring/filter%E5%92%8Cinterceptor/" title="Filter和Interceptor" >Filter和Interceptor</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月20日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                #Filter - Filter是javax.servlet包中定义的接口，任何实现Filter接口的类都能称为过滤器。 - 主要用途：设置字符集、控制权限、防止跨站脚本攻击（XSS）等等。 - 实现： 1. 如果是传统项目，需要在web.xml中配置filter
-&lt;filter&gt; &lt;description&gt;字符集过滤器&lt;/description&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt; &lt;init-param&gt; &lt;description&gt;字符集编码&lt;/description&gt; &lt;param-name&gt;encoding&lt;/param-name&gt; &lt;param-value&gt;UTF-8&lt;/param-value&gt; &lt;/init-param&gt; &lt;/filter&gt; &lt;filter-mapping&gt; &lt;filter-name&gt;encodingFilter&lt;/filter-name&gt; &lt;url-pattern&gt;/*&lt;/url-pattern&gt; &lt;/filter-mapping&gt;  2. 如果是springBoot项目,可以在定义好自己的filter类之后，需要使用filterregisterbean将filter进行注入。  public class MDCFilter implements Filter { @Override public void init(FilterConfig filterConfig) throws ServletException { } @Override public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException { filterChain.doFilter(servletRequest, servletResponse); } @Override public void destroy() { } } @Bean public FilterRegistrationBean mdcFilterRegistration() { FilterRegistrationBean registration = new FilterRegistrationBean(); registration.……
-                            </div>
-                            <p class="readmore"><a href="/spring/filter%E5%92%8Cinterceptor/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" title="JSR-303参数校验" >JSR-303参数校验</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月20日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/spring">Spring</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                JSR-303参数校验 步骤 1.创建校验参数类
-import lombok.Data; import org.hibernate.validator.constraints.Range; import org.springframework.format.annotation.DateTimeFormat; import javax.validation.constraints.*; import java.util.Date; /** * 参数验证请求参数 * @Author shizhongcai * @Date 2019/11/20 15:35 */ @Data public class ValidatorReqVo{ @NotNull(message = &quot;id不能为空&quot;) private Integer id; @NotNull @Future(message = &quot;格式为yyyy-MM-dd,且为将来时间&quot;) @DateTimeFormat(pattern = &quot;yyyy-MM-dd&quot;) private Date future; @NotNull @DecimalMin(value = &quot;0.1&quot;) @DecimalMax(value = &quot;1000&quot;) private Double doubleValue; @NotNull @Min(value = 1) @Max(value = 10) private Integer intValue; @NotNull @Range(min = 1,max = 10,message = &quot;最小为1，最大为10&quot;) private Integer range; @NotBlank @Email private String email; @NotBlank @Size(min = 10,max = 20,message = &quot;字符串长度在10-20之间&quot;) private String strSize; }  2.……
-                            </div>
-                            <p class="readmore"><a href="/spring/jsr-303%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/">阅读全文</a></p>
-                        </article>
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/redis%E7%BC%93%E5%AD%98/" title="Redis缓存" >Redis缓存</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年11月20日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="/categories/java">java</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                1.Redis简单介绍  语言开发的内存数据库，除了做KV缓存外还能做分布式锁、延时队列、定时任务等等  2.缓存读写模式/更新策略/处理流程  Cache Aside Pattern（旁路缓存模式） Read/Write Through Pattern（读写穿透） Write Behind Pattern（异步缓存写入）  3.为什么要用 Redis/为什么要用缓存？  简单来说使用缓存主要是为了提高接口响应速度，提升用户体验以及应对更多的用户。 高性能：对于高频数据并且不会经常改变的数据，保证下一次用户访问的数据直接从缓存中读取。 高并发：数据库的 QPS 大概都在 1w 左右（4 核 8g） ，但是使用 Redis 缓存之后很容易达到 10w+， &gt; QPS（Query Per Second）：服务器每秒可以执行的查询次数；  4.Redis 常见数据结构以及使用场景分析 4.1 String  普通操作：
-127.0.0.1:6379&gt; set key value #设置 key-value 类型的值 OK 127.0.0.1:6379&gt; get key # 根据 key 获得对应的 value &quot;value&quot; 127.0.0.1:6379&gt; exists key # 判断某个 key 是否存在 (integer) 1 127.……
-                            </div>
-                            <p class="readmore"><a href="/java/%E5%85%B6%E4%BB%96%E6%A1%86%E6%9E%B6/redis%E7%BC%93%E5%AD%98/">阅读全文</a></p>
-                        </article>
-                    
                     
 
 
@@ -372,6 +367,10 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
     
     <li >
         <a href="/page/8/">8</a>
+    </li>
+    
+    <li >
+        <a href="/page/9/">9</a>
     </li>
     
 
@@ -447,7 +446,11 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -459,7 +462,7 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -479,11 +482,19 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -501,6 +512,8 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -511,9 +524,13 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -555,7 +572,7 @@ import lombok.Data; import org.hibernate.validator.constraints.Range; import org
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

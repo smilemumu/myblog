@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Shi.bro的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Spring</title>
+      <link>/categories/spring/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/spring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SpringCloud</title>
+      <link>/categories/springcloud/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/springcloud/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Web</title>
@@ -53,15 +71,6 @@
       <pubDate>Thu, 19 Nov 2020 00:00:00 +0000</pubDate>
       
       <guid>/categories/mysql%E9%94%81/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Spring</title>
-      <link>/categories/spring/</link>
-      <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/spring/</guid>
       <description></description>
     </item>
     

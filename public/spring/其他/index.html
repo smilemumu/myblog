@@ -90,18 +90,31 @@
                         
                         
                         <div class="post-content">
-                            <p>其他一些日常工作中遇到的问题：</p>
+                            
+
+<p>其他一些日常工作中遇到的问题：</p>
 
 <p><img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/project/IMG_9192.HEIC" alt="HEIC" />
 <img src="https://raw.githubusercontent.com/smilemumu/picture/master/myblog/project/IMG_9192.JPG" alt="HEIC-JPG" /></p>
 
 <p><img src="img/令牌桶算法.png" alt="令牌桶算法.png" /></p>
 
-<p>1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。
-2.@Scope默认是单例模式，即scope=&ldquo;singleton&rdquo;。
-另外scope还有prototype、request、session、global session作用域。scope=&ldquo;prototype&rdquo;多例
-3.@Aspect执行顺序问题
-Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</p>
+<h1 id="其他">其他</h1>
+
+<ul>
+<li>1.如果需要在sit环境引入多个配置文件,比如application.yml何application-common.yml,只需要在application.yml中加入spring.profiles.include = common即可。</li>
+<li>2.@Scope默认是单例模式，即scope=&ldquo;singleton&rdquo;。
+另外scope还有prototype、request、session、global session作用域。scope=&ldquo;prototype&rdquo;多例</li>
+<li>3.@Aspect执行顺序问题
+Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注解修饰Aspect类。值越小，优先级越高。</li>
+<li>4.获取配置文件中的值
+
+<ul>
+<li>4.1属性获取配置文件的值@Value(“${属性名}”)</li>
+<li>4.2将配置文件的属性赋给实体类@ConfigurationProperties(prefix = &ldquo;my&rdquo;)</li>
+</ul></li>
+<li>5.</li>
+</ul>
 
                         </div>
 
@@ -205,7 +218,11 @@ Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注�
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -217,7 +234,7 @@ Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注�
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -237,11 +254,19 @@ Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注�
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -259,6 +284,8 @@ Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注�
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -269,9 +296,13 @@ Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注�
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -313,7 +344,7 @@ Aspect先执行是随机的，如果需要定义顺序，可以使用@Order注�
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>

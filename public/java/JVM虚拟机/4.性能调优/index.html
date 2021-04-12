@@ -151,7 +151,7 @@ Full GC没有频繁执行（大约10min执行一次）
 
 <pre><code>(2)官方推荐新生代占堆的3/8。
 
-(3)幸存代占新生代的1/10。
+(3)幸存区占新生代的1/10。
 
 (4)垃圾收集器如果内存比较大建议G1收集器，当然也可以用CMS收集器。
 
@@ -159,7 +159,7 @@ Full GC没有频繁执行（大约10min执行一次）
 
 (6)吞吐量优先的应用:一般吞吐量优先的应用都有一个很大的年轻代和一个较小的年老代.原因是,这样可以尽可能回收掉大部分短期对象,减少中期的对象,而年老代尽存放长期存活对象.
 
-(7)采用并发回收时，年轻代小一点，年老代要大，因为年老大用的是并发回收，即使时间长点也不会影响其他程序继续运行，网站不会停顿.
+(7)采用并发回收时，新生代代小一点，年老代要大，因为年老大用的是并发回收，即使时间长点也不会影响其他程序继续运行，网站不会停顿.
 
 (8)使用CMS的好处是用尽量少的新生代， 然后老生代利用CMS并行收集， 这样能保证系统低延迟的吞吐效率。
 </code></pre>
@@ -206,7 +206,7 @@ Full GC没有频繁执行（大约10min执行一次）
         
         <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/3.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">垃圾回收器</a></li>
         
-        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/oom/">OOM</a></li>
+        <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/5.oom/">OOM</a></li>
         
         <li><a href="/java/jvm%E8%99%9A%E6%8B%9F%E6%9C%BA/1.java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">Java内存模型</a></li>
         
@@ -293,7 +293,11 @@ Full GC没有频繁执行（大约10min执行一次）
     </li>
     
     <li>
-        <a href="/categories/spring/">spring(12)</a>
+        <a href="/categories/spring/">spring(14)</a>
+    </li>
+    
+    <li>
+        <a href="/categories/springcloud/">springcloud(6)</a>
     </li>
     
     <li>
@@ -305,7 +309,7 @@ Full GC没有频繁执行（大约10min执行一次）
     </li>
     
     <li>
-        <a href="/categories/web/">web(6)</a>
+        <a href="/categories/web/">web(5)</a>
     </li>
     
     <li>
@@ -325,11 +329,19 @@ Full GC没有频繁执行（大约10min执行一次）
     
     <a href="/tags/algorithm/">algorithm</a>
     
+    <a href="/tags/config/">config</a>
+    
+    <a href="/tags/eureka/">eureka</a>
+    
+    <a href="/tags/feign/">feign</a>
+    
     <a href="/tags/git/">git</a>
     
     <a href="/tags/guava/">guava</a>
     
     <a href="/tags/h5/">h5</a>
+    
+    <a href="/tags/hystrix/">hystrix</a>
     
     <a href="/tags/java/">java</a>
     
@@ -347,6 +359,8 @@ Full GC没有频繁执行（大约10min执行一次）
     
     <a href="/tags/other/">other</a>
     
+    <a href="/tags/ribbon/">ribbon</a>
+    
     <a href="/tags/spring/">spring</a>
     
     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">spring事务</a>
@@ -357,9 +371,13 @@ Full GC没有频繁执行（大约10min执行一次）
     
     <a href="/tags/web/">web</a>
     
+    <a href="/tags/webservice/">webservice</a>
+    
     <a href="/tags/wechat/">wechat</a>
     
     <a href="/tags/xml/">xml</a>
+    
+    <a href="/tags/zuul/">zuul</a>
     
     <a href="/tags/%E5%85%B6%E4%BB%96/">其他</a>
     
@@ -401,7 +419,7 @@ Full GC没有频繁执行（大约10min执行一次）
 </div>
 <footer id="footer">
     <div class="container">
-        &copy; 2020 <a href="">Shi.bro的博客 By Shi.bro</a>.
+        &copy; 2021 <a href="">Shi.bro的博客 By Shi.bro</a>.
         
     </div>
 </footer>
